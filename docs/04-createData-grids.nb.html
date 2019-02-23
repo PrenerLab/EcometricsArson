@@ -12,7 +12,7 @@
 <meta name="author" content="Christopher Prener, Ph.D." />
 
 
-<title>Create Data - Crime</title>
+<title>Create Data - Grid Estimates</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -1734,7 +1734,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("01-createData-crime.Rmd");
+  window.initializeSourceEmbed("04-createData-grids.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -1757,7 +1757,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Create Data - Crime</h1>
+<h1 class="title toc-ignore">Create Data - Grid Estimates</h1>
 <h4 class="author"><em>Christopher Prener, Ph.D.</em></h4>
 <h4 class="date"><em>(February 23, 2019)</em></h4>
 
@@ -1767,876 +1767,85 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>This notebook creates the crime data sets needed for the arson analyses.</p>
+<p>This notebook creates the grid-level estimates for analyses.</p>
 </div>
 <div id="dependencies" class="section level2">
 <h2>Dependencies</h2>
-<p>This notebook requires a number of packages to working with data and wrangling it.</p>
+<p>This notebook requires…</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGNvbXBzdGF0cilcblxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHB1cnJyKVxubGlicmFyeShyZWFkcilcblxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxubGlicmFyeSh0ZXN0dGhhdClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # tidystl packages library(compstatr)</p>
-</div>
-<div id="tidyverse-packages" class="section level1">
-<h1>tidyverse packages</h1>
-<p>library(dplyr) library(purrr) library(readr)</p>
-</div>
-<div id="other-packages" class="section level1">
-<h1>other packages</h1>
-<p>library(here) library(testthat)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="prepare-data" class="section level2">
-<h2>Prepare Data</h2>
-<div id="create-objects" class="section level3">
-<h3>Create Objects</h3>
-<p>First, we prep the raw data by converting filenames like <code>January2018.CSV.html</code> to <code>january2018.csv</code>. This is done with the <code>cs_prep_year()</code> function, which is combined here with <code>map()</code> to iterate over a vector of years that correspond to the raw data subfolders.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgdmVjdG9yIG9mIHllYXJzIHRvIGNsZWFuXG55ZWFycyA8LSBhcy5jaGFyYWN0ZXIoMjAwODoyMDE4KVxuXG4jIGNsZWFuIGRhdGEgZmlsZXNcbnllYXJzICU+JVxuICBzcGxpdCh5ZWFycykgJT4lXG4gIG1hcCh+IGNzX3ByZXBfeWVhcihoZXJlKFxcZGF0YVxcLCBcXHJhd1xcLCAueCkpKSAtPiBvdXRcblxuIyByZW1vdmUgb3V0cHV0XG5ybSh5ZWFycywgb3V0KVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # create vector of years to clean years &lt;- as.character(2008:2018)</p>
-</div>
-</div>
-</div>
-<div id="clean-data-files" class="section level1">
-<h1>clean data files</h1>
-<p>years %&gt;% split(years) %&gt;% map(~ cs_prep_year(here(, , .x))) -&gt; out</p>
-</div>
-<div id="remove-output" class="section level1">
-<h1>remove output</h1>
-<p>rm(years, out)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="load-raw-data" class="section level3">
-<h3>Load Raw Data</h3>
-<p>Next, we load year-list objects using <code>cs_load_year()</code>:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YTIwMThfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKFxcZGF0YVxcLCBcXHJhd1xcLCBcXDIwMThcXCkpXG5kYXRhMjAxN19yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoXFxkYXRhXFwsIFxccmF3XFwsIFxcMjAxN1xcKSlcbmRhdGEyMDE2X3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZShcXGRhdGFcXCwgXFxyYXdcXCwgXFwyMDE2XFwpKVxuZGF0YTIwMTVfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKFxcZGF0YVxcLCBcXHJhd1xcLCBcXDIwMTVcXCkpXG5kYXRhMjAxNF9yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoXFxkYXRhXFwsIFxccmF3XFwsIFxcMjAxNFxcKSlcbmRhdGEyMDEzX3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZShcXGRhdGFcXCwgXFxyYXdcXCwgXFwyMDEzXFwpKVxuZGF0YTIwMTJfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKFxcZGF0YVxcLCBcXHJhd1xcLCBcXDIwMTJcXCkpXG5kYXRhMjAxMV9yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoXFxkYXRhXFwsIFxccmF3XFwsIFxcMjAxMVxcKSlcbmRhdGEyMDEwX3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZShcXGRhdGFcXCwgXFxyYXdcXCwgXFwyMDEwXFwpKVxuZGF0YTIwMDlfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKFxcZGF0YVxcLCBcXHJhd1xcLCBcXDIwMDlcXCkpXG5kYXRhMjAwOF9yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoXFxkYXRhXFwsIFxccmF3XFwsIFxcMjAwOFxcKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r data2018_raw &lt;- cs_load_year(here(, , \2018)) data2017_raw &lt;- cs_load_year(here(, , \2017)) data2016_raw &lt;- cs_load_year(here(, , \2016)) data2015_raw &lt;- cs_load_year(here(, , \2015)) data2014_raw &lt;- cs_load_year(here(, , \2014)) data2013_raw &lt;- cs_load_year(here(, , \2013)) data2012_raw &lt;- cs_load_year(here(, , \2012)) data2011_raw &lt;- cs_load_year(here(, , \2011)) data2010_raw &lt;- cs_load_year(here(, , \2010)) data2009_raw &lt;- cs_load_year(here(, , \2009)) data2008_raw &lt;- cs_load_year(here(, , \2008))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGdhdGV3YXkpXG5saWJyYXJ5KGNvbXBzdGF0cilcbiMgdGlkeXZlcnNlIHBhY2thZ2VzXG5saWJyYXJ5KGRwbHlyKVxubGlicmFyeShyZWFkcilcbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShzZilcbiMgb3RoZXIgcGFja2FnZXNcbmxpYnJhcnkoaGVyZSlcbmBgYCJ9 -->
+<pre class="r"><code># tidystl packages
+library(gateway)
+library(compstatr)
+# tidyverse packages
+library(dplyr)
+library(readr)
+# spatial packages
+library(sf)
+# other packages
+library(here)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="section" class="section level3">
-<h3>2018</h3>
-<p>We validate the data to make sure it can be collapsed using <code>cs_validate_year()</code>:</p>
+<div id="download-grid-data" class="section level2">
+<h2>Download Grid Data</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxOF9yYXcsIHllYXIgPSBcXDIwMThcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2018_raw, year = \2018)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHMgPC0gZ3dfZ2V0X3JlcG8ocmVwbyA9IFwiU1RMX0JPVU5EQVJZX0dyaWRzXCIsIGZpbGUgPSBcIkdyaWRzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>grids &lt;- gw_get_repo(repo = &quot;STL_BOUNDARY_Grids&quot;, file = &quot;Grids&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since the validation result is a value of <code>TRUE</code>, we can proceed to collapsing the year-list object into a single tibble with <code>cs_collapse()</code> and then stripping out crimes reported in 2018 for earlier years using <code>cs_combine()</code>. We also strip out unfounded crimes that remain using <code>cs_filter_count()</code>:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE4X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxOF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTgsIGRhdGEyMDE4X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMThcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # collapse into single object data2018_raw &lt;- cs_collapse(data2018_raw)</p>
-</div>
-</div>
-<div id="combine-and-filter" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2018, data2018_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2018</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The <code>data2018</code> object now contains only crimes reported in 2018.</p>
-<div id="section-1" class="section level3">
-<h3>2017</h3>
-<p>We’ll repeat the validation process with the 2017 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxN19yYXcsIHllYXIgPSBcXDIwMTdcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2017_raw, year = \2017)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxN19yYXcsIHllYXIgPSBcXDIwMTdcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2017_raw, year = \2017, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The data for May 2017 do not pass the validation checks. We can extract this month and confirm that there are too many columns in the May 2017 release. Once we have that confirmed, we can standardize that month and re-run our validation.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBleHRyYWN0IGRhdGEgYW5kIHVuaXQgdGVzdCBjb2x1bW4gbnVtYmVyc1xuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxN19yYXcsIG1vbnRoID0gXFxNYXlcXCkpLCAyNilcblxuIyBzdGFuZGFyZGl6ZSBtb250aHNcbmRhdGEyMDE3X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxN19yYXcsIG1vbnRoID0gXFxNYXlcXCwgY29uZmlnID0gMjYpXG5cbiMgdmFsaWRhdGUgZGF0YVxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxN19yYXcsIHllYXIgPSBcXDIwMTdcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # extract data and unit test column numbers expect_equal(ncol(cs_extract_month(data2017_raw, month = )), 26)</p>
-</div>
-</div>
-<div id="standardize-months" class="section level1">
-<h1>standardize months</h1>
-<p>data2017_raw &lt;- cs_standardize(data2017_raw, month = , config = 26)</p>
-</div>
-<div id="validate-data" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2017_raw, year = \2017)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing the 2017 and 2018 raw data objects to create a new object, <code>data2017</code>, that contains all known 2017 crimes including those that were reported or upgraded in 2018.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE3X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxN19yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTcsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAxN1xuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # collapse into single object data2017_raw &lt;- cs_collapse(data2017_raw)</p>
-</div>
-<div id="combine-and-filter-1" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2017, data2018_raw, data2017_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2017</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-2" class="section level3">
-<h3>2016</h3>
-<p>We’ll repeat the validation process with the 2016 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxNl9yYXcsIHllYXIgPSBcXDIwMTZcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2016_raw, year = \2016)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since the validation process passes, we can immediately move on to creating our 2016 data object:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE2X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNl9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTYsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gQ291bnQpIC0+IGRhdGEyMDE2XG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # collapse into single object data2016_raw &lt;- cs_collapse(data2016_raw)</p>
-</div>
-</div>
-<div id="combine-and-filter-2" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2016, data2018_raw, data2017_raw, data2016_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2016</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-3" class="section level3">
-<h3>2015</h3>
-<p>We’ll repeat the validation process with the 2015 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxNV9yYXcsIHllYXIgPSBcXDIwMTVcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2015_raw, year = \2015)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since the validation process passes, we can immediately move on to creating our 2015 data object:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE1X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTUsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMTVcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # collapse into single object data2015_raw &lt;- cs_collapse(data2015_raw)</p>
-</div>
-</div>
-<div id="combine-and-filter-3" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2015, data2018_raw, data2017_raw, data2016_raw, data2015_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2015</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-4" class="section level3">
-<h3>2014</h3>
-<p>We’ll repeat the validation process with the 2014 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxNF9yYXcsIHllYXIgPSBcXDIwMTRcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2014_raw, year = \2014)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since the validation process passes, we should be able to immediately move on to creating our 2014 data object. However, we get an error when we go to collapse our data because <code>ILEADSAddrress</code> is character in a particular month:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBleHRyYWN0IGRhdGFcbmphbjIwMTQgPC0gY3NfZXh0cmFjdF9tb250aChkYXRhMjAxNF9yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpXG5cbiMgdW5pdCB0ZXN0IGNvbHVtbiBudW1iZXJcbmV4cGVjdF9lcXVhbChjbGFzcyhqYW4yMDE0JElMRUFEU0FkZHJlc3MpLCBcXGNoYXJhY3RlclxcKVxuXG4jIGZpeCBJTEVBRFNBZGRyZXNzXG5qYW4yMDE0IDwtIG11dGF0ZShqYW4yMDE0LCBJTEVBRFNBZGRyZXNzID0gYXMubnVtZXJpYyhJTEVBRFNBZGRyZXNzKSlcblxuIyByZXBsYWNlIGRhdGFcbmRhdGEyMDE0X3JhdyA8LSBjc19yZXBsYWNlX21vbnRoKGRhdGEyMDE0X3JhdywgbW9udGggPSBcXEphbnVhcnlcXCwgamFuMjAxNClcblxuIyByZW1vdmUgb2JqZWN0XG5ybShqYW4yMDE0KVxuXG4jIHZhbGlkYXRlIGRhdGFcbmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTRfcmF3LCB5ZWFyID0gXFwyMDE0XFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # extract data jan2014 &lt;- cs_extract_month(data2014_raw, month = )</p>
-</div>
-</div>
-<div id="unit-test-column-number" class="section level1">
-<h1>unit test column number</h1>
-<p>expect_equal(class(jan2014$ILEADSAddress), )</p>
-</div>
-<div id="fix-ileadsaddress" class="section level1">
-<h1>fix ILEADSAddress</h1>
-<p>jan2014 &lt;- mutate(jan2014, ILEADSAddress = as.numeric(ILEADSAddress))</p>
-</div>
-<div id="replace-data" class="section level1">
-<h1>replace data</h1>
-<p>data2014_raw &lt;- cs_replace_month(data2014_raw, month = , jan2014)</p>
-</div>
-<div id="remove-object" class="section level1">
-<h1>remove object</h1>
-<p>rm(jan2014)</p>
-</div>
-<div id="validate-data-1" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2014_raw, year = \2014)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>After double-checking our validation, we can now collapse our data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE0X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTQsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAxNFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # collapse into single object data2014_raw &lt;- cs_collapse(data2014_raw)</p>
-</div>
-<div id="combine-and-filter-4" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2014, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2014</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-5" class="section level3">
-<h3>2013</h3>
-<p>We’ll repeat the validation process with the 2013 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxM19yYXcsIHllYXIgPSBcXDIwMTNcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2013_raw, year = \2013)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxM19yYXcsIHllYXIgPSBcXDIwMTNcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2013_raw, year = \2013, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The data for January through May, July, and August do not pass the validation checks. We can extract these and confirm that there are not enough columns in each of these releases Once we have that confirmed, we can standardize that month and re-run our validation.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcbiMgcmVtb3ZlIG9iamVjdFxucm0obW9udGgxMylcblxuIyB2YWxpZGF0ZSBkYXRhXG5jc192YWxpZGF0ZV95ZWFyKGRhdGEyMDEzX3JhdywgeWVhciA9IFxcMjAxM1xcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
-</div>
-</div>
-<div id="february---extract-data-unit-test-and-standardize" class="section level1">
-<h1>February - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
-</div>
-<div id="march---extract-data-unit-test-and-standardize" class="section level1">
-<h1>March - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
-</div>
-<div id="april---extract-data-unit-test-and-standardize" class="section level1">
-<h1>April - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
-</div>
-<div id="may---extract-data-unit-test-and-standardize" class="section level1">
-<h1>May - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
-</div>
-<div id="july---extract-data-unit-test-and-standardize" class="section level1">
-<h1>July - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
-</div>
-<div id="august---extract-data-unit-test-and-standardize" class="section level1">
-<h1>August - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18) # remove object rm(month13)</p>
-</div>
-<div id="validate-data-2" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2013_raw, year = \2013)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2013</code>, that contains all known 2013 crimes including those that were reported or upgraded in subsequent years:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEzX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxM19yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTMsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gQ291bnQpIC0+IGRhdGEyMDEzXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # collapse into single object data2013_raw &lt;- cs_collapse(data2013_raw)</p>
-</div>
-<div id="combine-and-filter-5" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2013, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2013</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-6" class="section level3">
-<h3>2012</h3>
-<p>We’ll repeat the validation process with the 2012 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMl9yYXcsIHllYXIgPSBcXDIwMTJcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2012_raw, year = \2012)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMl9yYXcsIHllYXIgPSBcXDIwMTJcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2012_raw, year = \2012, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdW5lIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxKdW5lXFwpKSwgMTgpXG5kYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcSnVuZVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcblxuIyBTZXB0ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcKSksIDE4KVxuZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxPY3RvYmVyXFwpKSwgMTgpXG5kYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcT2N0b2JlclxcLCBjb25maWcgPSAxOClcblxuIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcTm92ZW1iZXJcXCkpLCAxOClcbmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxOb3ZlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBEZWNlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcRGVjZW1iZXJcXCkpLCAxOClcbmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gXFxEZWNlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyB2YWxpZGF0ZSBkYXRhXG5jc192YWxpZGF0ZV95ZWFyKGRhdGEyMDEyX3JhdywgeWVhciA9IFxcMjAxMlxcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-</div>
-<div id="february---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>February - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="march---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>March - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="april---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>April - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="may---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>May - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="june---extract-data-unit-test-and-standardize" class="section level1">
-<h1>June - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="july---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>July - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="august---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>August - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="september---extract-data-unit-test-and-standardize" class="section level1">
-<h1>September - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="october---extract-data-unit-test-and-standardize" class="section level1">
-<h1>October - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="november---extract-data-unit-test-and-standardize" class="section level1">
-<h1>November - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="december---extract-data-unit-test-and-standardize" class="section level1">
-<h1>December - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18) data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
-</div>
-<div id="validate-data-3" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2012_raw, year = \2012)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2012</code>, that contains all known 2012 crimes including those that were reported or upgraded in subsequent years:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEyX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMl9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTIsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMTJcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # collapse into single object data2012_raw &lt;- cs_collapse(data2012_raw)</p>
-</div>
-<div id="combine-and-filter-6" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2012, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2012</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-7" class="section level3">
-<h3>2011</h3>
-<p>We’ll repeat the validation process with the 2011 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMV9yYXcsIHllYXIgPSBcXDIwMTFcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2011_raw, year = \2011)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMV9yYXcsIHllYXIgPSBcXDIwMTFcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2011_raw, year = \2011, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDExX3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdW5lIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxKdW5lXFwpKSwgMTgpXG5kYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcSnVuZVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDExX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcblxuIyBTZXB0ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDExX3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcKSksIDE4KVxuZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxPY3RvYmVyXFwpKSwgMTgpXG5kYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcT2N0b2JlclxcLCBjb25maWcgPSAxOClcblxuIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcTm92ZW1iZXJcXCkpLCAxOClcbmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxOb3ZlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBEZWNlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcRGVjZW1iZXJcXCkpLCAxOClcbmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gXFxEZWNlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyB2YWxpZGF0ZSBkYXRhXG5jc192YWxpZGF0ZV95ZWFyKGRhdGEyMDExX3JhdywgeWVhciA9IFxcMjAxMVxcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-</div>
-<div id="february---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>February - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="march---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>March - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="april---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>April - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="may---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>May - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="june---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>June - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="july---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>July - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="august---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>August - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="september---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>September - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="october---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>October - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="november---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>November - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="december---extract-data-unit-test-and-standardize-1" class="section level1">
-<h1>December - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18) data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
-</div>
-<div id="validate-data-4" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2011_raw, year = \2011)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2011</code>, that contains all known 2011 crimes including those that were reported or upgraded in subsequent years:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDExX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTEsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAxMVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # collapse into single object data2011_raw &lt;- cs_collapse(data2011_raw)</p>
-</div>
-<div id="combine-and-filter-7" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2011, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2011</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-8" class="section level3">
-<h3>2010</h3>
-<p>We’ll repeat the validation process with the 2010 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMF9yYXcsIHllYXIgPSBcXDIwMTBcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2010_raw, year = \2010)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMF9yYXcsIHllYXIgPSBcXDIwMTBcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2010_raw, year = \2010, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAxMF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdW5lIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxKdW5lXFwpKSwgMTgpXG5kYXRhMjAxMF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcSnVuZVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAxMF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcblxuIyBTZXB0ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcKSksIDE4KVxuZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxPY3RvYmVyXFwpKSwgMTgpXG5kYXRhMjAxMF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcT2N0b2JlclxcLCBjb25maWcgPSAxOClcblxuIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcTm92ZW1iZXJcXCkpLCAxOClcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxOb3ZlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBEZWNlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcRGVjZW1iZXJcXCkpLCAxOClcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxEZWNlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyB2YWxpZGF0ZSBkYXRhXG5jc192YWxpZGF0ZV95ZWFyKGRhdGEyMDEwX3JhdywgeWVhciA9IFxcMjAxMFxcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-</div>
-<div id="february---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>February - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="march---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>March - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="april---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>April - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="may---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>May - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="june---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>June - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="july---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>July - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="august---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>August - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="september---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>September - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="october---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>October - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="november---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>November - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="december---extract-data-unit-test-and-standardize-2" class="section level1">
-<h1>December - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18) data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
-</div>
-<div id="validate-data-5" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2010_raw, year = \2010)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2010</code>, that contains all known 2010 crimes including those that were reported or upgraded in subsequent years:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEwX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTAsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMF9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gQ291bnQpIC0+IGRhdGEyMDEwXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # collapse into single object data2010_raw &lt;- cs_collapse(data2010_raw)</p>
-</div>
-<div id="combine-and-filter-8" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2010, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2010</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-9" class="section level3">
-<h3>2009</h3>
-<p>We’ll repeat the validation process with the 2009 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAwOV9yYXcsIHllYXIgPSBcXDIwMDlcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2009_raw, year = \2009)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAwOV9yYXcsIHllYXIgPSBcXDIwMDlcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2009_raw, year = \2009, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAwOV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdW5lIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxKdW5lXFwpKSwgMTgpXG5kYXRhMjAwOV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcSnVuZVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAwOV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcblxuIyBTZXB0ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcKSksIDE4KVxuZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxPY3RvYmVyXFwpKSwgMTgpXG5kYXRhMjAwOV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcT2N0b2JlclxcLCBjb25maWcgPSAxOClcblxuIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcTm92ZW1iZXJcXCkpLCAxOClcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxOb3ZlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBEZWNlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcRGVjZW1iZXJcXCkpLCAxOClcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxEZWNlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyB2YWxpZGF0ZSBkYXRhXG5jc192YWxpZGF0ZV95ZWFyKGRhdGEyMDA5X3JhdywgeWVhciA9IFxcMjAwOVxcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-</div>
-<div id="february---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>February - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="march---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>March - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="april---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>April - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="may---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>May - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="june---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>June - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="july---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>July - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="august---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>August - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="september---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>September - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="october---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>October - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="november---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>November - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="december---extract-data-unit-test-and-standardize-3" class="section level1">
-<h1>December - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18) data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
-</div>
-<div id="validate-data-6" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2009_raw, year = \2009)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2009</code>, that contains all known 2009 crimes including those that were reported or upgraded in subsequent years:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDA5X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMDksIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMF9yYXcsIGRhdGEyMDA5X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMDlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # collapse into single object data2009_raw &lt;- cs_collapse(data2009_raw)</p>
-</div>
-<div id="combine-and-filter-9" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2009, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2009</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="section-10" class="section level3">
-<h3>2008</h3>
-<p>We’ll repeat the validation process with the 2009 data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAwOF9yYXcsIHllYXIgPSBcXDIwMDhcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r cs_validate_year(data2008_raw, year = \2008)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAwOF9yYXcsIHllYXIgPSBcXDIwMDhcXCwgdmVyYm9zZSA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r cs_validate_year(data2008_raw, year = \2008, verbose = TRUE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA4X3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdW5lIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxKdW5lXFwpKSwgMTgpXG5kYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcSnVuZVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA4X3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcblxuIyBTZXB0ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA4X3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcKSksIDE4KVxuZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSBcXFNlcHRlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxPY3RvYmVyXFwpKSwgMTgpXG5kYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcT2N0b2JlclxcLCBjb25maWcgPSAxOClcblxuIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcTm92ZW1iZXJcXCkpLCAxOClcbmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxOb3ZlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyBEZWNlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9IFxcRGVjZW1iZXJcXCkpLCAxOClcbmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gXFxEZWNlbWJlclxcLCBjb25maWcgPSAxOClcblxuIyB2YWxpZGF0ZSBkYXRhXG5jc192YWxpZGF0ZV95ZWFyKGRhdGEyMDA4X3JhdywgeWVhciA9IFxcMjAwOFxcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-</div>
-<div id="february---extract-data-unit-test-and-standardize-5" class="section level1">
-<h1>February - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="march---extract-data-unit-test-and-standardize-5" class="section level1">
-<h1>March - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="april---extract-data-unit-test-and-standardize-5" class="section level1">
-<h1>April - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="may---extract-data-unit-test-and-standardize-5" class="section level1">
-<h1>May - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="june---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>June - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="july---extract-data-unit-test-and-standardize-5" class="section level1">
-<h1>July - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="august---extract-data-unit-test-and-standardize-5" class="section level1">
-<h1>August - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="september---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>September - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="october---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>October - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="november---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>November - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="december---extract-data-unit-test-and-standardize-4" class="section level1">
-<h1>December - extract data, unit test, and standardize</h1>
-<p>expect_equal(ncol(cs_extract_month(data2008_raw, month = )), 18) data2008_raw &lt;- cs_standardize(data2008_raw, month = , config = 18)</p>
-</div>
-<div id="validate-data-7" class="section level1">
-<h1>validate data</h1>
-<p>cs_validate_year(data2008_raw, year = \2008)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We now get a <code>TRUE</code> value for <code>cs_validate_year()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2008</code>, that contains all known 2008 crimes including those that were reported or upgraded in subsequent years:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDA4X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMDgsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMF9yYXcsIGRhdGEyMDA5X3JhdywgZGF0YTIwMDhfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAwOFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # collapse into single object data2008_raw &lt;- cs_collapse(data2008_raw)</p>
-</div>
-<div id="combine-and-filter-10" class="section level1">
-<h1>combine and filter</h1>
-<p>cs_combine(type = , date = 2008, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw, data2008_raw) %&gt;% cs_filter_count(var = Count) -&gt; data2008</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="clean-up-enviornment" class="section level2">
-<h2>Clean-up Enviornment</h2>
-<p>We can remove the <code>_raw</code> objects at this point:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucm0oZGF0YTIwMDhfcmF3LCBkYXRhMjAwOV9yYXcsIGRhdGEyMDEwX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDEzX3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxOF9yYXcpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoidHJ5aW5nIFVSTCAnaHR0cHM6Ly9naXRodWIuY29tL3NsdS1vcGVuR0lTL1NUTF9CT1VOREFSWV9Hcmlkcy9hcmNoaXZlL21hc3Rlci56aXAnXG5kb3dubG9hZGVkIDM5MSBLQlxuIn0= -->
+<pre><code>trying URL 'https://github.com/slu-openGIS/STL_BOUNDARY_Grids/archive/master.zip'
+downloaded 391 KB</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgU1RMX0JPVU5EQVJZX0dyaWRzJyBmcm9tIGRhdGEgc291cmNlIGAvcHJpdmF0ZS92YXIvZm9sZGVycy94ei92NTBncXhoajQwZDN4aGNwZ2I1bndscHNxemNtMXkvVC9SdG1wbVEzU0xRL1NUTF9CT1VOREFSWV9Hcmlkcy1tYXN0ZXIvU1RMX0JPVU5EQVJZX0dyaWRzL3NoYXBlZmlsZS9TVExfQk9VTkRBUllfR3JpZHMuc2hwJyB1c2luZyBkcml2ZXIgYEVTUkkgU2hhcGVmaWxlJ1xuU2ltcGxlIGZlYXR1cmUgY29sbGVjdGlvbiB3aXRoIDIwNSBmZWF0dXJlcyBhbmQgMyBmaWVsZHNcbmdlb21ldHJ5IHR5cGU6ICBNVUxUSVBPTFlHT05cbmRpbWVuc2lvbjogICAgICBYWVxuYmJveDogICAgICAgICAgIHhtaW46IDczMzM2MCB5bWluOiA0MjY4NTI3IHhtYXg6IDc0NTQ0Mi41IHltYXg6IDQyOTU1MTFcbmVwc2cgKFNSSUQpOiAgICAzMjYxNVxucHJvajRzdHJpbmc6ICAgICtwcm9qPXV0bSArem9uZT0xNSArZGF0dW09V0dTODQgK3VuaXRzPW0gK25vX2RlZnNcbiJ9 -->
+<pre><code>Reading layer `STL_BOUNDARY_Grids' from data source `/private/var/folders/xz/v50gqxhj40d3xhcpgb5nwlpsqzcm1y/T/RtmpmQ3SLQ/STL_BOUNDARY_Grids-master/STL_BOUNDARY_Grids/shapefile/STL_BOUNDARY_Grids.shp' using driver `ESRI Shapefile'
+Simple feature collection with 205 features and 3 fields
+geometry type:  MULTIPOLYGON
+dimension:      XY
+bbox:           xmin: 733360 ymin: 4268527 xmax: 745442.5 ymax: 4295511
+epsg (SRID):    32615
+proj4string:    +proj=utm +zone=15 +datum=WGS84 +units=m +no_defs</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="create-single-table" class="section level2">
-<h2>Create Single Table</h2>
-<p>Next, we’ll create a single table before we remove individual years. We also subset columns to reduce the footprint of the table.</p>
+<div id="arson-per-grid-square" class="section level2">
+<h2>Arson Per Grid Square</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmluZF9yb3dzKGRhdGEyMDA4LCBkYXRhMjAwOSwgZGF0YTIwMTAsIGRhdGEyMDExLCBkYXRhMjAxMiwgZGF0YTIwMTMsIGRhdGEyMDE0LCBkYXRhMjAxNSwgZGF0YTIwMTYsIGRhdGEyMDE3LCBkYXRhMjAxOCkgJT4lXG4gIHNlbGVjdChjc195ZWFyLCBEYXRlT2NjdXIsIENyaW1lLCBEZXNjcmlwdGlvbiwgSUxFQURTQWRkcmVzcywgSUxFQURTU3RyZWV0LCBYQ29vcmQsIFlDb29yZCkgLT4gYWxsQ3JpbWVzXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %&gt;% select(cs_year, DateOccur, Crime, Description, ILEADSAddress, ILEADSStreet, XCoord, YCoord) -&gt; allCrimes</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJzb25fcG9pbnQgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcImFyc29uLmNzdlwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>arson_point &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;arson.csv&quot;))</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIERhdGVPY2N1ciA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBDcmltZSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBjYXRlZ29yeSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBEZXNjcmlwdGlvbiA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBJTEVBRFNBZGRyZXNzID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIElMRUFEU1N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBYQ29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgWUNvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW1cbilcbiJ9 -->
+<pre><code>Parsed with column specification:
+cols(
+  cs_year = [32mcol_double()[39m,
+  DateOccur = [31mcol_character()[39m,
+  Crime = [32mcol_double()[39m,
+  category = [32mcol_double()[39m,
+  Description = [31mcol_character()[39m,
+  ILEADSAddress = [32mcol_double()[39m,
+  ILEADSStreet = [31mcol_character()[39m,
+  XCoord = [32mcol_double()[39m,
+  YCoord = [32mcol_double()[39m
+)</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="clean-up-enviornment-1" class="section level3">
-<h3>Clean-up Enviornment</h3>
-<p>We’ll remove excess objects again:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucm0oZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-<div id="categorize-crimes-and-subset" class="section level2">
-<h2>Categorize Crimes and Subset</h2>
-<p>Now that we have a slimmed down data set, we’ll add crime categories:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JSAgXG4gIGNzX2NyaW1lX2NhdCh2YXIgPSBDcmltZSwgbmV3VmFyID0gY2F0ZWdvcnksIG91dHB1dCA9IFxcbnVtZXJpY1xcKSAlPiVcbiAgc2VsZWN0KGNzX3llYXIsIERhdGVPY2N1ciwgQ3JpbWUsIGNhdGVnb3J5LCBldmVyeXRoaW5nKCkpIC0+IGFsbENyaW1lc1xuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r allCrimes %&gt;%<br />
-cs_crime_cat(var = Crime, newVar = category, output = ) %&gt;% select(cs_year, DateOccur, Crime, category, everything()) -&gt; allCrimes</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="create-arson-data" class="section level3">
-<h3>Create Arson Data</h3>
-<p>First, we’ll subset out arson incidents and write these to a <code>.csv</code>:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY2F0ZWdvcnkgPT0gOCkgJT4lXG4gIGZpbHRlcihDcmltZSAlaW4lIGMoODExMDAsIDgyMTAwLCA4MzEwMCkgPT0gRkFMU0UpICU+JVxuICB3cml0ZV9jc3YoaGVyZShcXGRhdGFcXCwgXFxjbGVhblxcLCBcXGFyc29uLmNzdlxcKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r allCrimes %&gt;% filter(category == 8) %&gt;% filter(Crime %in% c(81100, 82100, 83100) == FALSE) %&gt;% write_csv(here(, , .csv))</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="violent-crimes" class="section level3">
-<h3>Violent Crimes</h3>
-<p>Next, we’ll create a subset that is only violent crimes:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY2F0ZWdvcnkgPD0gNCkgJT4lXG4gIHdyaXRlX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcdmlvbGVudC5jc3ZcXCkpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r allCrimes %&gt;% filter(category &lt;= 4) %&gt;% write_csv(here(, , .csv))</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="property-crimes" class="section level3">
-<h3>Property Crimes</h3>
-<p>Next, we’ll create a subset that is only non-arson property crimes:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY2F0ZWdvcnkgPiA0ICYgY2F0ZWdvcnkgPCA4KSAlPiVcbiAgd3JpdGVfY3N2KGhlcmUoXFxkYXRhXFwsIFxcY2xlYW5cXCwgXFxwcm9wZXJ0eS5jc3ZcXCkpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r allCrimes %&gt;% filter(category &gt; 4 &amp; category &lt; 8) %&gt;% write_csv(here(, , .csv))</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="other-crimes" class="section level3">
-<h3>Other Crimes</h3>
-<p>Finally, we’ll create a subset with a few key Part 2 crimes:</p>
-<ul>
-<li>Vandalism</li>
-<li>Weapons</li>
-<li>Drug Abuse Violations</li>
-<li>Vagrancy</li>
-</ul>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY2F0ZWdvcnkgJWluJSBjKDE0LCAxNSwgMTgsIDI0KSkgJT4lXG4gIHdyaXRlX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcb3RoZXJDcmltZXMuY3N2XFwpKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r allCrimes %&gt;% filter(category %in% c(14, 15, 18, 24)) %&gt;% write_csv(here(, , .csv))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJzb25fcG9pbnQgPC0gY3NfbWlzc2luZ194eShhcnNvbl9wb2ludCwgdmFyeCA9IFhDb29yZCwgdmFyeSA9IFlDb29yZCwgbmV3VmFyID0gbWlzc2luZ1hZKVxuYGBgIn0= -->
+<pre class="r"><code>arson_point &lt;- cs_missing_xy(arson_point, varx = XCoord, vary = YCoord, newVar = missingXY)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
-</div>
-</div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBDcmltZSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIHRoZSBjcmltZSBkYXRhIHNldHMgbmVlZGVkIGZvciB0aGUgYXJzb24gYW5hbHlzZXMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyBhIG51bWJlciBvZiBwYWNrYWdlcyB0byB3b3JraW5nIHdpdGggZGF0YSBhbmQgd3JhbmdsaW5nIGl0LgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoY29tcHN0YXRyKQoKIyB0aWR5dmVyc2UgcGFja2FnZXMKbGlicmFyeShkcGx5cikKbGlicmFyeShwdXJycikKbGlicmFyeShyZWFkcikKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKQpsaWJyYXJ5KHRlc3R0aGF0KQpgYGAKCiMjIFByZXBhcmUgRGF0YQojIyMgQ3JlYXRlIE9iamVjdHMKRmlyc3QsIHdlIHByZXAgdGhlIHJhdyBkYXRhIGJ5IGNvbnZlcnRpbmcgZmlsZW5hbWVzIGxpa2UgYEphbnVhcnkyMDE4LkNTVi5odG1sYCB0byBgamFudWFyeTIwMTguY3N2YC4gVGhpcyBpcyBkb25lIHdpdGggdGhlIGBjc19wcmVwX3llYXIoKWAgZnVuY3Rpb24sIHdoaWNoIGlzIGNvbWJpbmVkIGhlcmUgd2l0aCBgbWFwKClgIHRvIGl0ZXJhdGUgb3ZlciBhIHZlY3RvciBvZiB5ZWFycyB0aGF0IGNvcnJlc3BvbmQgdG8gdGhlIHJhdyBkYXRhIHN1YmZvbGRlcnMuCgpgYGB7ciBwcmVwLWRhdGF9CiMgY3JlYXRlIHZlY3RvciBvZiB5ZWFycyB0byBjbGVhbgp5ZWFycyA8LSBhcy5jaGFyYWN0ZXIoMjAwODoyMDE4KQoKIyBjbGVhbiBkYXRhIGZpbGVzCnllYXJzICU+JQogIHNwbGl0KHllYXJzKSAlPiUKICBtYXAofiBjc19wcmVwX3llYXIoaGVyZSgiZGF0YSIsICJyYXciLCAueCkpKSAtPiBvdXQKCiMgcmVtb3ZlIG91dHB1dApybSh5ZWFycywgb3V0KQpgYGAKCiMjIyBMb2FkIFJhdyBEYXRhCk5leHQsIHdlIGxvYWQgeWVhci1saXN0IG9iamVjdHMgdXNpbmcgYGNzX2xvYWRfeWVhcigpYDoKCmBgYHtyIGxvYWQtZGF0YX0KZGF0YTIwMThfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKCJkYXRhIiwgInJhdyIsICIyMDE4IikpCmRhdGEyMDE3X3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZSgiZGF0YSIsICJyYXciLCAiMjAxNyIpKQpkYXRhMjAxNl9yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoImRhdGEiLCAicmF3IiwgIjIwMTYiKSkKZGF0YTIwMTVfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKCJkYXRhIiwgInJhdyIsICIyMDE1IikpCmRhdGEyMDE0X3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZSgiZGF0YSIsICJyYXciLCAiMjAxNCIpKQpkYXRhMjAxM19yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoImRhdGEiLCAicmF3IiwgIjIwMTMiKSkKZGF0YTIwMTJfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKCJkYXRhIiwgInJhdyIsICIyMDEyIikpCmRhdGEyMDExX3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZSgiZGF0YSIsICJyYXciLCAiMjAxMSIpKQpkYXRhMjAxMF9yYXcgPC0gY3NfbG9hZF95ZWFyKGhlcmUoImRhdGEiLCAicmF3IiwgIjIwMTAiKSkKZGF0YTIwMDlfcmF3IDwtIGNzX2xvYWRfeWVhcihoZXJlKCJkYXRhIiwgInJhdyIsICIyMDA5IikpCmRhdGEyMDA4X3JhdyA8LSBjc19sb2FkX3llYXIoaGVyZSgiZGF0YSIsICJyYXciLCAiMjAwOCIpKQpgYGAKCiMjIyAyMDE4CldlIHZhbGlkYXRlIHRoZSBkYXRhIHRvIG1ha2Ugc3VyZSBpdCBjYW4gYmUgY29sbGFwc2VkIHVzaW5nIGBjc192YWxpZGF0ZV95ZWFyKClgOgoKYGBge3IgdmFsaWRhdGUtZGF0YTE4fQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDE4X3JhdywgeWVhciA9ICIyMDE4IikKYGBgCgpTaW5jZSB0aGUgdmFsaWRhdGlvbiByZXN1bHQgaXMgYSB2YWx1ZSBvZiBgVFJVRWAsIHdlIGNhbiBwcm9jZWVkIHRvIGNvbGxhcHNpbmcgdGhlIHllYXItbGlzdCBvYmplY3QgaW50byBhIHNpbmdsZSB0aWJibGUgd2l0aCBgY3NfY29sbGFwc2UoKWAgYW5kIHRoZW4gc3RyaXBwaW5nIG91dCBjcmltZXMgcmVwb3J0ZWQgaW4gMjAxOCBmb3IgZWFybGllciB5ZWFycyB1c2luZyBgY3NfY29tYmluZSgpYC4gV2UgYWxzbyBzdHJpcCBvdXQgdW5mb3VuZGVkIGNyaW1lcyB0aGF0IHJlbWFpbiB1c2luZyBgY3NfZmlsdGVyX2NvdW50KClgOgoKYGBge3IgY29sbGFwc2UtZGF0YTE4fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxOF9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMThfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxOCwgZGF0YTIwMThfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gQ291bnQpIC0+IGRhdGEyMDE4CmBgYAoKVGhlIGBkYXRhMjAxOGAgb2JqZWN0IG5vdyBjb250YWlucyBvbmx5IGNyaW1lcyByZXBvcnRlZCBpbiAyMDE4LgoKIyMjIDIwMTcKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAxNyBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTE3fQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDE3X3JhdywgeWVhciA9ICIyMDE3IikKYGBgCgpTaW5jZSB3ZSBmYWlsIHRoZSB2YWxpZGF0aW9uLCB3ZSBjYW4gdXNlIHRoZSBgdmVyYm9zZSA9IFRSVUVgIG9wdGlvbiB0byBnZXQgYSBzdW1tYXJ5IG9mIHdoZXJlIHZhbGlkYXRpb24gaXNzdWVzIGFyZSBvY2N1cmluZy4gCgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTctdmVyYm9zZX0KY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxN19yYXcsIHllYXIgPSAiMjAxNyIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKClRoZSBkYXRhIGZvciBNYXkgMjAxNyBkbyBub3QgcGFzcyB0aGUgdmFsaWRhdGlvbiBjaGVja3MuIFdlIGNhbiBleHRyYWN0IHRoaXMgbW9udGggYW5kIGNvbmZpcm0gdGhhdCB0aGVyZSBhcmUgdG9vIG1hbnkgY29sdW1ucyBpbiB0aGUgTWF5IDIwMTcgcmVsZWFzZS4gT25jZSB3ZSBoYXZlIHRoYXQgY29uZmlybWVkLCB3ZSBjYW4gc3RhbmRhcmRpemUgdGhhdCBtb250aCBhbmQgcmUtcnVuIG91ciB2YWxpZGF0aW9uLgoKYGBge3IgZml4LW1heTE3fQojIGV4dHJhY3QgZGF0YSBhbmQgdW5pdCB0ZXN0IGNvbHVtbiBudW1iZXJzCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTdfcmF3LCBtb250aCA9ICJNYXkiKSksIDI2KQoKIyBzdGFuZGFyZGl6ZSBtb250aHMKZGF0YTIwMTdfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDE3X3JhdywgbW9udGggPSAiTWF5IiwgY29uZmlnID0gMjYpCgojIHZhbGlkYXRlIGRhdGEKY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxN19yYXcsIHllYXIgPSAiMjAxNyIpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlX3llYXIoKWAgYW5kIGNhbiBtb3ZlIG9uIHRvIGNvbGxhcHNpbmcgdGhlIDIwMTcgYW5kIDIwMTggcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMTdgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDE3IGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIDIwMTguCgpgYGB7ciBjb2xsYXBzZS1kYXRhMTd9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDE3X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxN19yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDE3LCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAxNwpgYGAKCiMjIyAyMDE2CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTYgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExNn0KY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxNl9yYXcsIHllYXIgPSAiMjAxNiIpCmBgYAoKU2luY2UgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyBwYXNzZXMsIHdlIGNhbiBpbW1lZGlhdGVseSBtb3ZlIG9uIHRvIGNyZWF0aW5nIG91ciAyMDE2IGRhdGEgb2JqZWN0OgoKYGBge3IgY29sbGFwc2UtZGF0YTE2fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxNl9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTZfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxNiwgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAxNgpgYGAKCiMjIyAyMDE1CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTUgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExNX0KY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxNV9yYXcsIHllYXIgPSAiMjAxNSIpCmBgYAoKU2luY2UgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyBwYXNzZXMsIHdlIGNhbiBpbW1lZGlhdGVseSBtb3ZlIG9uIHRvIGNyZWF0aW5nIG91ciAyMDE1IGRhdGEgb2JqZWN0OgoKYGBge3IgY29sbGFwc2UtZGF0YTE1fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxNV9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTVfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxNSwgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gQ291bnQpIC0+IGRhdGEyMDE1CmBgYAoKIyMjIDIwMTQKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAxNCBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTE0fQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDE0X3JhdywgeWVhciA9ICIyMDE0IikKYGBgCgpTaW5jZSB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHBhc3Nlcywgd2Ugc2hvdWxkIGJlIGFibGUgdG8gaW1tZWRpYXRlbHkgbW92ZSBvbiB0byBjcmVhdGluZyBvdXIgMjAxNCBkYXRhIG9iamVjdC4gSG93ZXZlciwgd2UgZ2V0IGFuIGVycm9yIHdoZW4gd2UgZ28gdG8gY29sbGFwc2Ugb3VyIGRhdGEgYmVjYXVzZSBgSUxFQURTQWRkcnJlc3NgIGlzIGNoYXJhY3RlciBpbiBhIHBhcnRpY3VsYXIgbW9udGg6CgpgYGB7ciBmaXgtamFuMTR9CiMgZXh0cmFjdCBkYXRhCmphbjIwMTQgPC0gY3NfZXh0cmFjdF9tb250aChkYXRhMjAxNF9yYXcsIG1vbnRoID0gIkphbnVhcnkiKQoKIyB1bml0IHRlc3QgY29sdW1uIG51bWJlcgpleHBlY3RfZXF1YWwoY2xhc3MoamFuMjAxNCRJTEVBRFNBZGRyZXNzKSwgImNoYXJhY3RlciIpCgojIGZpeCBJTEVBRFNBZGRyZXNzCmphbjIwMTQgPC0gbXV0YXRlKGphbjIwMTQsIElMRUFEU0FkZHJlc3MgPSBhcy5udW1lcmljKElMRUFEU0FkZHJlc3MpKQoKIyByZXBsYWNlIGRhdGEKZGF0YTIwMTRfcmF3IDwtIGNzX3JlcGxhY2VfbW9udGgoZGF0YTIwMTRfcmF3LCBtb250aCA9ICJKYW51YXJ5IiwgamFuMjAxNCkKCiMgcmVtb3ZlIG9iamVjdApybShqYW4yMDE0KQoKIyB2YWxpZGF0ZSBkYXRhCmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTRfcmF3LCB5ZWFyID0gIjIwMTQiKQpgYGAKCkFmdGVyIGRvdWJsZS1jaGVja2luZyBvdXIgdmFsaWRhdGlvbiwgd2UgY2FuIG5vdyBjb2xsYXBzZSBvdXIgZGF0YToKCmBgYHtyIGNvbGxhcHNlLWRhdGExNH0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTRfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE0X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTQsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gQ291bnQpIC0+IGRhdGEyMDE0CmBgYAoKIyMjIDIwMTMKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAxMyBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTEzfQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDEzX3JhdywgeWVhciA9ICIyMDEzIikKYGBgCgpTaW5jZSB3ZSBmYWlsIHRoZSB2YWxpZGF0aW9uLCB3ZSBjYW4gdXNlIHRoZSBgdmVyYm9zZSA9IFRSVUVgIG9wdGlvbiB0byBnZXQgYSBzdW1tYXJ5IG9mIHdoZXJlIHZhbGlkYXRpb24gaXNzdWVzIGFyZSBvY2N1cmluZy4gCgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTMtdmVyYm9zZX0KY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxM19yYXcsIHllYXIgPSAiMjAxMyIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKClRoZSBkYXRhIGZvciBKYW51YXJ5IHRocm91Z2ggTWF5LCBKdWx5LCBhbmQgQXVndXN0IGRvIG5vdCBwYXNzIHRoZSB2YWxpZGF0aW9uIGNoZWNrcy4gV2UgY2FuIGV4dHJhY3QgdGhlc2UgYW5kIGNvbmZpcm0gdGhhdCB0aGVyZSBhcmUgbm90IGVub3VnaCBjb2x1bW5zIGluIGVhY2ggb2YgdGhlc2UgcmVsZWFzZXMgT25jZSB3ZSBoYXZlIHRoYXQgY29uZmlybWVkLCB3ZSBjYW4gc3RhbmRhcmRpemUgdGhhdCBtb250aCBhbmQgcmUtcnVuIG91ciB2YWxpZGF0aW9uLgoKYGBge3IgZml4LW1vbnRoMTN9CiMgSmFudWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJKYW51YXJ5IiwgY29uZmlnID0gMTgpCgojIEZlYnJ1YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSAiRmVicnVhcnkiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJGZWJydWFyeSIsIGNvbmZpZyA9IDE4KQoKIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIk1hcmNoIikpLCAxOCkKZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSAiTWFyY2giLCBjb25maWcgPSAxOCkKCiMgQXByaWwgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJBcHJpbCIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIkFwcmlsIiwgY29uZmlnID0gMTgpCgojIE1heSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIk1heSIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIk1heSIsIGNvbmZpZyA9IDE4KQoKIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSAiSnVseSIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIkp1bHkiLCBjb25maWcgPSAxOCkKCiMgQXVndXN0IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSAiQXVndXN0IikpLCAxOCkKZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSAiQXVndXN0IiwgY29uZmlnID0gMTgpCiMgcmVtb3ZlIG9iamVjdApybShtb250aDEzKQoKIyB2YWxpZGF0ZSBkYXRhCmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTNfcmF3LCB5ZWFyID0gIjIwMTMiKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZV95ZWFyKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxM2AsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTMgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExM30KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTNfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDEzX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTMsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMTMKYGBgCgojIyMgMjAxMgpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDEyIGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTJ9CmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTJfcmF3LCB5ZWFyID0gIjIwMTIiKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExMi12ZXJib3NlfQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDEyX3JhdywgeWVhciA9ICIyMDEyIiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgxMn0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiSmFudWFyeSIpKSwgMTgpCmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gIkphbnVhcnkiLCBjb25maWcgPSAxOCkKCiMgRmVicnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJGZWJydWFyeSIpKSwgMTgpCmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IiwgY29uZmlnID0gMTgpCgojIE1hcmNoIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiTWFyY2giKSksIDE4KQpkYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJNYXJjaCIsIGNvbmZpZyA9IDE4KQoKIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMl9yYXcsIG1vbnRoID0gIkFwcmlsIikpLCAxOCkKZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSAiQXByaWwiLCBjb25maWcgPSAxOCkKCiMgTWF5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiTWF5IikpLCAxOCkKZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSAiTWF5IiwgY29uZmlnID0gMTgpCgojIEp1bmUgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJKdW5lIikpLCAxOCkKZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSAiSnVuZSIsIGNvbmZpZyA9IDE4KQoKIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiSnVseSIpKSwgMTgpCmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gIkp1bHkiLCBjb25maWcgPSAxOCkKCiMgQXVndXN0IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiQXVndXN0IikpLCAxOCkKZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSAiQXVndXN0IiwgY29uZmlnID0gMTgpCgojIFNlcHRlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMl9yYXcsIG1vbnRoID0gIlNlcHRlbWJlciIpKSwgMTgpCmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gIlNlcHRlbWJlciIsIGNvbmZpZyA9IDE4KQoKIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiT2N0b2JlciIpKSwgMTgpCmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gIk9jdG9iZXIiLCBjb25maWcgPSAxOCkKCiMgTm92ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJOb3ZlbWJlciIpKSwgMTgpCmRhdGEyMDEyX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMl9yYXcsIG1vbnRoID0gIk5vdmVtYmVyIiwgY29uZmlnID0gMTgpCgojIERlY2VtYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEyX3JhdywgbW9udGggPSAiRGVjZW1iZXIiKSksIDE4KQpkYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJEZWNlbWJlciIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTJfcmF3LCB5ZWFyID0gIjIwMTIiKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZV95ZWFyKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxMmAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTIgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExMn0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTJfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDEyX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTIsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAxMgpgYGAKCiMjIyAyMDExCldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTEgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExMX0KY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMV9yYXcsIHllYXIgPSAiMjAxMSIpCmBgYAoKU2luY2Ugd2UgZmFpbCB0aGUgdmFsaWRhdGlvbiwgd2UgY2FuIHVzZSB0aGUgYHZlcmJvc2UgPSBUUlVFYCBvcHRpb24gdG8gZ2V0IGEgc3VtbWFyeSBvZiB3aGVyZSB2YWxpZGF0aW9uIGlzc3VlcyBhcmUgb2NjdXJpbmcuIAoKYGBge3IgdmFsaWRhdGUtZGF0YTExLXZlcmJvc2V9CmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTFfcmF3LCB5ZWFyID0gIjIwMTEiLCB2ZXJib3NlID0gVFJVRSkKYGBgCgpFdmVyeSBtb250aCBjb250YWlucyB0aGUgaW5jb3JyZWN0IG51bWJlciBvZiB2YXJpYWJsZXMuIFdlJ2xsIGFkZHJlc3MgZWFjaCBvZiB0aGVzZToKCmBgYHtyIGZpeC1tb250aDExfQojIEphbnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiSmFudWFyeSIsIGNvbmZpZyA9IDE4KQoKIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IikpLCAxOCkKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiRmVicnVhcnkiLCBjb25maWcgPSAxOCkKCiMgTWFyY2ggLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJNYXJjaCIpKSwgMTgpCmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gIk1hcmNoIiwgY29uZmlnID0gMTgpCgojIEFwcmlsIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDExX3JhdywgbW9udGggPSAiQXByaWwiKSksIDE4KQpkYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJBcHJpbCIsIGNvbmZpZyA9IDE4KQoKIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJNYXkiKSksIDE4KQpkYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJNYXkiLCBjb25maWcgPSAxOCkKCiMgSnVuZSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gIkp1bmUiKSksIDE4KQpkYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJKdW5lIiwgY29uZmlnID0gMTgpCgojIEp1bHkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJKdWx5IikpLCAxOCkKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiSnVseSIsIGNvbmZpZyA9IDE4KQoKIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJBdWd1c3QiKSksIDE4KQpkYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJBdWd1c3QiLCBjb25maWcgPSAxOCkKCiMgU2VwdGVtYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDExX3JhdywgbW9udGggPSAiU2VwdGVtYmVyIikpLCAxOCkKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiU2VwdGVtYmVyIiwgY29uZmlnID0gMTgpCgojIE9jdG9iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJPY3RvYmVyIikpLCAxOCkKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiT2N0b2JlciIsIGNvbmZpZyA9IDE4KQoKIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMV9yYXcsIG1vbnRoID0gIk5vdmVtYmVyIikpLCAxOCkKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiTm92ZW1iZXIiLCBjb25maWcgPSAxOCkKCiMgRGVjZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJEZWNlbWJlciIpKSwgMTgpCmRhdGEyMDExX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMV9yYXcsIG1vbnRoID0gIkRlY2VtYmVyIiwgY29uZmlnID0gMTgpCgojIHZhbGlkYXRlIGRhdGEKY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAxMV9yYXcsIHllYXIgPSAiMjAxMSIpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlX3llYXIoKWAgYW5kIGNhbiBtb3ZlIG9uIHRvIGNvbGxhcHNpbmcgb3VyIHJhdyBkYXRhIG9iamVjdHMgdG8gY3JlYXRlIGEgbmV3IG9iamVjdCwgYGRhdGEyMDExYCwgdGhhdCBjb250YWlucyBhbGwga25vd24gMjAxMSBjcmltZXMgaW5jbHVkaW5nIHRob3NlIHRoYXQgd2VyZSByZXBvcnRlZCBvciB1cGdyYWRlZCBpbiBzdWJzZXF1ZW50IHllYXJzOgoKYGBge3IgY29sbGFwc2UtZGF0YTExfQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxMV9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTFfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxMSwgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3LCBkYXRhMjAxNF9yYXcsIGRhdGEyMDEzX3JhdywgZGF0YTIwMTJfcmF3LCBkYXRhMjAxMV9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMTEKYGBgCgojIyMgMjAxMApXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDEwIGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTB9CmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTBfcmF3LCB5ZWFyID0gIjIwMTAiKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExMC12ZXJib3NlfQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDEwX3JhdywgeWVhciA9ICIyMDEwIiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgxMH0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiSmFudWFyeSIpKSwgMTgpCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gIkphbnVhcnkiLCBjb25maWcgPSAxOCkKCiMgRmVicnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9ICJGZWJydWFyeSIpKSwgMTgpCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IiwgY29uZmlnID0gMTgpCgojIE1hcmNoIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiTWFyY2giKSksIDE4KQpkYXRhMjAxMF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTBfcmF3LCBtb250aCA9ICJNYXJjaCIsIGNvbmZpZyA9IDE4KQoKIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gIkFwcmlsIikpLCAxOCkKZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSAiQXByaWwiLCBjb25maWcgPSAxOCkKCiMgTWF5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiTWF5IikpLCAxOCkKZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSAiTWF5IiwgY29uZmlnID0gMTgpCgojIEp1bmUgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9ICJKdW5lIikpLCAxOCkKZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSAiSnVuZSIsIGNvbmZpZyA9IDE4KQoKIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiSnVseSIpKSwgMTgpCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gIkp1bHkiLCBjb25maWcgPSAxOCkKCiMgQXVndXN0IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiQXVndXN0IikpLCAxOCkKZGF0YTIwMTBfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEwX3JhdywgbW9udGggPSAiQXVndXN0IiwgY29uZmlnID0gMTgpCgojIFNlcHRlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gIlNlcHRlbWJlciIpKSwgMTgpCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gIlNlcHRlbWJlciIsIGNvbmZpZyA9IDE4KQoKIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiT2N0b2JlciIpKSwgMTgpCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gIk9jdG9iZXIiLCBjb25maWcgPSAxOCkKCiMgTm92ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9ICJOb3ZlbWJlciIpKSwgMTgpCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gIk5vdmVtYmVyIiwgY29uZmlnID0gMTgpCgojIERlY2VtYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEwX3JhdywgbW9udGggPSAiRGVjZW1iZXIiKSksIDE4KQpkYXRhMjAxMF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTBfcmF3LCBtb250aCA9ICJEZWNlbWJlciIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMTBfcmF3LCB5ZWFyID0gIjIwMTAiKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZV95ZWFyKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxMGAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTAgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExMH0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTBfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDEwX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTAsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMF9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMTAKYGBgCgojIyMgMjAwOQpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDA5IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMDl9CmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMDlfcmF3LCB5ZWFyID0gIjIwMDkiKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGEwOS12ZXJib3NlfQpjc192YWxpZGF0ZV95ZWFyKGRhdGEyMDA5X3JhdywgeWVhciA9ICIyMDA5IiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgwOX0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiSmFudWFyeSIpKSwgMTgpCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gIkphbnVhcnkiLCBjb25maWcgPSAxOCkKCiMgRmVicnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9ICJGZWJydWFyeSIpKSwgMTgpCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IiwgY29uZmlnID0gMTgpCgojIE1hcmNoIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiTWFyY2giKSksIDE4KQpkYXRhMjAwOV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDlfcmF3LCBtb250aCA9ICJNYXJjaCIsIGNvbmZpZyA9IDE4KQoKIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gIkFwcmlsIikpLCAxOCkKZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSAiQXByaWwiLCBjb25maWcgPSAxOCkKCiMgTWF5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiTWF5IikpLCAxOCkKZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSAiTWF5IiwgY29uZmlnID0gMTgpCgojIEp1bmUgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9ICJKdW5lIikpLCAxOCkKZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSAiSnVuZSIsIGNvbmZpZyA9IDE4KQoKIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiSnVseSIpKSwgMTgpCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gIkp1bHkiLCBjb25maWcgPSAxOCkKCiMgQXVndXN0IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiQXVndXN0IikpLCAxOCkKZGF0YTIwMDlfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA5X3JhdywgbW9udGggPSAiQXVndXN0IiwgY29uZmlnID0gMTgpCgojIFNlcHRlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gIlNlcHRlbWJlciIpKSwgMTgpCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gIlNlcHRlbWJlciIsIGNvbmZpZyA9IDE4KQoKIyBPY3RvYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiT2N0b2JlciIpKSwgMTgpCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gIk9jdG9iZXIiLCBjb25maWcgPSAxOCkKCiMgTm92ZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9ICJOb3ZlbWJlciIpKSwgMTgpCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gIk5vdmVtYmVyIiwgY29uZmlnID0gMTgpCgojIERlY2VtYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA5X3JhdywgbW9udGggPSAiRGVjZW1iZXIiKSksIDE4KQpkYXRhMjAwOV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDlfcmF3LCBtb250aCA9ICJEZWNlbWJlciIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMDlfcmF3LCB5ZWFyID0gIjIwMDkiKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZV95ZWFyKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAwOWAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMDkgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGEwOX0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMDlfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDA5X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMDksIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMF9yYXcsIGRhdGEyMDA5X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IENvdW50KSAtPiBkYXRhMjAwOQpgYGAKCiMjIyAyMDA4CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMDkgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGEwOH0KY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAwOF9yYXcsIHllYXIgPSAiMjAwOCIpCmBgYAoKU2luY2Ugd2UgZmFpbCB0aGUgdmFsaWRhdGlvbiwgd2UgY2FuIHVzZSB0aGUgYHZlcmJvc2UgPSBUUlVFYCBvcHRpb24gdG8gZ2V0IGEgc3VtbWFyeSBvZiB3aGVyZSB2YWxpZGF0aW9uIGlzc3VlcyBhcmUgb2NjdXJpbmcuIAoKYGBge3IgdmFsaWRhdGUtZGF0YTA4LXZlcmJvc2V9CmNzX3ZhbGlkYXRlX3llYXIoZGF0YTIwMDhfcmF3LCB5ZWFyID0gIjIwMDgiLCB2ZXJib3NlID0gVFJVRSkKYGBgCgpFdmVyeSBtb250aCBjb250YWlucyB0aGUgaW5jb3JyZWN0IG51bWJlciBvZiB2YXJpYWJsZXMuIFdlJ2xsIGFkZHJlc3MgZWFjaCBvZiB0aGVzZToKCmBgYHtyIGZpeC1tb250aDA4fQojIEphbnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSAiSmFudWFyeSIsIGNvbmZpZyA9IDE4KQoKIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IikpLCAxOCkKZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSAiRmVicnVhcnkiLCBjb25maWcgPSAxOCkKCiMgTWFyY2ggLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJNYXJjaCIpKSwgMTgpCmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gIk1hcmNoIiwgY29uZmlnID0gMTgpCgojIEFwcmlsIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA4X3JhdywgbW9udGggPSAiQXByaWwiKSksIDE4KQpkYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJBcHJpbCIsIGNvbmZpZyA9IDE4KQoKIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJNYXkiKSksIDE4KQpkYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJNYXkiLCBjb25maWcgPSAxOCkKCiMgSnVuZSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gIkp1bmUiKSksIDE4KQpkYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJKdW5lIiwgY29uZmlnID0gMTgpCgojIEp1bHkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJKdWx5IikpLCAxOCkKZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSAiSnVseSIsIGNvbmZpZyA9IDE4KQoKIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJBdWd1c3QiKSksIDE4KQpkYXRhMjAwOF9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJBdWd1c3QiLCBjb25maWcgPSAxOCkKCiMgU2VwdGVtYmVyIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDA4X3JhdywgbW9udGggPSAiU2VwdGVtYmVyIikpLCAxOCkKZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSAiU2VwdGVtYmVyIiwgY29uZmlnID0gMTgpCgojIE9jdG9iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJPY3RvYmVyIikpLCAxOCkKZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSAiT2N0b2JlciIsIGNvbmZpZyA9IDE4KQoKIyBOb3ZlbWJlciAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gIk5vdmVtYmVyIikpLCAxOCkKZGF0YTIwMDhfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDA4X3JhdywgbW9udGggPSAiTm92ZW1iZXIiLCBjb25maWcgPSAxOCkKCiMgRGVjZW1iZXIgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDhfcmF3LCBtb250aCA9ICJEZWNlbWJlciIpKSwgMTgpCmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gIkRlY2VtYmVyIiwgY29uZmlnID0gMTgpCgojIHZhbGlkYXRlIGRhdGEKY3NfdmFsaWRhdGVfeWVhcihkYXRhMjAwOF9yYXcsIHllYXIgPSAiMjAwOCIpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlX3llYXIoKWAgYW5kIGNhbiBtb3ZlIG9uIHRvIGNvbGxhcHNpbmcgb3VyIHJhdyBkYXRhIG9iamVjdHMgdG8gY3JlYXRlIGEgbmV3IG9iamVjdCwgYGRhdGEyMDA4YCwgdGhhdCBjb250YWlucyBhbGwga25vd24gMjAwOCBjcmltZXMgaW5jbHVkaW5nIHRob3NlIHRoYXQgd2VyZSByZXBvcnRlZCBvciB1cGdyYWRlZCBpbiBzdWJzZXF1ZW50IHllYXJzOgoKYGBge3IgY29sbGFwc2UtZGF0YTA4fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAwOF9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMDhfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAwOCwgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3LCBkYXRhMjAxNF9yYXcsIGRhdGEyMDEzX3JhdywgZGF0YTIwMTJfcmF3LCBkYXRhMjAxMV9yYXcsIGRhdGEyMDEwX3JhdywgZGF0YTIwMDlfcmF3LCBkYXRhMjAwOF9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBDb3VudCkgLT4gZGF0YTIwMDgKYGBgCgojIyBDbGVhbi11cCBFbnZpb3JubWVudApXZSBjYW4gcmVtb3ZlIHRoZSBgX3Jhd2Agb2JqZWN0cyBhdCB0aGlzIHBvaW50OgoKYGBge3IgcmVtb3ZlLXJhd30Kcm0oZGF0YTIwMDhfcmF3LCBkYXRhMjAwOV9yYXcsIGRhdGEyMDEwX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDEzX3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxOF9yYXcpCmBgYAoKIyMgQ3JlYXRlIFNpbmdsZSBUYWJsZQpOZXh0LCB3ZSdsbCBjcmVhdGUgYSBzaW5nbGUgdGFibGUgYmVmb3JlIHdlIHJlbW92ZSBpbmRpdmlkdWFsIHllYXJzLiBXZSBhbHNvIHN1YnNldCBjb2x1bW5zIHRvIHJlZHVjZSB0aGUgZm9vdHByaW50IG9mIHRoZSB0YWJsZS4KCmBgYHtyIGNvbGxhcHNlLWFsbH0KYmluZF9yb3dzKGRhdGEyMDA4LCBkYXRhMjAwOSwgZGF0YTIwMTAsIGRhdGEyMDExLCBkYXRhMjAxMiwgZGF0YTIwMTMsIGRhdGEyMDE0LCBkYXRhMjAxNSwgZGF0YTIwMTYsIGRhdGEyMDE3LCBkYXRhMjAxOCkgJT4lCiAgc2VsZWN0KGNzX3llYXIsIERhdGVPY2N1ciwgQ3JpbWUsIERlc2NyaXB0aW9uLCBJTEVBRFNBZGRyZXNzLCBJTEVBRFNTdHJlZXQsIFhDb29yZCwgWUNvb3JkKSAtPiBhbGxDcmltZXMKYGBgCgojIyMgQ2xlYW4tdXAgRW52aW9ybm1lbnQKV2UnbGwgcmVtb3ZlIGV4Y2VzcyBvYmplY3RzIGFnYWluOgoKYGBge3IgcmVtb3ZlLXllYXJzfQpybShkYXRhMjAwOCwgZGF0YTIwMDksIGRhdGEyMDEwLCBkYXRhMjAxMSwgZGF0YTIwMTIsIGRhdGEyMDEzLCBkYXRhMjAxNCwgZGF0YTIwMTUsIGRhdGEyMDE2LCBkYXRhMjAxNywgZGF0YTIwMTgpCmBgYAoKIyMgQ2F0ZWdvcml6ZSBDcmltZXMgYW5kIFN1YnNldApOb3cgdGhhdCB3ZSBoYXZlIGEgc2xpbW1lZCBkb3duIGRhdGEgc2V0LCB3ZSdsbCBhZGQgY3JpbWUgY2F0ZWdvcmllczoKCmBgYHtyIGNhdGVnb3JpemUtY3JpbWVzfQphbGxDcmltZXMgJT4lICAKICBjc19jcmltZV9jYXQodmFyID0gQ3JpbWUsIG5ld1ZhciA9IGNhdGVnb3J5LCBvdXRwdXQgPSAibnVtZXJpYyIpICU+JQogIHNlbGVjdChjc195ZWFyLCBEYXRlT2NjdXIsIENyaW1lLCBjYXRlZ29yeSwgZXZlcnl0aGluZygpKSAtPiBhbGxDcmltZXMKYGBgCgojIyMgQ3JlYXRlIEFyc29uIERhdGEKRmlyc3QsIHdlJ2xsIHN1YnNldCBvdXQgYXJzb24gaW5jaWRlbnRzIGFuZCB3cml0ZSB0aGVzZSB0byBhIGAuY3N2YDoKCmBgYHtyIHN1YnNldC1hcnNvbn0KYWxsQ3JpbWVzICU+JQogIGZpbHRlcihjYXRlZ29yeSA9PSA4KSAlPiUKICBmaWx0ZXIoQ3JpbWUgJWluJSBjKDgxMTAwLCA4MjEwMCwgODMxMDApID09IEZBTFNFKSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJhcnNvbi5jc3YiKSkKYGBgCgojIyMgVmlvbGVudCBDcmltZXMKTmV4dCwgd2UnbGwgY3JlYXRlIGEgc3Vic2V0IHRoYXQgaXMgb25seSB2aW9sZW50IGNyaW1lczoKCmBgYHtyIHN1YnNldC12aW9sZW50fQphbGxDcmltZXMgJT4lCiAgZmlsdGVyKGNhdGVnb3J5IDw9IDQpICU+JQogIHdyaXRlX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgInZpb2xlbnQuY3N2IikpCmBgYAoKIyMjIFByb3BlcnR5IENyaW1lcwpOZXh0LCB3ZSdsbCBjcmVhdGUgYSBzdWJzZXQgdGhhdCBpcyBvbmx5IG5vbi1hcnNvbiBwcm9wZXJ0eSBjcmltZXM6CgpgYGB7ciBzdWJzZXQtcHJvcGVydHl9CmFsbENyaW1lcyAlPiUKICBmaWx0ZXIoY2F0ZWdvcnkgPiA0ICYgY2F0ZWdvcnkgPCA4KSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJwcm9wZXJ0eS5jc3YiKSkKYGBgCgojIyMgT3RoZXIgQ3JpbWVzCkZpbmFsbHksIHdlJ2xsIGNyZWF0ZSBhIHN1YnNldCB3aXRoIGEgZmV3IGtleSBQYXJ0IDIgY3JpbWVzOgoKKiBWYW5kYWxpc20KKiBXZWFwb25zCiogRHJ1ZyBBYnVzZSBWaW9sYXRpb25zCiogVmFncmFuY3kKCmBgYHtyIHN1YnNldC1vdGhlcn0KYWxsQ3JpbWVzICU+JQogIGZpbHRlcihjYXRlZ29yeSAlaW4lIGMoMTQsIDE1LCAxOCwgMjQpKSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJvdGhlckNyaW1lcy5jc3YiKSkKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBHcmlkIEVzdGltYXRlcyIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIHRoZSBncmlkLWxldmVsIGVzdGltYXRlcyBmb3IgYW5hbHlzZXMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcy4uLgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoZ2F0ZXdheSkKbGlicmFyeShjb21wc3RhdHIpCgojIHRpZHl2ZXJzZSBwYWNrYWdlcwpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHJlYWRyKQoKIyBzcGF0aWFsIHBhY2thZ2VzCmxpYnJhcnkoc2YpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBEb3dubG9hZCBHcmlkIERhdGEKCmBgYHtyIGRvd25sb2FkLWdyaWRzfQpncmlkcyA8LSBnd19nZXRfcmVwbyhyZXBvID0gIlNUTF9CT1VOREFSWV9HcmlkcyIsIGZpbGUgPSAiR3JpZHMiKQpgYGAKCiMjIEFyc29uIFBlciBHcmlkIFNxdWFyZQoKYGBge3J9CmFyc29uX3BvaW50IDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAiYXJzb24uY3N2IikpCmBgYAoKYGBge3J9CmFyc29uX3BvaW50IDwtIGNzX21pc3NpbmdfeHkoYXJzb25fcG9pbnQsIHZhcnggPSBYQ29vcmQsIHZhcnkgPSBZQ29vcmQsIG5ld1ZhciA9IG1pc3NpbmdYWSkKYGBgCgoKCgo=</div>
 
 
 
