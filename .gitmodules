@@ -1,0 +1,3 @@
+[submodule "data/MO_CRIME_Database"]
+	path = data/MO_CRIME_Database
+	url = https://github.com/slu-openGIS/MO_CRIME_Database/
