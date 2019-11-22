@@ -6,3 +6,66 @@ output:
   github_document: default
   html_notebook: default 
 ---
+
+## Dependencies
+The following packages are needed:
+
+```{r load-dependencies}
+# tidyverse
+library(dplyr)
+
+# database access
+library(DBI)
+library(RSQLite)
+
+# other packages
+library(here)
+```
+
+## Connect to MO_CRIME_Database.sqlite
+
+```{r database-connection}
+con <- dbConnect(SQLite(), here("data" , "MO_CRIME_Database", "data", "MO_CRIME_Database.sqlite"))
+```
+
+## Construct 
+There are a number of database tables that we need. For all of the crimes, we'll need the population for each year. The two `filter()` calls and `select()` execute SQL queries under the hood, and `collect()` brings the data into the global enviornment:
+
+```{r}
+# establish connection
+pop_db <- tbl(con, "population")
+
+# query and collect
+pop_db %>%
+  filter(name == "St. Louis") %>%
+  filter(year > 1979) %>%
+  select(year, count) %>%
+  collect() %>%
+  rename(pop = count) -> pop
+
+# remove connection
+rm(pop_db)
+```
+
+Next, we'll query the database again to obtain counts of arson fires. Then we'll join it with the population data and calculate an arson rate:
+
+```{r arson-rate}
+# establish connection
+arson_db <- tbl(con, "arson")
+
+# query, collect, join, and calculate rate
+arson_db %>%
+  filter(name == "St. Louis") %>%
+  filter(year > 1979) %>%
+  select(year, count) %>%
+  collect() %>%
+  rename(arson = count) %>%
+  left_join(pop, ., by = "year") %>%
+  mutate(arson_rate = (arson/pop)*100000) -> crime
+
+# remove connection
+rm(arson_db, pop)
+```
+
+Now, we can continue to add to the `crime` object, using the existing `pop` column to calculate rates.
+

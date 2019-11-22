@@ -1770,9 +1770,78 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="dependencies" class="section level2">
+<h2>Dependencies</h2>
+<p>The following packages are needed:</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2VcbmxpYnJhcnkoZHBseXIpXG5cbiMgZGF0YWJhc2UgYWNjZXNzXG5saWJyYXJ5KERCSSlcbmxpYnJhcnkoUlNRTGl0ZSlcblxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxuYGBgIn0= -->
+<pre class="r"><code># tidyverse
+library(dplyr)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBMb25naXR1ZGluYWwgQ3JpbWUgRGF0YSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCg==</div>
+# database access
+library(DBI)
+library(RSQLite)
+
+# other packages
+library(here)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="connect-to-mo_crime_database.sqlite" class="section level2">
+<h2>Connect to MO_CRIME_Database.sqlite</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29uIDwtIGRiQ29ubmVjdChTUUxpdGUoKSwgaGVyZShcImRhdGFcIiAsIFwiTU9fQ1JJTUVfRGF0YWJhc2VcIiwgXCJkYXRhXCIsIFwiTU9fQ1JJTUVfRGF0YWJhc2Uuc3FsaXRlXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>con &lt;- dbConnect(SQLite(), here(&quot;data&quot; , &quot;MO_CRIME_Database&quot;, &quot;data&quot;, &quot;MO_CRIME_Database.sqlite&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="construct" class="section level2">
+<h2>Construct</h2>
+<p>There are a number of database tables that we need. For all of the crimes, we’ll need the population for each year. The two <code>filter()</code> calls and <code>select()</code> execute SQL queries under the hood, and <code>collect()</code> brings the data into the global enviornment:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBxdWVyeSBhbmQgY29sbGVjdFxucG9wX2RiICU+JVxuICBmaWx0ZXIobmFtZSA9PSBcIlN0LiBMb3Vpc1wiKSAlPiVcbiAgZmlsdGVyKHllYXIgPiAxOTc5KSAlPiVcbiAgc2VsZWN0KHllYXIsIGNvdW50KSAlPiVcbiAgY29sbGVjdCgpICU+JVxuICByZW5hbWUocG9wID0gY291bnQpIC0+IHBvcFxuXG4jIHJlbW92ZSBjb25uZWN0aW9uXG5ybShwb3BfZGIpXG5gYGAifQ== -->
+<pre class="r"><code># query and collect
+pop_db %&gt;%
+  filter(name == &quot;St. Louis&quot;) %&gt;%
+  filter(year &gt; 1979) %&gt;%
+  select(year, count) %&gt;%
+  collect() %&gt;%
+  rename(pop = count) -&gt; pop
+
+# remove connection
+rm(pop_db)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Next, we’ll query the database again to obtain counts of arson fires. Then we’ll join it with the population data and calculate an arson rate:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBxdWVyeSwgY29sbGVjdCwgam9pbiwgYW5kIGNhbGN1bGF0ZSByYXRlXG5hcnNvbl9kYiAlPiVcbiAgZmlsdGVyKG5hbWUgPT0gXCJTdC4gTG91aXNcIikgJT4lXG4gIGZpbHRlcih5ZWFyID4gMTk3OSkgJT4lXG4gIHNlbGVjdCh5ZWFyLCBjb3VudCkgJT4lXG4gIGNvbGxlY3QoKSAlPiVcbiAgcmVuYW1lKGFyc29uID0gY291bnQpICU+JVxuICBsZWZ0X2pvaW4ocG9wLCAuLCBieSA9IFwieWVhclwiKSAlPiVcbiAgbXV0YXRlKGFyc29uX3JhdGUgPSAoYXJzb24vcG9wKSoxMDAwMDApIC0+IGNyaW1lXG5cbiMgcmVtb3ZlIGNvbm5lY3Rpb25cbnJtKGFyc29uX2RiKVxuYGBgIn0= -->
+<pre class="r"><code># query, collect, join, and calculate rate
+arson_db %&gt;%
+  filter(name == &quot;St. Louis&quot;) %&gt;%
+  filter(year &gt; 1979) %&gt;%
+  select(year, count) %&gt;%
+  collect() %&gt;%
+  rename(arson = count) %&gt;%
+  left_join(pop, ., by = &quot;year&quot;) %&gt;%
+  mutate(arson_rate = (arson/pop)*100000) -&gt; crime
+
+# remove connection
+rm(arson_db)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now, we can continue to add to the <code>crime</code> object, using the existing <code>pop</code> column to calculate rates.</p>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBMb25naXR1ZGluYWwgQ3JpbWUgRGF0YSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBEZXBlbmRlbmNpZXMKVGhlIGZvbGxvd2luZyBwYWNrYWdlcyBhcmUgbmVlZGVkOgoKYGBge3IgbG9hZC1kZXBlbmRlbmNpZXN9CiMgdGlkeXZlcnNlCmxpYnJhcnkoZHBseXIpCgojIGRhdGFiYXNlIGFjY2VzcwpsaWJyYXJ5KERCSSkKbGlicmFyeShSU1FMaXRlKQoKIyBvdGhlciBwYWNrYWdlcwpsaWJyYXJ5KGhlcmUpCmBgYAoKIyMgQ29ubmVjdCB0byBNT19DUklNRV9EYXRhYmFzZS5zcWxpdGUKCmBgYHtyIGRhdGFiYXNlLWNvbm5lY3Rpb259CmNvbiA8LSBkYkNvbm5lY3QoU1FMaXRlKCksIGhlcmUoImRhdGEiICwgIk1PX0NSSU1FX0RhdGFiYXNlIiwgImRhdGEiLCAiTU9fQ1JJTUVfRGF0YWJhc2Uuc3FsaXRlIikpCmBgYAoKIyMgQ29uc3RydWN0IApUaGVyZSBhcmUgYSBudW1iZXIgb2YgZGF0YWJhc2UgdGFibGVzIHRoYXQgd2UgbmVlZC4gRm9yIGFsbCBvZiB0aGUgY3JpbWVzLCB3ZSdsbCBuZWVkIHRoZSBwb3B1bGF0aW9uIGZvciBlYWNoIHllYXIuIFRoZSB0d28gYGZpbHRlcigpYCBjYWxscyBhbmQgYHNlbGVjdCgpYCBleGVjdXRlIFNRTCBxdWVyaWVzIHVuZGVyIHRoZSBob29kLCBhbmQgYGNvbGxlY3QoKWAgYnJpbmdzIHRoZSBkYXRhIGludG8gdGhlIGdsb2JhbCBlbnZpb3JubWVudDoKCmBgYHtyfQojIGVzdGFibGlzaCBjb25uZWN0aW9uCnBvcF9kYiA8LSB0YmwoY29uLCAicG9wdWxhdGlvbiIpCgojIHF1ZXJ5IGFuZCBjb2xsZWN0CnBvcF9kYiAlPiUKICBmaWx0ZXIobmFtZSA9PSAiU3QuIExvdWlzIikgJT4lCiAgZmlsdGVyKHllYXIgPiAxOTc5KSAlPiUKICBzZWxlY3QoeWVhciwgY291bnQpICU+JQogIGNvbGxlY3QoKSAlPiUKICByZW5hbWUocG9wID0gY291bnQpIC0+IHBvcAoKIyByZW1vdmUgY29ubmVjdGlvbgpybShwb3BfZGIpCmBgYAoKTmV4dCwgd2UnbGwgcXVlcnkgdGhlIGRhdGFiYXNlIGFnYWluIHRvIG9idGFpbiBjb3VudHMgb2YgYXJzb24gZmlyZXMuIFRoZW4gd2UnbGwgam9pbiBpdCB3aXRoIHRoZSBwb3B1bGF0aW9uIGRhdGEgYW5kIGNhbGN1bGF0ZSBhbiBhcnNvbiByYXRlOgoKYGBge3IgYXJzb24tcmF0ZX0KIyBlc3RhYmxpc2ggY29ubmVjdGlvbgphcnNvbl9kYiA8LSB0YmwoY29uLCAiYXJzb24iKQoKIyBxdWVyeSwgY29sbGVjdCwgam9pbiwgYW5kIGNhbGN1bGF0ZSByYXRlCmFyc29uX2RiICU+JQogIGZpbHRlcihuYW1lID09ICJTdC4gTG91aXMiKSAlPiUKICBmaWx0ZXIoeWVhciA+IDE5NzkpICU+JQogIHNlbGVjdCh5ZWFyLCBjb3VudCkgJT4lCiAgY29sbGVjdCgpICU+JQogIHJlbmFtZShhcnNvbiA9IGNvdW50KSAlPiUKICBsZWZ0X2pvaW4ocG9wLCAuLCBieSA9ICJ5ZWFyIikgJT4lCiAgbXV0YXRlKGFyc29uX3JhdGUgPSAoYXJzb24vcG9wKSoxMDAwMDApIC0+IGNyaW1lCgojIHJlbW92ZSBjb25uZWN0aW9uCnJtKGFyc29uX2RiLCBwb3ApCmBgYAoKTm93LCB3ZSBjYW4gY29udGludWUgdG8gYWRkIHRvIHRoZSBgY3JpbWVgIG9iamVjdCwgdXNpbmcgdGhlIGV4aXN0aW5nIGBwb3BgIGNvbHVtbiB0byBjYWxjdWxhdGUgcmF0ZXMuCgo=</div>
 
 
 

@@ -1,0 +1,47 @@
+"CAEMP25N Total Full-Time and Part-Time Employment by NAICS Industry 1/"
+"(Number of jobs)" 
+"Bureau of Economic Analysis" 
+"County"
+"GeoFips","GeoName","LineCode","Description","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018"
+"29510","St. Louis (Independent City), MO","","Employment by place of work","","","","","","","","","","","","","","","","","",""
+"29510","St. Louis (Independent City), MO","10","Total employment (number of jobs)",289806,284142,278596,275262,276267,277562,278971,278489,268306,267342,268571,270092,276705,277305,280923,282484,285447,290777
+"29510","St. Louis (Independent City), MO","","By type","","","","","","","","","","","","","","","","","",""
+"29510","St. Louis (Independent City), MO","20","  Wage and salary employment",272049,265507,258607,253934,253827,253595,252752,251581,239560,236719,235586,238005,244597,244644,247853,247855,249072,253229
+"29510","St. Louis (Independent City), MO","40","  Proprietors employment",17757,18635,19989,21328,22440,23967,26219,26908,28746,30623,32985,32087,32108,32661,33070,34629,36375,37548
+"29510","St. Louis (Independent City), MO","50","    Farm proprietors employment",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"29510","St. Louis (Independent City), MO","60","    Nonfarm proprietors employment 2/",17757,18635,19989,21328,22440,23967,26219,26908,28746,30623,32985,32087,32108,32661,33070,34629,36375,37548
+"29510","St. Louis (Independent City), MO","","By industry","","","","","","","","","","","","","","","","","",""
+"29510","St. Louis (Independent City), MO","70","  Farm employment",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"29510","St. Louis (Independent City), MO","80","  Nonfarm employment",289806,284142,278596,275262,276267,277562,278971,278489,268306,267342,268571,270092,276705,277305,280923,282484,285447,290777
+"29510","St. Louis (Independent City), MO","90","    Private nonfarm employment",243600,238378,234402,232728,234231,236382,239271,239427,228273,228280,230709,232809,239858,240655,244455,246392,249574,255459
+"29510","St. Louis (Independent City), MO","100","      Forestry, fishing, and related activities","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)"
+"29510","St. Louis (Independent City), MO","200","      Mining, quarrying, and oil and gas extraction","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)",40,46,96,"(D)","(D)","(D)","(D)"
+"29510","St. Louis (Independent City), MO","300","      Utilities","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)"
+"29510","St. Louis (Independent City), MO","400","      Construction","(D)","(D)",8740,9570,"(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)"
+"29510","St. Louis (Independent City), MO","500","      Manufacturing",28742,27649,26369,25010,24654,24319,23864,22994,20692,19759,20030,20910,18217,18220,18426,17656,16901,18530
+"29510","St. Louis (Independent City), MO","600","      Wholesale trade",12460,11970,11325,11335,10937,10945,11497,10914,9589,9207,9219,9044,8990,9217,8736,8524,8685,8598
+"29510","St. Louis (Independent City), MO","700","      Retail trade",12275,11711,11966,11433,11314,11243,11375,10832,10735,10468,10223,10152,10144,9822,10248,10421,10276,10190
+"29510","St. Louis (Independent City), MO","800","      Transportation and warehousing","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)","(D)"
+"29510","St. Louis (Independent City), MO","900","      Information",7129,6202,5617,5381,5280,5001,5321,6036,4919,7362,"(D)",6633,6371,5802,5766,5772,5822,5908
+"29510","St. Louis (Independent City), MO","1000","      Finance and insurance",11747,11005,10893,10588,10311,10323,10137,11790,13571,14941,15220,15533,15409,15690,15729,16412,16579,17407
+"29510","St. Louis (Independent City), MO","1100","      Real estate and rental and leasing",5787,5908,6506,6951,7311,7491,8020,8023,8003,8134,8129,7983,7634,7718,7798,7744,8128,8440
+"29510","St. Louis (Independent City), MO","1200","      Professional, scientific, and technical services",16483,15910,15305,16965,17471,18146,19838,21011,18792,18072,18436,18622,19830,20295,21146,21577,22608,22428
+"29510","St. Louis (Independent City), MO","1300","      Management of companies and enterprises",21915,20209,18939,16391,15880,15211,14036,12471,8175,7721,8037,7486,8773,8748,8794,8822,8898,9226
+"29510","St. Louis (Independent City), MO","1400","      Administrative and support and waste management and remediation services",15823,15261,14170,13818,13930,14331,15588,16338,15679,15697,15671,14568,15290,15561,15196,15056,15924,16022
+"29510","St. Louis (Independent City), MO","1500","      Educational services",9907,10211,11067,11134,13192,14946,12006,12615,13686,12903,13189,13874,18728,19163,19170,19678,20108,20670
+"29510","St. Louis (Independent City), MO","1600","      Health care and social assistance",41598,43398,43819,44486,44178,44383,46056,45564,44427,45140,45436,47674,48907,48385,50948,51126,52423,53156
+"29510","St. Louis (Independent City), MO","1700","      Arts, entertainment, and recreation",6009,6116,5898,6002,6172,6549,6894,7684,7540,7548,7549,7583,8618,8904,7701,7889,7150,7372
+"29510","St. Louis (Independent City), MO","1800","      Accommodation and food services",17793,17440,17812,18675,19253,19327,19634,19539,19372,19503,19691,20133,20127,21027,22542,22482,22207,22540
+"29510","St. Louis (Independent City), MO","1900","      Other services (except government and government enterprises)",13675,13826,13947,13802,13683,13711,13815,13793,14002,14216,"(D)",14528,14735,14493,14460,14251,14054,13898
+"29510","St. Louis (Independent City), MO","2000","    Government and government enterprises",46206,45764,44194,42534,42036,41180,39700,39062,40033,39062,37862,37283,36847,36650,36468,36092,35873,35318
+"29510","St. Louis (Independent City), MO","2001","      Federal civilian",16566,16692,16340,15891,15860,15744,14922,14228,15078,14912,14498,14099,13926,13814,13927,14076,14188,14054
+"29510","St. Louis (Independent City), MO","2002","      Military",2180,2108,2033,2015,1858,1934,2075,1957,1901,1685,1652,1678,1670,1595,1558,1559,1520,1490
+"29510","St. Louis (Independent City), MO","2010","      State and local",27460,26964,25821,24628,24318,23502,22703,22877,23054,22465,21712,21506,21251,21241,20983,20457,20165,19774
+"29510","St. Louis (Independent City), MO","2011","        State government",5476,5165,5363,5318,5216,4688,4421,4454,4413,4479,4229,4087,3876,3787,3652,3599,3611,3530
+"29510","St. Louis (Independent City), MO","2012","        Local government",21984,21799,20458,19310,19102,18814,18282,18423,18641,17986,17483,17419,17375,17454,17331,16858,16554,16244
+"Legend / Footnotes:"
+"1/ The estimates of employment for 2001-2006 are based on the 2002 North American Industry Classification System (NAICS). The estimates for 2007-2010 are based on the 2007 NAICS. The estimates for 2011-2016 are based on the 2012 NAICS. The estimates for 2017 forward are based on the 2017 NAICS."
+"2/ Excludes limited partners."
+"Metropolitan Areas are defined (geographically delineated) by the Office of Management and Budget bulletin no. 18-04 issued September 14, 2018."
+"(D) Not shown to avoid disclosure of confidential information; estimates are included in higher-level totals."
+"Last updated: November 14, 2019-- new statistics for 2018; revised statistics for 2001-2017."
