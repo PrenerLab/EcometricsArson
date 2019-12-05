@@ -376,21 +376,21 @@ cs_combine(type = "year", date = 2009, data2018_raw, data2017_raw, data2016_raw,
 ```
 
 ### 2008
-We'll repeat the validation process with the 2009 data:
+We'll repeat the validation process with the 2008 data:
 
-```{r validate-data08}
+```{r validate-data08, include=FALSE}
 expect_equal(cs_validate(data2008_raw, year = "2008"), FALSE)
 ```
 
 Since we fail the validation, we can use the `verbose = TRUE` option to get a summary of where validation issues are occuring. 
 
-```{r validate-data08-verbose}
+```{r validate-data08-verbose, include=FALSE}
 cs_validate(data2008_raw, year = "2008", verbose = TRUE)
 ```
 
 Every month contains the incorrect number of variables. We'll address each of these:
 
-```{r fix-month08}
+```{r fix-month08, include=FALSE}
 # January - extract data, unit test,
 expect_equal(ncol(cs_extract_month(data2008_raw, month = "January")), 18)
 
@@ -403,7 +403,7 @@ expect_equal(cs_validate(data2008_raw, year = "2008"), TRUE)
 
 We now get a `TRUE` value for `cs_validate()` and can move on to collapsing our raw data objects to create a new object, `data2008`, that contains all known 2008 crimes including those that were reported or upgraded in subsequent years:
 
-```{r collapse-data08}
+```{r collapse-data08, include=FALSE}
 # collapse into single object
 data2008_raw <- cs_collapse(data2008_raw)
 
@@ -424,7 +424,8 @@ rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data201
 Next, we'll create a single table before we remove individual years. We also subset columns to reduce the footprint of the table.
 
 ```{r collapse-all}
-bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
+# data2008
+bind_rows(data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
   select(cs_year, date_occur, crime, description, ileads_address, ileads_street, x_coord, y_coord) -> allCrimes
 ```
 
@@ -444,10 +445,11 @@ allCrimes %>%
   write_csv(here("data", "clean", "arson.csv"))
 ```
 
-Next, we'll create a subset that is only violent crimes:
+Next, we'll create a subset that is only violent crimes for our main study period, 2013-2017:
 
 ```{r subset-violent}
 allCrimes %>%
+  filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "violent") %>%
   write_csv(here("data", "clean", "violent.csv"))
 ```
@@ -457,6 +459,7 @@ Next, we'll create a subset that is only non-arson property crimes:
 
 ```{r subset-property}
 allCrimes %>%
+  filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "property") %>%
   write_csv(here("data", "clean", "property.csv"))
 ```
@@ -471,6 +474,7 @@ Finally, we'll create a subset with a few key Part 2 crimes:
 
 ```{r subset-other}
 allCrimes %>%
+  filter(cs_year %in% c(2013:2017)) %>%
   cs_crime_cat(var = crime, newVar = category, output = "numeric") %>%
   filter(category %in% c(14, 15, 18, 24)) %>%
   write_csv(here("data", "clean", "otherCrimes.csv"))
