@@ -1,0 +1,73 @@
+---
+title: "Create Data - Demographics"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook creates a data set of demographic data for the City of St. Louis at the census tract level.
+
+## Dependencies
+This notebook requires the following packages:
+
+```{r load-packages}
+# tidyverse packages
+library(dplyr)
+
+# other packages
+library(here)
+library(tidycensus)
+```
+
+## Download Census Data
+The majority of the demographic variables are available from the U.S. Census Bureau's API, which I'll access using `tidycensus`. 
+
+### Total Population
+We'll start witht total population per census tract, which comes from table `B01003`.
+
+```{r total-population}
+get_acs(geography = "tract", variables = "B01003_001", year = 2017, state = 29, county = 510) %>%
+  select(-NAME, -variable) %>%
+  rename(
+    totalPop = estimate,
+    totalPop_moe = moe
+  ) -> total_pop
+```
+
+### Race
+Next, we'll calculate the proportion of each tract's residents that are African American. The underlying race data come from table `B02001`.
+
+```{r}
+get_acs(geography = "tract", table = "B02001", year = 2017, state = 29, county = 510, output = "wide") %>%
+  select(GEOID, B02001_001E, B02001_001M, B02001_002E, B02001_002M) %>%
+  rename(
+    white = B02001_001E,
+    white_moe = B02001_001M,
+    black = B02001_002E,
+    black_moe = B02001_002M
+  ) %>%
+  mutate(black_prop = black/white) -> race
+```
+
+
+B02001_001
+
+
+### Median Income
+
+B19013_001
+
+### Poverty
+
+B05010_002
+
+### Unemployment
+
+B23025_007
+
+## Combine
+
+## Write to CSV
