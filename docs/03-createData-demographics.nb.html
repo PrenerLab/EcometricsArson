@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Christopher Prener, Ph.D." />
@@ -1484,7 +1485,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
+    if (show || $(this)[0].classList.contains('fold-show'))
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -1614,7 +1615,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1712,28 +1712,10 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("03-createData-demographics.Rmd");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 
 
@@ -1764,7 +1746,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Create Data - Demographics</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(December 05, 2019)</h4>
+<h4 class="date">(December 06, 2019)</h4>
 
 </div>
 
@@ -1779,9 +1761,10 @@ $(document).ready(function () {
 <p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5cbiMgb3RoZXIgcGFja2FnZXNcbmxpYnJhcnkoaGVyZSlcbmxpYnJhcnkodGlkeWNlbnN1cylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHJlYWRyKVxuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpXG5saWJyYXJ5KHRpZHljZW5zdXMpXG5gYGAifQ== -->
 <pre class="r"><code># tidyverse packages
 library(dplyr)
+library(readr)
 
 # other packages
 library(here)
@@ -1795,7 +1778,7 @@ library(tidycensus)</code></pre>
 <p>The majority of the demographic variables are available from the U.S. Census Bureau’s API, which I’ll access using <code>tidycensus</code>.</p>
 <div id="total-population" class="section level3">
 <h3>Total Population</h3>
-<p>We’ll start witht total population per census tract, which comes from table <code>B01003</code>.</p>
+<p>We’ll start with total population per census tract, which comes from table <code>B01003</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHZhcmlhYmxlcyA9IFwiQjAxMDAzXzAwMVwiLCB5ZWFyID0gMjAxNywgc3RhdGUgPSAyOSwgY291bnR5ID0gNTEwKSAlPiVcbiAgc2VsZWN0KC1OQU1FLCAtdmFyaWFibGUpICU+JVxuICByZW5hbWUoXG4gICAgdG90YWxQb3AgPSBlc3RpbWF0ZSxcbiAgICB0b3RhbFBvcF9tb2UgPSBtb2VcbiAgKSAtPiB0b3RhbF9wb3BcbmBgYCJ9 -->
@@ -1817,47 +1800,145 @@ library(tidycensus)</code></pre>
 <p>Next, we’ll calculate the proportion of each tract’s residents that are African American. The underlying race data come from table <code>B02001</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHRhYmxlID0gXCJCMDIwMDFcIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgb3V0cHV0ID0gXCJ3aWRlXCIpICU+JVxuICBzZWxlY3QoR0VPSUQsIEIwMjAwMV8wMDFFLCBCMDIwMDFfMDAxTSwgQjAyMDAxXzAwMkUsIEIwMjAwMV8wMDJNKSAlPiVcbiAgcmVuYW1lKFxuICAgIHdoaXRlID0gQjAyMDAxXzAwMUUsXG4gICAgd2hpdGVfbW9lID0gQjAyMDAxXzAwMU0sXG4gICAgYmxhY2sgPSBCMDIwMDFfMDAyRSxcbiAgICBibGFja19tb2UgPSBCMDIwMDFfMDAyTVxuICApICU+JVxuICBtdXRhdGUoYmxhY2tfcHJvcCA9IGJsYWNrL3doaXRlKSAtPiByYWNlXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHRhYmxlID0gXCJCMDIwMDFcIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgb3V0cHV0ID0gXCJ3aWRlXCIpICU+JVxuICBzZWxlY3QoR0VPSUQsIEIwMjAwMV8wMDFFLCBCMDIwMDFfMDAxTSwgQjAyMDAxXzAwM0UsIEIwMjAwMV8wMDNNKSAlPiVcbiAgcmVuYW1lKFxuICAgIHJhY2VUb3RhbCA9IEIwMjAwMV8wMDFFLFxuICAgIHJhY2VUb3RhbF9tb2UgPSBCMDIwMDFfMDAxTSxcbiAgICBibGFjayA9IEIwMjAwMV8wMDNFLFxuICAgIGJsYWNrX21vZSA9IEIwMjAwMV8wMDNNXG4gICkgJT4lXG4gIG11dGF0ZShibGFja19wcm9wID0gYmxhY2svcmFjZVRvdGFsKSAtPiByYWNlXG5gYGAifQ== -->
 <pre class="r"><code>get_acs(geography = &quot;tract&quot;, table = &quot;B02001&quot;, year = 2017, state = 29, county = 510, output = &quot;wide&quot;) %&gt;%
-  select(GEOID, B02001_001E, B02001_001M, B02001_002E, B02001_002M) %&gt;%
+  select(GEOID, B02001_001E, B02001_001M, B02001_003E, B02001_003M) %&gt;%
   rename(
-    white = B02001_001E,
-    white_moe = B02001_001M,
-    black = B02001_002E,
-    black_moe = B02001_002M
+    raceTotal = B02001_001E,
+    raceTotal_moe = B02001_001M,
+    black = B02001_003E,
+    black_moe = B02001_003M
   ) %&gt;%
-  mutate(black_prop = black/white) -&gt; race</code></pre>
+  mutate(black_prop = black/raceTotal) -&gt; race</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR2V0dGluZyBkYXRhIGZyb20gdGhlIDIwMTMtMjAxNyA1LXllYXIgQUNTXG5Mb2FkaW5nIEFDUzUgdmFyaWFibGVzIGZvciAyMDE3IGZyb20gdGFibGUgQjAyMDAxLiBUbyBjYWNoZSB0aGlzIGRhdGFzZXQgZm9yIGZhc3RlciBhY2Nlc3MgdG8gQUNTIHRhYmxlcyBpbiB0aGUgZnV0dXJlLCBydW4gdGhpcyBmdW5jdGlvbiB3aXRoIGBjYWNoZV90YWJsZSA9IFRSVUVgLiBZb3Ugb25seSBuZWVkIHRvIGRvIHRoaXMgb25jZSBwZXIgQUNTIGRhdGFzZXQuXG4ifQ== -->
-<pre><code>Getting data from the 2013-2017 5-year ACS
-Loading ACS5 variables for 2017 from table B02001. To cache this dataset for faster access to ACS tables in the future, run this function with `cache_table = TRUE`. You only need to do this once per ACS dataset.</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiR2V0dGluZyBkYXRhIGZyb20gdGhlIDIwMTMtMjAxNyA1LXllYXIgQUNTXG4ifQ== -->
+<pre><code>Getting data from the 2013-2017 5-year ACS</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>B02001_001</p>
+<p>We’ll also preserve the total and black counts, along with their associated margins of error, for the intermediary data set.</p>
 </div>
 <div id="median-income" class="section level3">
 <h3>Median Income</h3>
-<p>B19013_001</p>
+<p>Next, we’ll get the median household income per census tract, which comes from table <code>B19013</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHZhcmlhYmxlcyA9IFwiQjE5MDEzXzAwMVwiLCB5ZWFyID0gMjAxNywgc3RhdGUgPSAyOSwgY291bnR5ID0gNTEwKSAlPiVcbiAgc2VsZWN0KC1OQU1FLCAtdmFyaWFibGUpICU+JVxuICByZW5hbWUoXG4gICAgbWVkaWFuSW5jID0gZXN0aW1hdGUsXG4gICAgbWVkaWFuSW5jX21vZSA9IG1vZVxuICApIC0+IG1lZGlhbkluY1xuYGBgIn0= -->
+<pre class="r"><code>get_acs(geography = &quot;tract&quot;, variables = &quot;B19013_001&quot;, year = 2017, state = 29, county = 510) %&gt;%
+  select(-NAME, -variable) %&gt;%
+  rename(
+    medianInc = estimate,
+    medianInc_moe = moe
+  ) -&gt; medianInc</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2V0dGluZyBkYXRhIGZyb20gdGhlIDIwMTMtMjAxNyA1LXllYXIgQUNTXG4ifQ== -->
+<pre><code>Getting data from the 2013-2017 5-year ACS</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="poverty" class="section level3">
 <h3>Poverty</h3>
-<p>B05010_002</p>
+<p>Next, we’ll calculate the proportion of each tract’s residents that are living below 100% of the poverty line. The underlying poverty data come from table <code>B06012</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHRhYmxlID0gXCJCMDYwMTJcIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgb3V0cHV0ID0gXCJ3aWRlXCIpICU+JVxuICBzZWxlY3QoR0VPSUQsIEIwNjAxMl8wMDFFLCBCMDYwMTJfMDAxTSwgQjA2MDEyXzAwMkUsIEIwNjAxMl8wMDJNKSAlPiVcbiAgcmVuYW1lKFxuICAgIHB2dHlUb3RhbCA9IEIwNjAxMl8wMDFFLFxuICAgIHB2dHlUb3RhbF9tb2UgPSBCMDYwMTJfMDAxTSxcbiAgICBwdnR5ID0gQjA2MDEyXzAwMkUsXG4gICAgcHZ0eV9tb2UgPSBCMDYwMTJfMDAyTVxuICApICU+JVxuICBtdXRhdGUocHZ0eV9wcm9wID0gcHZ0eS9wdnR5VG90YWwpIC0+IHBvdmVydHlcbmBgYCJ9 -->
+<pre class="r"><code>get_acs(geography = &quot;tract&quot;, table = &quot;B06012&quot;, year = 2017, state = 29, county = 510, output = &quot;wide&quot;) %&gt;%
+  select(GEOID, B06012_001E, B06012_001M, B06012_002E, B06012_002M) %&gt;%
+  rename(
+    pvtyTotal = B06012_001E,
+    pvtyTotal_moe = B06012_001M,
+    pvty = B06012_002E,
+    pvty_moe = B06012_002M
+  ) %&gt;%
+  mutate(pvty_prop = pvty/pvtyTotal) -&gt; poverty</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2V0dGluZyBkYXRhIGZyb20gdGhlIDIwMTMtMjAxNyA1LXllYXIgQUNTXG4ifQ== -->
+<pre><code>Getting data from the 2013-2017 5-year ACS</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>As with the race data, the original columns the calculation is based on are preserved here.</p>
 </div>
 <div id="unemployment" class="section level3">
 <h3>Unemployment</h3>
-<p>B23025_007</p>
-</div>
-</div>
-<div id="combine" class="section level2">
-<h2>Combine</h2>
-</div>
-<div id="write-to-csv" class="section level2">
-<h2>Write to CSV</h2>
+<p>Finally, we’ll calculate the proportion of each tract’s residents that are unemployed. The underlying employment data come from table <code>B23025</code>.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHRhYmxlID0gXCJCMjMwMjVcIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgb3V0cHV0ID0gXCJ3aWRlXCIpICU+JVxuICBzZWxlY3QoR0VPSUQsIEIyMzAyNV8wMDFFLCBCMjMwMjVfMDAxTSwgQjIzMDI1XzAwN0UsIEIyMzAyNV8wMDdNKSAlPiVcbiAgcmVuYW1lKFxuICAgIGVtcGx5VG90YWwgPSBCMjMwMjVfMDAxRSxcbiAgICBlbXBseVRvdGFsX21vZSA9IEIyMzAyNV8wMDFNLFxuICAgIHVuZW1wbHkgPSBCMjMwMjVfMDA3RSxcbiAgICB1bmVtcGx5X21vZSA9IEIyMzAyNV8wMDdNXG4gICkgJT4lXG4gIG11dGF0ZSh1bmVtcGx5X3Byb3AgPSB1bmVtcGx5L2VtcGx5VG90YWwpIC0+IGVtcGxveVxuYGBgIn0= -->
+<pre class="r"><code>get_acs(geography = &quot;tract&quot;, table = &quot;B23025&quot;, year = 2017, state = 29, county = 510, output = &quot;wide&quot;) %&gt;%
+  select(GEOID, B23025_001E, B23025_001M, B23025_007E, B23025_007M) %&gt;%
+  rename(
+    emplyTotal = B23025_001E,
+    emplyTotal_moe = B23025_001M,
+    unemply = B23025_007E,
+    unemply_moe = B23025_007M
+  ) %&gt;%
+  mutate(unemply_prop = unemply/emplyTotal) -&gt; employ</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2V0dGluZyBkYXRhIGZyb20gdGhlIDIwMTMtMjAxNyA1LXllYXIgQUNTXG4ifQ== -->
+<pre><code>Getting data from the 2013-2017 5-year ACS</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="owner-occupied" class="section level2">
+<h2>Owner Occupied</h2>
+<p>We’ll also calculate the proportion of each tract’s residents that are living in owner occupied housing. The underlying residence data come from table <code>B25026</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X2FjcyhnZW9ncmFwaHkgPSBcInRyYWN0XCIsIHRhYmxlID0gXCJCMjUwMjZcIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgb3V0cHV0ID0gXCJ3aWRlXCIpICU+JVxuICBzZWxlY3QoR0VPSUQsIEIyNTAyNl8wMDFFLCBCMjUwMjZfMDAxTSwgQjI1MDI2XzAwMkUsIEIyNTAyNl8wMDJNKSAlPiVcbiAgcmVuYW1lKFxuICAgIG93blRvdGFsID0gQjI1MDI2XzAwMUUsXG4gICAgb3duVG90YWxfbW9lID0gQjI1MDI2XzAwMU0sXG4gICAgb3duT2NjID0gQjI1MDI2XzAwMkUsXG4gICAgb3duT2NjX21vZSA9IEIyNTAyNl8wMDJNXG4gICkgJT4lXG4gIG11dGF0ZShvd25PY2NfcHJvcCA9IG93bk9jYy9vd25Ub3RhbCkgLT4gb3duZXJcbmBgYCJ9 -->
+<pre class="r"><code>get_acs(geography = &quot;tract&quot;, table = &quot;B25026&quot;, year = 2017, state = 29, county = 510, output = &quot;wide&quot;) %&gt;%
+  select(GEOID, B25026_001E, B25026_001M, B25026_002E, B25026_002M) %&gt;%
+  rename(
+    ownTotal = B25026_001E,
+    ownTotal_moe = B25026_001M,
+    ownOcc = B25026_002E,
+    ownOcc_moe = B25026_002M
+  ) %&gt;%
+  mutate(ownOcc_prop = ownOcc/ownTotal) -&gt; owner</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2V0dGluZyBkYXRhIGZyb20gdGhlIDIwMTMtMjAxNyA1LXllYXIgQUNTXG4ifQ== -->
+<pre><code>Getting data from the 2013-2017 5-year ACS</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="combine" class="section level3">
+<h3>Combine</h3>
+<p>With our data downloaded, we’ll combine the tables:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVmdF9qb2luKHRvdGFsX3BvcCwgcmFjZSwgYnkgPSBcIkdFT0lEXCIpICU+JVxuICBsZWZ0X2pvaW4oLiwgbWVkaWFuSW5jLCBieSA9IFwiR0VPSURcIikgJT4lXG4gIGxlZnRfam9pbiguLCBwb3ZlcnR5LCBieSA9IFwiR0VPSURcIikgJT4lXG4gIGxlZnRfam9pbiguLCBlbXBsb3ksIGJ5ID0gXCJHRU9JRFwiKSAtPiBkZW1vc1xuYGBgIn0= -->
+<pre class="r"><code>left_join(total_pop, race, by = &quot;GEOID&quot;) %&gt;%
+  left_join(., medianInc, by = &quot;GEOID&quot;) %&gt;%
+  left_join(., poverty, by = &quot;GEOID&quot;) %&gt;%
+  left_join(., employ, by = &quot;GEOID&quot;) -&gt; demos</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can now clean-up the global enviornment:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0odG90YWxfcG9wLCByYWNlLCBtZWRpYW5JbmMsIHBvdmVydHksIGVtcGxveSlcbmBgYCJ9 -->
+<pre class="r"><code>rm(total_pop, race, medianInc, poverty, employ)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="write-to-csv" class="section level3">
+<h3>Write to CSV</h3>
+<p>Finally, we’ll write the data to a <code>.csv</code> file:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KHggPSBkZW1vcywgcGF0aCA9IGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJkZW1vZ3JhcGhpY3MuY3N2XCIpKVxuYGBgIn0= -->
+<pre class="r"><code>write_csv(x = demos, path = here(&quot;data&quot;, &quot;clean&quot;, &quot;demographics.csv&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBEZW1vZ3JhcGhpY3MiCmF1dGhvcjogIkNocmlzdG9waGVyIFByZW5lciwgUGguRC4iCmRhdGU6ICcoYHIgZm9ybWF0KFN5cy50aW1lKCksICIlQiAlZCwgJVkiKWApJwpvdXRwdXQ6IAogIGdpdGh1Yl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQgCi0tLQoKIyMgSW50cm9kdWN0aW9uClRoaXMgbm90ZWJvb2sgY3JlYXRlcyBhIGRhdGEgc2V0IG9mIGRlbW9ncmFwaGljIGRhdGEgZm9yIHRoZSBDaXR5IG9mIFN0LiBMb3VpcyBhdCB0aGUgY2Vuc3VzIHRyYWN0IGxldmVsLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKbGlicmFyeSh0aWR5Y2Vuc3VzKQpgYGAKCiMjIERvd25sb2FkIENlbnN1cyBEYXRhClRoZSBtYWpvcml0eSBvZiB0aGUgZGVtb2dyYXBoaWMgdmFyaWFibGVzIGFyZSBhdmFpbGFibGUgZnJvbSB0aGUgVS5TLiBDZW5zdXMgQnVyZWF1J3MgQVBJLCB3aGljaCBJJ2xsIGFjY2VzcyB1c2luZyBgdGlkeWNlbnN1c2AuIAoKIyMjIFRvdGFsIFBvcHVsYXRpb24KV2UnbGwgc3RhcnQgd2l0aHQgdG90YWwgcG9wdWxhdGlvbiBwZXIgY2Vuc3VzIHRyYWN0LCB3aGljaCBjb21lcyBmcm9tIHRhYmxlIGBCMDEwMDNgLgoKYGBge3IgdG90YWwtcG9wdWxhdGlvbn0KZ2V0X2FjcyhnZW9ncmFwaHkgPSAidHJhY3QiLCB2YXJpYWJsZXMgPSAiQjAxMDAzXzAwMSIsIHllYXIgPSAyMDE3LCBzdGF0ZSA9IDI5LCBjb3VudHkgPSA1MTApICU+JQogIHNlbGVjdCgtTkFNRSwgLXZhcmlhYmxlKSAlPiUKICByZW5hbWUoCiAgICB0b3RhbFBvcCA9IGVzdGltYXRlLAogICAgdG90YWxQb3BfbW9lID0gbW9lCiAgKSAtPiB0b3RhbF9wb3AKYGBgCgojIyMgUmFjZQpOZXh0LCB3ZSdsbCBjYWxjdWxhdGUgdGhlIHByb3BvcnRpb24gb2YgZWFjaCB0cmFjdCdzIHJlc2lkZW50cyB0aGF0IGFyZSBBZnJpY2FuIEFtZXJpY2FuLiBUaGUgdW5kZXJseWluZyByYWNlIGRhdGEgY29tZSBmcm9tIHRhYmxlIGBCMDIwMDFgLgoKYGBge3J9CmdldF9hY3MoZ2VvZ3JhcGh5ID0gInRyYWN0IiwgdGFibGUgPSAiQjAyMDAxIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgb3V0cHV0ID0gIndpZGUiKSAlPiUKICBzZWxlY3QoR0VPSUQsIEIwMjAwMV8wMDFFLCBCMDIwMDFfMDAxTSwgQjAyMDAxXzAwMkUsIEIwMjAwMV8wMDJNKSAlPiUKICByZW5hbWUoCiAgICB3aGl0ZSA9IEIwMjAwMV8wMDFFLAogICAgd2hpdGVfbW9lID0gQjAyMDAxXzAwMU0sCiAgICBibGFjayA9IEIwMjAwMV8wMDJFLAogICAgYmxhY2tfbW9lID0gQjAyMDAxXzAwMk0KICApICU+JQogIG11dGF0ZShibGFja19wcm9wID0gYmxhY2svd2hpdGUpIC0+IHJhY2UKYGBgCgoKQjAyMDAxXzAwMQoKCiMjIyBNZWRpYW4gSW5jb21lCgpCMTkwMTNfMDAxCgojIyMgUG92ZXJ0eQoKQjA1MDEwXzAwMgoKIyMjIFVuZW1wbG95bWVudAoKQjIzMDI1XzAwNwoKIyMgQ29tYmluZQoKIyMgV3JpdGUgdG8gQ1NWCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBEZW1vZ3JhcGhpY3MiCmF1dGhvcjogIkNocmlzdG9waGVyIFByZW5lciwgUGguRC4iCmRhdGU6ICcoYHIgZm9ybWF0KFN5cy50aW1lKCksICIlQiAlZCwgJVkiKWApJwpvdXRwdXQ6IAogIGdpdGh1Yl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQgCi0tLQoKIyMgSW50cm9kdWN0aW9uClRoaXMgbm90ZWJvb2sgY3JlYXRlcyBhIGRhdGEgc2V0IG9mIGRlbW9ncmFwaGljIGRhdGEgZm9yIHRoZSBDaXR5IG9mIFN0LiBMb3VpcyBhdCB0aGUgY2Vuc3VzIHRyYWN0IGxldmVsLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKbGlicmFyeSh0aWR5Y2Vuc3VzKQpgYGAKCiMjIERvd25sb2FkIENlbnN1cyBEYXRhClRoZSBtYWpvcml0eSBvZiB0aGUgZGVtb2dyYXBoaWMgdmFyaWFibGVzIGFyZSBhdmFpbGFibGUgZnJvbSB0aGUgVS5TLiBDZW5zdXMgQnVyZWF1J3MgQVBJLCB3aGljaCBJJ2xsIGFjY2VzcyB1c2luZyBgdGlkeWNlbnN1c2AuIAoKIyMjIFRvdGFsIFBvcHVsYXRpb24KV2UnbGwgc3RhcnQgd2l0aCB0b3RhbCBwb3B1bGF0aW9uIHBlciBjZW5zdXMgdHJhY3QsIHdoaWNoIGNvbWVzIGZyb20gdGFibGUgYEIwMTAwM2AuCgpgYGB7ciB0b3RhbC1wb3B1bGF0aW9ufQpnZXRfYWNzKGdlb2dyYXBoeSA9ICJ0cmFjdCIsIHZhcmlhYmxlcyA9ICJCMDEwMDNfMDAxIiwgeWVhciA9IDIwMTcsIHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCkgJT4lCiAgc2VsZWN0KC1OQU1FLCAtdmFyaWFibGUpICU+JQogIHJlbmFtZSgKICAgIHRvdGFsUG9wID0gZXN0aW1hdGUsCiAgICB0b3RhbFBvcF9tb2UgPSBtb2UKICApIC0+IHRvdGFsX3BvcApgYGAKCiMjIyBSYWNlCk5leHQsIHdlJ2xsIGNhbGN1bGF0ZSB0aGUgcHJvcG9ydGlvbiBvZiBlYWNoIHRyYWN0J3MgcmVzaWRlbnRzIHRoYXQgYXJlIEFmcmljYW4gQW1lcmljYW4uIFRoZSB1bmRlcmx5aW5nIHJhY2UgZGF0YSBjb21lIGZyb20gdGFibGUgYEIwMjAwMWAuCgpgYGB7cn0KZ2V0X2FjcyhnZW9ncmFwaHkgPSAidHJhY3QiLCB0YWJsZSA9ICJCMDIwMDEiLCB5ZWFyID0gMjAxNywgc3RhdGUgPSAyOSwgY291bnR5ID0gNTEwLCBvdXRwdXQgPSAid2lkZSIpICU+JQogIHNlbGVjdChHRU9JRCwgQjAyMDAxXzAwMUUsIEIwMjAwMV8wMDFNLCBCMDIwMDFfMDAzRSwgQjAyMDAxXzAwM00pICU+JQogIHJlbmFtZSgKICAgIHJhY2VUb3RhbCA9IEIwMjAwMV8wMDFFLAogICAgcmFjZVRvdGFsX21vZSA9IEIwMjAwMV8wMDFNLAogICAgYmxhY2sgPSBCMDIwMDFfMDAzRSwKICAgIGJsYWNrX21vZSA9IEIwMjAwMV8wMDNNCiAgKSAlPiUKICBtdXRhdGUoYmxhY2tfcHJvcCA9IGJsYWNrL3JhY2VUb3RhbCkgLT4gcmFjZQpgYGAKCldlJ2xsIGFsc28gcHJlc2VydmUgdGhlIHRvdGFsIGFuZCBibGFjayBjb3VudHMsIGFsb25nIHdpdGggdGhlaXIgYXNzb2NpYXRlZCBtYXJnaW5zIG9mIGVycm9yLCBmb3IgdGhlIGludGVybWVkaWFyeSBkYXRhIHNldC4KCiMjIyBNZWRpYW4gSW5jb21lCk5leHQsIHdlJ2xsIGdldCB0aGUgbWVkaWFuIGhvdXNlaG9sZCBpbmNvbWUgcGVyIGNlbnN1cyB0cmFjdCwgd2hpY2ggY29tZXMgZnJvbSB0YWJsZSBgQjE5MDEzYC4KCmBgYHtyIG1lZGlhbi1pbmNvbWV9CmdldF9hY3MoZ2VvZ3JhcGh5ID0gInRyYWN0IiwgdmFyaWFibGVzID0gIkIxOTAxM18wMDEiLCB5ZWFyID0gMjAxNywgc3RhdGUgPSAyOSwgY291bnR5ID0gNTEwKSAlPiUKICBzZWxlY3QoLU5BTUUsIC12YXJpYWJsZSkgJT4lCiAgcmVuYW1lKAogICAgbWVkaWFuSW5jID0gZXN0aW1hdGUsCiAgICBtZWRpYW5JbmNfbW9lID0gbW9lCiAgKSAtPiBtZWRpYW5JbmMKYGBgCgojIyMgUG92ZXJ0eQpOZXh0LCB3ZSdsbCBjYWxjdWxhdGUgdGhlIHByb3BvcnRpb24gb2YgZWFjaCB0cmFjdCdzIHJlc2lkZW50cyB0aGF0IGFyZSBsaXZpbmcgYmVsb3cgMTAwJSBvZiB0aGUgcG92ZXJ0eSBsaW5lLiBUaGUgdW5kZXJseWluZyBwb3ZlcnR5IGRhdGEgY29tZSBmcm9tIHRhYmxlIGBCMDYwMTJgLgoKYGBge3IgcG92ZXJ0eX0KZ2V0X2FjcyhnZW9ncmFwaHkgPSAidHJhY3QiLCB0YWJsZSA9ICJCMDYwMTIiLCB5ZWFyID0gMjAxNywgc3RhdGUgPSAyOSwgY291bnR5ID0gNTEwLCBvdXRwdXQgPSAid2lkZSIpICU+JQogIHNlbGVjdChHRU9JRCwgQjA2MDEyXzAwMUUsIEIwNjAxMl8wMDFNLCBCMDYwMTJfMDAyRSwgQjA2MDEyXzAwMk0pICU+JQogIHJlbmFtZSgKICAgIHB2dHlUb3RhbCA9IEIwNjAxMl8wMDFFLAogICAgcHZ0eVRvdGFsX21vZSA9IEIwNjAxMl8wMDFNLAogICAgcHZ0eSA9IEIwNjAxMl8wMDJFLAogICAgcHZ0eV9tb2UgPSBCMDYwMTJfMDAyTQogICkgJT4lCiAgbXV0YXRlKHB2dHlfcHJvcCA9IHB2dHkvcHZ0eVRvdGFsKSAtPiBwb3ZlcnR5CmBgYAoKQXMgd2l0aCB0aGUgcmFjZSBkYXRhLCB0aGUgb3JpZ2luYWwgY29sdW1ucyB0aGUgY2FsY3VsYXRpb24gaXMgYmFzZWQgb24gYXJlIHByZXNlcnZlZCBoZXJlLgoKIyMjIFVuZW1wbG95bWVudApGaW5hbGx5LCB3ZSdsbCBjYWxjdWxhdGUgdGhlIHByb3BvcnRpb24gb2YgZWFjaCB0cmFjdCdzIHJlc2lkZW50cyB0aGF0IGFyZSB1bmVtcGxveWVkLiBUaGUgdW5kZXJseWluZyBlbXBsb3ltZW50IGRhdGEgY29tZSBmcm9tIHRhYmxlIGBCMjMwMjVgLgoKYGBge3IgdW5lbXBsb3ltZW50fQpnZXRfYWNzKGdlb2dyYXBoeSA9ICJ0cmFjdCIsIHRhYmxlID0gIkIyMzAyNSIsIHllYXIgPSAyMDE3LCBzdGF0ZSA9IDI5LCBjb3VudHkgPSA1MTAsIG91dHB1dCA9ICJ3aWRlIikgJT4lCiAgc2VsZWN0KEdFT0lELCBCMjMwMjVfMDAxRSwgQjIzMDI1XzAwMU0sIEIyMzAyNV8wMDdFLCBCMjMwMjVfMDA3TSkgJT4lCiAgcmVuYW1lKAogICAgZW1wbHlUb3RhbCA9IEIyMzAyNV8wMDFFLAogICAgZW1wbHlUb3RhbF9tb2UgPSBCMjMwMjVfMDAxTSwKICAgIHVuZW1wbHkgPSBCMjMwMjVfMDA3RSwKICAgIHVuZW1wbHlfbW9lID0gQjIzMDI1XzAwN00KICApICU+JQogIG11dGF0ZSh1bmVtcGx5X3Byb3AgPSB1bmVtcGx5L2VtcGx5VG90YWwpIC0+IGVtcGxveQpgYGAKCiMjIE93bmVyIE9jY3VwaWVkCldlJ2xsIGFsc28gY2FsY3VsYXRlIHRoZSBwcm9wb3J0aW9uIG9mIGVhY2ggdHJhY3QncyByZXNpZGVudHMgdGhhdCBhcmUgbGl2aW5nIGluIG93bmVyIG9jY3VwaWVkIGhvdXNpbmcuIFRoZSB1bmRlcmx5aW5nIHJlc2lkZW5jZSBkYXRhIGNvbWUgZnJvbSB0YWJsZSBgQjI1MDI2YC4KCmBgYHtyIG93bmVyLW9jY3VwaWVkfQpnZXRfYWNzKGdlb2dyYXBoeSA9ICJ0cmFjdCIsIHRhYmxlID0gIkIyNTAyNiIsIHllYXIgPSAyMDE3LCBzdGF0ZSA9IDI5LCBjb3VudHkgPSA1MTAsIG91dHB1dCA9ICJ3aWRlIikgJT4lCiAgc2VsZWN0KEdFT0lELCBCMjUwMjZfMDAxRSwgQjI1MDI2XzAwMU0sIEIyNTAyNl8wMDJFLCBCMjUwMjZfMDAyTSkgJT4lCiAgcmVuYW1lKAogICAgb3duVG90YWwgPSBCMjUwMjZfMDAxRSwKICAgIG93blRvdGFsX21vZSA9IEIyNTAyNl8wMDFNLAogICAgb3duT2NjID0gQjI1MDI2XzAwMkUsCiAgICBvd25PY2NfbW9lID0gQjI1MDI2XzAwMk0KICApICU+JQogIG11dGF0ZShvd25PY2NfcHJvcCA9IG93bk9jYy9vd25Ub3RhbCkgLT4gb3duZXIKYGBgCgojIyMgQ29tYmluZQpXaXRoIG91ciBkYXRhIGRvd25sb2FkZWQsIHdlJ2xsIGNvbWJpbmUgdGhlIHRhYmxlczoKCmBgYHtyIGpvaW59CmxlZnRfam9pbih0b3RhbF9wb3AsIHJhY2UsIGJ5ID0gIkdFT0lEIikgJT4lCiAgbGVmdF9qb2luKC4sIG1lZGlhbkluYywgYnkgPSAiR0VPSUQiKSAlPiUKICBsZWZ0X2pvaW4oLiwgb3duZXIsIGJ5ID0gIkdFT0lEIikgJT4lCiAgbGVmdF9qb2luKC4sIHBvdmVydHksIGJ5ID0gIkdFT0lEIikgJT4lCiAgbGVmdF9qb2luKC4sIGVtcGxveSwgYnkgPSAiR0VPSUQiKSAtPiBkZW1vcwpgYGAKCldlIGNhbiBub3cgY2xlYW4tdXAgdGhlIGdsb2JhbCBlbnZpb3JubWVudDoKCmBgYHtyIGNsZWFuLXVwfQpybSh0b3RhbF9wb3AsIHJhY2UsIG1lZGlhbkluYywgcG92ZXJ0eSwgZW1wbG95LCBvd25lcikKYGBgCgojIyMgV3JpdGUgdG8gQ1NWCkZpbmFsbHksIHdlJ2xsIHdyaXRlIHRoZSBkYXRhIHRvIGEgYC5jc3ZgIGZpbGU6CgpgYGB7ciB3cml0ZS1kYXRhfQojIHdyaXRlCndyaXRlX2Nzdih4ID0gZGVtb3MsIHBhdGggPSBoZXJlKCJkYXRhIiwgImNsZWFuIiwgImRlbW9ncmFwaGljcy5jc3YiKSkKYGBgCg==</div>
 
 
 
@@ -1886,6 +1967,29 @@ $(document).ready(function () {
 });
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("03-createData-demographics.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
