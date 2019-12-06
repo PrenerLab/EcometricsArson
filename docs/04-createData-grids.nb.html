@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Christopher Prener, Ph.D." />
@@ -1479,12 +1480,12 @@ window.initializeCodeFolding = function(show) {
   var currentIndex = 1;
 
   // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia');
   rCodeBlocks.each(function() {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
+    if (show || $(this)[0].classList.contains('fold-show'))
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -1600,9 +1601,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -1616,7 +1615,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1657,8 +1655,6 @@ summary {
 }
 </style>
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -1716,29 +1712,20 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("04-createData-grids.Rmd");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -1758,8 +1745,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Create Data - Grid Estimates</h1>
-<h4 class="author"><em>Christopher Prener, Ph.D.</em></h4>
-<h4 class="date"><em>(February 23, 2019)</em></h4>
+<h4 class="author">Christopher Prener, Ph.D.</h4>
+<h4 class="date">(December 06, 2019)</h4>
 
 </div>
 
@@ -1771,11 +1758,12 @@ $(document).ready(function () {
 </div>
 <div id="dependencies" class="section level2">
 <h2>Dependencies</h2>
-<p>This notebook requires…</p>
+<p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGdhdGV3YXkpXG5saWJyYXJ5KGNvbXBzdGF0cilcbiMgdGlkeXZlcnNlIHBhY2thZ2VzXG5saWJyYXJ5KGRwbHlyKVxubGlicmFyeShyZWFkcilcbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShzZilcbiMgb3RoZXIgcGFja2FnZXNcbmxpYnJhcnkoaGVyZSlcbmBgYCJ9 -->
-<pre class="r"><code># tidystl packages
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGdhdGV3YXkpXG5saWJyYXJ5KGNvbXBzdGF0cilcbiMgdGlkeXZlcnNlIHBhY2thZ2VzXG5saWJyYXJ5KGRwbHlyKVxubGlicmFyeShyZWFkcilcbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShzZilcbiMgb3RoZXIgcGFja2FnZXNcbmxpYnJhcnkoaGVyZSlcbmBgYFxuYGBgIn0= -->
+<pre class="r"><code>```r
+# tidystl packages
 library(gateway)
 library(compstatr)
 # tidyverse packages
@@ -1785,67 +1773,97 @@ library(readr)
 library(sf)
 # other packages
 library(here)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="download-grid-data" class="section level2">
-<h2>Download Grid Data</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHMgPC0gZ3dfZ2V0X3JlcG8ocmVwbyA9IFwiU1RMX0JPVU5EQVJZX0dyaWRzXCIsIGZpbGUgPSBcIkdyaWRzXCIpXG5gYGAifQ== -->
-<pre class="r"><code>grids &lt;- gw_get_repo(repo = &quot;STL_BOUNDARY_Grids&quot;, file = &quot;Grids&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoidHJ5aW5nIFVSTCAnaHR0cHM6Ly9naXRodWIuY29tL3NsdS1vcGVuR0lTL1NUTF9CT1VOREFSWV9Hcmlkcy9hcmNoaXZlL21hc3Rlci56aXAnXG5kb3dubG9hZGVkIDM5MSBLQlxuIn0= -->
-<pre><code>trying URL 'https://github.com/slu-openGIS/STL_BOUNDARY_Grids/archive/master.zip'
-downloaded 391 KB</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgU1RMX0JPVU5EQVJZX0dyaWRzJyBmcm9tIGRhdGEgc291cmNlIGAvcHJpdmF0ZS92YXIvZm9sZGVycy94ei92NTBncXhoajQwZDN4aGNwZ2I1bndscHNxemNtMXkvVC9SdG1wbVEzU0xRL1NUTF9CT1VOREFSWV9Hcmlkcy1tYXN0ZXIvU1RMX0JPVU5EQVJZX0dyaWRzL3NoYXBlZmlsZS9TVExfQk9VTkRBUllfR3JpZHMuc2hwJyB1c2luZyBkcml2ZXIgYEVTUkkgU2hhcGVmaWxlJ1xuU2ltcGxlIGZlYXR1cmUgY29sbGVjdGlvbiB3aXRoIDIwNSBmZWF0dXJlcyBhbmQgMyBmaWVsZHNcbmdlb21ldHJ5IHR5cGU6ICBNVUxUSVBPTFlHT05cbmRpbWVuc2lvbjogICAgICBYWVxuYmJveDogICAgICAgICAgIHhtaW46IDczMzM2MCB5bWluOiA0MjY4NTI3IHhtYXg6IDc0NTQ0Mi41IHltYXg6IDQyOTU1MTFcbmVwc2cgKFNSSUQpOiAgICAzMjYxNVxucHJvajRzdHJpbmc6ICAgICtwcm9qPXV0bSArem9uZT0xNSArZGF0dW09V0dTODQgK3VuaXRzPW0gK25vX2RlZnNcbiJ9 -->
-<pre><code>Reading layer `STL_BOUNDARY_Grids' from data source `/private/var/folders/xz/v50gqxhj40d3xhcpgb5nwlpsqzcm1y/T/RtmpmQ3SLQ/STL_BOUNDARY_Grids-master/STL_BOUNDARY_Grids/shapefile/STL_BOUNDARY_Grids.shp' using driver `ESRI Shapefile'
-Simple feature collection with 205 features and 3 fields
-geometry type:  MULTIPOLYGON
-dimension:      XY
-bbox:           xmin: 733360 ymin: 4268527 xmax: 745442.5 ymax: 4295511
-epsg (SRID):    32615
-proj4string:    +proj=utm +zone=15 +datum=WGS84 +units=m +no_defs</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="arson-per-grid-square" class="section level2">
-<h2>Arson Per Grid Square</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJzb25fcG9pbnQgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcImFyc29uLmNzdlwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>arson_point &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;arson.csv&quot;))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIERhdGVPY2N1ciA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBDcmltZSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBjYXRlZ29yeSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBEZXNjcmlwdGlvbiA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBJTEVBRFNBZGRyZXNzID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIElMRUFEU1N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBYQ29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgWUNvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW1cbilcbiJ9 -->
-<pre><code>Parsed with column specification:
-cols(
-  cs_year = [32mcol_double()[39m,
-  DateOccur = [31mcol_character()[39m,
-  Crime = [32mcol_double()[39m,
-  category = [32mcol_double()[39m,
-  Description = [31mcol_character()[39m,
-  ILEADSAddress = [32mcol_double()[39m,
-  ILEADSStreet = [31mcol_character()[39m,
-  XCoord = [32mcol_double()[39m,
-  YCoord = [32mcol_double()[39m
-)</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJzb25fcG9pbnQgPC0gY3NfbWlzc2luZ194eShhcnNvbl9wb2ludCwgdmFyeCA9IFhDb29yZCwgdmFyeSA9IFlDb29yZCwgbmV3VmFyID0gbWlzc2luZ1hZKVxuYGBgIn0= -->
-<pre class="r"><code>arson_point &lt;- cs_missing_xy(arson_point, varx = XCoord, vary = YCoord, newVar = missingXY)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Download Grid Data
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ3JpZHMgPC0gZ3dfZ2V0X3JlcG8ocmVwbyA9IFxcU1RMX0JPVU5EQVJZX0dyaWRzXFwsIGZpbGUgPSBcXEdyaWRzXFwpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+grids &lt;- gw_get_repo(repo = \STL_BOUNDARY_Grids\, file = \Grids\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoidHJ5aW5nIFVSTCAnaHR0cHM6Ly9naXRodWIuY29tL3NsdS1vcGVuR0lTL1NUTF9CT1VOREFSWV9Hcmlkcy9hcmNoaXZlL21hc3Rlci56aXAnXG5kb3dubG9hZGVkIDM5MSBLQlxuUmVhZGluZyBsYXllciBgU1RMX0JPVU5EQVJZX0dyaWRzJyBmcm9tIGRhdGEgc291cmNlIGAvcHJpdmF0ZS92YXIvZm9sZGVycy94ei92NTBncXhoajQwZDN4aGNwZ2I1bndscHNxemNtMXkvVC9SdG1wbVEzU0xRL1NUTF9CT1VOREFSWV9Hcmlkcy1tYXN0ZXIvU1RMX0JPVU5EQVJZX0dyaWRzL3NoYXBlZmlsZS9TVExfQk9VTkRBUllfR3JpZHMuc2hwJyB1c2luZyBkcml2ZXIgYEVTUkkgU2hhcGVmaWxlJ1xuU2ltcGxlIGZlYXR1cmUgY29sbGVjdGlvbiB3aXRoIDIwNSBmZWF0dXJlcyBhbmQgMyBmaWVsZHNcbmdlb21ldHJ5IHR5cGU6ICBNVUxUSVBPTFlHT05cbmRpbWVuc2lvbjogICAgICBYWVxuYmJveDogICAgICAgICAgIHhtaW46IDczMzM2MCB5bWluOiA0MjY4NTI3IHhtYXg6IDc0NTQ0Mi41IHltYXg6IDQyOTU1MTFcbmVwc2cgKFNSSUQpOiAgICAzMjYxNVxucHJvajRzdHJpbmc6ICAgICtwcm9qPXV0bSArem9uZT0xNSArZGF0dW09V0dTODQgK3VuaXRzPW0gK25vX2RlZnNcbiJ9 --&gt;
+</code></pre>
+<p>trying URL ‘<a href="https://github.com/slu-openGIS/STL_BOUNDARY_Grids/archive/master.zip" class="uri">https://github.com/slu-openGIS/STL_BOUNDARY_Grids/archive/master.zip</a>’ downloaded 391 KB Reading layer <code>STL_BOUNDARY_Grids&#39; from data source</code>/private/var/folders/xz/v50gqxhj40d3xhcpgb5nwlpsqzcm1y/T/RtmpmQ3SLQ/STL_BOUNDARY_Grids-master/STL_BOUNDARY_Grids/shapefile/STL_BOUNDARY_Grids.shp’ using driver `ESRI Shapefile’ Simple feature collection with 205 features and 3 fields geometry type: MULTIPOLYGON dimension: XY bbox: xmin: 733360 ymin: 4268527 xmax: 745442.5 ymax: 4295511 epsg (SRID): 32615 proj4string: +proj=utm +zone=15 +datum=WGS84 +units=m +no_defs</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Arson Per Grid Square
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYXJzb25fcG9pbnQgPC0gcmVhZF9jc3YoaGVyZShcXGRhdGFcXCwgXFxjbGVhblxcLCBcXGFyc29uLmNzdlxcKSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+arson_point &lt;- read_csv(here(\data\, \clean\, \arson.csv\))</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIERhdGVPY2N1ciA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBDcmltZSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBjYXRlZ29yeSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBEZXNjcmlwdGlvbiA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBJTEVBRFNBZGRyZXNzID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIElMRUFEU1N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBYQ29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgWUNvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW1cbilcbiJ9 --&gt;
+</code></pre>
+<p>Parsed with column specification: cols( cs_year = [32mcol_double()[39m, DateOccur = [31mcol_character()[39m, Crime = [32mcol_double()[39m, category = [32mcol_double()[39m, Description = [31mcol_character()[39m, ILEADSAddress = [32mcol_double()[39m, ILEADSStreet = [31mcol_character()[39m, XCoord = [32mcol_double()[39m, YCoord = [32mcol_double()[39m )</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYXJzb25fcG9pbnQgPC0gY3NfbWlzc2luZ194eShhcnNvbl9wb2ludCwgdmFyeCA9IFhDb29yZCwgdmFyeSA9IFlDb29yZCwgbmV3VmFyID0gbWlzc2luZ1hZKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+arson_point &lt;- cs_missing_xy(arson_point, varx = XCoord, vary = YCoord, newVar = missingXY)</code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBHcmlkIEVzdGltYXRlcyIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIHRoZSBncmlkLWxldmVsIGVzdGltYXRlcyBmb3IgYW5hbHlzZXMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcy4uLgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoZ2F0ZXdheSkKbGlicmFyeShjb21wc3RhdHIpCgojIHRpZHl2ZXJzZSBwYWNrYWdlcwpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHJlYWRyKQoKIyBzcGF0aWFsIHBhY2thZ2VzCmxpYnJhcnkoc2YpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBEb3dubG9hZCBHcmlkIERhdGEKCmBgYHtyIGRvd25sb2FkLWdyaWRzfQpncmlkcyA8LSBnd19nZXRfcmVwbyhyZXBvID0gIlNUTF9CT1VOREFSWV9HcmlkcyIsIGZpbGUgPSAiR3JpZHMiKQpgYGAKCiMjIEFyc29uIFBlciBHcmlkIFNxdWFyZQoKYGBge3J9CmFyc29uX3BvaW50IDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAiYXJzb24uY3N2IikpCmBgYAoKYGBge3J9CmFyc29uX3BvaW50IDwtIGNzX21pc3NpbmdfeHkoYXJzb25fcG9pbnQsIHZhcnggPSBYQ29vcmQsIHZhcnkgPSBZQ29vcmQsIG5ld1ZhciA9IG1pc3NpbmdYWSkKYGBgCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBHcmlkIEVzdGltYXRlcyIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIHRoZSBncmlkLWxldmVsIGVzdGltYXRlcyBmb3IgYW5hbHlzZXMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZm9sbG93aW5nIHBhY2thZ2VzOgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoZ2F0ZXdheSkKbGlicmFyeShjb21wc3RhdHIpCgojIHRpZHl2ZXJzZSBwYWNrYWdlcwpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHJlYWRyKQoKIyBzcGF0aWFsIHBhY2thZ2VzCmxpYnJhcnkoc2YpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBEb3dubG9hZCBHcmlkIERhdGEKCmBgYHtyIGRvd25sb2FkLWdyaWRzfQpncmlkcyA8LSBnd19nZXRfcmVwbyhyZXBvID0gIlNUTF9CT1VOREFSWV9HcmlkcyIsIGZpbGUgPSAiR3JpZHMiKQpgYGAKCiMjIEFyc29uIFBlciBHcmlkIFNxdWFyZQoKYGBge3J9CmFyc29uX3BvaW50IDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAiYXJzb24uY3N2IikpCmBgYAoKYGBge3J9CmFyc29uX3BvaW50IDwtIGNzX21pc3NpbmdfeHkoYXJzb25fcG9pbnQsIHZhcnggPSBYQ29vcmQsIHZhcnkgPSBZQ29vcmQsIG5ld1ZhciA9IG1pc3NpbmdYWSkKYGBgCgoKCgo=</div>
 
 
 
@@ -1874,6 +1892,29 @@ $(document).ready(function () {
 });
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("04-createData-grids.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
