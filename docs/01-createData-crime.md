@@ -1,7 +1,7 @@
 Create Data - Crime
 ================
 Christopher Prener, Ph.D.
-(February 21, 2019)
+(December 09, 2019)
 
 ## Introduction
 
@@ -14,10 +14,10 @@ wrangling it.
 
 ``` r
 # tidystl packages
-library(compstatr)
+library(compstatr)     # access crime data
 
 # tidyverse packages
-library(dplyr)
+library(dplyr)         # data wrangling
 ```
 
     ## 
@@ -32,25 +32,20 @@ library(dplyr)
     ##     intersect, setdiff, setequal, union
 
 ``` r
-library(purrr)
-library(readr)
+library(readr)         # write csv files
 
 # other packages
-library(here)
+library(here)          # file path management
 ```
 
-    ## here() starts at /Users/prenercg/Desktop/arsonSTL
+    ## here() starts at /Users/chris/GitHub/PrenerLab/EcometricsArson
 
 ``` r
-library(testthat)
+library(testthat)      # unit testing
 ```
 
     ## 
     ## Attaching package: 'testthat'
-
-    ## The following object is masked from 'package:purrr':
-    ## 
-    ##     is_null
 
     ## The following object is masked from 'package:dplyr':
     ## 
@@ -58,55 +53,39 @@ library(testthat)
 
 ## Prepare Data
 
-### Create Objects
+### Download Data
 
-First, we prep the raw data by converting filenames like
-`January2018.CSV.html` to `january2018.csv`. This is done with the
-`cs_prep_year()` function, which is combined here with `map()` to
-iterate over a vector of years that correspond to the raw data
-subfolders.
+First, we’ll scrape data from the SLMPD website to create our raw data
+frames. To accomplish this, we need to create a index object:
 
 ``` r
-# create vector of years to clean
-years <- as.character(2008:2018)
-
-# clean data files
-years %>%
-  split(years) %>%
-  map(~ cs_prep_year(here("data", "raw", .x))) -> out
-
-# remove output
-rm(years, out)
+i <- cs_create_index()
 ```
 
-### Load Raw Data
-
-Next, we load year-list objects using `cs_load_year()`:
+With our index, we can create raw year-list objects:
 
 ``` r
-data2018_raw <- cs_load_year(here("data", "raw", "2018"))
-data2017_raw <- cs_load_year(here("data", "raw", "2017"))
-data2016_raw <- cs_load_year(here("data", "raw", "2016"))
-data2015_raw <- cs_load_year(here("data", "raw", "2015"))
-data2014_raw <- cs_load_year(here("data", "raw", "2014"))
-data2013_raw <- cs_load_year(here("data", "raw", "2013"))
-data2012_raw <- cs_load_year(here("data", "raw", "2012"))
-data2011_raw <- cs_load_year(here("data", "raw", "2011"))
-data2010_raw <- cs_load_year(here("data", "raw", "2010"))
-data2009_raw <- cs_load_year(here("data", "raw", "2009"))
-data2008_raw <- cs_load_year(here("data", "raw", "2008"))
+data2018_raw <- cs_get_data(year = 2018, index = i)
+data2017_raw <- cs_get_data(year = 2017, index = i)
+data2016_raw <- cs_get_data(year = 2016, index = i)
+data2015_raw <- cs_get_data(year = 2015, index = i)
+data2014_raw <- cs_get_data(year = 2014, index = i)
+data2013_raw <- cs_get_data(year = 2013, index = i)
+data2012_raw <- cs_get_data(year = 2012, index = i)
+data2011_raw <- cs_get_data(year = 2011, index = i)
+data2010_raw <- cs_get_data(year = 2010, index = i)
+data2009_raw <- cs_get_data(year = 2009, index = i)
+data2008_raw <- cs_get_data(year = 2008, index = i)
 ```
 
 ### 2018
 
 We validate the data to make sure it can be collapsed using
-`cs_validate_year()`:
+`cs_validate()`:
 
 ``` r
-cs_validate_year(data2018_raw, year = "2018")
+expect_equal(cs_validate(data2018_raw, year = "2018"), TRUE)
 ```
-
-    ## [1] TRUE
 
 Since the validation result is a value of `TRUE`, we can proceed to
 collapsing the year-list object into a single tibble with
@@ -120,7 +99,7 @@ data2018_raw <- cs_collapse(data2018_raw)
 
 # combine and filter
 cs_combine(type = "year", date = 2018, data2018_raw) %>%
-  cs_filter_count(var = Count) -> data2018
+  cs_filter_count(var = count) -> data2018
 ```
 
 The `data2018` object now contains only crimes reported in 2018.
@@ -130,16 +109,14 @@ The `data2018` object now contains only crimes reported in 2018.
 We’ll repeat the validation process with the 2017 data:
 
 ``` r
-cs_validate_year(data2017_raw, year = "2017")
+expect_equal(cs_validate(data2017_raw, year = "2017"), FALSE)
 ```
-
-    ## [1] FALSE
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
 ``` r
-cs_validate_year(data2017_raw, year = "2017", verbose = TRUE)
+cs_validate(data2017_raw, year = "2017", verbose = TRUE)
 ```
 
     ## # A tibble: 12 x 8
@@ -172,12 +149,10 @@ expect_equal(ncol(cs_extract_month(data2017_raw, month = "May")), 26)
 data2017_raw <- cs_standardize(data2017_raw, month = "May", config = 26)
 
 # validate data
-cs_validate_year(data2017_raw, year = "2017")
+expect_equal(cs_validate(data2017_raw, year = "2017"), TRUE)
 ```
 
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing the 2017 and 2018 raw data objects to create a new object,
 `data2017`, that contains all known 2017 crimes including those that
 were reported or upgraded in 2018.
@@ -188,7 +163,7 @@ data2017_raw <- cs_collapse(data2017_raw)
 
 # combine and filter
 cs_combine(type = "year", date = 2017, data2018_raw, data2017_raw) %>%
-  cs_filter_count(var = Count) -> data2017
+  cs_filter_count(var = count) -> data2017
 ```
 
 ### 2016
@@ -196,10 +171,8 @@ cs_combine(type = "year", date = 2017, data2018_raw, data2017_raw) %>%
 We’ll repeat the validation process with the 2016 data:
 
 ``` r
-cs_validate_year(data2016_raw, year = "2016")
+expect_equal(cs_validate(data2016_raw, year = "2016"), TRUE)
 ```
-
-    ## [1] TRUE
 
 Since the validation process passes, we can immediately move on to
 creating our 2016 data object:
@@ -210,7 +183,7 @@ data2016_raw <- cs_collapse(data2016_raw)
 
 # combine and filter
 cs_combine(type = "year", date = 2016, data2018_raw, data2017_raw, data2016_raw) %>%
-  cs_filter_count(var = Count) -> data2016
+  cs_filter_count(var = count) -> data2016
 ```
 
 ### 2015
@@ -218,10 +191,8 @@ cs_combine(type = "year", date = 2016, data2018_raw, data2017_raw, data2016_raw)
 We’ll repeat the validation process with the 2015 data:
 
 ``` r
-cs_validate_year(data2015_raw, year = "2015")
+expect_equal(cs_validate(data2015_raw, year = "2015"), TRUE)
 ```
-
-    ## [1] TRUE
 
 Since the validation process passes, we can immediately move on to
 creating our 2015 data object:
@@ -232,7 +203,7 @@ data2015_raw <- cs_collapse(data2015_raw)
 
 # combine and filter
 cs_combine(type = "year", date = 2015, data2018_raw, data2017_raw, data2016_raw, data2015_raw) %>%
-  cs_filter_count(var = Count) -> data2015
+  cs_filter_count(var = count) -> data2015
 ```
 
 ### 2014
@@ -240,43 +211,11 @@ cs_combine(type = "year", date = 2015, data2018_raw, data2017_raw, data2016_raw,
 We’ll repeat the validation process with the 2014 data:
 
 ``` r
-cs_validate_year(data2014_raw, year = "2014")
+expect_equal(cs_validate(data2014_raw, year = "2014"), TRUE)
 ```
 
-    ## [1] TRUE
-
-Since the validation process passes, we should be able to immediately
-move on to creating our 2014 data object. However, we get an error when
-we go to collapse our data because `ILEADSAddrress` is character in a
-particular month:
-
-``` r
-# extract data
-jan2014 <- cs_extract_month(data2014_raw, month = "January")
-
-# unit test column number
-expect_equal(class(jan2014$ILEADSAddress), "character")
-
-# fix ILEADSAddress
-jan2014 <- mutate(jan2014, ILEADSAddress = as.numeric(ILEADSAddress))
-```
-
-    ## Warning: NAs introduced by coercion
-
-``` r
-# replace data
-data2014_raw <- cs_replace_month(data2014_raw, month = "January", jan2014)
-
-# remove object
-rm(jan2014)
-
-# validate data
-cs_validate_year(data2014_raw, year = "2014")
-```
-
-    ## [1] TRUE
-
-After double-checking our validation, we can now collapse our data:
+Since the validation process passes, we can immediately move on to
+creating our 2015 data object:
 
 ``` r
 # collapse into single object
@@ -284,7 +223,7 @@ data2014_raw <- cs_collapse(data2014_raw)
 
 # combine and filter
 cs_combine(type = "year", date = 2014, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw) %>%
-  cs_filter_count(var = Count) -> data2014
+  cs_filter_count(var = count) -> data2014
 ```
 
 ### 2013
@@ -292,16 +231,14 @@ cs_combine(type = "year", date = 2014, data2018_raw, data2017_raw, data2016_raw,
 We’ll repeat the validation process with the 2013 data:
 
 ``` r
-cs_validate_year(data2013_raw, year = "2013")
+expect_equal(cs_validate(data2013_raw, year = "2013"), FALSE)
 ```
-
-    ## [1] FALSE
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
 ``` r
-cs_validate_year(data2013_raw, year = "2013", verbose = TRUE)
+cs_validate(data2013_raw, year = "2013", verbose = TRUE)
 ```
 
     ## # A tibble: 12 x 8
@@ -362,12 +299,10 @@ rm(month13)
 
 ``` r
 # validate data
-cs_validate_year(data2013_raw, year = "2013")
+expect_equal(cs_validate(data2013_raw, year = "2013"), TRUE)
 ```
 
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing our raw data objects to create a new object, `data2013`, that
 contains all known 2013 crimes including those that were reported or
 upgraded in subsequent years:
@@ -377,8 +312,9 @@ upgraded in subsequent years:
 data2013_raw <- cs_collapse(data2013_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2013, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw) %>%
-  cs_filter_count(var = Count) -> data2013
+cs_combine(type = "year", date = 2013, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+           data2013_raw) %>%
+  cs_filter_count(var = count) -> data2013
 ```
 
 ### 2012
@@ -386,16 +322,14 @@ cs_combine(type = "year", date = 2013, data2018_raw, data2017_raw, data2016_raw,
 We’ll repeat the validation process with the 2012 data:
 
 ``` r
-cs_validate_year(data2012_raw, year = "2012")
+expect_equal(cs_validate(data2012_raw, year = "2012"), FALSE)
 ```
-
-    ## [1] FALSE
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
 ``` r
-cs_validate_year(data2012_raw, year = "2012", verbose = TRUE)
+cs_validate(data2012_raw, year = "2012", verbose = TRUE)
 ```
 
     ## # A tibble: 12 x 8
@@ -419,61 +353,17 @@ Every month contains the incorrect number of variables. We’ll address
 each of these:
 
 ``` r
-# January - extract data, unit test, and standardize
+# January - extract data, unit test
 expect_equal(ncol(cs_extract_month(data2012_raw, month = "January")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "January", config = 18)
 
-# February - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "February")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "February", config = 18)
-
-# March - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "March")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "March", config = 18)
-
-# April - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "April")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "April", config = 18)
-
-# May - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "May")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "May", config = 18)
-
-# June - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "June")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "June", config = 18)
-
-# July - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "July")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "July", config = 18)
-
-# August - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "August")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "August", config = 18)
-
-# September - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "September")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "September", config = 18)
-
-# October - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "October")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "October", config = 18)
-
-# November - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "November")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "November", config = 18)
-
-# December - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2012_raw, month = "December")), 18)
-data2012_raw <- cs_standardize(data2012_raw, month = "December", config = 18)
+# standardize
+data2012_raw <- cs_standardize(data2012_raw, month = "all", config = 18)
 
 # validate data
-cs_validate_year(data2012_raw, year = "2012")
+expect_equal(cs_validate(data2012_raw, year = "2012"), TRUE)
 ```
 
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing our raw data objects to create a new object, `data2012`, that
 contains all known 2012 crimes including those that were reported or
 upgraded in subsequent years:
@@ -483,8 +373,9 @@ upgraded in subsequent years:
 data2012_raw <- cs_collapse(data2012_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2012, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw) %>%
-  cs_filter_count(var = Count) -> data2012
+cs_combine(type = "year", date = 2012, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+           data2013_raw, data2012_raw) %>%
+  cs_filter_count(var = count) -> data2012
 ```
 
 ### 2011
@@ -492,16 +383,14 @@ cs_combine(type = "year", date = 2012, data2018_raw, data2017_raw, data2016_raw,
 We’ll repeat the validation process with the 2011 data:
 
 ``` r
-cs_validate_year(data2011_raw, year = "2011")
+expect_equal(cs_validate(data2011_raw, year = "2011"), FALSE)
 ```
-
-    ## [1] FALSE
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
 ``` r
-cs_validate_year(data2011_raw, year = "2011", verbose = TRUE)
+cs_validate(data2011_raw, year = "2011", verbose = TRUE)
 ```
 
     ## # A tibble: 12 x 8
@@ -525,61 +414,17 @@ Every month contains the incorrect number of variables. We’ll address
 each of these:
 
 ``` r
-# January - extract data, unit test, and standardize
+# January - extract data, unit test
 expect_equal(ncol(cs_extract_month(data2011_raw, month = "January")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "January", config = 18)
 
-# February - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "February")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "February", config = 18)
-
-# March - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "March")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "March", config = 18)
-
-# April - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "April")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "April", config = 18)
-
-# May - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "May")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "May", config = 18)
-
-# June - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "June")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "June", config = 18)
-
-# July - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "July")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "July", config = 18)
-
-# August - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "August")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "August", config = 18)
-
-# September - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "September")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "September", config = 18)
-
-# October - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "October")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "October", config = 18)
-
-# November - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "November")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "November", config = 18)
-
-# December - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2011_raw, month = "December")), 18)
-data2011_raw <- cs_standardize(data2011_raw, month = "December", config = 18)
+# standardize
+data2011_raw <- cs_standardize(data2011_raw, month = "all", config = 18)
 
 # validate data
-cs_validate_year(data2011_raw, year = "2011")
+expect_equal(cs_validate(data2011_raw, year = "2011"), TRUE)
 ```
 
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing our raw data objects to create a new object, `data2011`, that
 contains all known 2011 crimes including those that were reported or
 upgraded in subsequent years:
@@ -589,8 +434,9 @@ upgraded in subsequent years:
 data2011_raw <- cs_collapse(data2011_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2011, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw) %>%
-  cs_filter_count(var = Count) -> data2011
+cs_combine(type = "year", date = 2011, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+           data2013_raw, data2012_raw, data2011_raw) %>%
+  cs_filter_count(var = count) -> data2011
 ```
 
 ### 2010
@@ -598,16 +444,14 @@ cs_combine(type = "year", date = 2011, data2018_raw, data2017_raw, data2016_raw,
 We’ll repeat the validation process with the 2010 data:
 
 ``` r
-cs_validate_year(data2010_raw, year = "2010")
+expect_equal(cs_validate(data2010_raw, year = "2010"), FALSE)
 ```
-
-    ## [1] FALSE
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
 ``` r
-cs_validate_year(data2010_raw, year = "2010", verbose = TRUE)
+cs_validate(data2010_raw, year = "2010", verbose = TRUE)
 ```
 
     ## # A tibble: 12 x 8
@@ -631,61 +475,17 @@ Every month contains the incorrect number of variables. We’ll address
 each of these:
 
 ``` r
-# January - extract data, unit test, and standardize
+# January - extract data, unit test
 expect_equal(ncol(cs_extract_month(data2010_raw, month = "January")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "January", config = 18)
 
-# February - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "February")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "February", config = 18)
-
-# March - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "March")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "March", config = 18)
-
-# April - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "April")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "April", config = 18)
-
-# May - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "May")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "May", config = 18)
-
-# June - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "June")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "June", config = 18)
-
-# July - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "July")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "July", config = 18)
-
-# August - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "August")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "August", config = 18)
-
-# September - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "September")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "September", config = 18)
-
-# October - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "October")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "October", config = 18)
-
-# November - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "November")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "November", config = 18)
-
-# December - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2010_raw, month = "December")), 18)
-data2010_raw <- cs_standardize(data2010_raw, month = "December", config = 18)
+# standardize all months
+data2010_raw <- cs_standardize(data2010_raw, month = "all", config = 18)
 
 # validate data
-cs_validate_year(data2010_raw, year = "2010")
+expect_equal(cs_validate(data2010_raw, year = "2010"), TRUE)
 ```
 
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing our raw data objects to create a new object, `data2010`, that
 contains all known 2010 crimes including those that were reported or
 upgraded in subsequent years:
@@ -695,8 +495,9 @@ upgraded in subsequent years:
 data2010_raw <- cs_collapse(data2010_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2010, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw) %>%
-  cs_filter_count(var = Count) -> data2010
+cs_combine(type = "year", date = 2010, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+           data2013_raw, data2012_raw, data2011_raw, data2010_raw) %>%
+  cs_filter_count(var = count) -> data2010
 ```
 
 ### 2009
@@ -704,16 +505,14 @@ cs_combine(type = "year", date = 2010, data2018_raw, data2017_raw, data2016_raw,
 We’ll repeat the validation process with the 2009 data:
 
 ``` r
-cs_validate_year(data2009_raw, year = "2009")
+expect_equal(cs_validate(data2009_raw, year = "2009"), FALSE)
 ```
-
-    ## [1] FALSE
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
 ``` r
-cs_validate_year(data2009_raw, year = "2009", verbose = TRUE)
+cs_validate(data2009_raw, year = "2009", verbose = TRUE)
 ```
 
     ## # A tibble: 12 x 8
@@ -737,61 +536,17 @@ Every month contains the incorrect number of variables. We’ll address
 each of these:
 
 ``` r
-# January - extract data, unit test, and standardize
+# January - extract data, unit test
 expect_equal(ncol(cs_extract_month(data2009_raw, month = "January")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "January", config = 18)
 
-# February - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "February")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "February", config = 18)
-
-# March - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "March")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "March", config = 18)
-
-# April - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "April")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "April", config = 18)
-
-# May - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "May")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "May", config = 18)
-
-# June - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "June")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "June", config = 18)
-
-# July - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "July")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "July", config = 18)
-
-# August - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "August")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "August", config = 18)
-
-# September - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "September")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "September", config = 18)
-
-# October - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "October")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "October", config = 18)
-
-# November - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "November")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "November", config = 18)
-
-# December - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2009_raw, month = "December")), 18)
-data2009_raw <- cs_standardize(data2009_raw, month = "December", config = 18)
+# standardize all months
+data2009_raw <- cs_standardize(data2009_raw, month = "all", config = 18)
 
 # validate data
-cs_validate_year(data2009_raw, year = "2009")
+expect_equal(cs_validate(data2009_raw, year = "2009"), TRUE)
 ```
 
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing our raw data objects to create a new object, `data2009`, that
 contains all known 2009 crimes including those that were reported or
 upgraded in subsequent years:
@@ -801,140 +556,47 @@ upgraded in subsequent years:
 data2009_raw <- cs_collapse(data2009_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2009, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw) %>%
-  cs_filter_count(var = Count) -> data2009
+cs_combine(type = "year", date = 2009, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+           data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw) %>%
+  cs_filter_count(var = count) -> data2009
 ```
 
 ### 2008
 
-We’ll repeat the validation process with the 2009 data:
-
-``` r
-cs_validate_year(data2008_raw, year = "2008")
-```
-
-    ## [1] FALSE
+We’ll repeat the validation process with the 2008 data:
 
 Since we fail the validation, we can use the `verbose = TRUE` option to
 get a summary of where validation issues are occuring.
 
-``` r
-cs_validate_year(data2008_raw, year = "2008", verbose = TRUE)
-```
-
-    ## # A tibble: 12 x 8
-    ##    namedMonth codedMonth valMonth codedYear valYear oneMonth varCount
-    ##    <chr>      <chr>      <lgl>        <int> <lgl>   <lgl>    <lgl>   
-    ##  1 January    January    TRUE          2008 TRUE    TRUE     FALSE   
-    ##  2 February   February   TRUE          2008 TRUE    TRUE     FALSE   
-    ##  3 March      March      TRUE          2008 TRUE    TRUE     FALSE   
-    ##  4 April      April      TRUE          2008 TRUE    TRUE     FALSE   
-    ##  5 May        May        TRUE          2008 TRUE    TRUE     FALSE   
-    ##  6 June       June       TRUE          2008 TRUE    TRUE     FALSE   
-    ##  7 July       July       TRUE          2008 TRUE    TRUE     FALSE   
-    ##  8 August     August     TRUE          2008 TRUE    TRUE     FALSE   
-    ##  9 September  September  TRUE          2008 TRUE    TRUE     FALSE   
-    ## 10 October    October    TRUE          2008 TRUE    TRUE     FALSE   
-    ## 11 November   November   TRUE          2008 TRUE    TRUE     FALSE   
-    ## 12 December   December   TRUE          2008 TRUE    TRUE     FALSE   
-    ## # … with 1 more variable: valVars <lgl>
-
 Every month contains the incorrect number of variables. We’ll address
 each of these:
 
-``` r
-# January - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "January")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "January", config = 18)
-
-# February - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "February")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "February", config = 18)
-
-# March - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "March")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "March", config = 18)
-
-# April - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "April")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "April", config = 18)
-
-# May - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "May")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "May", config = 18)
-
-# June - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "June")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "June", config = 18)
-
-# July - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "July")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "July", config = 18)
-
-# August - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "August")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "August", config = 18)
-
-# September - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "September")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "September", config = 18)
-
-# October - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "October")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "October", config = 18)
-
-# November - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "November")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "November", config = 18)
-
-# December - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2008_raw, month = "December")), 18)
-data2008_raw <- cs_standardize(data2008_raw, month = "December", config = 18)
-
-# validate data
-cs_validate_year(data2008_raw, year = "2008")
-```
-
-    ## [1] TRUE
-
-We now get a `TRUE` value for `cs_validate_year()` and can move on to
+We now get a `TRUE` value for `cs_validate()` and can move on to
 collapsing our raw data objects to create a new object, `data2008`, that
 contains all known 2008 crimes including those that were reported or
 upgraded in subsequent years:
 
-``` r
-# collapse into single object
-data2008_raw <- cs_collapse(data2008_raw)
-
-# combine and filter
-cs_combine(type = "year", date = 2008, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw, data2008_raw) %>%
-  cs_filter_count(var = Count) -> data2008
-```
-
 ## Clean-up Enviornment
 
-We can remove the `_raw` objects at this
-point:
+We can remove the `_raw` objects at this point as well as the index:
 
 ``` r
-rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw)
+rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw, i)
 ```
 
 ## Create Single Table
 
 Next, we’ll create a single table before we remove individual years. We
-also subset columns to reduce the footprint of the
-table.
+also subset columns to reduce the footprint of the table.
 
 ``` r
 bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
-  select(cs_year, DateOccur, Crime, Description, ILEADSAddress, ILEADSStreet, XCoord, YCoord) -> allCrimes
+  select(cs_year, date_occur, crime, description, ileads_address, ileads_street, x_coord, y_coord) -> allCrimes
 ```
 
 ### Clean-up Enviornment
 
-We’ll remove excess objects
-again:
+We’ll remove excess objects again:
 
 ``` r
 rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018)
@@ -942,32 +604,21 @@ rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data201
 
 ## Categorize Crimes and Subset
 
-Now that we have a slimmed down data set, we’ll add crime categories:
-
-``` r
-allCrimes %>%  
-  cs_crime_cat(var = Crime, newVar = category, output = "numeric") %>%
-  select(cs_year, DateOccur, Crime, category, everything()) -> allCrimes
-```
-
-### Create Arson Data
-
-First, we’ll subset out arson incidents and write these to a `.csv`:
+Next, we’ll pull out arsons and then write them to a `.csv` file:
 
 ``` r
 allCrimes %>%
-  filter(category == 8) %>%
-  filter(Crime %in% c(81100, 82100, 83100) == FALSE) %>%
+  cs_filter_crime(var = crime, crime = "arson") %>%
   write_csv(here("data", "clean", "arson.csv"))
 ```
 
-### Violent Crimes
-
-Next, we’ll create a subset that is only violent crimes:
+Next, we’ll create a subset that is only violent crimes for our main
+study period, 2013-2017:
 
 ``` r
 allCrimes %>%
-  filter(category <= 4) %>%
+  filter(cs_year %in% c(2013:2017)) %>%
+  cs_filter_crime(var = crime, crime = "violent") %>%
   write_csv(here("data", "clean", "violent.csv"))
 ```
 
@@ -977,7 +628,11 @@ Next, we’ll create a subset that is only non-arson property crimes:
 
 ``` r
 allCrimes %>%
-  filter(category > 4 & category < 8) %>%
+  filter(cs_year %in% c(2013:2017)) %>%
+  cs_filter_crime(var = crime, crime = "property") %>%
+  cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
+  filter(cat %in% c(5:7)) %>%
+  select(-cat) %>%
   write_csv(here("data", "clean", "property.csv"))
 ```
 
@@ -994,6 +649,9 @@ Finally, we’ll create a subset with a few key Part 2 crimes:
 
 ``` r
 allCrimes %>%
-  filter(category %in% c(14, 15, 18, 24)) %>%
+  filter(cs_year %in% c(2013:2017)) %>%
+  cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
+  filter(cat %in% c(14, 15, 18, 24)) %>%
+  select(-cat) %>%
   write_csv(here("data", "clean", "otherCrimes.csv"))
 ```

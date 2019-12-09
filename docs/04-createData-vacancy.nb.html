@@ -1777,7 +1777,7 @@ library(here)</code></pre>
 </div>
 <div id="open-grid-data" class="section level2">
 <h2>Open Grid Data</h2>
-<p>The grid data have a large number of variables from a prior study. We’ll start by cleaning them up and adding them to</p>
+<p>The grid data have a large number of variables from a prior study. We’ll start by cleaning them up on import:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFjYW5jeSA8LSBzdF9yZWFkKGhlcmUoXCJkYXRhXCIsIFwicmF3XCIsIFwidmFjYW5jeVwiKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JVxuICByZW5hbWUoXG4gICAgZ3JpZF9pZCA9IE9CSkVDVElEXzEsXG4gICAgYXJlYV9tMiA9IHNxX20sXG4gICAgdmFjYW50X20yID0gdl9zcV9tLFxuICAgIHByb3BfdmFjYW50ID0gcF92YWNhbnRcbiAgKVxuYGBgIn0= -->
@@ -1790,21 +1790,64 @@ library(here)</code></pre>
     prop_vacant = p_vacant
   )</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgZ3JpZHNfbG93JyBmcm9tIGRhdGEgc291cmNlIGAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvdmFjYW5jeScgdXNpbmcgZHJpdmVyIGBFU1JJIFNoYXBlZmlsZSdcblNpbXBsZSBmZWF0dXJlIGNvbGxlY3Rpb24gd2l0aCAyMTUgZmVhdHVyZXMgYW5kIDMzIGZpZWxkc1xuZ2VvbWV0cnkgdHlwZTogIE1VTFRJUE9MWUdPTlxuZGltZW5zaW9uOiAgICAgIFhZXG5iYm94OiAgICAgICAgICAgeG1pbjogMjY1NjM1LjUgeW1pbjogMjk5NDkyLjYgeG1heDogMjc4OTg4LjEgeW1heDogMzI2NDM4LjdcbmVwc2cgKFNSSUQpOiAgICAyNjk5NlxucHJvajRzdHJpbmc6ICAgICtwcm9qPXRtZXJjICtsYXRfMD0zNS44MzMzMzMzMzMzMzMzNCArbG9uXzA9LTkwLjUgK2s9MC45OTk5MzMzMzMgK3hfMD0yNTAwMDAgK3lfMD0wICtlbGxwcz1HUlM4MCArdG93Z3M4ND0wLDAsMCwwLDAsMCwwICt1bml0cz1tICtub19kZWZzXG4ifQ== -->
+<pre><code>Reading layer `grids_low&#39; from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/vacancy&#39; using driver `ESRI Shapefile&#39;
+Simple feature collection with 215 features and 33 fields
+geometry type:  MULTIPOLYGON
+dimension:      XY
+bbox:           xmin: 265635.5 ymin: 299492.6 xmax: 278988.1 ymax: 326438.7
+epsg (SRID):    26996
+proj4string:    +proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.999933333 +x_0=250000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Next, we’ll create a copy that only contains the <code>grid_id</code> column. Since shapefile variable names get truncated, we’ll store the main analytical data set as a <code>.csv</code> file separate from the geometric data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtYWtlIGNvcHlcbmdyaWRzIDwtIHZhY2FuY3kgJT4lXG4gIHNlbGVjdChncmlkX2lkKVxuXG4jIHJlLXByb2plY3RcbmdyaWRzIDwtIHN0X3RyYW5zZm9ybShncmlkcywgY3JzID0gMjY5MTUpXG5cbiMgcmVtb3ZlIGdlb21ldHJ5XG5zdF9nZW9tZXRyeSh2YWNhbmN5KSA8LSBOVUxMXG5gYGAifQ== -->
+<pre class="r"><code># make copy
+grids &lt;- vacancy %&gt;%
+  select(grid_id)
+
+# re-project
+grids &lt;- st_transform(grids, crs = 26915)
+
+# remove geometry
+st_geometry(vacancy) &lt;- NULL</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 <div id="store-copy" class="section level2">
 <h2>Store Copy</h2>
-<p>Since the goal of the <code>data/clean/</code> folder is to keep a record of all the individual data sets being used in the project, I’ll write a copy of the <code>vacancy</code> object into that subdirectory:</p>
+<p>Since the goal of the <code>data/clean/</code> folder is to keep a record of all the individual data sets being used in the project, I’ll write a copy of the <code>grids</code> object into that subdirectory:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Rfd3JpdGUob2JqID0gdmFjYW5jeSwgZHNuID0gaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcInZhY2FuY3lcIiwgXCJ2YWNhbmN5LnNocFwiKSwgZGVsZXRlX2RzbiA9IFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>st_write(obj = vacancy, dsn = here(&quot;data&quot;, &quot;clean&quot;, &quot;vacancy&quot;, &quot;vacancy.shp&quot;), delete_dsn = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Rfd3JpdGUob2JqID0gZ3JpZHMsIGRzbiA9IGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJncmlkc1wiLCBcImdyaWRzLnNocFwiKSwgZGVsZXRlX2RzbiA9IFRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>st_write(obj = grids, dsn = here(&quot;data&quot;, &quot;clean&quot;, &quot;grids&quot;, &quot;grids.shp&quot;), delete_dsn = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR0RBTCBFcnJvciAxOiAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAgZG9lcyBub3QgYXBwZWFyIHRvIGJlIGEgZmlsZSBvciBkaXJlY3RvcnkuXG4ifQ== -->
+<pre><code>GDAL Error 1: /Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp does not appear to be a file or directory.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGVsZXRpbmcgc291cmNlIGAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAnIGZhaWxlZFxuV3JpdGluZyBsYXllciBgZ3JpZHMnIHRvIGRhdGEgc291cmNlIGAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAnIHVzaW5nIGRyaXZlciBgRVNSSSBTaGFwZWZpbGUnXG5Xcml0aW5nIDIxNSBmZWF0dXJlcyB3aXRoIDEgZmllbGRzIGFuZCBnZW9tZXRyeSB0eXBlIE11bHRpIFBvbHlnb24uXG4ifQ== -->
+<pre><code>Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp&#39; failed
+Writing layer `grids&#39; to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp&#39; using driver `ESRI Shapefile&#39;
+Writing 215 features with 1 fields and geometry type Multi Polygon.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We’ll also write the vacancy data as a <code>.csv</code> file:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KHZhY2FuY3ksIHBhdGggPSBoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwidmFjYW5jeS5jc3ZcIikpXG5gYGAifQ== -->
+<pre class="r"><code>write_csv(vacancy, path = here(&quot;data&quot;, &quot;clean&quot;, &quot;vacancy.csv&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBWYWNhbmN5IgphdXRob3I6ICJDaHJpc3RvcGhlciBQcmVuZXIsIFBoLkQuIgpkYXRlOiAnKGByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgKScKb3V0cHV0OiAKICBnaXRodWJfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0IAotLS0KCiMjIEludHJvZHVjdGlvbgpUaGlzIG5vdGVib29rIGNyZWF0ZXMgdGhlIGdyaWQtbGV2ZWwgdmFjYW5jeSBlc3RpbWF0ZXMgZm9yIGZ1cnRoZXIgYW5hbHlzZXMuIFRoZXNlIHNwYXRpYWwgZGF0YSB3aWxsIGFsc28gYmUgdXNlZCBhcyBhIGJhc2UgdG8gaW50ZXJwb2xhdGUgZGVtb2dyYXBoaWMgZGF0YSBpbnRvLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShzZikKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKQpgYGAKCiMjIE9wZW4gR3JpZCBEYXRhClRoZSBncmlkIGRhdGEgaGF2ZSBhIGxhcmdlIG51bWJlciBvZiB2YXJpYWJsZXMgZnJvbSBhIHByaW9yIHN0dWR5LiBXZSdsbCBzdGFydCBieSBjbGVhbmluZyB0aGVtIHVwIGFuZCBhZGRpbmcgdGhlbSB0byAKCmBgYHtyIG9wZW4tZ3JpZHN9CnZhY2FuY3kgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgInJhdyIsICJ2YWNhbmN5IiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lCiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JQogIHJlbmFtZSgKICAgIGdyaWRfaWQgPSBPQkpFQ1RJRF8xLAogICAgYXJlYV9tMiA9IHNxX20sCiAgICB2YWNhbnRfbTIgPSB2X3NxX20sCiAgICBwcm9wX3ZhY2FudCA9IHBfdmFjYW50CiAgKQpgYGAKCiMjIFN0b3JlIENvcHkKU2luY2UgdGhlIGdvYWwgb2YgdGhlIGBkYXRhL2NsZWFuL2AgZm9sZGVyIGlzIHRvIGtlZXAgYSByZWNvcmQgb2YgYWxsIHRoZSBpbmRpdmlkdWFsIGRhdGEgc2V0cyBiZWluZyB1c2VkIGluIHRoZSBwcm9qZWN0LCBJJ2xsIHdyaXRlIGEgY29weSBvZiB0aGUgYHZhY2FuY3lgIG9iamVjdCBpbnRvIHRoYXQgc3ViZGlyZWN0b3J5OgoKYGBge3Igd3JpdGUtZ3JpZHN9CnN0X3dyaXRlKG9iaiA9IHZhY2FuY3ksIGRzbiA9IGhlcmUoImRhdGEiLCAiY2xlYW4iLCAidmFjYW5jeSIsICJ2YWNhbmN5LnNocCIpLCBkZWxldGVfZHNuID0gVFJVRSkKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBWYWNhbmN5IgphdXRob3I6ICJDaHJpc3RvcGhlciBQcmVuZXIsIFBoLkQuIgpkYXRlOiAnKGByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgKScKb3V0cHV0OiAKICBnaXRodWJfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0IAotLS0KCiMjIEludHJvZHVjdGlvbgpUaGlzIG5vdGVib29rIGNyZWF0ZXMgdGhlIGdyaWQtbGV2ZWwgdmFjYW5jeSBlc3RpbWF0ZXMgZm9yIGZ1cnRoZXIgYW5hbHlzZXMuIFRoZXNlIHNwYXRpYWwgZGF0YSB3aWxsIGFsc28gYmUgdXNlZCBhcyBhIGJhc2UgdG8gaW50ZXJwb2xhdGUgZGVtb2dyYXBoaWMgZGF0YSBpbnRvLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShzZikKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKQpgYGAKCiMjIE9wZW4gR3JpZCBEYXRhClRoZSBncmlkIGRhdGEgaGF2ZSBhIGxhcmdlIG51bWJlciBvZiB2YXJpYWJsZXMgZnJvbSBhIHByaW9yIHN0dWR5LiBXZSdsbCBzdGFydCBieSBjbGVhbmluZyB0aGVtIHVwIG9uIGltcG9ydDoKCmBgYHtyIG9wZW4tZ3JpZHN9CnZhY2FuY3kgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgInJhdyIsICJ2YWNhbmN5IiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lCiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JQogIHJlbmFtZSgKICAgIGdyaWRfaWQgPSBPQkpFQ1RJRF8xLAogICAgYXJlYV9tMiA9IHNxX20sCiAgICB2YWNhbnRfbTIgPSB2X3NxX20sCiAgICBwcm9wX3ZhY2FudCA9IHBfdmFjYW50CiAgKQpgYGAKCk5leHQsIHdlJ2xsIGNyZWF0ZSBhIGNvcHkgdGhhdCBvbmx5IGNvbnRhaW5zIHRoZSBgZ3JpZF9pZGAgY29sdW1uLiBTaW5jZSBzaGFwZWZpbGUgdmFyaWFibGUgbmFtZXMgZ2V0IHRydW5jYXRlZCwgd2UnbGwgc3RvcmUgdGhlIG1haW4gYW5hbHl0aWNhbCBkYXRhIHNldCBhcyBhIGAuY3N2YCBmaWxlIHNlcGFyYXRlIGZyb20gdGhlIGdlb21ldHJpYyBkYXRhOgoKYGBge3J9CiMgbWFrZSBjb3B5CmdyaWRzIDwtIHZhY2FuY3kgJT4lCiAgc2VsZWN0KGdyaWRfaWQpCgojIHJlLXByb2plY3QKZ3JpZHMgPC0gc3RfdHJhbnNmb3JtKGdyaWRzLCBjcnMgPSAyNjkxNSkKCiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KHZhY2FuY3kpIDwtIE5VTEwKYGBgCgoKIyMgU3RvcmUgQ29weQpTaW5jZSB0aGUgZ29hbCBvZiB0aGUgYGRhdGEvY2xlYW4vYCBmb2xkZXIgaXMgdG8ga2VlcCBhIHJlY29yZCBvZiBhbGwgdGhlIGluZGl2aWR1YWwgZGF0YSBzZXRzIGJlaW5nIHVzZWQgaW4gdGhlIHByb2plY3QsIEknbGwgd3JpdGUgYSBjb3B5IG9mIHRoZSBgZ3JpZHNgIG9iamVjdCBpbnRvIHRoYXQgc3ViZGlyZWN0b3J5OgoKYGBge3Igd3JpdGUtZ3JpZHN9CnN0X3dyaXRlKG9iaiA9IGdyaWRzLCBkc24gPSBoZXJlKCJkYXRhIiwgImNsZWFuIiwgImdyaWRzIiwgImdyaWRzLnNocCIpLCBkZWxldGVfZHNuID0gVFJVRSkKYGBgCgpXZSdsbCBhbHNvIHdyaXRlIHRoZSB2YWNhbmN5IGRhdGEgYXMgYSBgLmNzdmAgZmlsZToKCmBgYHtyIHdyaXRlLXZhY2FuY3l9CndyaXRlX2Nzdih2YWNhbmN5LCBwYXRoID0gaGVyZSgiZGF0YSIsICJjbGVhbiIsICJ2YWNhbmN5LmNzdiIpKQpgYGAKCg==</div>
 
 
 

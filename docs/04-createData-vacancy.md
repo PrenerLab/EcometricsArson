@@ -48,7 +48,7 @@ library(here)
 ## Open Grid Data
 
 The grid data have a large number of variables from a prior study. We’ll
-start by cleaning them up and adding them to
+start by cleaning them up on import:
 
 ``` r
 vacancy <- st_read(here("data", "raw", "vacancy"), stringsAsFactors = FALSE) %>%
@@ -69,19 +69,38 @@ vacancy <- st_read(here("data", "raw", "vacancy"), stringsAsFactors = FALSE) %>%
     ## epsg (SRID):    26996
     ## proj4string:    +proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.999933333 +x_0=250000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
 
+Next, we’ll create a copy that only contains the `grid_id` column. Since
+shapefile variable names get truncated, we’ll store the main analytical
+data set as a `.csv` file separate from the geometric data:
+
+``` r
+# make copy
+grids <- vacancy %>%
+  select(grid_id)
+
+# re-project
+grids <- st_transform(grids, crs = 26915)
+
+# remove geometry
+st_geometry(vacancy) <- NULL
+```
+
 ## Store Copy
 
 Since the goal of the `data/clean/` folder is to keep a record of all
 the individual data sets being used in the project, I’ll write a copy of
-the `vacancy` object into that subdirectory:
+the `grids` object into that subdirectory:
 
 ``` r
-st_write(obj = vacancy, dsn = here("data", "clean", "vacancy", "vacancy.shp"), delete_dsn = TRUE)
+st_write(obj = grids, dsn = here("data", "clean", "grids", "grids.shp"), delete_dsn = TRUE)
 ```
 
-    ## Warning in abbreviate_shapefile_names(obj): Field names abbreviated for
-    ## ESRI Shapefile driver
+    ## Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp' using driver `ESRI Shapefile'
+    ## Writing layer `grids' to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp' using driver `ESRI Shapefile'
+    ## Writing 215 features with 1 fields and geometry type Multi Polygon.
 
-    ## Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/vacancy/vacancy.shp' using driver `ESRI Shapefile'
-    ## Writing layer `vacancy' to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/vacancy/vacancy.shp' using driver `ESRI Shapefile'
-    ## Writing 215 features with 4 fields and geometry type Multi Polygon.
+We’ll also write the vacancy data as a `.csv` file:
+
+``` r
+write_csv(vacancy, path = here("data", "clean", "vacancy.csv"))
+```

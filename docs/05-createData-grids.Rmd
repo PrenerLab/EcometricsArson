@@ -1,0 +1,314 @@
+---
+title: "Create Data - Grids"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook builds on the grid-level vacancy estimates created in `04-createData-vacancy.Rmd`. The crime and demographic data will be added to each grid square to create the neighborhood-level analysis data set.
+
+## Dependencies
+This notebook requires the following packages:
+
+```{r load-packages}
+# tidystl packages
+library(compstatr)
+library(stlcsb)
+
+# tidyverse packages
+library(dplyr)
+library(readr)
+
+# spatial packages
+library(areal)
+library(sf)
+library(tigris)
+
+# other packages
+library(here)
+```
+
+## Load Base Data
+All of the data will be interpolated into the grids that already contain vacancy metrics:
+
+```{r load-grids}
+# read
+grids <- st_read(here("data", "clean", "grids"), stringsAsFactors = FALSE) %>%
+  rename()
+
+# re-project
+grids <- st_transform(grids, crs = 26915)
+```
+
+## Add Arson Data
+The arson data is stored in `arson.csv`. Since these are point data, I'll read them in, project them, and then use a spatial join to create counts per grid square. First, we'll load the data and project them:
+
+```{r load-arson}
+# load
+arson <- read_csv(here("data", "clean", "arson.csv")) %>%
+  filter(cs_year >= 2013 & cs_year <= 2017)
+
+# project
+arson <- cs_projectXY(arson, varX = x_coord, varY = y_coord, crs = 26915)
+
+# print valid rows
+nrow(arson)
+```
+
+Next, we'll perform the intersection:
+
+```{r intersect-arson}
+# project
+arson <- st_intersection(arson, grids)
+
+# print valid rows
+nrow(arson)
+```
+
+Finally, we'll remove the geometry, sum our data by `grid_id`, and join our counts to the `grids` object:
+
+```{r count-arson}
+# remove geometry
+st_geometry(arson) <- NULL
+
+# perform spatial join
+arson %>%
+  group_by(grid_id) %>%
+  summarize(arson = n()) %>%
+  left_join(grids, ., by = "grid_id") %>%
+  mutate(arson = ifelse(is.na(arson) == TRUE, 0, arson)) -> grids
+
+# clean-up
+rm(arson)
+```
+
+## Violent Crimes
+The violent crime data is stored in `violent.csv`. As before, I'll read them in, project them, and then use a spatial join to create counts per grid square. First, we'll load the data and project them:
+
+```{r load-violent}
+# load
+violent <- read_csv(here("data", "clean", "violent.csv"))
+
+# project
+violent <- cs_projectXY(violent, varX = x_coord, varY = y_coord, crs = 26915)
+
+# print valid rows
+nrow(violent)
+```
+
+Next, we'll perform the intersection:
+
+```{r intersect-violent}
+# project
+violent <- st_intersection(violent, grids)
+
+# print valid rows
+nrow(violent)
+```
+
+Finally, we'll remove the geometry, sum our data by `grid_id`, and join our counts to the `grids` object:
+
+```{r count-violent}
+# remove geometry
+st_geometry(violent) <- NULL
+
+# perform spatial join
+violent %>%
+  group_by(grid_id) %>%
+  summarize(violent = n()) %>%
+  left_join(grids, ., by = "grid_id") %>%
+  mutate(violent = ifelse(is.na(violent) == TRUE, 0, violent)) -> grids
+
+# clean-up
+rm(violent)
+```
+
+## Property Crimes
+The property crime data is stored in `property.csv`. As before, I'll read them in, project them, and then use a spatial join to create counts per grid square. First, we'll load the data and project them:
+
+```{r load-property}
+# load
+property <- read_csv(here("data", "clean", "property.csv"))
+
+# project
+property <- cs_projectXY(property, varX = x_coord, varY = y_coord, crs = 26915)
+
+# print valid rows
+nrow(property)
+```
+
+Next, we'll perform the intersection:
+
+```{r intersect-property}
+# project
+property <- st_intersection(property, grids)
+
+# print valid rows
+nrow(property)
+```
+
+Finally, we'll remove the geometry, sum our data by `grid_id`, and join our counts to the `grids` object:
+
+```{r count-property}
+# remove geometry
+st_geometry(property) <- NULL
+
+# perform spatial join
+property %>%
+  group_by(grid_id) %>%
+  summarize(property = n()) %>%
+  left_join(grids, ., by = "grid_id") %>%
+  mutate(property = ifelse(is.na(property) == TRUE, 0, property)) -> grids
+
+# clean-up
+rm(property)
+```
+
+## Other Crimes
+The other crime data is stored in `otherCrimes.csv`. As before, I'll read them in, project them, and then use a spatial join to create counts per grid square. First, we'll load the data and project them:
+
+```{r load-otherCrimes}
+# load
+otherCrimes <- read_csv(here("data", "clean", "otherCrimes.csv"))
+
+# project
+otherCrimes <- cs_projectXY(otherCrimes, varX = x_coord, varY = y_coord, crs = 26915)
+
+# print valid rows
+nrow(otherCrimes)
+```
+
+Next, we'll perform the intersection:
+
+```{r intersect-otherCrimes}
+# project
+otherCrimes <- st_intersection(otherCrimes, grids)
+
+# print valid rows
+nrow(otherCrimes)
+```
+
+Finally, we'll remove the geometry, sum our data by `grid_id`, and join our counts to the `grids` object:
+
+```{r count-otherCrimes}
+# remove geometry
+st_geometry(otherCrimes) <- NULL
+
+# perform spatial join
+otherCrimes %>%
+  group_by(grid_id) %>%
+  summarize(other_crime = n()) %>%
+  left_join(grids, ., by = "grid_id") %>%
+  mutate(other_crime = ifelse(is.na(other_crime) == TRUE, 0, other_crime)) -> grids
+
+# clean-up
+rm(otherCrimes)
+```
+
+## Disorder
+The calls for disorder data are stored in `disorder.csv`. As before, I'll read them in, project them, and then use a spatial join to create counts per grid square. The project process varies slightly because these data are from a different source. First, we'll load the data and project them:
+
+```{r load-disorder}
+# load
+disorder <- read_csv(here("data", "clean", "disorder.csv"))
+
+# project
+disorder <- csb_projectXY(disorder, varX = srx, varY = sry, crs = 26915)
+
+# print valid rows
+nrow(disorder)
+```
+
+Next, we'll perform the intersection:
+
+```{r intersect-disorder}
+# project
+disorder <- st_intersection(disorder, grids)
+
+# print valid rows
+nrow(disorder)
+```
+
+Finally, we'll remove the geometry, sum our data by `grid_id`, and join our counts to the `grids` object:
+
+```{r count-disorder}
+# remove geometry
+st_geometry(disorder) <- NULL
+
+# perform spatial join
+disorder %>%
+  group_by(grid_id) %>%
+  summarize(disorder = n()) %>%
+  left_join(grids, ., by = "grid_id") %>%
+  mutate(disorder = ifelse(is.na(disorder) == TRUE, 0, disorder)) -> grids
+
+# clean-up
+rm(disorder)
+```
+
+## Vacancy
+The vacancy counts already correspond to the `grids` object, so they only need to be joined:
+
+```{r join-vacancy}
+# load
+vacancy <- read_csv(here("data", "clean", "vacancy.csv")) %>%
+  select(grid_id, prop_vacant)
+
+# join
+grids <- left_join(grids, vacancy, by = "grid_id")
+
+# clean-up
+rm(vacancy)
+```
+
+## Demographic Data
+Our demographic measures are at the census tract level, which means they need to be interpolated into the grids. This process requires that the demographic data be merged with the corresponding geometric data. First, we'll download those data:
+
+```{r download-tract-geometry}
+tracts <- tracts(state = 29, county = 510, year = 2017, class = "sf") %>%
+  select(GEOID)
+```
+
+Next, we'll load the demographic data and join them to the tract geometry:
+
+```{r load-and-join-demos}
+# load
+demos <- read_csv(here("data", "clean", "demographics.csv")) %>%
+  mutate(GEOID = as.character(GEOID)) %>%
+  select(GEOID, totalPop, black_prop, medianInc, ownOcc_prop, pvty_prop, unemply_prop) %>%
+  rename(
+    total_pop = totalPop,
+    median_inc = medianInc
+  )
+
+# join
+tracts <- left_join(tracts, demos, by = "GEOID")
+
+# transform
+tracts <- st_transform(tracts, crs = 26915)
+
+# clean-up
+rm(demos)
+```
+
+With our tract data prepared, we'll make a copy of the grids data that contain only the `grid_id` column:
+
+```{r prep-grids}
+grids_aw <- grids %>%
+  select(grid_id)
+```
+
+Now that we have the grids and tract data ready to interpolate, we can perform the calculations:
+
+```{r interpolate}
+grids_aw <- aw_interpolate(grids_aw, tid = grid_id, source = tracts, sid = GEOID,
+               weight = "sum", output = "tibble",
+               extensive = c("total_pop", "median_inc"),
+               intensive = c("black_prop", "ownOcc_prop",
+                             "pvty_prop", "unemply_prop"))
+```
+
+**Need to decide about calculating based on interpolated data vs using the intensive measures **

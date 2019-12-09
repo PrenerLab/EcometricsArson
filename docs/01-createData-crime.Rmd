@@ -424,8 +424,7 @@ rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data201
 Next, we'll create a single table before we remove individual years. We also subset columns to reduce the footprint of the table.
 
 ```{r collapse-all}
-# data2008
-bind_rows(data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
+bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
   select(cs_year, date_occur, crime, description, ileads_address, ileads_street, x_coord, y_coord) -> allCrimes
 ```
 
@@ -461,6 +460,9 @@ Next, we'll create a subset that is only non-arson property crimes:
 allCrimes %>%
   filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "property") %>%
+  cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
+  filter(cat %in% c(5:7)) %>%
+  select(-cat) %>%
   write_csv(here("data", "clean", "property.csv"))
 ```
 
@@ -475,8 +477,9 @@ Finally, we'll create a subset with a few key Part 2 crimes:
 ```{r subset-other}
 allCrimes %>%
   filter(cs_year %in% c(2013:2017)) %>%
-  cs_crime_cat(var = crime, newVar = category, output = "numeric") %>%
-  filter(category %in% c(14, 15, 18, 24)) %>%
+  cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
+  filter(cat %in% c(14, 15, 18, 24)) %>%
+  select(-cat) %>%
   write_csv(here("data", "clean", "otherCrimes.csv"))
 ```
 
