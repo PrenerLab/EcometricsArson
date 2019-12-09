@@ -1,0 +1,47 @@
+---
+title: "Create Data - Vacancy"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook creates the grid-level vacancy estimates for further analyses. These spatial data will also be used as a base to interpolate demographic data into.
+
+## Dependencies
+This notebook requires the following packages:
+
+```{r load-packages}
+# tidyverse packages
+library(dplyr)
+library(readr)
+
+# spatial packages
+library(sf)
+
+# other packages
+library(here)
+```
+
+## Open Grid Data
+The grid data have a large number of variables from a prior study. We'll start by cleaning them up and adding them to 
+
+```{r open-grids}
+vacancy <- st_read(here("data", "raw", "vacancy"), stringsAsFactors = FALSE) %>%
+  select(OBJECTID_1, sq_m, v_sq_m, p_vacant) %>%
+  rename(
+    grid_id = OBJECTID_1,
+    area_m2 = sq_m,
+    vacant_m2 = v_sq_m,
+    prop_vacant = p_vacant
+  )
+```
+
+## Store Copy
+Since the goal of the `data/clean/` folder is to keep a record of all the individual data sets being used in the project, I'll write a copy of the `vacancy` object into that subdirectory:
+
+```{r write-grids}
+st_write(obj = vacancy, dsn = here("data", "clean", "vacancy", "vacancy.shp"), delete_dsn = TRUE)
+```
