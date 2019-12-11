@@ -1,7 +1,7 @@
 Create Data - Demographics
 ================
 Christopher Prener, Ph.D.
-(December 06, 2019)
+(December 11, 2019)
 
 ## Introduction
 
@@ -75,8 +75,7 @@ get_acs(geography = "tract", table = "B02001", year = 2017, state = 29, county =
     raceTotal_moe = B02001_001M,
     black = B02001_003E,
     black_moe = B02001_003M
-  ) %>%
-  mutate(black_prop = black/raceTotal) -> race
+  ) -> race
 ```
 
     ## Getting data from the 2013-2017 5-year ACS
@@ -114,8 +113,7 @@ get_acs(geography = "tract", table = "B06012", year = 2017, state = 29, county =
     pvtyTotal_moe = B06012_001M,
     pvty = B06012_002E,
     pvty_moe = B06012_002M
-  ) %>%
-  mutate(pvty_prop = pvty/pvtyTotal) -> poverty
+  ) -> poverty
 ```
 
     ## Getting data from the 2013-2017 5-year ACS
@@ -136,8 +134,7 @@ get_acs(geography = "tract", table = "B23025", year = 2017, state = 29, county =
     emplyTotal_moe = B23025_001M,
     unemply = B23025_007E,
     unemply_moe = B23025_007M
-  ) %>%
-  mutate(unemply_prop = unemply/emplyTotal) -> employ
+  ) -> employ
 ```
 
     ## Getting data from the 2013-2017 5-year ACS
@@ -156,13 +153,12 @@ get_acs(geography = "tract", table = "B25026", year = 2017, state = 29, county =
     ownTotal_moe = B25026_001M,
     ownOcc = B25026_002E,
     ownOcc_moe = B25026_002M
-  ) %>%
-  mutate(ownOcc_prop = ownOcc/ownTotal) -> owner
+  ) -> owner
 ```
 
     ## Getting data from the 2013-2017 5-year ACS
 
-## Combine
+### Combine
 
 With our data downloaded, we’ll combine the tables:
 
@@ -180,10 +176,11 @@ We can now clean-up the global enviornment:
 rm(total_pop, race, medianInc, poverty, employ, owner)
 ```
 
-## Write to CSV
+### Write to CSV
 
 Finally, we’ll write the data to a `.csv` file:
 
 ``` r
+# write
 write_csv(x = demos, path = here("data", "clean", "demographics.csv"))
 ```
