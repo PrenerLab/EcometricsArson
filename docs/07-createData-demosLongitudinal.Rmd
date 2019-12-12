@@ -1,0 +1,10 @@
+## Calculate Population Change
+In addition to the crime rates, we also want to add a measure of how population numbers changed from year to year (i.e. lagged population).
+
+```{r lagged-pop}
+crime %>%
+  mutate(pop_delta = pop-lag(pop, order_by = year)) %>%
+  mutate(pop_delta_pct = pop_delta/lag(pop, order_by = year)*100) %>%
+  select(year, pop, pop_delta, pop_delta_pct, everything()) -> crime
+```
+
