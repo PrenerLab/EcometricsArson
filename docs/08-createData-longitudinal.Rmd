@@ -1,0 +1,52 @@
+---
+title: "Create Data - Longitudinal Analysis Data"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook combines the demographic and crime data to make the analytical data set for the longitudinal data.
+
+## Dependencies
+The following packages are needed:
+
+```{r load-dependencies}
+# tidyverse
+library(dplyr)
+library(readr)
+
+# other packages
+library(here)
+```
+
+## Load Data
+There are two tables to be combined:
+
+```{r load-data}
+crime <- read_csv(here("data", "clean", "longitudinal_crime.csv"))
+demos <- read_csv(here("data", "clean", "longitudinal_demos.csv"))
+```
+
+## Subset Years
+There are extra rows in the demographic data set leftover from calculating lags. We'll subset those out before joining them:
+
+```{r subset-years}
+demos <- filter(demos, year >= 1980)
+```
+
+## Join
+Next, we'll join the two data sets together:
+
+```{r}
+longi <- left_join(crime, demos, by = "year")
+```
+
+## Write Data
+Finally, we'll write our demographic data to `.csv`:
+
+```{r write-crime}
+write_csv(longi, path = here("data", "analysis", "longitudinal_analysis.csv"))
+```
