@@ -12,7 +12,7 @@
 <meta name="author" content="Christopher Prener, Ph.D." />
 
 
-<title>Create Data - Longitudinal Crime Data</title>
+<title>Create Data - Longitudinal Demographics</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -1730,7 +1730,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("06-createData-crimeLongitudinal.Rmd");
+  window.initializeSourceEmbed("07-createData-demosLongitudinal.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -1762,7 +1762,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Create Data - Longitudinal Crime Data</h1>
+<h1 class="title toc-ignore">Create Data - Longitudinal Demographics</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
 <h4 class="date">(December 13, 2019)</h4>
 
@@ -1770,32 +1770,20 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This notebook calculates relevant demographic metrics for the longitudinal analysis, including population change and percent change in manufacturing jobs at both the MSA and city level.</p>
+</div>
 <div id="dependencies" class="section level2">
 <h2>Dependencies</h2>
 <p>The following packages are needed:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2VcbmxpYnJhcnkoZHBseXIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2VcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHJlYWRyKVxubGlicmFyeSh0aWR5cilcblxuIyBkYXRhYmFzZSBhY2Nlc3NcbmxpYnJhcnkoREJJKVxubGlicmFyeShSU1FMaXRlKVxuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpXG5gYGAifQ== -->
 <pre class="r"><code># tidyverse
-library(dplyr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
-<pre><code>Registered S3 method overwritten by 'dplyr':
-  method           from
-  print.rowwise_df     
-
-Attaching package: ‘dplyr’
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkcilcblxuIyBkYXRhYmFzZSBhY2Nlc3NcbmxpYnJhcnkoREJJKVxubGlicmFyeShSU1FMaXRlKVxuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpXG5gYGAifQ== -->
-<pre class="r"><code>library(readr)
+library(dplyr)
+library(readr)
+library(tidyr)
 
 # database access
 library(DBI)
@@ -1804,9 +1792,6 @@ library(RSQLite)
 # other packages
 library(here)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiaGVyZSgpIHN0YXJ0cyBhdCAvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb25cbiJ9 -->
-<pre><code>here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1835,7 +1820,7 @@ library(here)</code></pre>
 </div>
 <div id="connect-to-mo_crime_database.sqlite" class="section level2">
 <h2>Connect to MO_CRIME_Database.sqlite</h2>
-<p>In order to pull total population and the relevant crime data from the crime database, we need to establish a connection to it:</p>
+<p>In order to pull total population from the crime database, we need to establish a connection to it:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29uIDwtIGRiQ29ubmVjdChTUUxpdGUoKSwgaGVyZShcImRhdGFcIiAsIFwiTU9fQ1JJTUVfRGF0YWJhc2VcIiwgXCJkYXRhXCIsIFwiTU9fQ1JJTUVfRGF0YWJhc2Uuc3FsaXRlXCIpKVxuYGBgIn0= -->
@@ -1851,175 +1836,188 @@ library(here)</code></pre>
 <p>There are a number of database tables that we need. For all of the crimes, we’ll need the population for each year. The two <code>filter()</code> calls and <code>select()</code> execute SQL queries under the hood, and <code>collect()</code> brings the data into the global enviornment:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RhYmxpc2ggY29ubmVjdGlvblxucG9wX2RiIDwtIHRibChjb24sIFwicG9wdWxhdGlvblwiKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RhYmxpc2ggY29ubmVjdGlvblxucG9wX2RiIDwtIHRibChjb24sIFwicG9wdWxhdGlvblwiKVxuXG4jIHF1ZXJ5IGFuZCBjb2xsZWN0XG5wb3BfZGIgJT4lXG4gIHF1ZXJ5KGZpcnN0WWVhciA9IDE5NzkpICU+JVxuICByZW5hbWUocG9wID0gY291bnQpIC0+IHBvcFxuXG4jIHJlbW92ZSBjb25uZWN0aW9uXG5ybShwb3BfZGIpXG5gYGAifQ== -->
 <pre class="r"><code># establish connection
-pop_db &lt;- tbl(con, &quot;population&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxuIn0= -->
-<pre><code>Registered S3 methods overwritten by 'dbplyr':
-  method         from
-  print.tbl_lazy     
-  print.tbl_sql      </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBxdWVyeSBhbmQgY29sbGVjdFxucG9wX2RiICU+JVxuICBxdWVyeShmaXJzdFllYXIgPSAxOTc5KSAlPiVcbiAgcmVuYW1lKHBvcCA9IGNvdW50KSAtPiBwb3BcbmBgYCJ9 -->
-<pre class="r"><code># query and collect
+pop_db &lt;- tbl(con, &quot;population&quot;)
+
+# query and collect
 pop_db %&gt;%
   query(firstYear = 1979) %&gt;%
-  rename(pop = count) -&gt; pop</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYG92ZXJzY29wZV9ldmFsX25leHQoKWAgaXMgZGVwcmVjYXRlZCBhcyBvZiBybGFuZyAwLjIuMC5cblBsZWFzZSB1c2UgYGV2YWxfdGlkeSgpYCB3aXRoIGEgZGF0YSBtYXNrIGluc3RlYWQuXG5cdTAwMWJbOTBtVGhpcyB3YXJuaW5nIGlzIGRpc3BsYXllZCBvbmNlIHBlciBzZXNzaW9uLlx1MDAxYlszOW1gb3ZlcnNjb3BlX2NsZWFuKClgIGlzIGRlcHJlY2F0ZWQgYXMgb2YgcmxhbmcgMC4yLjAuXG5cdTAwMWJbOTBtVGhpcyB3YXJuaW5nIGlzIGRpc3BsYXllZCBvbmNlIHBlciBzZXNzaW9uLlx1MDAxYlszOW1cbiJ9 -->
-<pre><code>`overscope_eval_next()` is deprecated as of rlang 0.2.0.
-Please use `eval_tidy()` with a data mask instead.
-[90mThis warning is displayed once per session.[39m`overscope_clean()` is deprecated as of rlang 0.2.0.
-[90mThis warning is displayed once per session.[39m</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgY29ubmVjdGlvblxucm0ocG9wX2RiKVxuYGBgIn0= -->
-<pre class="r"><code># remove connection
+  rename(pop = count) -&gt; pop
+
+# remove connection
 rm(pop_db)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="arson-rate" class="section level3">
-<h3>Arson Rate</h3>
-<p>Next, we’ll query the database again to obtain counts of arson fires. Then we’ll join it with the population data and calculate an arson rate:</p>
+<div id="calculate-population-change" class="section level3">
+<h3>Calculate Population Change</h3>
+<p>In addition to the crime rates, we also want to add a measure of how population numbers changed from year to year (i.e. lagged population).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RhYmxpc2ggY29ubmVjdGlvblxuYXJzb25fZGIgPC0gdGJsKGNvbiwgXCJhcnNvblwiKVxuXG4jIHF1ZXJ5LCBjb2xsZWN0LCBqb2luLCBhbmQgY2FsY3VsYXRlIHJhdGVcbmFyc29uX2RiICU+JVxuICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiVcbiAgcmVuYW1lKGFyc29uID0gY291bnQpICU+JVxuICBsZWZ0X2pvaW4ocG9wLCAuLCBieSA9IFwieWVhclwiKSAlPiVcbiAgbXV0YXRlKGFyc29uX3JhdGUgPSAoYXJzb24vcG9wKSoxMDAwMDApIC0+IGNyaW1lXG5cbiMgcmVtb3ZlIGNvbm5lY3Rpb25cbnJtKGFyc29uX2RiLCBwb3ApXG5gYGAifQ== -->
-<pre class="r"><code># establish connection
-arson_db &lt;- tbl(con, &quot;arson&quot;)
-
-# query, collect, join, and calculate rate
-arson_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(arson = count) %&gt;%
-  left_join(pop, ., by = &quot;year&quot;) %&gt;%
-  mutate(arson_rate = (arson/pop)*100000) -&gt; crime
-
-# remove connection
-rm(arson_db, pop)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Now, we can continue to add to the <code>crime</code> object, using the existing <code>pop</code> column to calculate rates.</p>
-</div>
-<div id="violent-crime-rate" class="section level3">
-<h3>Violent Crime Rate</h3>
-<p>Next, we’ll calculate a violent crime rate for each year. This involves querying records from four tables, collecting them, and then summing their columns to get a total number of violent crimes before a rate is calculated.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RhYmxpc2ggY29ubmVjdGlvbnNcbmhvbWljaWRlX2RiIDwtIHRibChjb24sIFwiaG9taWNpZGVcIilcbmFnQXNzYXVsdF9kYiA8LSB0YmwoY29uLCBcImFnQXNzYXVsdFwiKVxucmFwZV9kYiA8LSB0YmwoY29uLCBcInJhcGVcIilcbnJvYmJlcnlfZGIgPC0gdGJsKGNvbiwgXCJyb2JiZXJ5XCIpXG5cbiMgaG9taWNpZGUgLSBxdWVyeSBhbmQgY29sbGVjdFxuaG9taWNpZGVfZGIgJT4lXG4gIHF1ZXJ5KGZpcnN0WWVhciA9IDE5ODApICU+JVxuICByZW5hbWUoaG9taWNpZGUgPSBjb3VudCkgLT4gaG9taWNpZGVcblxuIyBhZ2dyZXZhdGVkIGFzc2F1bHQgLSBxdWVyeSBhbmQgY29sbGVjdFxuYWdBc3NhdWx0X2RiICU+JVxuICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiVcbiAgcmVuYW1lKGFnQXNzYXVsdCA9IGNvdW50KSAtPiBhZ0Fzc2F1bHRcblxuIyByYXBlIC0gcXVlcnkgYW5kIGNvbGxlY3RcbnJhcGVfZGIgJT4lXG4gIHF1ZXJ5KGZpcnN0WWVhciA9IDE5ODApICU+JVxuICByZW5hbWUocmFwZSA9IGNvdW50KSAtPiByYXBlXG5cbiMgcm9iYmVyeSAtIHF1ZXJ5IGFuZCBjb2xsZWN0XG5yb2JiZXJ5X2RiICU+JVxuICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiVcbiAgcmVuYW1lKHJvYmJlcnkgPSBjb3VudCkgLT4gcm9iYmVyeVxuXG4jIGpvYmluIGFuZCBjYWxjdWxhdGUgcmF0ZXNcbmNyaW1lICU+JVxuICBsZWZ0X2pvaW4oLiwgaG9taWNpZGUsIGJ5ID0gXCJ5ZWFyXCIpICU+JVxuICBsZWZ0X2pvaW4oLiwgYWdBc3NhdWx0LCBieSA9IFwieWVhclwiKSAlPiVcbiAgbGVmdF9qb2luKC4sIHJhcGUsIGJ5ID0gXCJ5ZWFyXCIpICU+JVxuICBsZWZ0X2pvaW4oLiwgcm9iYmVyeSwgYnkgPSBcInllYXJcIikgJT4lXG4gIG11dGF0ZSh2aW9sZW50ID0gaG9taWNpZGUrYWdBc3NhdWx0K3JhcGUrcm9iYmVyeSkgJT4lXG4gIHNlbGVjdCgtaG9taWNpZGUsIC1hZ0Fzc2F1bHQsIC1yYXBlLCAtcm9iYmVyeSkgJT4lXG4gIG11dGF0ZSh2aW9sZW50X3JhdGUgPSAodmlvbGVudC9wb3ApKjEwMDAwMCkgLT4gY3JpbWVcblxuIyByZW1vdmUgY29ubmVjdGlvbnNcbnJtKGhvbWljaWRlX2RiLCBhZ0Fzc2F1bHRfZGIsIHJhcGVfZGIsIHJvYmJlcnlfZGIsXG4gICBob21pY2lkZSwgYWdBc3NhdWx0LCByYXBlLCByb2JiZXJ5KVxuYGBgIn0= -->
-<pre class="r"><code># establish connections
-homicide_db &lt;- tbl(con, &quot;homicide&quot;)
-agAssault_db &lt;- tbl(con, &quot;agAssault&quot;)
-rape_db &lt;- tbl(con, &quot;rape&quot;)
-robbery_db &lt;- tbl(con, &quot;robbery&quot;)
-
-# homicide - query and collect
-homicide_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(homicide = count) -&gt; homicide
-
-# aggrevated assault - query and collect
-agAssault_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(agAssault = count) -&gt; agAssault
-
-# rape - query and collect
-rape_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(rape = count) -&gt; rape
-
-# robbery - query and collect
-robbery_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(robbery = count) -&gt; robbery
-
-# jobin and calculate rates
-crime %&gt;%
-  left_join(., homicide, by = &quot;year&quot;) %&gt;%
-  left_join(., agAssault, by = &quot;year&quot;) %&gt;%
-  left_join(., rape, by = &quot;year&quot;) %&gt;%
-  left_join(., robbery, by = &quot;year&quot;) %&gt;%
-  mutate(violent = homicide+agAssault+rape+robbery) %&gt;%
-  select(-homicide, -agAssault, -rape, -robbery) %&gt;%
-  mutate(violent_rate = (violent/pop)*100000) -&gt; crime
-
-# remove connections
-rm(homicide_db, agAssault_db, rape_db, robbery_db,
-   homicide, agAssault, rape, robbery)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9wICU+JVxuICBtdXRhdGUocG9wX2RlbHRhID0gcG9wLWxhZyhwb3AsIG4gPSAxLCBvcmRlcl9ieSA9IHllYXIpKSAlPiVcbiAgbXV0YXRlKHBvcF9kZWx0YV9wY3QgPSBwb3BfZGVsdGEvbGFnKHBvcCwgbiA9IDEsIG9yZGVyX2J5ID0geWVhcikqMTAwKSAlPiVcbiAgc2VsZWN0KHllYXIsIHBvcCwgcG9wX2RlbHRhLCBwb3BfZGVsdGFfcGN0LCBldmVyeXRoaW5nKCkpIC0+IHBvcFxuYGBgIn0= -->
+<pre class="r"><code>pop %&gt;%
+  mutate(pop_delta = pop-lag(pop, n = 1, order_by = year)) %&gt;%
+  mutate(pop_delta_pct = pop_delta/lag(pop, n = 1, order_by = year)*100) %&gt;%
+  select(year, pop, pop_delta, pop_delta_pct, everything()) -&gt; pop</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-</div>
-<div id="larceny-rate" class="section level2">
-<h2>Larceny Rate</h2>
-<p>Next, we’ll calculate a larceny rate for each year that includes burglaries, larcenies, and motor vehicle thefts. This is the same as the “crimes against property” concept but leaves arsons out, since they are the dependent variable.</p>
+<div id="manufacturing-jobs" class="section level3">
+<h3>Manufacturing Jobs</h3>
+<p>The city job manufacturing data come from the <a href="https://www.bea.gov/data/employment/employment-county-metro-and-other-areas">U.S. Bureau of Economic Analysis</a>. They are in two tables because, of as 2001, the reporting scheme changed. We therefore need to read both in, clean them up, and then join them together. First, we’ll wrangle the pre-2001 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RhYmxpc2ggY29ubmVjdGlvbnNcbnJvYmJlcnlfZGIgPC0gdGJsKGNvbiwgXCJyb2JiZXJ5XCIpXG5sYXJjZW55X2RiIDwtIHRibChjb24sIFwibGFyY2VueVwiKVxuYXV0b1RoZWZ0X2RiIDwtIHRibChjb24sIFwiYXV0b1RoZWZ0XCIpXG5cbiMgcm9iYmVyeSAtIHF1ZXJ5IGFuZCBjb2xsZWN0XG5yb2JiZXJ5X2RiICU+JVxuICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiVcbiAgcmVuYW1lKHJvYmJlcnkgPSBjb3VudCkgLT4gcm9iYmVyeVxuXG4jIGxhcmNlbnkgLSBxdWVyeSBhbmQgY29sbGVjdFxubGFyY2VueV9kYiAlPiVcbiAgcXVlcnkoZmlyc3RZZWFyID0gMTk4MCkgJT4lXG4gIHJlbmFtZShsYXJjZW55ID0gY291bnQpIC0+IGxhcmNlbnlcblxuIyBhdXRvIHRoZWZ0IC0gcXVlcnkgYW5kIGNvbGxlY3RcbmF1dG9UaGVmdF9kYiAlPiVcbiAgcXVlcnkoZmlyc3RZZWFyID0gMTk4MCkgJT4lXG4gIHJlbmFtZShhdXRvVGhlZnQgPSBjb3VudCkgLT4gYXV0b1RoZWZ0XG5cbiMgam9iaW4gYW5kIGNhbGN1bGF0ZSByYXRlc1xuY3JpbWUgJT4lXG4gIGxlZnRfam9pbiguLCByb2JiZXJ5LCBieSA9IFwieWVhclwiKSAlPiVcbiAgbGVmdF9qb2luKC4sIGxhcmNlbnksIGJ5ID0gXCJ5ZWFyXCIpICU+JVxuICBsZWZ0X2pvaW4oLiwgYXV0b1RoZWZ0LCBieSA9IFwieWVhclwiKSAlPiVcbiAgbXV0YXRlKGxhcmNlbnlfY291bnQgPSByb2JiZXJ5K2xhcmNlbnkrYXV0b1RoZWZ0KSAlPiVcbiAgc2VsZWN0KC1yb2JiZXJ5LCAtbGFyY2VueSwgLWF1dG9UaGVmdCkgJT4lXG4gIHJlbmFtZShsYXJjZW55ID0gbGFyY2VueV9jb3VudCkgJT4lXG4gIG11dGF0ZShsYXJjZW55X3JhdGUgPSAobGFyY2VueS9wb3ApKjEwMDAwMCkgLT4gY3JpbWVcblxuIyByZW1vdmUgY29ubmVjdGlvbnNcbnJtKHJvYmJlcnlfZGIsIGxhcmNlbnlfZGIsIGF1dG9UaGVmdF9kYixcbiAgIHJvYmJlcnksIGxhcmNlbnksIGF1dG9UaGVmdClcbmBgYCJ9 -->
-<pre class="r"><code># establish connections
-robbery_db &lt;- tbl(con, &quot;robbery&quot;)
-larceny_db &lt;- tbl(con, &quot;larceny&quot;)
-autoTheft_db &lt;- tbl(con, &quot;autoTheft&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkXG5jaXR5X3ByZTAwIDwtIHJlYWRfY3N2KGZpbGUgPSBoZXJlKFwiZGF0YVwiLCBcInJhd1wiLCBcImVtcGxveW1lbnRcIiwgXCJjaXR5LTE5NjlfdG9fMjAwMC5jc3ZcIiksXG4gICAgICAgICAgICAgICAgICAgICAgIHNraXAgPSA0KVxuYGBgIn0= -->
+<pre class="r"><code># read
+city_pre00 &lt;- read_csv(file = here(&quot;data&quot;, &quot;raw&quot;, &quot;employment&quot;, &quot;city-1969_to_2000.csv&quot;),
+                       skip = 4)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9kb3VibGUoKSxcbiAgR2VvRmlwcyA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBHZW9OYW1lID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIERlc2NyaXB0aW9uID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGAxOTY5YCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBgMTk3MGAgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgYDE5NzFgID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGAxOTcyYCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBgMTk3M2AgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgYDE5NzRgID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGAxOTc1YCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBgMTk3NmAgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgYDE5NzdgID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGAxOTc4YCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBgMTk5OGAgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgYDE5OTlgID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGAyMDAwYCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltXG4pXG5TZWUgc3BlYyguLi4pIGZvciBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9ucy5cbjcgcGFyc2luZyBmYWlsdXJlcy5cbnJvdyBjb2wgICBleHBlY3RlZCAgICBhY3R1YWwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZpbGVcbiAyNyAgLS0gMzYgY29sdW1ucyAxIGNvbHVtbnMgJy9Vc2Vycy9wcmVuZXJjZy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL3Jhdy9lbXBsb3ltZW50L2NpdHktMTk2OV90b18yMDAwLmNzdidcbiAyOCAgLS0gMzYgY29sdW1ucyAxIGNvbHVtbnMgJy9Vc2Vycy9wcmVuZXJjZy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL3Jhdy9lbXBsb3ltZW50L2NpdHktMTk2OV90b18yMDAwLmNzdidcbiAyOSAgLS0gMzYgY29sdW1ucyAxIGNvbHVtbnMgJy9Vc2Vycy9wcmVuZXJjZy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL3Jhdy9lbXBsb3ltZW50L2NpdHktMTk2OV90b18yMDAwLmNzdidcbiAzMCAgLS0gMzYgY29sdW1ucyAxIGNvbHVtbnMgJy9Vc2Vycy9wcmVuZXJjZy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL3Jhdy9lbXBsb3ltZW50L2NpdHktMTk2OV90b18yMDAwLmNzdidcbiAzMSAgLS0gMzYgY29sdW1ucyAxIGNvbHVtbnMgJy9Vc2Vycy9wcmVuZXJjZy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL3Jhdy9lbXBsb3ltZW50L2NpdHktMTk2OV90b18yMDAwLmNzdidcbi4uLiAuLi4gLi4uLi4uLi4uLiAuLi4uLi4uLi4gLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi5cblNlZSBwcm9ibGVtcyguLi4pIGZvciBtb3JlIGRldGFpbHMuXG4ifQ== -->
+<pre><code>Parsed with column specification:
+cols(
+  .default = col_double(),
+  GeoFips = [31mcol_character()[39m,
+  GeoName = [31mcol_character()[39m,
+  Description = [31mcol_character()[39m,
+  `1969` = [31mcol_character()[39m,
+  `1970` = [31mcol_character()[39m,
+  `1971` = [31mcol_character()[39m,
+  `1972` = [31mcol_character()[39m,
+  `1973` = [31mcol_character()[39m,
+  `1974` = [31mcol_character()[39m,
+  `1975` = [31mcol_character()[39m,
+  `1976` = [31mcol_character()[39m,
+  `1977` = [31mcol_character()[39m,
+  `1978` = [31mcol_character()[39m,
+  `1998` = [31mcol_character()[39m,
+  `1999` = [31mcol_character()[39m,
+  `2000` = [31mcol_character()[39m
+)
+See spec(...) for full column specifications.
+7 parsing failures.
+row col   expected    actual                                                                                         file
+ 27  -- 36 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-1969_to_2000.csv'
+ 28  -- 36 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-1969_to_2000.csv'
+ 29  -- 36 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-1969_to_2000.csv'
+ 30  -- 36 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-1969_to_2000.csv'
+ 31  -- 36 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-1969_to_2000.csv'
+... ... .......... ......... ............................................................................................
+See problems(...) for more details.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkZWZpbmUgdmFyaWFibGVzIHRvIHJlZm9ybWF0XG5wcm9iX3llYXJzIDwtIGFzLmNoYXJhY3RlcihjKDE5Njk6MjAwMCkpXG5cbiMgc3Vic2V0IGFuZCBjb252ZXJ0IHRvIGxvbmcsIHRvdGFsXG5jaXR5X3ByZTAwICU+JVxuICBmaWx0ZXIoRGVzY3JpcHRpb24gPT0gXCJUb3RhbCBlbXBsb3ltZW50IChudW1iZXIgb2Ygam9icylcIiB8IERlc2NyaXB0aW9uID09IFwiTWFudWZhY3R1cmluZ1wiKSAlPiVcbiAgbXV0YXRlKERlc2NyaXB0aW9uID0gY2FzZV93aGVuKFxuICAgIERlc2NyaXB0aW9uID09IFwiVG90YWwgZW1wbG95bWVudCAobnVtYmVyIG9mIGpvYnMpXCIgfiBcInRvdGFsX2pvYnNcIixcbiAgICBEZXNjcmlwdGlvbiA9PSBcIk1hbnVmYWN0dXJpbmdcIiB+IFwibWFudV9qb2JzXCJcbiAgKSkgJT4lXG4gIHNlbGVjdChEZXNjcmlwdGlvbiwgYDE5NjlgOmAyMDAwYCkgJT4lXG4gIG11dGF0ZV9hdChwcm9iX3llYXJzLCBhcy5udW1lcmljKSAlPiVcbiAgcGl2b3RfbG9uZ2VyKC1EZXNjcmlwdGlvbiwgbmFtZXNfdG8gPSBcInllYXJcIiwgdmFsdWVzX3RvID0gXCJjb3VudFwiKSAtPiBjaXR5X3ByZTAwXG5gYGAifQ== -->
+<pre class="r"><code># define variables to reformat
+prob_years &lt;- as.character(c(1969:2000))
 
-# robbery - query and collect
-robbery_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(robbery = count) -&gt; robbery
+# subset and convert to long, total
+city_pre00 %&gt;%
+  filter(Description == &quot;Total employment (number of jobs)&quot; | Description == &quot;Manufacturing&quot;) %&gt;%
+  mutate(Description = case_when(
+    Description == &quot;Total employment (number of jobs)&quot; ~ &quot;total_jobs&quot;,
+    Description == &quot;Manufacturing&quot; ~ &quot;manu_jobs&quot;
+  )) %&gt;%
+  select(Description, `1969`:`2000`) %&gt;%
+  mutate_at(prob_years, as.numeric) %&gt;%
+  pivot_longer(-Description, names_to = &quot;year&quot;, values_to = &quot;count&quot;) -&gt; city_pre00</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We’ll repeat the exercise with the post-2000 data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkXG5jaXR5X3Bvc3QwMCA8LSByZWFkX2NzdihmaWxlID0gaGVyZShcImRhdGFcIiwgXCJyYXdcIiwgXCJlbXBsb3ltZW50XCIsIFwiY2l0eS0yMDAxX3RvXzIwMTguY3N2XCIpLFxuICAgICAgICAgICAgICAgICAgICAgICBza2lwID0gNClcbmBgYCJ9 -->
+<pre class="r"><code># read
+city_post00 &lt;- read_csv(file = here(&quot;data&quot;, &quot;raw&quot;, &quot;employment&quot;, &quot;city-2001_to_2018.csv&quot;),
+                       skip = 4)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgTGluZUNvZGUgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bVxuKVxuU2VlIHNwZWMoLi4uKSBmb3IgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbnMuXG42IHBhcnNpbmcgZmFpbHVyZXMuXG5yb3cgY29sICAgZXhwZWN0ZWQgICAgYWN0dWFsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmaWxlXG4gMzcgIC0tIDIyIGNvbHVtbnMgMSBjb2x1bW5zICcvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvZW1wbG95bWVudC9jaXR5LTIwMDFfdG9fMjAxOC5jc3YnXG4gMzggIC0tIDIyIGNvbHVtbnMgMSBjb2x1bW5zICcvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvZW1wbG95bWVudC9jaXR5LTIwMDFfdG9fMjAxOC5jc3YnXG4gMzkgIC0tIDIyIGNvbHVtbnMgMSBjb2x1bW5zICcvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvZW1wbG95bWVudC9jaXR5LTIwMDFfdG9fMjAxOC5jc3YnXG4gNDAgIC0tIDIyIGNvbHVtbnMgMSBjb2x1bW5zICcvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvZW1wbG95bWVudC9jaXR5LTIwMDFfdG9fMjAxOC5jc3YnXG4gNDEgIC0tIDIyIGNvbHVtbnMgMSBjb2x1bW5zICcvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvZW1wbG95bWVudC9jaXR5LTIwMDFfdG9fMjAxOC5jc3YnXG4uLi4gLi4uIC4uLi4uLi4uLi4gLi4uLi4uLi4uIC4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uXG5TZWUgcHJvYmxlbXMoLi4uKSBmb3IgbW9yZSBkZXRhaWxzLlxuIn0= -->
+<pre><code>Parsed with column specification:
+cols(
+  .default = col_character(),
+  LineCode = [32mcol_double()[39m
+)
+See spec(...) for full column specifications.
+6 parsing failures.
+row col   expected    actual                                                                                         file
+ 37  -- 22 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-2001_to_2018.csv'
+ 38  -- 22 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-2001_to_2018.csv'
+ 39  -- 22 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-2001_to_2018.csv'
+ 40  -- 22 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-2001_to_2018.csv'
+ 41  -- 22 columns 1 columns '/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/employment/city-2001_to_2018.csv'
+... ... .......... ......... ............................................................................................
+See problems(...) for more details.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkZWZpbmUgdmFyaWFibGVzIHRvIHJlZm9ybWF0XG5wcm9iX3llYXJzIDwtIGFzLmNoYXJhY3RlcihjKDIwMDE6MjAxOCkpXG5cbiMgc3Vic2V0IGFuZCBjb252ZXJ0IHRvIGxvbmcsIHRvdGFsXG5jaXR5X3Bvc3QwMCAlPiVcbiAgZmlsdGVyKERlc2NyaXB0aW9uID09IFwiVG90YWwgZW1wbG95bWVudCAobnVtYmVyIG9mIGpvYnMpXCIgfCBEZXNjcmlwdGlvbiA9PSBcIk1hbnVmYWN0dXJpbmdcIikgJT4lXG4gIG11dGF0ZShEZXNjcmlwdGlvbiA9IGNhc2Vfd2hlbihcbiAgICBEZXNjcmlwdGlvbiA9PSBcIlRvdGFsIGVtcGxveW1lbnQgKG51bWJlciBvZiBqb2JzKVwiIH4gXCJ0b3RhbF9qb2JzXCIsXG4gICAgRGVzY3JpcHRpb24gPT0gXCJNYW51ZmFjdHVyaW5nXCIgfiBcIm1hbnVfam9ic1wiXG4gICkpICU+JVxuICBzZWxlY3QoRGVzY3JpcHRpb24sIGAyMDAxYDpgMjAxOGApICU+JVxuICBtdXRhdGVfYXQocHJvYl95ZWFycywgYXMubnVtZXJpYykgJT4lXG4gIHBpdm90X2xvbmdlcigtRGVzY3JpcHRpb24sIG5hbWVzX3RvID0gXCJ5ZWFyXCIsIHZhbHVlc190byA9IFwiY291bnRcIikgLT4gY2l0eV9wb3N0MDBcbmBgYCJ9 -->
+<pre class="r"><code># define variables to reformat
+prob_years &lt;- as.character(c(2001:2018))
 
-# larceny - query and collect
-larceny_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(larceny = count) -&gt; larceny
-
-# auto theft - query and collect
-autoTheft_db %&gt;%
-  query(firstYear = 1980) %&gt;%
-  rename(autoTheft = count) -&gt; autoTheft
-
-# jobin and calculate rates
-crime %&gt;%
-  left_join(., robbery, by = &quot;year&quot;) %&gt;%
-  left_join(., larceny, by = &quot;year&quot;) %&gt;%
-  left_join(., autoTheft, by = &quot;year&quot;) %&gt;%
-  mutate(larceny_count = robbery+larceny+autoTheft) %&gt;%
-  select(-robbery, -larceny, -autoTheft) %&gt;%
-  rename(larceny = larceny_count) %&gt;%
-  mutate(larceny_rate = (larceny/pop)*100000) -&gt; crime
-
-# remove connections
-rm(robbery_db, larceny_db, autoTheft_db,
-   robbery, larceny, autoTheft)</code></pre>
+# subset and convert to long, total
+city_post00 %&gt;%
+  filter(Description == &quot;Total employment (number of jobs)&quot; | Description == &quot;Manufacturing&quot;) %&gt;%
+  mutate(Description = case_when(
+    Description == &quot;Total employment (number of jobs)&quot; ~ &quot;total_jobs&quot;,
+    Description == &quot;Manufacturing&quot; ~ &quot;manu_jobs&quot;
+  )) %&gt;%
+  select(Description, `2001`:`2018`) %&gt;%
+  mutate_at(prob_years, as.numeric) %&gt;%
+  pivot_longer(-Description, names_to = &quot;year&quot;, values_to = &quot;count&quot;) -&gt; city_post00</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>With these wrangled into long data, we can bind them together, and then pivot our numbers into two columns so that this matches the format of the <code>pop</code> object (one row per year) and then job them to <code>pop</code>:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmluZF9yb3dzKGNpdHlfcHJlMDAsIGNpdHlfcG9zdDAwKSAlPiVcbiAgYXJyYW5nZShkZXNjKERlc2NyaXB0aW9uKSwgeWVhcikgJT4lXG4gIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBEZXNjcmlwdGlvbiwgdmFsdWVzX2Zyb20gPSBjb3VudCkgJT4lXG4gIG11dGF0ZSh5ZWFyID0gYXMubnVtZXJpYyh5ZWFyKSkgJT4lXG4gIGZ1bGxfam9pbihwb3AsIC4sIGJ5ID0gXCJ5ZWFyXCIpICU+JVxuICBhcnJhbmdlKHllYXIpIC0+IGRlbW9zXG5gYGAifQ== -->
+<pre class="r"><code>bind_rows(city_pre00, city_post00) %&gt;%
+  arrange(desc(Description), year) %&gt;%
+  pivot_wider(names_from = Description, values_from = count) %&gt;%
+  mutate(year = as.numeric(year)) %&gt;%
+  full_join(pop, ., by = &quot;year&quot;) %&gt;%
+  arrange(year) -&gt; demos</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can then remove our two intermediary objects:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0oY2l0eV9wcmUwMCwgY2l0eV9wb3N0MDAsIHBvcClcbmBgYCJ9 -->
+<pre class="r"><code>rm(city_pre00, city_post00, pop)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="remove-population" class="section level2">
-<h2>Remove Population</h2>
-<p>Finally, we’ll remove population since that would otherwise be duplicated in the next notebook:</p>
+<div id="manufacturing-jobs-calculations" class="section level3">
+<h3>Manufacturing Jobs, Calculations</h3>
+<p>Finally, we’ll add a ratio of the number of manufacturing jobs to total jobs, and also calculate year to year change:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3JpbWUgPC0gc2VsZWN0KGNyaW1lLCAtcG9wKVxuYGBgIn0= -->
-<pre class="r"><code>crime &lt;- select(crime, -pop)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVtb3MgJT4lXG4gIG11dGF0ZShtYW51X2RlbHRhID0gbWFudV9qb2JzLWxhZyhtYW51X2pvYnMsIG4gPSAxLCBvcmRlcl9ieSA9IHllYXIpKSAlPiVcbiAgbXV0YXRlKG1hbnVfZGVsdGFfcGN0ID0gbWFudV9kZWx0YS9sYWcobWFudV9qb2JzLCBuID0gMSwgb3JkZXJfYnkgPSB5ZWFyKSoxMDApICU+JVxuICBtdXRhdGUobWFudV9kZWx0YTUgPSBtYW51X2pvYnMtbGFnKG1hbnVfam9icywgbiA9IDUsIG9yZGVyX2J5ID0geWVhcikpICU+JVxuICBtdXRhdGUobWFudV9kZWx0YV9wY3Q1ID0gbWFudV9kZWx0YTUvbGFnKG1hbnVfam9icywgbiA9IDUsIG9yZGVyX2J5ID0geWVhcikqMTAwKSAtPiBkZW1vc1xuYGBgIn0= -->
+<pre class="r"><code>demos %&gt;%
+  mutate(manu_delta = manu_jobs-lag(manu_jobs, n = 1, order_by = year)) %&gt;%
+  mutate(manu_delta_pct = manu_delta/lag(manu_jobs, n = 1, order_by = year)*100) %&gt;%
+  mutate(manu_delta5 = manu_jobs-lag(manu_jobs, n = 5, order_by = year)) %&gt;%
+  mutate(manu_delta_pct5 = manu_delta5/lag(manu_jobs, n = 5, order_by = year)*100) -&gt; demos</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 </div>
 <div id="write-data" class="section level2">
 <h2>Write Data</h2>
-<p>Finally, we’ll write our crime rate data to <code>.csv</code>:</p>
+<p>Finally, we’ll write our demographic data to <code>.csv</code>:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud3JpdGVfY3N2KGNyaW1lLCBwYXRoID0gaGVyZShcXGRhdGFcXCwgXFxjbGVhblxcLCBcXGxvbmdpdHVkaW5hbF9jcmltZS5jc3ZcXCkpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r write_csv(crime, path = here(, , _crime.csv))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KGRlbW9zLCBwYXRoID0gaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcImxvbmdpdHVkaW5hbF9kZW1vcy5jc3ZcIikpXG5gYGAifQ== -->
+<pre class="r"><code>write_csv(demos, path = here(&quot;data&quot;, &quot;clean&quot;, &quot;longitudinal_demos.csv&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBMb25naXR1ZGluYWwgQ3JpbWUgRGF0YSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBEZXBlbmRlbmNpZXMKVGhlIGZvbGxvd2luZyBwYWNrYWdlcyBhcmUgbmVlZGVkOgoKYGBge3IgbG9hZC1kZXBlbmRlbmNpZXN9CiMgdGlkeXZlcnNlCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIGRhdGFiYXNlIGFjY2VzcwpsaWJyYXJ5KERCSSkKbGlicmFyeShSU1FMaXRlKQoKIyBvdGhlciBwYWNrYWdlcwpsaWJyYXJ5KGhlcmUpCmBgYAoKIyMgRGVmaW5lIEN1c3RvbSBGdW5jdGlvbiBmb3IgU1FMIFF1ZXJpZXMKU2luY2UgYWxsIG9mIHRoZSBkYXRhYmFzZSB0YWJsZXMgYXJlIHN0cnVjdHVyZWQgaWRlbnRpY2FsbHksIHdlIGNhbiBxdWVyeSB0aGVtIGluIGEgdW5pZm9ybSBmYXNoaW9uLiBUbyBtYWtlIHRoZSBjb2RlIGVhc2llciB0byByZWFkLCB3ZSdsbCBjcmVhdGUgYSBmdW5jdGlvbiB0aGF0IGlkZW50aWZpZXMgb2JzZXJ2YXRpb25zIGJlZ2lubmluZyB3aXRoIHRoZSBnaXZlbiB5ZWFyLCBjb2xsZWN0cyB0aGUgcmVjb3JkcywgYW5kIHJldHVybnMgdGhlbSBhcyBhIHRpYmJsZToKCmBgYHtyIGRlZmluZS1xdWVyeX0KcXVlcnkgPC0gZnVuY3Rpb24oZGJfY29uLCBmaXJzdFllYXIpewogIAogICMgcXVlcnkKICBkYl9jb24gJT4lCiAgICBmaWx0ZXIobmFtZSA9PSAiU3QuIExvdWlzIikgJT4lCiAgICBmaWx0ZXIoeWVhciA+PSBmaXJzdFllYXIpICU+JQogICAgc2VsZWN0KHllYXIsIGNvdW50KSAlPiUKICAgIGNvbGxlY3QoKSAtPiBvdXQKICAKICAjIHJldHVybiBvdXRwdXQKICByZXR1cm4ob3V0KQogIAp9CmBgYAoKIyMgQ29ubmVjdCB0byBNT19DUklNRV9EYXRhYmFzZS5zcWxpdGUKSW4gb3JkZXIgdG8gcHVsbCB0b3RhbCBwb3B1bGF0aW9uIGFuZCB0aGUgcmVsZXZhbnQgY3JpbWUgZGF0YSBmcm9tIHRoZSBjcmltZSBkYXRhYmFzZSwgd2UgbmVlZCB0byBlc3RhYmxpc2ggYSBjb25uZWN0aW9uIHRvIGl0OgoKYGBge3IgZGF0YWJhc2UtY29ubmVjdGlvbn0KY29uIDwtIGRiQ29ubmVjdChTUUxpdGUoKSwgaGVyZSgiZGF0YSIgLCAiTU9fQ1JJTUVfRGF0YWJhc2UiLCAiZGF0YSIsICJNT19DUklNRV9EYXRhYmFzZS5zcWxpdGUiKSkKYGBgCgojIyBDb25zdHJ1Y3QgCiMjIyBUb3RhbCBQb3B1bGF0aW9uClRoZXJlIGFyZSBhIG51bWJlciBvZiBkYXRhYmFzZSB0YWJsZXMgdGhhdCB3ZSBuZWVkLiBGb3IgYWxsIG9mIHRoZSBjcmltZXMsIHdlJ2xsIG5lZWQgdGhlIHBvcHVsYXRpb24gZm9yIGVhY2ggeWVhci4gVGhlIHR3byBgZmlsdGVyKClgIGNhbGxzIGFuZCBgc2VsZWN0KClgIGV4ZWN1dGUgU1FMIHF1ZXJpZXMgdW5kZXIgdGhlIGhvb2QsIGFuZCBgY29sbGVjdCgpYCBicmluZ3MgdGhlIGRhdGEgaW50byB0aGUgZ2xvYmFsIGVudmlvcm5tZW50OgoKYGBge3J9CiMgZXN0YWJsaXNoIGNvbm5lY3Rpb24KcG9wX2RiIDwtIHRibChjb24sICJwb3B1bGF0aW9uIikKCiMgcXVlcnkgYW5kIGNvbGxlY3QKcG9wX2RiICU+JQogIHF1ZXJ5KGZpcnN0WWVhciA9IDE5ODApICU+JQogIHJlbmFtZShwb3AgPSBjb3VudCkgLT4gcG9wCgojIHJlbW92ZSBjb25uZWN0aW9uCnJtKHBvcF9kYikKYGBgCgojIyMgQXJzb24gUmF0ZQpOZXh0LCB3ZSdsbCBxdWVyeSB0aGUgZGF0YWJhc2UgYWdhaW4gdG8gb2J0YWluIGNvdW50cyBvZiBhcnNvbiBmaXJlcy4gVGhlbiB3ZSdsbCBqb2luIGl0IHdpdGggdGhlIHBvcHVsYXRpb24gZGF0YSBhbmQgY2FsY3VsYXRlIGFuIGFyc29uIHJhdGU6CgpgYGB7ciBhcnNvbi1yYXRlfQojIGVzdGFibGlzaCBjb25uZWN0aW9uCmFyc29uX2RiIDwtIHRibChjb24sICJhcnNvbiIpCgojIHF1ZXJ5LCBjb2xsZWN0LCBqb2luLCBhbmQgY2FsY3VsYXRlIHJhdGUKYXJzb25fZGIgJT4lCiAgcXVlcnkoZmlyc3RZZWFyID0gMTk4MCkgJT4lCiAgcmVuYW1lKGFyc29uID0gY291bnQpICU+JQogIGxlZnRfam9pbihwb3AsIC4sIGJ5ID0gInllYXIiKSAlPiUKICBtdXRhdGUoYXJzb25fcmF0ZSA9IChhcnNvbi9wb3ApKjEwMDAwMCkgLT4gY3JpbWUKCiMgcmVtb3ZlIGNvbm5lY3Rpb24Kcm0oYXJzb25fZGIsIHBvcCkKYGBgCgpOb3csIHdlIGNhbiBjb250aW51ZSB0byBhZGQgdG8gdGhlIGBjcmltZWAgb2JqZWN0LCB1c2luZyB0aGUgZXhpc3RpbmcgYHBvcGAgY29sdW1uIHRvIGNhbGN1bGF0ZSByYXRlcy4KCiMjIyBWaW9sZW50IENyaW1lIFJhdGUKTmV4dCwgd2UnbGwgY2FsY3VsYXRlIGEgdmlvbGVudCBjcmltZSByYXRlIGZvciBlYWNoIHllYXIuIFRoaXMgaW52b2x2ZXMgcXVlcnlpbmcgcmVjb3JkcyBmcm9tIGZvdXIgdGFibGVzLCBjb2xsZWN0aW5nIHRoZW0sIGFuZCB0aGVuIHN1bW1pbmcgdGhlaXIgY29sdW1ucyB0byBnZXQgYSB0b3RhbCBudW1iZXIgb2YgdmlvbGVudCBjcmltZXMgYmVmb3JlIGEgcmF0ZSBpcyBjYWxjdWxhdGVkLgoKYGBge3IgdmlvbGVudC1yYXRlfQojIGVzdGFibGlzaCBjb25uZWN0aW9ucwpob21pY2lkZV9kYiA8LSB0YmwoY29uLCAiaG9taWNpZGUiKQphZ0Fzc2F1bHRfZGIgPC0gdGJsKGNvbiwgImFnQXNzYXVsdCIpCnJhcGVfZGIgPC0gdGJsKGNvbiwgInJhcGUiKQpyb2JiZXJ5X2RiIDwtIHRibChjb24sICJyb2JiZXJ5IikKCiMgaG9taWNpZGUgLSBxdWVyeSBhbmQgY29sbGVjdApob21pY2lkZV9kYiAlPiUKICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiUKICByZW5hbWUoaG9taWNpZGUgPSBjb3VudCkgLT4gaG9taWNpZGUKCiMgYWdncmV2YXRlZCBhc3NhdWx0IC0gcXVlcnkgYW5kIGNvbGxlY3QKYWdBc3NhdWx0X2RiICU+JQogIHF1ZXJ5KGZpcnN0WWVhciA9IDE5ODApICU+JQogIHJlbmFtZShhZ0Fzc2F1bHQgPSBjb3VudCkgLT4gYWdBc3NhdWx0CgojIHJhcGUgLSBxdWVyeSBhbmQgY29sbGVjdApyYXBlX2RiICU+JQogIHF1ZXJ5KGZpcnN0WWVhciA9IDE5ODApICU+JQogIHJlbmFtZShyYXBlID0gY291bnQpIC0+IHJhcGUKCiMgcm9iYmVyeSAtIHF1ZXJ5IGFuZCBjb2xsZWN0CnJvYmJlcnlfZGIgJT4lCiAgcXVlcnkoZmlyc3RZZWFyID0gMTk4MCkgJT4lCiAgcmVuYW1lKHJvYmJlcnkgPSBjb3VudCkgLT4gcm9iYmVyeQoKIyBqb2JpbiBhbmQgY2FsY3VsYXRlIHJhdGVzCmNyaW1lICU+JQogIGxlZnRfam9pbiguLCBob21pY2lkZSwgYnkgPSAieWVhciIpICU+JQogIGxlZnRfam9pbiguLCBhZ0Fzc2F1bHQsIGJ5ID0gInllYXIiKSAlPiUKICBsZWZ0X2pvaW4oLiwgcmFwZSwgYnkgPSAieWVhciIpICU+JQogIGxlZnRfam9pbiguLCByb2JiZXJ5LCBieSA9ICJ5ZWFyIikgJT4lCiAgbXV0YXRlKHZpb2xlbnQgPSBob21pY2lkZSthZ0Fzc2F1bHQrcmFwZStyb2JiZXJ5KSAlPiUKICBzZWxlY3QoLWhvbWljaWRlLCAtYWdBc3NhdWx0LCAtcmFwZSwgLXJvYmJlcnkpICU+JQogIG11dGF0ZSh2aW9sZW50X3JhdGUgPSAodmlvbGVudC9wb3ApKjEwMDAwMCkgLT4gY3JpbWUKCiMgcmVtb3ZlIGNvbm5lY3Rpb25zCnJtKGhvbWljaWRlX2RiLCBhZ0Fzc2F1bHRfZGIsIHJhcGVfZGIsIHJvYmJlcnlfZGIsCiAgIGhvbWljaWRlLCBhZ0Fzc2F1bHQsIHJhcGUsIHJvYmJlcnkpCmBgYAoKIyMgTGFyY2VueSBSYXRlCk5leHQsIHdlJ2xsIGNhbGN1bGF0ZSBhIGxhcmNlbnkgcmF0ZSBmb3IgZWFjaCB5ZWFyIHRoYXQgaW5jbHVkZXMgYnVyZ2xhcmllcywgbGFyY2VuaWVzLCBhbmQgbW90b3IgdmVoaWNsZSB0aGVmdHMuIFRoaXMgaXMgdGhlIHNhbWUgYXMgdGhlICJjcmltZXMgYWdhaW5zdCBwcm9wZXJ0eSIgY29uY2VwdCBidXQgbGVhdmVzIGFyc29ucyBvdXQsIHNpbmNlIHRoZXkgYXJlIHRoZSBkZXBlbmRlbnQgdmFyaWFibGUuCgpgYGB7ciBsYXJjZW55LXJhdGV9CiMgZXN0YWJsaXNoIGNvbm5lY3Rpb25zCnJvYmJlcnlfZGIgPC0gdGJsKGNvbiwgInJvYmJlcnkiKQpsYXJjZW55X2RiIDwtIHRibChjb24sICJsYXJjZW55IikKYXV0b1RoZWZ0X2RiIDwtIHRibChjb24sICJhdXRvVGhlZnQiKQoKIyByb2JiZXJ5IC0gcXVlcnkgYW5kIGNvbGxlY3QKcm9iYmVyeV9kYiAlPiUKICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiUKICByZW5hbWUocm9iYmVyeSA9IGNvdW50KSAtPiByb2JiZXJ5CgojIGxhcmNlbnkgLSBxdWVyeSBhbmQgY29sbGVjdApsYXJjZW55X2RiICU+JQogIHF1ZXJ5KGZpcnN0WWVhciA9IDE5ODApICU+JQogIHJlbmFtZShsYXJjZW55ID0gY291bnQpIC0+IGxhcmNlbnkKCiMgYXV0byB0aGVmdCAtIHF1ZXJ5IGFuZCBjb2xsZWN0CmF1dG9UaGVmdF9kYiAlPiUKICBxdWVyeShmaXJzdFllYXIgPSAxOTgwKSAlPiUKICByZW5hbWUoYXV0b1RoZWZ0ID0gY291bnQpIC0+IGF1dG9UaGVmdAoKIyBqb2JpbiBhbmQgY2FsY3VsYXRlIHJhdGVzCmNyaW1lICU+JQogIGxlZnRfam9pbiguLCByb2JiZXJ5LCBieSA9ICJ5ZWFyIikgJT4lCiAgbGVmdF9qb2luKC4sIGxhcmNlbnksIGJ5ID0gInllYXIiKSAlPiUKICBsZWZ0X2pvaW4oLiwgYXV0b1RoZWZ0LCBieSA9ICJ5ZWFyIikgJT4lCiAgbXV0YXRlKGxhcmNlbnlfY291bnQgPSByb2JiZXJ5K2xhcmNlbnkrYXV0b1RoZWZ0KSAlPiUKICBzZWxlY3QoLXJvYmJlcnksIC1sYXJjZW55LCAtYXV0b1RoZWZ0KSAlPiUKICByZW5hbWUobGFyY2VueSA9IGxhcmNlbnlfY291bnQpICU+JQogIG11dGF0ZShsYXJjZW55X3JhdGUgPSAobGFyY2VueS9wb3ApKjEwMDAwMCkgLT4gY3JpbWUKCiMgcmVtb3ZlIGNvbm5lY3Rpb25zCnJtKHJvYmJlcnlfZGIsIGxhcmNlbnlfZGIsIGF1dG9UaGVmdF9kYiwKICAgcm9iYmVyeSwgbGFyY2VueSwgYXV0b1RoZWZ0KQpgYGAKCiMjIFJlbW92ZSBQb3B1bGF0aW9uCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSBwb3B1bGF0aW9uIHNpbmNlIHRoYXQgd291bGQgb3RoZXJ3aXNlIGJlIGR1cGxpY2F0ZWQgaW4gdGhlIG5leHQgbm90ZWJvb2s6CgpgYGB7ciByZW1vdmUtcG9wfQpjcmltZSA8LSBzZWxlY3QoY3JpbWUsIC1wb3ApCmBgYAoKIyMgV3JpdGUgRGF0YQpGaW5hbGx5LCB3ZSdsbCB3cml0ZSBvdXIgY3JpbWUgcmF0ZSBkYXRhIHRvIGAuY3N2YDoKCmBgYHtyIHdyaXRlLWNyaW1lfQp3cml0ZV9jc3YoY3JpbWUsIHBhdGggPSBoZXJlKCJkYXRhIiwgImNsZWFuIiwgImxvbmdpdHVkaW5hbF9jcmltZS5jc3YiKSkKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBMb25naXR1ZGluYWwgRGVtb2dyYXBoaWNzIgphdXRob3I6ICJDaHJpc3RvcGhlciBQcmVuZXIsIFBoLkQuIgpkYXRlOiAnKGByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgKScKb3V0cHV0OiAKICBnaXRodWJfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0IAotLS0KCiMjIEludHJvZHVjdGlvbgpUaGlzIG5vdGVib29rIGNhbGN1bGF0ZXMgcmVsZXZhbnQgZGVtb2dyYXBoaWMgbWV0cmljcyBmb3IgdGhlIGxvbmdpdHVkaW5hbCBhbmFseXNpcywgaW5jbHVkaW5nIHBvcHVsYXRpb24gY2hhbmdlIGFuZCBwZXJjZW50IGNoYW5nZSBpbiBtYW51ZmFjdHVyaW5nIGpvYnMgYXQgYm90aCB0aGUgTVNBIGFuZCBjaXR5IGxldmVsLgoKIyMgRGVwZW5kZW5jaWVzClRoZSBmb2xsb3dpbmcgcGFja2FnZXMgYXJlIG5lZWRlZDoKCmBgYHtyIGxvYWQtZGVwZW5kZW5jaWVzfQojIHRpZHl2ZXJzZQpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHJlYWRyKQpsaWJyYXJ5KHRpZHlyKQoKIyBkYXRhYmFzZSBhY2Nlc3MKbGlicmFyeShEQkkpCmxpYnJhcnkoUlNRTGl0ZSkKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKQpgYGAKCiMjIERlZmluZSBDdXN0b20gRnVuY3Rpb24gZm9yIFNRTCBRdWVyaWVzClNpbmNlIGFsbCBvZiB0aGUgZGF0YWJhc2UgdGFibGVzIGFyZSBzdHJ1Y3R1cmVkIGlkZW50aWNhbGx5LCB3ZSBjYW4gcXVlcnkgdGhlbSBpbiBhIHVuaWZvcm0gZmFzaGlvbi4gVG8gbWFrZSB0aGUgY29kZSBlYXNpZXIgdG8gcmVhZCwgd2UnbGwgY3JlYXRlIGEgZnVuY3Rpb24gdGhhdCBpZGVudGlmaWVzIG9ic2VydmF0aW9ucyBiZWdpbm5pbmcgd2l0aCB0aGUgZ2l2ZW4geWVhciwgY29sbGVjdHMgdGhlIHJlY29yZHMsIGFuZCByZXR1cm5zIHRoZW0gYXMgYSB0aWJibGU6CgpgYGB7ciBkZWZpbmUtcXVlcnl9CnF1ZXJ5IDwtIGZ1bmN0aW9uKGRiX2NvbiwgZmlyc3RZZWFyKXsKICAKICAjIHF1ZXJ5CiAgZGJfY29uICU+JQogICAgZmlsdGVyKG5hbWUgPT0gIlN0LiBMb3VpcyIpICU+JQogICAgZmlsdGVyKHllYXIgPj0gZmlyc3RZZWFyKSAlPiUKICAgIHNlbGVjdCh5ZWFyLCBjb3VudCkgJT4lCiAgICBjb2xsZWN0KCkgLT4gb3V0CiAgCiAgIyByZXR1cm4gb3V0cHV0CiAgcmV0dXJuKG91dCkKICAKfQpgYGAKCiMjIENvbm5lY3QgdG8gTU9fQ1JJTUVfRGF0YWJhc2Uuc3FsaXRlCkluIG9yZGVyIHRvIHB1bGwgdG90YWwgcG9wdWxhdGlvbiBmcm9tIHRoZSBjcmltZSBkYXRhYmFzZSwgd2UgbmVlZCB0byBlc3RhYmxpc2ggYSBjb25uZWN0aW9uIHRvIGl0OgoKYGBge3IgZGF0YWJhc2UtY29ubmVjdGlvbn0KY29uIDwtIGRiQ29ubmVjdChTUUxpdGUoKSwgaGVyZSgiZGF0YSIgLCAiTU9fQ1JJTUVfRGF0YWJhc2UiLCAiZGF0YSIsICJNT19DUklNRV9EYXRhYmFzZS5zcWxpdGUiKSkKYGBgCgojIyBDb25zdHJ1Y3QgCiMjIyBUb3RhbCBQb3B1bGF0aW9uClRoZXJlIGFyZSBhIG51bWJlciBvZiBkYXRhYmFzZSB0YWJsZXMgdGhhdCB3ZSBuZWVkLiBGb3IgYWxsIG9mIHRoZSBjcmltZXMsIHdlJ2xsIG5lZWQgdGhlIHBvcHVsYXRpb24gZm9yIGVhY2ggeWVhci4gVGhlIHR3byBgZmlsdGVyKClgIGNhbGxzIGFuZCBgc2VsZWN0KClgIGV4ZWN1dGUgU1FMIHF1ZXJpZXMgdW5kZXIgdGhlIGhvb2QsIGFuZCBgY29sbGVjdCgpYCBicmluZ3MgdGhlIGRhdGEgaW50byB0aGUgZ2xvYmFsIGVudmlvcm5tZW50OgoKYGBge3J9CiMgZXN0YWJsaXNoIGNvbm5lY3Rpb24KcG9wX2RiIDwtIHRibChjb24sICJwb3B1bGF0aW9uIikKCiMgcXVlcnkgYW5kIGNvbGxlY3QKcG9wX2RiICU+JQogIHF1ZXJ5KGZpcnN0WWVhciA9IDE5NzkpICU+JQogIHJlbmFtZShwb3AgPSBjb3VudCkgLT4gcG9wCgojIHJlbW92ZSBjb25uZWN0aW9uCnJtKHBvcF9kYikKYGBgCgojIyMgQ2FsY3VsYXRlIFBvcHVsYXRpb24gQ2hhbmdlCkluIGFkZGl0aW9uIHRvIHRoZSBjcmltZSByYXRlcywgd2UgYWxzbyB3YW50IHRvIGFkZCBhIG1lYXN1cmUgb2YgaG93IHBvcHVsYXRpb24gbnVtYmVycyBjaGFuZ2VkIGZyb20geWVhciB0byB5ZWFyIChpLmUuIGxhZ2dlZCBwb3B1bGF0aW9uKS4KCmBgYHtyIGxhZ2dlZC1wb3B9CnBvcCAlPiUKICBtdXRhdGUocG9wX2RlbHRhID0gcG9wLWxhZyhwb3AsIG4gPSAxLCBvcmRlcl9ieSA9IHllYXIpKSAlPiUKICBtdXRhdGUocG9wX2RlbHRhX3BjdCA9IHBvcF9kZWx0YS9sYWcocG9wLCBuID0gMSwgb3JkZXJfYnkgPSB5ZWFyKSoxMDApICU+JQogIHNlbGVjdCh5ZWFyLCBwb3AsIHBvcF9kZWx0YSwgcG9wX2RlbHRhX3BjdCwgZXZlcnl0aGluZygpKSAtPiBwb3AKYGBgCgojIyMgTWFudWZhY3R1cmluZyBKb2JzClRoZSBjaXR5IGpvYiBtYW51ZmFjdHVyaW5nIGRhdGEgY29tZSBmcm9tIHRoZSBbVS5TLiBCdXJlYXUgb2YgRWNvbm9taWMgQW5hbHlzaXNdKGh0dHBzOi8vd3d3LmJlYS5nb3YvZGF0YS9lbXBsb3ltZW50L2VtcGxveW1lbnQtY291bnR5LW1ldHJvLWFuZC1vdGhlci1hcmVhcykuIFRoZXkgYXJlIGluIHR3byB0YWJsZXMgYmVjYXVzZSwgb2YgYXMgMjAwMSwgdGhlIHJlcG9ydGluZyBzY2hlbWUgY2hhbmdlZC4gV2UgdGhlcmVmb3JlIG5lZWQgdG8gcmVhZCBib3RoIGluLCBjbGVhbiB0aGVtIHVwLCBhbmQgdGhlbiBqb2luIHRoZW0gdG9nZXRoZXIuIEZpcnN0LCB3ZSdsbCB3cmFuZ2xlIHRoZSBwcmUtMjAwMSBkYXRhOgoKYGBge3IgcmVhZC1jaXR5LXByZTIwMDF9CiMgcmVhZApjaXR5X3ByZTAwIDwtIHJlYWRfY3N2KGZpbGUgPSBoZXJlKCJkYXRhIiwgInJhdyIsICJlbXBsb3ltZW50IiwgImNpdHktMTk2OV90b18yMDAwLmNzdiIpLAogICAgICAgICAgICAgICAgICAgICAgIHNraXAgPSA0KQoKIyBkZWZpbmUgdmFyaWFibGVzIHRvIHJlZm9ybWF0CnByb2JfeWVhcnMgPC0gYXMuY2hhcmFjdGVyKGMoMTk2OToyMDAwKSkKCiMgc3Vic2V0IGFuZCBjb252ZXJ0IHRvIGxvbmcsIHRvdGFsCmNpdHlfcHJlMDAgJT4lCiAgZmlsdGVyKERlc2NyaXB0aW9uID09ICJUb3RhbCBlbXBsb3ltZW50IChudW1iZXIgb2Ygam9icykiIHwgRGVzY3JpcHRpb24gPT0gIk1hbnVmYWN0dXJpbmciKSAlPiUKICBtdXRhdGUoRGVzY3JpcHRpb24gPSBjYXNlX3doZW4oCiAgICBEZXNjcmlwdGlvbiA9PSAiVG90YWwgZW1wbG95bWVudCAobnVtYmVyIG9mIGpvYnMpIiB+ICJ0b3RhbF9qb2JzIiwKICAgIERlc2NyaXB0aW9uID09ICJNYW51ZmFjdHVyaW5nIiB+ICJtYW51X2pvYnMiCiAgKSkgJT4lCiAgc2VsZWN0KERlc2NyaXB0aW9uLCBgMTk2OWA6YDIwMDBgKSAlPiUKICBtdXRhdGVfYXQocHJvYl95ZWFycywgYXMubnVtZXJpYykgJT4lCiAgcGl2b3RfbG9uZ2VyKC1EZXNjcmlwdGlvbiwgbmFtZXNfdG8gPSAieWVhciIsIHZhbHVlc190byA9ICJjb3VudCIpIC0+IGNpdHlfcHJlMDAKYGBgCgpXZSdsbCByZXBlYXQgdGhlIGV4ZXJjaXNlIHdpdGggdGhlIHBvc3QtMjAwMCBkYXRhOgoKYGBge3IgcmVhZC1jaXR5LXByZTIwMDB9CiMgcmVhZApjaXR5X3Bvc3QwMCA8LSByZWFkX2NzdihmaWxlID0gaGVyZSgiZGF0YSIsICJyYXciLCAiZW1wbG95bWVudCIsICJjaXR5LTIwMDFfdG9fMjAxOC5jc3YiKSwKICAgICAgICAgICAgICAgICAgICAgICBza2lwID0gNCkKCiMgZGVmaW5lIHZhcmlhYmxlcyB0byByZWZvcm1hdApwcm9iX3llYXJzIDwtIGFzLmNoYXJhY3RlcihjKDIwMDE6MjAxOCkpCgojIHN1YnNldCBhbmQgY29udmVydCB0byBsb25nLCB0b3RhbApjaXR5X3Bvc3QwMCAlPiUKICBmaWx0ZXIoRGVzY3JpcHRpb24gPT0gIlRvdGFsIGVtcGxveW1lbnQgKG51bWJlciBvZiBqb2JzKSIgfCBEZXNjcmlwdGlvbiA9PSAiTWFudWZhY3R1cmluZyIpICU+JQogIG11dGF0ZShEZXNjcmlwdGlvbiA9IGNhc2Vfd2hlbigKICAgIERlc2NyaXB0aW9uID09ICJUb3RhbCBlbXBsb3ltZW50IChudW1iZXIgb2Ygam9icykiIH4gInRvdGFsX2pvYnMiLAogICAgRGVzY3JpcHRpb24gPT0gIk1hbnVmYWN0dXJpbmciIH4gIm1hbnVfam9icyIKICApKSAlPiUKICBzZWxlY3QoRGVzY3JpcHRpb24sIGAyMDAxYDpgMjAxOGApICU+JQogIG11dGF0ZV9hdChwcm9iX3llYXJzLCBhcy5udW1lcmljKSAlPiUKICBwaXZvdF9sb25nZXIoLURlc2NyaXB0aW9uLCBuYW1lc190byA9ICJ5ZWFyIiwgdmFsdWVzX3RvID0gImNvdW50IikgLT4gY2l0eV9wb3N0MDAKYGBgCgpXaXRoIHRoZXNlIHdyYW5nbGVkIGludG8gbG9uZyBkYXRhLCB3ZSBjYW4gYmluZCB0aGVtIHRvZ2V0aGVyLCBhbmQgdGhlbiBwaXZvdCBvdXIgbnVtYmVycyBpbnRvIHR3byBjb2x1bW5zIHNvIHRoYXQgdGhpcyBtYXRjaGVzIHRoZSBmb3JtYXQgb2YgdGhlIGBwb3BgIG9iamVjdCAob25lIHJvdyBwZXIgeWVhcikgYW5kIHRoZW4gam9iIHRoZW0gdG8gYHBvcGA6CgpgYGB7ciBiaW5kfQpiaW5kX3Jvd3MoY2l0eV9wcmUwMCwgY2l0eV9wb3N0MDApICU+JQogIGFycmFuZ2UoZGVzYyhEZXNjcmlwdGlvbiksIHllYXIpICU+JQogIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBEZXNjcmlwdGlvbiwgdmFsdWVzX2Zyb20gPSBjb3VudCkgJT4lCiAgbXV0YXRlKHllYXIgPSBhcy5udW1lcmljKHllYXIpKSAlPiUKICBmdWxsX2pvaW4ocG9wLCAuLCBieSA9ICJ5ZWFyIikgJT4lCiAgYXJyYW5nZSh5ZWFyKSAtPiBkZW1vcwpgYGAKCldlIGNhbiB0aGVuIHJlbW92ZSBvdXIgdHdvIGludGVybWVkaWFyeSBvYmplY3RzOgoKYGBge3IgY2xlYW4tdXB9CnJtKGNpdHlfcHJlMDAsIGNpdHlfcG9zdDAwLCBwb3ApCmBgYAoKIyMjIE1hbnVmYWN0dXJpbmcgSm9icywgQ2FsY3VsYXRpb25zCkZpbmFsbHksIHdlJ2xsIGFkZCBhIHJhdGlvIG9mIHRoZSBudW1iZXIgb2YgbWFudWZhY3R1cmluZyBqb2JzIHRvIHRvdGFsIGpvYnMsIGFuZCBhbHNvIGNhbGN1bGF0ZSB5ZWFyIHRvIHllYXIgY2hhbmdlOgoKYGBge3IgbWFudWZhY3R1cmluZy1jYWxjdWxhdGlvbnN9CmRlbW9zICU+JQogIG11dGF0ZShtYW51X2RlbHRhID0gbWFudV9qb2JzLWxhZyhtYW51X2pvYnMsIG4gPSAxLCBvcmRlcl9ieSA9IHllYXIpKSAlPiUKICBtdXRhdGUobWFudV9kZWx0YV9wY3QgPSBtYW51X2RlbHRhL2xhZyhtYW51X2pvYnMsIG4gPSAxLCBvcmRlcl9ieSA9IHllYXIpKjEwMCkgJT4lCiAgbXV0YXRlKG1hbnVfZGVsdGE1ID0gbWFudV9qb2JzLWxhZyhtYW51X2pvYnMsIG4gPSA1LCBvcmRlcl9ieSA9IHllYXIpKSAlPiUKICBtdXRhdGUobWFudV9kZWx0YV9wY3Q1ID0gbWFudV9kZWx0YTUvbGFnKG1hbnVfam9icywgbiA9IDUsIG9yZGVyX2J5ID0geWVhcikqMTAwKSAtPiBkZW1vcwpgYGAKCiMjIFdyaXRlIERhdGEKRmluYWxseSwgd2UnbGwgd3JpdGUgb3VyIGRlbW9ncmFwaGljIGRhdGEgdG8gYC5jc3ZgOgoKYGBge3Igd3JpdGUtY3JpbWV9CndyaXRlX2NzdihkZW1vcywgcGF0aCA9IGhlcmUoImRhdGEiLCAiY2xlYW4iLCAibG9uZ2l0dWRpbmFsX2RlbW9zLmNzdiIpKQpgYGAKCg==</div>
 
 
 

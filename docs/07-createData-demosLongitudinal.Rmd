@@ -1,10 +1,162 @@
-## Calculate Population Change
+---
+title: "Create Data - Longitudinal Demographics"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook calculates relevant demographic metrics for the longitudinal analysis, including population change and percent change in manufacturing jobs at both the MSA and city level.
+
+## Dependencies
+The following packages are needed:
+
+```{r load-dependencies}
+# tidyverse
+library(dplyr)
+library(readr)
+library(tidyr)
+
+# database access
+library(DBI)
+library(RSQLite)
+
+# other packages
+library(here)
+```
+
+## Define Custom Function for SQL Queries
+Since all of the database tables are structured identically, we can query them in a uniform fashion. To make the code easier to read, we'll create a function that identifies observations beginning with the given year, collects the records, and returns them as a tibble:
+
+```{r define-query}
+query <- function(db_con, firstYear){
+  
+  # query
+  db_con %>%
+    filter(name == "St. Louis") %>%
+    filter(year >= firstYear) %>%
+    select(year, count) %>%
+    collect() -> out
+  
+  # return output
+  return(out)
+  
+}
+```
+
+## Connect to MO_CRIME_Database.sqlite
+In order to pull total population from the crime database, we need to establish a connection to it:
+
+```{r database-connection}
+con <- dbConnect(SQLite(), here("data" , "MO_CRIME_Database", "data", "MO_CRIME_Database.sqlite"))
+```
+
+## Construct 
+### Total Population
+There are a number of database tables that we need. For all of the crimes, we'll need the population for each year. The two `filter()` calls and `select()` execute SQL queries under the hood, and `collect()` brings the data into the global enviornment:
+
+```{r}
+# establish connection
+pop_db <- tbl(con, "population")
+
+# query and collect
+pop_db %>%
+  query(firstYear = 1979) %>%
+  rename(pop = count) -> pop
+
+# remove connection
+rm(pop_db)
+```
+
+### Calculate Population Change
 In addition to the crime rates, we also want to add a measure of how population numbers changed from year to year (i.e. lagged population).
 
 ```{r lagged-pop}
-crime %>%
-  mutate(pop_delta = pop-lag(pop, order_by = year)) %>%
-  mutate(pop_delta_pct = pop_delta/lag(pop, order_by = year)*100) %>%
-  select(year, pop, pop_delta, pop_delta_pct, everything()) -> crime
+pop %>%
+  mutate(pop_delta = pop-lag(pop, n = 1, order_by = year)) %>%
+  mutate(pop_delta_pct = pop_delta/lag(pop, n = 1, order_by = year)*100) %>%
+  select(year, pop, pop_delta, pop_delta_pct, everything()) -> pop
+```
+
+### Manufacturing Jobs
+The city job manufacturing data come from the [U.S. Bureau of Economic Analysis](https://www.bea.gov/data/employment/employment-county-metro-and-other-areas). They are in two tables because, of as 2001, the reporting scheme changed. We therefore need to read both in, clean them up, and then join them together. First, we'll wrangle the pre-2001 data:
+
+```{r read-city-pre2001}
+# read
+city_pre00 <- read_csv(file = here("data", "raw", "employment", "city-1969_to_2000.csv"),
+                       skip = 4)
+
+# define variables to reformat
+prob_years <- as.character(c(1969:2000))
+
+# subset and convert to long, total
+city_pre00 %>%
+  filter(Description == "Total employment (number of jobs)" | Description == "Manufacturing") %>%
+  mutate(Description = case_when(
+    Description == "Total employment (number of jobs)" ~ "total_jobs",
+    Description == "Manufacturing" ~ "manu_jobs"
+  )) %>%
+  select(Description, `1969`:`2000`) %>%
+  mutate_at(prob_years, as.numeric) %>%
+  pivot_longer(-Description, names_to = "year", values_to = "count") -> city_pre00
+```
+
+We'll repeat the exercise with the post-2000 data:
+
+```{r read-city-pre2000}
+# read
+city_post00 <- read_csv(file = here("data", "raw", "employment", "city-2001_to_2018.csv"),
+                       skip = 4)
+
+# define variables to reformat
+prob_years <- as.character(c(2001:2018))
+
+# subset and convert to long, total
+city_post00 %>%
+  filter(Description == "Total employment (number of jobs)" | Description == "Manufacturing") %>%
+  mutate(Description = case_when(
+    Description == "Total employment (number of jobs)" ~ "total_jobs",
+    Description == "Manufacturing" ~ "manu_jobs"
+  )) %>%
+  select(Description, `2001`:`2018`) %>%
+  mutate_at(prob_years, as.numeric) %>%
+  pivot_longer(-Description, names_to = "year", values_to = "count") -> city_post00
+```
+
+With these wrangled into long data, we can bind them together, and then pivot our numbers into two columns so that this matches the format of the `pop` object (one row per year) and then job them to `pop`:
+
+```{r bind}
+bind_rows(city_pre00, city_post00) %>%
+  arrange(desc(Description), year) %>%
+  pivot_wider(names_from = Description, values_from = count) %>%
+  mutate(year = as.numeric(year)) %>%
+  full_join(pop, ., by = "year") %>%
+  arrange(year) -> demos
+```
+
+We can then remove our two intermediary objects:
+
+```{r clean-up}
+rm(city_pre00, city_post00, pop)
+```
+
+### Manufacturing Jobs, Calculations
+Finally, we'll add a ratio of the number of manufacturing jobs to total jobs, and also calculate year to year change:
+
+```{r manufacturing-calculations}
+demos %>%
+  mutate(manu_delta = manu_jobs-lag(manu_jobs, n = 1, order_by = year)) %>%
+  mutate(manu_delta_pct = manu_delta/lag(manu_jobs, n = 1, order_by = year)*100) %>%
+  mutate(manu_delta5 = manu_jobs-lag(manu_jobs, n = 5, order_by = year)) %>%
+  mutate(manu_delta_pct5 = manu_delta5/lag(manu_jobs, n = 5, order_by = year)*100) -> demos
+```
+
+## Write Data
+Finally, we'll write our demographic data to `.csv`:
+
+```{r write-crime}
+write_csv(demos, path = here("data", "clean", "longitudinal_demos.csv"))
 ```
 
