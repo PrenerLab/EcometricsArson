@@ -58,12 +58,12 @@ st_geometry(vacancy) <- NULL
 Since the goal of the `data/clean/` folder is to keep a record of all the individual data sets being used in the project, I'll write a copy of the `grids` object into that subdirectory:
 
 ```{r write-grids}
-st_write(obj = grids, dsn = here("data", "clean", "grids", "grids.shp"), delete_dsn = TRUE)
+st_write(obj = grids, dsn = here("data", "raw", "grids", "grids.shp"), delete_dsn = TRUE)
 ```
 
 We'll also write the vacancy data as a `.csv` file:
 
 ```{r write-vacancy}
-write_csv(vacancy, path = here("data", "clean", "vacancy.csv"))
+write_csv(vacancy, path = here("data", "clean", "grids_vacancy.csv"))
 ```
 

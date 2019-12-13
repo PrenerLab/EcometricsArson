@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Christopher Prener, Ph.D." />
@@ -1485,7 +1484,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
+    if (show)
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -1615,6 +1614,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1712,10 +1712,28 @@ summary {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("05-createData-grids.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 
 
@@ -1746,7 +1764,7 @@ summary {
 
 <h1 class="title toc-ignore">Create Data - Grids</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(December 11, 2019)</h4>
+<h4 class="date">(December 13, 2019)</h4>
 
 </div>
 
@@ -1761,38 +1779,35 @@ summary {
 <p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGNvbXBzdGF0cilcbmxpYnJhcnkoc3RsY3NiKVxuXG4jIHRpZHl2ZXJzZSBwYWNrYWdlc1xubGlicmFyeShkcGx5cilcbmxpYnJhcnkocmVhZHIpXG5cbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShhcmVhbClcbmxpYnJhcnkoc2YpXG5saWJyYXJ5KHRpZ3JpcylcblxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxuYGBgIn0= -->
-<pre class="r"><code># tidystl packages
-library(compstatr)
-library(stlcsb)
-
-# tidyverse packages
-library(dplyr)
-library(readr)
-
-# spatial packages
-library(areal)
-library(sf)
-library(tigris)
-
-# other packages
-library(here)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGNvbXBzdGF0cilcbmxpYnJhcnkoc3RsY3NiKVxuXG4jIHRpZHl2ZXJzZSBwYWNrYWdlc1xubGlicmFyeShkcGx5cilcbmxpYnJhcnkocmVhZHIpXG5cbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShhcmVhbClcbmxpYnJhcnkoc2YpXG5saWJyYXJ5KHRpZ3JpcylcblxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # tidystl packages library(compstatr) library(stlcsb)</p>
+</div>
+<div id="tidyverse-packages" class="section level1">
+<h1>tidyverse packages</h1>
+<p>library(dplyr) library(readr)</p>
+</div>
+<div id="spatial-packages" class="section level1">
+<h1>spatial packages</h1>
+<p>library(areal) library(sf) library(tigris)</p>
+</div>
+<div id="other-packages" class="section level1">
+<h1>other packages</h1>
+<p>library(here)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="load-base-data" class="section level2">
 <h2>Load Base Data</h2>
 <p>All of the data will be interpolated into the grids that already contain vacancy metrics:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkXG5ncmlkcyA8LSBzdF9yZWFkKGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJncmlkc1wiKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgcmVuYW1lKClcbmBgYCJ9 -->
-<pre class="r"><code># read
-grids &lt;- st_read(here(&quot;data&quot;, &quot;clean&quot;, &quot;grids&quot;), stringsAsFactors = FALSE) %&gt;%
-  rename()</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZWFkXG5ncmlkcyA8LSBzdF9yZWFkKGhlcmUoXFxkYXRhXFwsIFxcY2xlYW5cXCwgXFxncmlkc1xcKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgcmVuYW1lKClcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # read grids &lt;- st_read(here(, , ), stringsAsFactors = FALSE) %&gt;% rename()</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgZ3JpZHMnIGZyb20gZGF0YSBzb3VyY2UgYC9Vc2Vycy9jaHJpcy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL2NsZWFuL2dyaWRzJyB1c2luZyBkcml2ZXIgYEVTUkkgU2hhcGVmaWxlJ1xuU2ltcGxlIGZlYXR1cmUgY29sbGVjdGlvbiB3aXRoIDIxNSBmZWF0dXJlcyBhbmQgMSBmaWVsZFxuZ2VvbWV0cnkgdHlwZTogIE1VTFRJUE9MWUdPTlxuZGltZW5zaW9uOiAgICAgIFhZXG5iYm94OiAgICAgICAgICAgeG1pbjogNzMzMzYwIHltaW46IDQyNjgzOTQgeG1heDogNzQ2MTcwLjggeW1heDogNDI5NTUxMVxuZXBzZyAoU1JJRCk6ICAgIE5BXG5wcm9qNHN0cmluZzogICAgK3Byb2o9dXRtICt6b25lPTE1ICtlbGxwcz1HUlM4MCArdW5pdHM9bSArbm9fZGVmc1xuIn0= -->
-<pre><code>Reading layer `grids&#39; from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids&#39; using driver `ESRI Shapefile&#39;
+<pre><code>Reading layer `grids' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids' using driver `ESRI Shapefile'
 Simple feature collection with 215 features and 1 field
 geometry type:  MULTIPOLYGON
 dimension:      XY
@@ -1800,9 +1815,9 @@ bbox:           xmin: 733360 ymin: 4268394 xmax: 746170.8 ymax: 4295511
 epsg (SRID):    NA
 proj4string:    +proj=utm +zone=15 +ellps=GRS80 +units=m +no_defs</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZS1wcm9qZWN0XG5ncmlkcyA8LSBzdF90cmFuc2Zvcm0oZ3JpZHMsIGNycyA9IDI2OTE1KVxuYGBgIn0= -->
-<pre class="r"><code># re-project
-grids &lt;- st_transform(grids, crs = 26915)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZS1wcm9qZWN0XG5ncmlkcyA8LSBzdF90cmFuc2Zvcm0oZ3JpZHMsIGNycyA9IDI2OTE1KVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # re-project grids &lt;- st_transform(grids, crs = 26915)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1812,10 +1827,9 @@ grids &lt;- st_transform(grids, crs = 26915)</code></pre>
 <p>The arson data is stored in <code>arson.csv</code>. Since these are point data, I’ll read them in, project them, and then use a spatial join to create counts per grid square. First, we’ll load the data and project them:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG5hcnNvbiA8LSByZWFkX2NzdihoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwiYXJzb24uY3N2XCIpKSAlPiVcbiAgZmlsdGVyKGNzX3llYXIgPj0gMjAxMyAmIGNzX3llYXIgPD0gMjAxNylcbmBgYCJ9 -->
-<pre class="r"><code># load
-arson &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;arson.csv&quot;)) %&gt;%
-  filter(cs_year &gt;= 2013 &amp; cs_year &lt;= 2017)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG5hcnNvbiA8LSByZWFkX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcYXJzb24uY3N2XFwpKSAlPiVcbiAgZmlsdGVyKGNzX3llYXIgPj0gMjAxMyAmIGNzX3llYXIgPD0gMjAxNylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # load arson &lt;- read_csv(here(, , .csv)) %&gt;% filter(cs_year &gt;= 2013 &amp; cs_year &lt;= 2017)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGRhdGVfb2NjdXIgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgY3JpbWUgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgZGVzY3JpcHRpb24gPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX2FkZHJlc3MgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX3N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICB4X2Nvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHlfY29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bVxuKVxuIn0= -->
 <pre><code>Parsed with column specification:
@@ -1830,12 +1844,14 @@ cols(
   y_coord = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5hcnNvbiA8LSBjc19wcm9qZWN0WFkoYXJzb24sIHZhclggPSB4X2Nvb3JkLCB2YXJZID0geV9jb29yZCwgY3JzID0gMjY5MTUpXG5cbiMgcHJpbnQgdmFsaWQgcm93c1xubnJvdyhhcnNvbilcbmBgYCJ9 -->
-<pre class="r"><code># project
-arson &lt;- cs_projectXY(arson, varX = x_coord, varY = y_coord, crs = 26915)
-
-# print valid rows
-nrow(arson)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5hcnNvbiA8LSBjc19wcm9qZWN0WFkoYXJzb24sIHZhclggPSB4X2Nvb3JkLCB2YXJZID0geV9jb29yZCwgY3JzID0gMjY5MTUpXG5cbiMgcHJpbnQgdmFsaWQgcm93c1xubnJvdyhhcnNvbilcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # project arson &lt;- cs_projectXY(arson, varX = x_coord, varY = y_coord, crs = 26915)</p>
+</div>
+</div>
+<div id="print-valid-rows" class="section level1">
+<h1>print valid rows</h1>
+<p>nrow(arson)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDExOTFcbiJ9 -->
 <pre><code>[1] 1191</code></pre>
@@ -1845,16 +1861,16 @@ nrow(arson)</code></pre>
 <p>Next, we’ll perform the intersection:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5hcnNvbiA8LSBzdF9pbnRlcnNlY3Rpb24oYXJzb24sIGdyaWRzKVxuYGBgIn0= -->
-<pre class="r"><code># project
-arson &lt;- st_intersection(arson, grids)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5hcnNvbiA8LSBzdF9pbnRlcnNlY3Rpb24oYXJzb24sIGdyaWRzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # project arson &lt;- st_intersection(arson, grids)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYXR0cmlidXRlIHZhcmlhYmxlcyBhcmUgYXNzdW1lZCB0byBiZSBzcGF0aWFsbHkgY29uc3RhbnQgdGhyb3VnaG91dCBhbGwgZ2VvbWV0cmllc1xuIn0= -->
 <pre><code>attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KGFyc29uKVxuYGBgIn0= -->
-<pre class="r"><code># print valid rows
-nrow(arson)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KGFyc29uKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # print valid rows nrow(arson)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDExNzBcbiJ9 -->
 <pre><code>[1] 1170</code></pre>
@@ -1864,31 +1880,28 @@ nrow(arson)</code></pre>
 <p>Finally, we’ll remove the geometry, sum our data by <code>grid_id</code>, and join our counts to the <code>grids</code> object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KGFyc29uKSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbmFyc29uICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKGFyc29uID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFwiZ3JpZF9pZFwiKSAlPiVcbiAgbXV0YXRlKGFyc29uID0gaWZlbHNlKGlzLm5hKGFyc29uKSA9PSBUUlVFLCAwLCBhcnNvbikpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKGFyc29uKVxuYGBgIn0= -->
-<pre class="r"><code># remove geometry
-st_geometry(arson) &lt;- NULL
-
-# perform spatial join
-arson %&gt;%
-  group_by(grid_id) %&gt;%
-  summarize(arson = n()) %&gt;%
-  left_join(grids, ., by = &quot;grid_id&quot;) %&gt;%
-  mutate(arson = ifelse(is.na(arson) == TRUE, 0, arson)) -&gt; grids
-
-# clean-up
-rm(arson)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KGFyc29uKSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbmFyc29uICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKGFyc29uID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFxcZ3JpZF9pZFxcKSAlPiVcbiAgbXV0YXRlKGFyc29uID0gaWZlbHNlKGlzLm5hKGFyc29uKSA9PSBUUlVFLCAwLCBhcnNvbikpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKGFyc29uKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # remove geometry st_geometry(arson) &lt;- NULL</p>
+</div>
+<div id="perform-spatial-join" class="section level1">
+<h1>perform spatial join</h1>
+<p>arson %&gt;% group_by(grid_id) %&gt;% summarize(arson = n()) %&gt;% left_join(grids, ., by = _id) %&gt;% mutate(arson = ifelse(is.na(arson) == TRUE, 0, arson)) -&gt; grids</p>
+</div>
+<div id="clean-up" class="section level1">
+<h1>clean-up</h1>
+<p>rm(arson)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="violent-crimes" class="section level2">
 <h2>Violent Crimes</h2>
 <p>The violent crime data is stored in <code>violent.csv</code>. As before, I’ll read them in, project them, and then use a spatial join to create counts per grid square. First, we’ll load the data and project them:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG52aW9sZW50IDwtIHJlYWRfY3N2KGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJ2aW9sZW50LmNzdlwiKSlcbmBgYCJ9 -->
-<pre class="r"><code># load
-violent &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;violent.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG52aW9sZW50IDwtIHJlYWRfY3N2KGhlcmUoXFxkYXRhXFwsIFxcY2xlYW5cXCwgXFx2aW9sZW50LmNzdlxcKSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # load violent &lt;- read_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGRhdGVfb2NjdXIgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgY3JpbWUgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgZGVzY3JpcHRpb24gPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX2FkZHJlc3MgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX3N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICB4X2Nvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHlfY29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bVxuKVxuIn0= -->
 <pre><code>Parsed with column specification:
@@ -1903,12 +1916,14 @@ cols(
   y_coord = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG52aW9sZW50IDwtIGNzX3Byb2plY3RYWSh2aW9sZW50LCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KVxuXG4jIHByaW50IHZhbGlkIHJvd3Ncbm5yb3codmlvbGVudClcbmBgYCJ9 -->
-<pre class="r"><code># project
-violent &lt;- cs_projectXY(violent, varX = x_coord, varY = y_coord, crs = 26915)
-
-# print valid rows
-nrow(violent)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG52aW9sZW50IDwtIGNzX3Byb2plY3RYWSh2aW9sZW50LCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KVxuXG4jIHByaW50IHZhbGlkIHJvd3Ncbm5yb3codmlvbGVudClcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # project violent &lt;- cs_projectXY(violent, varX = x_coord, varY = y_coord, crs = 26915)</p>
+</div>
+</div>
+<div id="print-valid-rows-1" class="section level1">
+<h1>print valid rows</h1>
+<p>nrow(violent)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI4OTk5XG4ifQ== -->
 <pre><code>[1] 28999</code></pre>
@@ -1918,16 +1933,16 @@ nrow(violent)</code></pre>
 <p>Next, we’ll perform the intersection:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG52aW9sZW50IDwtIHN0X2ludGVyc2VjdGlvbih2aW9sZW50LCBncmlkcylcbmBgYCJ9 -->
-<pre class="r"><code># project
-violent &lt;- st_intersection(violent, grids)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG52aW9sZW50IDwtIHN0X2ludGVyc2VjdGlvbih2aW9sZW50LCBncmlkcylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # project violent &lt;- st_intersection(violent, grids)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYXR0cmlidXRlIHZhcmlhYmxlcyBhcmUgYXNzdW1lZCB0byBiZSBzcGF0aWFsbHkgY29uc3RhbnQgdGhyb3VnaG91dCBhbGwgZ2VvbWV0cmllc1xuIn0= -->
 <pre><code>attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KHZpb2xlbnQpXG5gYGAifQ== -->
-<pre class="r"><code># print valid rows
-nrow(violent)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KHZpb2xlbnQpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # print valid rows nrow(violent)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI3NTU5XG4ifQ== -->
 <pre><code>[1] 27559</code></pre>
@@ -1937,31 +1952,28 @@ nrow(violent)</code></pre>
 <p>Finally, we’ll remove the geometry, sum our data by <code>grid_id</code>, and join our counts to the <code>grids</code> object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KHZpb2xlbnQpIDwtIE5VTExcblxuIyBwZXJmb3JtIHNwYXRpYWwgam9pblxudmlvbGVudCAlPiVcbiAgZ3JvdXBfYnkoZ3JpZF9pZCkgJT4lXG4gIHN1bW1hcml6ZSh2aW9sZW50ID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFwiZ3JpZF9pZFwiKSAlPiVcbiAgbXV0YXRlKHZpb2xlbnQgPSBpZmVsc2UoaXMubmEodmlvbGVudCkgPT0gVFJVRSwgMCwgdmlvbGVudCkpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKHZpb2xlbnQpXG5gYGAifQ== -->
-<pre class="r"><code># remove geometry
-st_geometry(violent) &lt;- NULL
-
-# perform spatial join
-violent %&gt;%
-  group_by(grid_id) %&gt;%
-  summarize(violent = n()) %&gt;%
-  left_join(grids, ., by = &quot;grid_id&quot;) %&gt;%
-  mutate(violent = ifelse(is.na(violent) == TRUE, 0, violent)) -&gt; grids
-
-# clean-up
-rm(violent)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KHZpb2xlbnQpIDwtIE5VTExcblxuIyBwZXJmb3JtIHNwYXRpYWwgam9pblxudmlvbGVudCAlPiVcbiAgZ3JvdXBfYnkoZ3JpZF9pZCkgJT4lXG4gIHN1bW1hcml6ZSh2aW9sZW50ID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFxcZ3JpZF9pZFxcKSAlPiVcbiAgbXV0YXRlKHZpb2xlbnQgPSBpZmVsc2UoaXMubmEodmlvbGVudCkgPT0gVFJVRSwgMCwgdmlvbGVudCkpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKHZpb2xlbnQpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # remove geometry st_geometry(violent) &lt;- NULL</p>
+</div>
+<div id="perform-spatial-join-1" class="section level1">
+<h1>perform spatial join</h1>
+<p>violent %&gt;% group_by(grid_id) %&gt;% summarize(violent = n()) %&gt;% left_join(grids, ., by = _id) %&gt;% mutate(violent = ifelse(is.na(violent) == TRUE, 0, violent)) -&gt; grids</p>
+</div>
+<div id="clean-up-1" class="section level1">
+<h1>clean-up</h1>
+<p>rm(violent)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="property-crimes" class="section level2">
 <h2>Property Crimes</h2>
 <p>The property crime data is stored in <code>property.csv</code>. As before, I’ll read them in, project them, and then use a spatial join to create counts per grid square. First, we’ll load the data and project them:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG5wcm9wZXJ0eSA8LSByZWFkX2NzdihoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwicHJvcGVydHkuY3N2XCIpKVxuYGBgIn0= -->
-<pre class="r"><code># load
-property &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;property.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG5wcm9wZXJ0eSA8LSByZWFkX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxccHJvcGVydHkuY3N2XFwpKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # load property &lt;- read_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGRhdGVfb2NjdXIgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgY3JpbWUgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgZGVzY3JpcHRpb24gPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX2FkZHJlc3MgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX3N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICB4X2Nvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHlfY29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bVxuKVxuIn0= -->
 <pre><code>Parsed with column specification:
@@ -1976,12 +1988,14 @@ cols(
   y_coord = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5wcm9wZXJ0eSA8LSBjc19wcm9qZWN0WFkocHJvcGVydHksIHZhclggPSB4X2Nvb3JkLCB2YXJZID0geV9jb29yZCwgY3JzID0gMjY5MTUpXG5cbiMgcHJpbnQgdmFsaWQgcm93c1xubnJvdyhwcm9wZXJ0eSlcbmBgYCJ9 -->
-<pre class="r"><code># project
-property &lt;- cs_projectXY(property, varX = x_coord, varY = y_coord, crs = 26915)
-
-# print valid rows
-nrow(property)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5wcm9wZXJ0eSA8LSBjc19wcm9qZWN0WFkocHJvcGVydHksIHZhclggPSB4X2Nvb3JkLCB2YXJZID0geV9jb29yZCwgY3JzID0gMjY5MTUpXG5cbiMgcHJpbnQgdmFsaWQgcm93c1xubnJvdyhwcm9wZXJ0eSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # project property &lt;- cs_projectXY(property, varX = x_coord, varY = y_coord, crs = 26915)</p>
+</div>
+</div>
+<div id="print-valid-rows-2" class="section level1">
+<h1>print valid rows</h1>
+<p>nrow(property)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEwMDM1MFxuIn0= -->
 <pre><code>[1] 100350</code></pre>
@@ -1991,16 +2005,16 @@ nrow(property)</code></pre>
 <p>Next, we’ll perform the intersection:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5wcm9wZXJ0eSA8LSBzdF9pbnRlcnNlY3Rpb24ocHJvcGVydHksIGdyaWRzKVxuYGBgIn0= -->
-<pre class="r"><code># project
-property &lt;- st_intersection(property, grids)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5wcm9wZXJ0eSA8LSBzdF9pbnRlcnNlY3Rpb24ocHJvcGVydHksIGdyaWRzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # project property &lt;- st_intersection(property, grids)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYXR0cmlidXRlIHZhcmlhYmxlcyBhcmUgYXNzdW1lZCB0byBiZSBzcGF0aWFsbHkgY29uc3RhbnQgdGhyb3VnaG91dCBhbGwgZ2VvbWV0cmllc1xuIn0= -->
 <pre><code>attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KHByb3BlcnR5KVxuYGBgIn0= -->
-<pre class="r"><code># print valid rows
-nrow(property)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KHByb3BlcnR5KVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # print valid rows nrow(property)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDk5NTM1XG4ifQ== -->
 <pre><code>[1] 99535</code></pre>
@@ -2010,31 +2024,28 @@ nrow(property)</code></pre>
 <p>Finally, we’ll remove the geometry, sum our data by <code>grid_id</code>, and join our counts to the <code>grids</code> object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KHByb3BlcnR5KSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbnByb3BlcnR5ICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKHByb3BlcnR5ID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFwiZ3JpZF9pZFwiKSAlPiVcbiAgbXV0YXRlKHByb3BlcnR5ID0gaWZlbHNlKGlzLm5hKHByb3BlcnR5KSA9PSBUUlVFLCAwLCBwcm9wZXJ0eSkpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKHByb3BlcnR5KVxuYGBgIn0= -->
-<pre class="r"><code># remove geometry
-st_geometry(property) &lt;- NULL
-
-# perform spatial join
-property %&gt;%
-  group_by(grid_id) %&gt;%
-  summarize(property = n()) %&gt;%
-  left_join(grids, ., by = &quot;grid_id&quot;) %&gt;%
-  mutate(property = ifelse(is.na(property) == TRUE, 0, property)) -&gt; grids
-
-# clean-up
-rm(property)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KHByb3BlcnR5KSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbnByb3BlcnR5ICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKHByb3BlcnR5ID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFxcZ3JpZF9pZFxcKSAlPiVcbiAgbXV0YXRlKHByb3BlcnR5ID0gaWZlbHNlKGlzLm5hKHByb3BlcnR5KSA9PSBUUlVFLCAwLCBwcm9wZXJ0eSkpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKHByb3BlcnR5KVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # remove geometry st_geometry(property) &lt;- NULL</p>
+</div>
+<div id="perform-spatial-join-2" class="section level1">
+<h1>perform spatial join</h1>
+<p>property %&gt;% group_by(grid_id) %&gt;% summarize(property = n()) %&gt;% left_join(grids, ., by = _id) %&gt;% mutate(property = ifelse(is.na(property) == TRUE, 0, property)) -&gt; grids</p>
+</div>
+<div id="clean-up-2" class="section level1">
+<h1>clean-up</h1>
+<p>rm(property)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="other-crimes" class="section level2">
 <h2>Other Crimes</h2>
 <p>The other crime data is stored in <code>otherCrimes.csv</code>. As before, I’ll read them in, project them, and then use a spatial join to create counts per grid square. First, we’ll load the data and project them:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG5vdGhlckNyaW1lcyA8LSByZWFkX2NzdihoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwib3RoZXJDcmltZXMuY3N2XCIpKVxuYGBgIn0= -->
-<pre class="r"><code># load
-otherCrimes &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;otherCrimes.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG5vdGhlckNyaW1lcyA8LSByZWFkX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcb3RoZXJDcmltZXMuY3N2XFwpKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # load otherCrimes &lt;- read_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBjc195ZWFyID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGRhdGVfb2NjdXIgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgY3JpbWUgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgZGVzY3JpcHRpb24gPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX2FkZHJlc3MgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgaWxlYWRzX3N0cmVldCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICB4X2Nvb3JkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHlfY29vcmQgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bVxuKVxuIn0= -->
 <pre><code>Parsed with column specification:
@@ -2049,12 +2060,14 @@ cols(
   y_coord = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5vdGhlckNyaW1lcyA8LSBjc19wcm9qZWN0WFkob3RoZXJDcmltZXMsIHZhclggPSB4X2Nvb3JkLCB2YXJZID0geV9jb29yZCwgY3JzID0gMjY5MTUpXG5cbiMgcHJpbnQgdmFsaWQgcm93c1xubnJvdyhvdGhlckNyaW1lcylcbmBgYCJ9 -->
-<pre class="r"><code># project
-otherCrimes &lt;- cs_projectXY(otherCrimes, varX = x_coord, varY = y_coord, crs = 26915)
-
-# print valid rows
-nrow(otherCrimes)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5vdGhlckNyaW1lcyA8LSBjc19wcm9qZWN0WFkob3RoZXJDcmltZXMsIHZhclggPSB4X2Nvb3JkLCB2YXJZID0geV9jb29yZCwgY3JzID0gMjY5MTUpXG5cbiMgcHJpbnQgdmFsaWQgcm93c1xubnJvdyhvdGhlckNyaW1lcylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # project otherCrimes &lt;- cs_projectXY(otherCrimes, varX = x_coord, varY = y_coord, crs = 26915)</p>
+</div>
+</div>
+<div id="print-valid-rows-3" class="section level1">
+<h1>print valid rows</h1>
+<p>nrow(otherCrimes)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM4NDk0XG4ifQ== -->
 <pre><code>[1] 38494</code></pre>
@@ -2064,16 +2077,16 @@ nrow(otherCrimes)</code></pre>
 <p>Next, we’ll perform the intersection:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5vdGhlckNyaW1lcyA8LSBzdF9pbnRlcnNlY3Rpb24ob3RoZXJDcmltZXMsIGdyaWRzKVxuYGBgIn0= -->
-<pre class="r"><code># project
-otherCrimes &lt;- st_intersection(otherCrimes, grids)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5vdGhlckNyaW1lcyA8LSBzdF9pbnRlcnNlY3Rpb24ob3RoZXJDcmltZXMsIGdyaWRzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # project otherCrimes &lt;- st_intersection(otherCrimes, grids)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYXR0cmlidXRlIHZhcmlhYmxlcyBhcmUgYXNzdW1lZCB0byBiZSBzcGF0aWFsbHkgY29uc3RhbnQgdGhyb3VnaG91dCBhbGwgZ2VvbWV0cmllc1xuIn0= -->
 <pre><code>attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KG90aGVyQ3JpbWVzKVxuYGBgIn0= -->
-<pre class="r"><code># print valid rows
-nrow(otherCrimes)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KG90aGVyQ3JpbWVzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # print valid rows nrow(otherCrimes)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM4MTU2XG4ifQ== -->
 <pre><code>[1] 38156</code></pre>
@@ -2083,36 +2096,33 @@ nrow(otherCrimes)</code></pre>
 <p>Finally, we’ll remove the geometry, sum our data by <code>grid_id</code>, and join our counts to the <code>grids</code> object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KG90aGVyQ3JpbWVzKSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbm90aGVyQ3JpbWVzICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKG90aGVyX2NyaW1lID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFwiZ3JpZF9pZFwiKSAlPiVcbiAgbXV0YXRlKG90aGVyX2NyaW1lID0gaWZlbHNlKGlzLm5hKG90aGVyX2NyaW1lKSA9PSBUUlVFLCAwLCBvdGhlcl9jcmltZSkpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKG90aGVyQ3JpbWVzKVxuYGBgIn0= -->
-<pre class="r"><code># remove geometry
-st_geometry(otherCrimes) &lt;- NULL
-
-# perform spatial join
-otherCrimes %&gt;%
-  group_by(grid_id) %&gt;%
-  summarize(other_crime = n()) %&gt;%
-  left_join(grids, ., by = &quot;grid_id&quot;) %&gt;%
-  mutate(other_crime = ifelse(is.na(other_crime) == TRUE, 0, other_crime)) -&gt; grids
-
-# clean-up
-rm(otherCrimes)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KG90aGVyQ3JpbWVzKSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbm90aGVyQ3JpbWVzICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKG90aGVyX2NyaW1lID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFxcZ3JpZF9pZFxcKSAlPiVcbiAgbXV0YXRlKG90aGVyX2NyaW1lID0gaWZlbHNlKGlzLm5hKG90aGVyX2NyaW1lKSA9PSBUUlVFLCAwLCBvdGhlcl9jcmltZSkpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKG90aGVyQ3JpbWVzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # remove geometry st_geometry(otherCrimes) &lt;- NULL</p>
+</div>
+<div id="perform-spatial-join-3" class="section level1">
+<h1>perform spatial join</h1>
+<p>otherCrimes %&gt;% group_by(grid_id) %&gt;% summarize(other_crime = n()) %&gt;% left_join(grids, ., by = _id) %&gt;% mutate(other_crime = ifelse(is.na(other_crime) == TRUE, 0, other_crime)) -&gt; grids</p>
+</div>
+<div id="clean-up-3" class="section level1">
+<h1>clean-up</h1>
+<p>rm(otherCrimes)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="disorder" class="section level2">
 <h2>Disorder</h2>
 <p>The calls for disorder data are stored in <code>disorder.csv</code>. As before, I’ll read them in, project them, and then use a spatial join to create counts per grid square. The project process varies slightly because these data are from a different source. First, we’ll load the data and project them:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG5kaXNvcmRlciA8LSByZWFkX2NzdihoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwiZGlzb3JkZXIuY3N2XCIpKVxuYGBgIn0= -->
-<pre class="r"><code># load
-disorder &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;disorder.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG5kaXNvcmRlciA8LSByZWFkX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcZGlzb3JkZXIuY3N2XFwpKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # load disorder &lt;- read_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBkYXRldGltZWluaXQgPSBcdTAwMWJbMzRtY29sX2RhdGV0aW1lKGZvcm1hdCA9IFwiXCIpXHUwMDFiWzM5bSxcbiAgY2F0ZWdvcnkgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgcHJvYmFkZHJlc3MgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgcHJvYmxlbWNvZGUgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgc3J4ID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHNyeSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltXG4pXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBkYXRldGltZWluaXQgPSBcdTAwMWJbMzRtY29sX2RhdGV0aW1lKGZvcm1hdCA9IFxcXFwpXHUwMDFiWzM5bSxcbiAgY2F0ZWdvcnkgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgcHJvYmFkZHJlc3MgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgcHJvYmxlbWNvZGUgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgc3J4ID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHNyeSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltXG4pXG4ifQ== -->
 <pre><code>Parsed with column specification:
 cols(
-  datetimeinit = [34mcol_datetime(format = &quot;&quot;)[39m,
+  datetimeinit = [34mcol_datetime(format = \\)[39m,
   category = [31mcol_character()[39m,
   probaddress = [31mcol_character()[39m,
   problemcode = [31mcol_character()[39m,
@@ -2120,12 +2130,14 @@ cols(
   sry = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5kaXNvcmRlciA8LSBjc2JfcHJvamVjdFhZKGRpc29yZGVyLCB2YXJYID0gc3J4LCB2YXJZID0gc3J5LCBjcnMgPSAyNjkxNSlcblxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KGRpc29yZGVyKVxuYGBgIn0= -->
-<pre class="r"><code># project
-disorder &lt;- csb_projectXY(disorder, varX = srx, varY = sry, crs = 26915)
-
-# print valid rows
-nrow(disorder)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5kaXNvcmRlciA8LSBjc2JfcHJvamVjdFhZKGRpc29yZGVyLCB2YXJYID0gc3J4LCB2YXJZID0gc3J5LCBjcnMgPSAyNjkxNSlcblxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KGRpc29yZGVyKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # project disorder &lt;- csb_projectXY(disorder, varX = srx, varY = sry, crs = 26915)</p>
+</div>
+</div>
+<div id="print-valid-rows-4" class="section level1">
+<h1>print valid rows</h1>
+<p>nrow(disorder)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE0ODQ1MFxuIn0= -->
 <pre><code>[1] 148450</code></pre>
@@ -2135,16 +2147,16 @@ nrow(disorder)</code></pre>
 <p>Next, we’ll perform the intersection:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcm9qZWN0XG5kaXNvcmRlciA8LSBzdF9pbnRlcnNlY3Rpb24oZGlzb3JkZXIsIGdyaWRzKVxuYGBgIn0= -->
-<pre class="r"><code># project
-disorder &lt;- st_intersection(disorder, grids)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcm9qZWN0XG5kaXNvcmRlciA8LSBzdF9pbnRlcnNlY3Rpb24oZGlzb3JkZXIsIGdyaWRzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # project disorder &lt;- st_intersection(disorder, grids)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYXR0cmlidXRlIHZhcmlhYmxlcyBhcmUgYXNzdW1lZCB0byBiZSBzcGF0aWFsbHkgY29uc3RhbnQgdGhyb3VnaG91dCBhbGwgZ2VvbWV0cmllc1xuIn0= -->
 <pre><code>attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KGRpc29yZGVyKVxuYGBgIn0= -->
-<pre class="r"><code># print valid rows
-nrow(disorder)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcmludCB2YWxpZCByb3dzXG5ucm93KGRpc29yZGVyKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # print valid rows nrow(disorder)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE0ODM5MFxuIn0= -->
 <pre><code>[1] 148390</code></pre>
@@ -2154,32 +2166,28 @@ nrow(disorder)</code></pre>
 <p>Finally, we’ll remove the geometry, sum our data by <code>grid_id</code>, and join our counts to the <code>grids</code> object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KGRpc29yZGVyKSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbmRpc29yZGVyICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKGRpc29yZGVyID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFwiZ3JpZF9pZFwiKSAlPiVcbiAgbXV0YXRlKGRpc29yZGVyID0gaWZlbHNlKGlzLm5hKGRpc29yZGVyKSA9PSBUUlVFLCAwLCBkaXNvcmRlcikpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKGRpc29yZGVyKVxuYGBgIn0= -->
-<pre class="r"><code># remove geometry
-st_geometry(disorder) &lt;- NULL
-
-# perform spatial join
-disorder %&gt;%
-  group_by(grid_id) %&gt;%
-  summarize(disorder = n()) %&gt;%
-  left_join(grids, ., by = &quot;grid_id&quot;) %&gt;%
-  mutate(disorder = ifelse(is.na(disorder) == TRUE, 0, disorder)) -&gt; grids
-
-# clean-up
-rm(disorder)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZW1vdmUgZ2VvbWV0cnlcbnN0X2dlb21ldHJ5KGRpc29yZGVyKSA8LSBOVUxMXG5cbiMgcGVyZm9ybSBzcGF0aWFsIGpvaW5cbmRpc29yZGVyICU+JVxuICBncm91cF9ieShncmlkX2lkKSAlPiVcbiAgc3VtbWFyaXplKGRpc29yZGVyID0gbigpKSAlPiVcbiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9IFxcZ3JpZF9pZFxcKSAlPiVcbiAgbXV0YXRlKGRpc29yZGVyID0gaWZlbHNlKGlzLm5hKGRpc29yZGVyKSA9PSBUUlVFLCAwLCBkaXNvcmRlcikpIC0+IGdyaWRzXG5cbiMgY2xlYW4tdXBcbnJtKGRpc29yZGVyKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # remove geometry st_geometry(disorder) &lt;- NULL</p>
+</div>
+<div id="perform-spatial-join-4" class="section level1">
+<h1>perform spatial join</h1>
+<p>disorder %&gt;% group_by(grid_id) %&gt;% summarize(disorder = n()) %&gt;% left_join(grids, ., by = _id) %&gt;% mutate(disorder = ifelse(is.na(disorder) == TRUE, 0, disorder)) -&gt; grids</p>
+</div>
+<div id="clean-up-4" class="section level1">
+<h1>clean-up</h1>
+<p>rm(disorder)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="vacancy" class="section level2">
 <h2>Vacancy</h2>
 <p>The vacancy counts already correspond to the <code>grids</code> object, so they only need to be joined:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG52YWNhbmN5IDwtIHJlYWRfY3N2KGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJ2YWNhbmN5LmNzdlwiKSkgJT4lXG4gIHNlbGVjdChncmlkX2lkLCBwcm9wX3ZhY2FudClcbmBgYCJ9 -->
-<pre class="r"><code># load
-vacancy &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;vacancy.csv&quot;)) %&gt;%
-  select(grid_id, prop_vacant)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG52YWNhbmN5IDwtIHJlYWRfY3N2KGhlcmUoXFxkYXRhXFwsIFxcY2xlYW5cXCwgXFx2YWNhbmN5LmNzdlxcKSkgJT4lXG4gIHNlbGVjdChncmlkX2lkLCBwcm9wX3ZhY2FudClcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # load vacancy &lt;- read_csv(here(, , .csv)) %&gt;% select(grid_id, prop_vacant)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBncmlkX2lkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGFyZWFfbTIgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgdmFjYW50X20yID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHByb3BfdmFjYW50ID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW1cbilcbiJ9 -->
 <pre><code>Parsed with column specification:
@@ -2190,40 +2198,34 @@ cols(
   prop_vacant = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBqb2luXG5ncmlkcyA8LSBsZWZ0X2pvaW4oZ3JpZHMsIHZhY2FuY3ksIGJ5ID0gXCJncmlkX2lkXCIpXG5cbiMgY2xlYW4tdXBcbnJtKHZhY2FuY3kpXG5gYGAifQ== -->
-<pre class="r"><code># join
-grids &lt;- left_join(grids, vacancy, by = &quot;grid_id&quot;)
-
-# clean-up
-rm(vacancy)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBqb2luXG5ncmlkcyA8LSBsZWZ0X2pvaW4oZ3JpZHMsIHZhY2FuY3ksIGJ5ID0gXFxncmlkX2lkXFwpXG5cbiMgY2xlYW4tdXBcbnJtKHZhY2FuY3kpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # join grids &lt;- left_join(grids, vacancy, by = _id)</p>
+</div>
+</div>
+<div id="clean-up-5" class="section level1">
+<h1>clean-up</h1>
+<p>rm(vacancy)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="contemporary-demographic-data" class="section level2">
 <h2>Contemporary Demographic Data</h2>
 <p>Our demographic measures are at the census tract level, which means they need to be interpolated into the grids. This process requires that the demographic data be merged with the corresponding geometric data. First, we’ll download those data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJhY3RzIDwtIHRyYWN0cyhzdGF0ZSA9IDI5LCBjb3VudHkgPSA1MTAsIHllYXIgPSAyMDE3LCBjbGFzcyA9IFwic2ZcIikgJT4lXG4gIHNlbGVjdChHRU9JRClcbmBgYCJ9 -->
-<pre class="r"><code>tracts &lt;- tracts(state = 29, county = 510, year = 2017, class = &quot;sf&quot;) %&gt;%
-  select(GEOID)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudHJhY3RzIDwtIHRyYWN0cyhzdGF0ZSA9IDI5LCBjb3VudHkgPSA1MTAsIHllYXIgPSAyMDE3LCBjbGFzcyA9IFxcc2ZcXCkgJT4lXG4gIHNlbGVjdChHRU9JRClcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r tracts &lt;- tracts(state = 29, county = 510, year = 2017, class = ) %&gt;% select(GEOID)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Next, we’ll load the demographic data and join them to the tract geometry:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkXG5kZW1vcyA8LSByZWFkX2NzdihoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwiZGVtb2dyYXBoaWNzLmNzdlwiKSkgJT4lXG4gIG11dGF0ZShHRU9JRCA9IGFzLmNoYXJhY3RlcihHRU9JRCkpICU+JVxuICBzZWxlY3QoR0VPSUQsIHRvdGFsUG9wLCBtZWRpYW5JbmMsIHJhY2VUb3RhbCwgYmxhY2ssIHB2dHlUb3RhbCwgcHZ0eSwgXG4gICAgICAgICBlbXBseVRvdGFsLCB1bmVtcGx5LCBvd25Ub3RhbCwgb3duT2NjKSAlPiVcbiAgcmVuYW1lKFxuICAgIHRvdGFsX3BvcCA9IHRvdGFsUG9wLFxuICAgIG1lZGlhbl9pbmMgPSBtZWRpYW5JbmNcbiAgKVxuYGBgIn0= -->
-<pre class="r"><code># load
-demos &lt;- read_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;demographics.csv&quot;)) %&gt;%
-  mutate(GEOID = as.character(GEOID)) %&gt;%
-  select(GEOID, totalPop, medianInc, raceTotal, black, pvtyTotal, pvty, 
-         emplyTotal, unemply, ownTotal, ownOcc) %&gt;%
-  rename(
-    total_pop = totalPop,
-    median_inc = medianInc
-  )</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBsb2FkXG5kZW1vcyA8LSByZWFkX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcZGVtb2dyYXBoaWNzLmNzdlxcKSkgJT4lXG4gIG11dGF0ZShHRU9JRCA9IGFzLmNoYXJhY3RlcihHRU9JRCkpICU+JVxuICBzZWxlY3QoR0VPSUQsIHRvdGFsUG9wLCBtZWRpYW5JbmMsIHJhY2VUb3RhbCwgYmxhY2ssIHB2dHlUb3RhbCwgcHZ0eSwgXG4gICAgICAgICBlbXBseVRvdGFsLCB1bmVtcGx5LCBvd25Ub3RhbCwgb3duT2NjKSAlPiVcbiAgcmVuYW1lKFxuICAgIHRvdGFsX3BvcCA9IHRvdGFsUG9wLFxuICAgIG1lZGlhbl9pbmMgPSBtZWRpYW5JbmNcbiAgKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # load demos &lt;- read_csv(here(, , .csv)) %&gt;% mutate(GEOID = as.character(GEOID)) %&gt;% select(GEOID, totalPop, medianInc, raceTotal, black, pvtyTotal, pvty, emplyTotal, unemply, ownTotal, ownOcc) %&gt;% rename( total_pop = totalPop, median_inc = medianInc )</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9kb3VibGUoKVxuKVxuU2VlIHNwZWMoLi4uKSBmb3IgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbnMuXG4ifQ== -->
 <pre><code>Parsed with column specification:
@@ -2232,75 +2234,65 @@ cols(
 )
 See spec(...) for full column specifications.</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBqb2luXG50cmFjdHMgPC0gbGVmdF9qb2luKHRyYWN0cywgZGVtb3MsIGJ5ID0gXCJHRU9JRFwiKVxuXG4jIHRyYW5zZm9ybVxudHJhY3RzIDwtIHN0X3RyYW5zZm9ybSh0cmFjdHMsIGNycyA9IDI2OTE1KVxuXG4jIGNsZWFuLXVwXG5ybShkZW1vcylcbmBgYCJ9 -->
-<pre class="r"><code># join
-tracts &lt;- left_join(tracts, demos, by = &quot;GEOID&quot;)
-
-# transform
-tracts &lt;- st_transform(tracts, crs = 26915)
-
-# clean-up
-rm(demos)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBqb2luXG50cmFjdHMgPC0gbGVmdF9qb2luKHRyYWN0cywgZGVtb3MsIGJ5ID0gXFxHRU9JRFxcKVxuXG4jIHRyYW5zZm9ybVxudHJhY3RzIDwtIHN0X3RyYW5zZm9ybSh0cmFjdHMsIGNycyA9IDI2OTE1KVxuXG4jIGNsZWFuLXVwXG5ybShkZW1vcylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # join tracts &lt;- left_join(tracts, demos, by = )</p>
+</div>
+</div>
+<div id="transform" class="section level1">
+<h1>transform</h1>
+<p>tracts &lt;- st_transform(tracts, crs = 26915)</p>
+</div>
+<div id="clean-up-6" class="section level1">
+<h1>clean-up</h1>
+<p>rm(demos)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>With our tract data prepared, we’ll make a copy of the grids data that contain only the <code>grid_id</code> column:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHNfYXcgPC0gZ3JpZHMgJT4lXG4gIHNlbGVjdChncmlkX2lkKVxuYGBgIn0= -->
-<pre class="r"><code>grids_aw &lt;- grids %&gt;%
-  select(grid_id)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ3JpZHNfYXcgPC0gZ3JpZHMgJT4lXG4gIHNlbGVjdChncmlkX2lkKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r grids_aw &lt;- grids %&gt;% select(grid_id)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Now that we have the grids and tract data ready to interpolate, we can perform the calculations:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHNfYXdfMTcgPC0gYXdfaW50ZXJwb2xhdGUoZ3JpZHNfYXcsIHRpZCA9IGdyaWRfaWQsIHNvdXJjZSA9IHRyYWN0cywgc2lkID0gR0VPSUQsXG4gICAgICAgICAgICAgICAgIHdlaWdodCA9IFwic3VtXCIsIG91dHB1dCA9IFwidGliYmxlXCIsXG4gICAgICAgICAgICAgICAgIGV4dGVuc2l2ZSA9IGMoXCJ0b3RhbF9wb3BcIiwgXCJtZWRpYW5faW5jXCIsIFwicmFjZVRvdGFsXCIsIFwiYmxhY2tcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJwdnR5VG90YWxcIiwgXCJwdnR5XCIsIFwiZW1wbHlUb3RhbFwiLCBcInVuZW1wbHlcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIm93blRvdGFsXCIsIFwib3duT2NjXCIpKVxuYGBgIn0= -->
-<pre class="r"><code>grids_aw_17 &lt;- aw_interpolate(grids_aw, tid = grid_id, source = tracts, sid = GEOID,
-                 weight = &quot;sum&quot;, output = &quot;tibble&quot;,
-                 extensive = c(&quot;total_pop&quot;, &quot;median_inc&quot;, &quot;raceTotal&quot;, &quot;black&quot;, 
-                               &quot;pvtyTotal&quot;, &quot;pvty&quot;, &quot;emplyTotal&quot;, &quot;unemply&quot;,
-                               &quot;ownTotal&quot;, &quot;ownOcc&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ3JpZHNfYXdfMTcgPC0gYXdfaW50ZXJwb2xhdGUoZ3JpZHNfYXcsIHRpZCA9IGdyaWRfaWQsIHNvdXJjZSA9IHRyYWN0cywgc2lkID0gR0VPSUQsXG4gICAgICAgICAgICAgICAgIHdlaWdodCA9IFxcc3VtXFwsIG91dHB1dCA9IFxcdGliYmxlXFwsXG4gICAgICAgICAgICAgICAgIGV4dGVuc2l2ZSA9IGMoXFx0b3RhbF9wb3BcXCwgXFxtZWRpYW5faW5jXFwsIFxccmFjZVRvdGFsXFwsIFxcYmxhY2tcXCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXFxwdnR5VG90YWxcXCwgXFxwdnR5XFwsIFxcZW1wbHlUb3RhbFxcLCBcXHVuZW1wbHlcXCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcXG93blRvdGFsXFwsIFxcb3duT2NjXFwpKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r grids_aw_17 &lt;- aw_interpolate(grids_aw, tid = grid_id, source = tracts, sid = GEOID, weight = , output = , extensive = c(_pop, _inc, , , , , , , , ))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we interpolated all spatially extensive measures, we need to calculate some relevant proportions and then remove the original count data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHNfYXdfMTcgJT4lXG4gIG11dGF0ZShibGFja19wcm9wID0gYmxhY2svcmFjZVRvdGFsKSAlPiVcbiAgbXV0YXRlKHB2dHlfcHJvcCA9IHB2dHkvcHZ0eVRvdGFsKSAlPiVcbiAgbXV0YXRlKHVuZW1wbHlfcHJvcCA9IHVuZW1wbHkvZW1wbHlUb3RhbCkgJT4lXG4gIG11dGF0ZShvd25PY2NfcHJvcCA9IG93bk9jYy9vd25Ub3RhbCkgJT4lXG4gIHNlbGVjdCgtcmFjZVRvdGFsLCAtYmxhY2ssIC1wdnR5VG90YWwsIC1wdnR5LCBcbiAgICAgICAgIC1lbXBseVRvdGFsLCAtdW5lbXBseSwgLW93blRvdGFsLCAtb3duT2NjKSAtPiBncmlkc19hd18xN1xuYGBgIn0= -->
-<pre class="r"><code>grids_aw_17 %&gt;%
-  mutate(black_prop = black/raceTotal) %&gt;%
-  mutate(pvty_prop = pvty/pvtyTotal) %&gt;%
-  mutate(unemply_prop = unemply/emplyTotal) %&gt;%
-  mutate(ownOcc_prop = ownOcc/ownTotal) %&gt;%
-  select(-raceTotal, -black, -pvtyTotal, -pvty, 
-         -emplyTotal, -unemply, -ownTotal, -ownOcc) -&gt; grids_aw_17</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ3JpZHNfYXdfMTcgJT4lXG4gIG11dGF0ZShibGFja19wcm9wID0gYmxhY2svcmFjZVRvdGFsKSAlPiVcbiAgbXV0YXRlKHB2dHlfcHJvcCA9IHB2dHkvcHZ0eVRvdGFsKSAlPiVcbiAgbXV0YXRlKHVuZW1wbHlfcHJvcCA9IHVuZW1wbHkvZW1wbHlUb3RhbCkgJT4lXG4gIG11dGF0ZShvd25PY2NfcHJvcCA9IG93bk9jYy9vd25Ub3RhbCkgJT4lXG4gIHNlbGVjdCgtcmFjZVRvdGFsLCAtYmxhY2ssIC1wdnR5VG90YWwsIC1wdnR5LCBcbiAgICAgICAgIC1lbXBseVRvdGFsLCAtdW5lbXBseSwgLW93blRvdGFsLCAtb3duT2NjKSAtPiBncmlkc19hd18xN1xuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r grids_aw_17 %&gt;% mutate(black_prop = black/raceTotal) %&gt;% mutate(pvty_prop = pvty/pvtyTotal) %&gt;% mutate(unemply_prop = unemply/emplyTotal) %&gt;% mutate(ownOcc_prop = ownOcc/ownTotal) %&gt;% select(-raceTotal, -black, -pvtyTotal, -pvty, -emplyTotal, -unemply, -ownTotal, -ownOcc) -&gt; grids_aw_17</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Finally, we’ll remove our raw data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0odHJhY3RzKVxuYGBgIn0= -->
-<pre class="r"><code>rm(tracts)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucm0odHJhY3RzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r rm(tracts)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="historic-demographic-data" class="section level2">
 <h2>Historic Demographic Data</h2>
 <p>Next, we’ll create estimates for both the 1950 total population and the 1970 total population at the grid level as well. First, we’ll read the 1950 data in and then interplate it:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIHRhYnVsYXIgZGF0YVxucG9wNTAgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJyYXdcIiwgXCJoaXN0b3JpYy1wb3B1bGF0aW9uXCIsIFwiU1RMX0RFTU9HUkFQSElDU19wb3A1MC5jc3ZcIikpICU+JVxuICBzZWxlY3QoR2VvX05hbWUsIFNFX1QwMDFfMDAxKSAlPiVcbiAgcmVuYW1lKFxuICAgIFRSQUNUSUQgPSBHZW9fTmFtZSxcbiAgICBwb3A1MCA9IFNFX1QwMDFfMDAxXG4gIClcbmBgYCJ9 -->
-<pre class="r"><code># read tabular data
-pop50 &lt;- read_csv(here(&quot;data&quot;, &quot;raw&quot;, &quot;historic-population&quot;, &quot;STL_DEMOGRAPHICS_pop50.csv&quot;)) %&gt;%
-  select(Geo_Name, SE_T001_001) %&gt;%
-  rename(
-    TRACTID = Geo_Name,
-    pop50 = SE_T001_001
-  )</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZWFkIHRhYnVsYXIgZGF0YVxucG9wNTAgPC0gcmVhZF9jc3YoaGVyZShcXGRhdGFcXCwgXFxyYXdcXCwgXFxoaXN0b3JpYy1wb3B1bGF0aW9uXFwsIFxcU1RMX0RFTU9HUkFQSElDU19wb3A1MC5jc3ZcXCkpICU+JVxuICBzZWxlY3QoR2VvX05hbWUsIFNFX1QwMDFfMDAxKSAlPiVcbiAgcmVuYW1lKFxuICAgIFRSQUNUSUQgPSBHZW9fTmFtZSxcbiAgICBwb3A1MCA9IFNFX1QwMDFfMDAxXG4gIClcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # read tabular data pop50 &lt;- read_csv(here(, , -population, _DEMOGRAPHICS_pop50.csv)) %&gt;% select(Geo_Name, SE_T001_001) %&gt;% rename( TRACTID = Geo_Name, pop50 = SE_T001_001 )</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBHZW9fTmFtZSA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBHZW9fUU5hbWUgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgR2VvX1NVTUxFViA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBHZW9fRklQUyA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBHZW9fc3RhdGUgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgR2VvX2NvdW50eSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBTRV9UMDAxXzAwMSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltXG4pXG4ifQ== -->
 <pre><code>Parsed with column specification:
@@ -2314,14 +2306,12 @@ cols(
   SE_T001_001 = [32mcol_double()[39m
 )</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIGdlb21ldHJpYyBkYXRhXG50cmFjdDUwIDwtIHN0X3JlYWQoaGVyZShcImRhdGFcIiwgXCJyYXdcIiwgXCJoaXN0b3JpYy1wb3B1bGF0aW9uXCIsIFwiU1RMX0RFTU9HUkFQSElDU190cmFjdHM1MFwiKSxcbiAgICAgICAgICAgICAgICAgICBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JVxuICBzdF90cmFuc2Zvcm0oY3JzID0gMjY5MTUpXG5gYGAifQ== -->
-<pre class="r"><code># read geometric data
-tract50 &lt;- st_read(here(&quot;data&quot;, &quot;raw&quot;, &quot;historic-population&quot;, &quot;STL_DEMOGRAPHICS_tracts50&quot;),
-                   stringsAsFactors = FALSE) %&gt;%
-  st_transform(crs = 26915)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZWFkIGdlb21ldHJpYyBkYXRhXG50cmFjdDUwIDwtIHN0X3JlYWQoaGVyZShcXGRhdGFcXCwgXFxyYXdcXCwgXFxoaXN0b3JpYy1wb3B1bGF0aW9uXFwsIFxcU1RMX0RFTU9HUkFQSElDU190cmFjdHM1MFxcKSxcbiAgICAgICAgICAgICAgICAgICBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JVxuICBzdF90cmFuc2Zvcm0oY3JzID0gMjY5MTUpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # read geometric data tract50 &lt;- st_read(here(, , -population, _DEMOGRAPHICS_tracts50), stringsAsFactors = FALSE) %&gt;% st_transform(crs = 26915)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgU1RMX0RFTU9HUkFQSElDU190cmFjdHM1MCcgZnJvbSBkYXRhIHNvdXJjZSBgL1VzZXJzL2NocmlzL0dpdEh1Yi9QcmVuZXJMYWIvRWNvbWV0cmljc0Fyc29uL2RhdGEvcmF3L2hpc3RvcmljLXBvcHVsYXRpb24vU1RMX0RFTU9HUkFQSElDU190cmFjdHM1MCcgdXNpbmcgZHJpdmVyIGBFU1JJIFNoYXBlZmlsZSdcblNpbXBsZSBmZWF0dXJlIGNvbGxlY3Rpb24gd2l0aCAxMjggZmVhdHVyZXMgYW5kIDEgZmllbGRcbmdlb21ldHJ5IHR5cGU6ICBQT0xZR09OXG5kaW1lbnNpb246ICAgICAgWFlcbmJib3g6ICAgICAgICAgICB4bWluOiAtOTAuMzIwNTEgeW1pbjogMzguNTMxODUgeG1heDogLTkwLjE2NjQxIHltYXg6IDM4Ljc3NDM1XG5lcHNnIChTUklEKTogICAgTkFcbnByb2o0c3RyaW5nOiAgICArcHJvaj1sb25nbGF0ICtlbGxwcz1HUlM4MCArbm9fZGVmc1xuIn0= -->
-<pre><code>Reading layer `STL_DEMOGRAPHICS_tracts50&#39; from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/historic-population/STL_DEMOGRAPHICS_tracts50&#39; using driver `ESRI Shapefile&#39;
+<pre><code>Reading layer `STL_DEMOGRAPHICS_tracts50' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/historic-population/STL_DEMOGRAPHICS_tracts50' using driver `ESRI Shapefile'
 Simple feature collection with 128 features and 1 field
 geometry type:  POLYGON
 dimension:      XY
@@ -2329,59 +2319,54 @@ bbox:           xmin: -90.32051 ymin: 38.53185 xmax: -90.16641 ymax: 38.77435
 epsg (SRID):    NA
 proj4string:    +proj=longlat +ellps=GRS80 +no_defs</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBqb2luXG5wb3A1MCA8LSBsZWZ0X2pvaW4odHJhY3Q1MCwgcG9wNTAsIGJ5ID0gXCJUUkFDVElEXCIpXG5cbiMgaW50ZXJwb2xhdGVcbmdyaWRzX2F3XzUwIDwtIGF3X2ludGVycG9sYXRlKGdyaWRzX2F3LCB0aWQgPSBncmlkX2lkLCBzb3VyY2UgPSBwb3A1MCwgc2lkID0gVFJBQ1RJRCxcbiAgICAgICAgICAgICAgICAgd2VpZ2h0ID0gXCJzdW1cIiwgb3V0cHV0ID0gXCJ0aWJibGVcIiwgZXh0ZW5zaXZlID0gXCJwb3A1MFwiKVxuXG4jIHJlbW92ZSByYXcgZGF0YVxucm0ocG9wNTAsIHRyYWN0NTApXG5gYGAifQ== -->
-<pre class="r"><code># join
-pop50 &lt;- left_join(tract50, pop50, by = &quot;TRACTID&quot;)
-
-# interpolate
-grids_aw_50 &lt;- aw_interpolate(grids_aw, tid = grid_id, source = pop50, sid = TRACTID,
-                 weight = &quot;sum&quot;, output = &quot;tibble&quot;, extensive = &quot;pop50&quot;)
-
-# remove raw data
-rm(pop50, tract50)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBqb2luXG5wb3A1MCA8LSBsZWZ0X2pvaW4odHJhY3Q1MCwgcG9wNTAsIGJ5ID0gXFxUUkFDVElEXFwpXG5cbiMgaW50ZXJwb2xhdGVcbmdyaWRzX2F3XzUwIDwtIGF3X2ludGVycG9sYXRlKGdyaWRzX2F3LCB0aWQgPSBncmlkX2lkLCBzb3VyY2UgPSBwb3A1MCwgc2lkID0gVFJBQ1RJRCxcbiAgICAgICAgICAgICAgICAgd2VpZ2h0ID0gXFxzdW1cXCwgb3V0cHV0ID0gXFx0aWJibGVcXCwgZXh0ZW5zaXZlID0gXFxwb3A1MFxcKVxuXG4jIHJlbW92ZSByYXcgZGF0YVxucm0ocG9wNTAsIHRyYWN0NTApXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # join pop50 &lt;- left_join(tract50, pop50, by = )</p>
+</div>
+</div>
+<div id="interpolate" class="section level1">
+<h1>interpolate</h1>
+<p>grids_aw_50 &lt;- aw_interpolate(grids_aw, tid = grid_id, source = pop50, sid = TRACTID, weight = , output = , extensive = 50)</p>
+</div>
+<div id="remove-raw-data" class="section level1">
+<h1>remove raw data</h1>
+<p>rm(pop50, tract50)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We’ll the repeat the process with the 1970 era data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIHRhYnVsYXIgZGF0YVxucG9wNzAgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJyYXdcIiwgXCJoaXN0b3JpYy1wb3B1bGF0aW9uXCIsIFwiU1RMX0RFTU9HUkFQSElDU19wb3A3MC5jc3ZcIikpICU+JVxuICBzZWxlY3QoR2VvX1RyYWN0Q29kZSwgU0VfVDAwMV8wMDEpICU+JVxuICByZW5hbWUoXG4gICAgVFJBQ1RJRCA9IEdlb19UcmFjdENvZGUsXG4gICAgcG9wNzAgPSBTRV9UMDAxXzAwMVxuICApXG5cbiMgcmVhZCBnZW9tZXRyaWMgZGF0YVxudHJhY3Q3MCA8LSBzdF9yZWFkKGhlcmUoXCJkYXRhXCIsIFwicmF3XCIsIFwiaGlzdG9yaWMtcG9wdWxhdGlvblwiLCBcIlNUTF9ERU1PR1JBUEhJQ1NfdHJhY3RzNzBcIiksXG4gICAgICAgICAgICAgICAgICAgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgc3RfdHJhbnNmb3JtKGNycyA9IDI2OTE1KVxuXG4jIGpvaW5cbnBvcDcwIDwtIGxlZnRfam9pbih0cmFjdDcwLCBwb3A3MCwgYnkgPSBcIlRSQUNUSURcIilcblxuIyBpbnRlcnBvbGF0ZVxuZ3JpZHNfYXdfNzAgPC0gYXdfaW50ZXJwb2xhdGUoZ3JpZHNfYXcsIHRpZCA9IGdyaWRfaWQsIHNvdXJjZSA9IHBvcDcwLCBzaWQgPSBUUkFDVElELFxuICAgICAgICAgICAgICAgICB3ZWlnaHQgPSBcInN1bVwiLCBvdXRwdXQgPSBcInRpYmJsZVwiLCBleHRlbnNpdmUgPSBcInBvcDcwXCIpXG5cbiMgcmVtb3ZlIHJhdyBkYXRhXG5ybShwb3A3MCwgdHJhY3Q3MClcbmBgYCJ9 -->
-<pre class="r"><code># read tabular data
-pop70 &lt;- read_csv(here(&quot;data&quot;, &quot;raw&quot;, &quot;historic-population&quot;, &quot;STL_DEMOGRAPHICS_pop70.csv&quot;)) %&gt;%
-  select(Geo_TractCode, SE_T001_001) %&gt;%
-  rename(
-    TRACTID = Geo_TractCode,
-    pop70 = SE_T001_001
-  )
-
-# read geometric data
-tract70 &lt;- st_read(here(&quot;data&quot;, &quot;raw&quot;, &quot;historic-population&quot;, &quot;STL_DEMOGRAPHICS_tracts70&quot;),
-                   stringsAsFactors = FALSE) %&gt;%
-  st_transform(crs = 26915)
-
-# join
-pop70 &lt;- left_join(tract70, pop70, by = &quot;TRACTID&quot;)
-
-# interpolate
-grids_aw_70 &lt;- aw_interpolate(grids_aw, tid = grid_id, source = pop70, sid = TRACTID,
-                 weight = &quot;sum&quot;, output = &quot;tibble&quot;, extensive = &quot;pop70&quot;)
-
-# remove raw data
-rm(pop70, tract70)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZWFkIHRhYnVsYXIgZGF0YVxucG9wNzAgPC0gcmVhZF9jc3YoaGVyZShcXGRhdGFcXCwgXFxyYXdcXCwgXFxoaXN0b3JpYy1wb3B1bGF0aW9uXFwsIFxcU1RMX0RFTU9HUkFQSElDU19wb3A3MC5jc3ZcXCkpICU+JVxuICBzZWxlY3QoR2VvX1RyYWN0Q29kZSwgU0VfVDAwMV8wMDEpICU+JVxuICByZW5hbWUoXG4gICAgVFJBQ1RJRCA9IEdlb19UcmFjdENvZGUsXG4gICAgcG9wNzAgPSBTRV9UMDAxXzAwMVxuICApXG5cbiMgcmVhZCBnZW9tZXRyaWMgZGF0YVxudHJhY3Q3MCA8LSBzdF9yZWFkKGhlcmUoXFxkYXRhXFwsIFxccmF3XFwsIFxcaGlzdG9yaWMtcG9wdWxhdGlvblxcLCBcXFNUTF9ERU1PR1JBUEhJQ1NfdHJhY3RzNzBcXCksXG4gICAgICAgICAgICAgICAgICAgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgc3RfdHJhbnNmb3JtKGNycyA9IDI2OTE1KVxuXG4jIGpvaW5cbnBvcDcwIDwtIGxlZnRfam9pbih0cmFjdDcwLCBwb3A3MCwgYnkgPSBcXFRSQUNUSURcXClcblxuIyBpbnRlcnBvbGF0ZVxuZ3JpZHNfYXdfNzAgPC0gYXdfaW50ZXJwb2xhdGUoZ3JpZHNfYXcsIHRpZCA9IGdyaWRfaWQsIHNvdXJjZSA9IHBvcDcwLCBzaWQgPSBUUkFDVElELFxuICAgICAgICAgICAgICAgICB3ZWlnaHQgPSBcXHN1bVxcLCBvdXRwdXQgPSBcXHRpYmJsZVxcLCBleHRlbnNpdmUgPSBcXHBvcDcwXFwpXG5cbiMgcmVtb3ZlIHJhdyBkYXRhXG5ybShwb3A3MCwgdHJhY3Q3MClcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # read tabular data pop70 &lt;- read_csv(here(, , -population, _DEMOGRAPHICS_pop70.csv)) %&gt;% select(Geo_TractCode, SE_T001_001) %&gt;% rename( TRACTID = Geo_TractCode, pop70 = SE_T001_001 )</p>
+</div>
+<div id="read-geometric-data" class="section level1">
+<h1>read geometric data</h1>
+<p>tract70 &lt;- st_read(here(, , -population, _DEMOGRAPHICS_tracts70), stringsAsFactors = FALSE) %&gt;% st_transform(crs = 26915)</p>
+</div>
+<div id="join" class="section level1">
+<h1>join</h1>
+<p>pop70 &lt;- left_join(tract70, pop70, by = )</p>
+</div>
+<div id="interpolate-1" class="section level1">
+<h1>interpolate</h1>
+<p>grids_aw_70 &lt;- aw_interpolate(grids_aw, tid = grid_id, source = pop70, sid = TRACTID, weight = , output = , extensive = 70)</p>
+</div>
+<div id="remove-raw-data-1" class="section level1">
+<h1>remove raw data</h1>
+<p>rm(pop70, tract70)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="combine-data" class="section level2">
 <h2>Combine Data</h2>
 <p>Finally, we’ll combine our various measures into a single object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZHMgJT4lXG4gIGxlZnRfam9pbiguLCBncmlkc19hd181MCwgYnkgPSBcImdyaWRfaWRcIikgJT4lXG4gIGxlZnRfam9pbiguLCBncmlkc19hd183MCwgYnkgPSBcImdyaWRfaWRcIikgJT4lXG4gIGxlZnRfam9pbiguLCBncmlkc19hd18xNywgYnkgPSBcImdyaWRfaWRcIikgLT4gZ3JpZHNcbmBgYCJ9 -->
-<pre class="r"><code>grids %&gt;%
-  left_join(., grids_aw_50, by = &quot;grid_id&quot;) %&gt;%
-  left_join(., grids_aw_70, by = &quot;grid_id&quot;) %&gt;%
-  left_join(., grids_aw_17, by = &quot;grid_id&quot;) -&gt; grids</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ3JpZHMgJT4lXG4gIGxlZnRfam9pbiguLCBncmlkc19hd181MCwgYnkgPSBcXGdyaWRfaWRcXCkgJT4lXG4gIGxlZnRfam9pbiguLCBncmlkc19hd183MCwgYnkgPSBcXGdyaWRfaWRcXCkgJT4lXG4gIGxlZnRfam9pbiguLCBncmlkc19hd18xNywgYnkgPSBcXGdyaWRfaWRcXCkgLT4gZ3JpZHNcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r grids %&gt;% left_join(., grids_aw_50, by = _id) %&gt;% left_join(., grids_aw_70, by = _id) %&gt;% left_join(., grids_aw_17, by = _id) -&gt; grids</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2391,11 +2376,12 @@ rm(pop70, tract70)</code></pre>
 <p>With our data created, we can write the analytical data set to the <code>data/analysis</code> directory:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Rfd3JpdGUoZ3JpZHMsIGRzbiA9IGhlcmUoXCJkYXRhXCIsIFwiYW5hbHlzaXNcIiwgXCJzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb25cIikpXG5gYGAifQ== -->
-<pre class="r"><code>st_write(grids, dsn = here(&quot;data&quot;, &quot;analysis&quot;, &quot;spatial_analysis.geojson&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3Rfd3JpdGUoZ3JpZHMsIGRzbiA9IGhlcmUoXFxkYXRhXFwsIFxcYW5hbHlzaXNcXCwgXFxzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb25cXCkpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r st_write(grids, dsn = here(, , _analysis.geojson))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiV3JpdGluZyBsYXllciBgc3BhdGlhbF9hbmFseXNpcycgdG8gZGF0YSBzb3VyY2UgYC9Vc2Vycy9jaHJpcy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL2FuYWx5c2lzL3NwYXRpYWxfYW5hbHlzaXMuZ2VvanNvbicgdXNpbmcgZHJpdmVyIGBHZW9KU09OJ1xuV3JpdGluZyAyMTUgZmVhdHVyZXMgd2l0aCAxNSBmaWVsZHMgYW5kIGdlb21ldHJ5IHR5cGUgTXVsdGkgUG9seWdvbi5cbiJ9 -->
-<pre><code>Writing layer `spatial_analysis&#39; to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson&#39; using driver `GeoJSON&#39;
+<pre><code>Writing layer `spatial_analysis' to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson' using driver `GeoJSON'
 Writing 215 features with 15 fields and geometry type Multi Polygon.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
@@ -2403,8 +2389,9 @@ Writing 215 features with 15 fields and geometry type Multi Polygon.</code></pre
 <p>Data are written in an open format to improve reproducibility.</p>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBHcmlkcyIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBidWlsZHMgb24gdGhlIGdyaWQtbGV2ZWwgdmFjYW5jeSBlc3RpbWF0ZXMgY3JlYXRlZCBpbiBgMDQtY3JlYXRlRGF0YS12YWNhbmN5LlJtZGAuIFRoZSBjcmltZSBhbmQgZGVtb2dyYXBoaWMgZGF0YSB3aWxsIGJlIGFkZGVkIHRvIGVhY2ggZ3JpZCBzcXVhcmUgdG8gY3JlYXRlIHRoZSBuZWlnaGJvcmhvb2QtbGV2ZWwgYW5hbHlzaXMgZGF0YSBzZXQuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZm9sbG93aW5nIHBhY2thZ2VzOgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoY29tcHN0YXRyKQpsaWJyYXJ5KHN0bGNzYikKCiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShhcmVhbCkKbGlicmFyeShzZikKbGlicmFyeSh0aWdyaXMpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBMb2FkIEJhc2UgRGF0YQpBbGwgb2YgdGhlIGRhdGEgd2lsbCBiZSBpbnRlcnBvbGF0ZWQgaW50byB0aGUgZ3JpZHMgdGhhdCBhbHJlYWR5IGNvbnRhaW4gdmFjYW5jeSBtZXRyaWNzOgoKYGBge3IgbG9hZC1ncmlkc30KIyByZWFkCmdyaWRzIDwtIHN0X3JlYWQoaGVyZSgiZGF0YSIsICJyYXciLCAiZ3JpZHMiKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiUKICByZW5hbWUoKQoKIyByZS1wcm9qZWN0CmdyaWRzIDwtIHN0X3RyYW5zZm9ybShncmlkcywgY3JzID0gMjY5MTUpCmBgYAoKIyMgQWRkIEFyc29uIERhdGEKVGhlIGFyc29uIGRhdGEgaXMgc3RvcmVkIGluIGBhcnNvbi5jc3ZgLiBTaW5jZSB0aGVzZSBhcmUgcG9pbnQgZGF0YSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC1hcnNvbn0KIyBsb2FkCmFyc29uIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAiYXJzb24uY3N2IikpICU+JQogIGZpbHRlcihjc195ZWFyID49IDIwMTMgJiBjc195ZWFyIDw9IDIwMTcpCgojIHByb2plY3QKYXJzb24gPC0gY3NfcHJvamVjdFhZKGFyc29uLCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3coYXJzb24pCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LWFyc29ufQojIHByb2plY3QKYXJzb24gPC0gc3RfaW50ZXJzZWN0aW9uKGFyc29uLCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KGFyc29uKQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtYXJzb259CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KGFyc29uKSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCmFyc29uICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShhcnNvbiA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKGFyc29uID0gaWZlbHNlKGlzLm5hKGFyc29uKSA9PSBUUlVFLCAwLCBhcnNvbikpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKGFyc29uKQpgYGAKCiMjIFZpb2xlbnQgQ3JpbWVzClRoZSB2aW9sZW50IGNyaW1lIGRhdGEgaXMgc3RvcmVkIGluIGB2aW9sZW50LmNzdmAuIEFzIGJlZm9yZSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC12aW9sZW50fQojIGxvYWQKdmlvbGVudCA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgInZpb2xlbnQuY3N2IikpCgojIHByb2plY3QKdmlvbGVudCA8LSBjc19wcm9qZWN0WFkodmlvbGVudCwgdmFyWCA9IHhfY29vcmQsIHZhclkgPSB5X2Nvb3JkLCBjcnMgPSAyNjkxNSkKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KHZpb2xlbnQpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LXZpb2xlbnR9CiMgcHJvamVjdAp2aW9sZW50IDwtIHN0X2ludGVyc2VjdGlvbih2aW9sZW50LCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KHZpb2xlbnQpCmBgYAoKRmluYWxseSwgd2UnbGwgcmVtb3ZlIHRoZSBnZW9tZXRyeSwgc3VtIG91ciBkYXRhIGJ5IGBncmlkX2lkYCwgYW5kIGpvaW4gb3VyIGNvdW50cyB0byB0aGUgYGdyaWRzYCBvYmplY3Q6CgpgYGB7ciBjb3VudC12aW9sZW50fQojIHJlbW92ZSBnZW9tZXRyeQpzdF9nZW9tZXRyeSh2aW9sZW50KSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCnZpb2xlbnQgJT4lCiAgZ3JvdXBfYnkoZ3JpZF9pZCkgJT4lCiAgc3VtbWFyaXplKHZpb2xlbnQgPSBuKCkpICU+JQogIGxlZnRfam9pbihncmlkcywgLiwgYnkgPSAiZ3JpZF9pZCIpICU+JQogIG11dGF0ZSh2aW9sZW50ID0gaWZlbHNlKGlzLm5hKHZpb2xlbnQpID09IFRSVUUsIDAsIHZpb2xlbnQpKSAtPiBncmlkcwoKIyBjbGVhbi11cApybSh2aW9sZW50KQpgYGAKCiMjIFByb3BlcnR5IENyaW1lcwpUaGUgcHJvcGVydHkgY3JpbWUgZGF0YSBpcyBzdG9yZWQgaW4gYHByb3BlcnR5LmNzdmAuIEFzIGJlZm9yZSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC1wcm9wZXJ0eX0KIyBsb2FkCnByb3BlcnR5IDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAicHJvcGVydHkuY3N2IikpCgojIHByb2plY3QKcHJvcGVydHkgPC0gY3NfcHJvamVjdFhZKHByb3BlcnR5LCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3cocHJvcGVydHkpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LXByb3BlcnR5fQojIHByb2plY3QKcHJvcGVydHkgPC0gc3RfaW50ZXJzZWN0aW9uKHByb3BlcnR5LCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KHByb3BlcnR5KQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtcHJvcGVydHl9CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KHByb3BlcnR5KSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCnByb3BlcnR5ICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShwcm9wZXJ0eSA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKHByb3BlcnR5ID0gaWZlbHNlKGlzLm5hKHByb3BlcnR5KSA9PSBUUlVFLCAwLCBwcm9wZXJ0eSkpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKHByb3BlcnR5KQpgYGAKCiMjIE90aGVyIENyaW1lcwpUaGUgb3RoZXIgY3JpbWUgZGF0YSBpcyBzdG9yZWQgaW4gYG90aGVyQ3JpbWVzLmNzdmAuIEFzIGJlZm9yZSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC1vdGhlckNyaW1lc30KIyBsb2FkCm90aGVyQ3JpbWVzIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAib3RoZXJDcmltZXMuY3N2IikpCgojIHByb2plY3QKb3RoZXJDcmltZXMgPC0gY3NfcHJvamVjdFhZKG90aGVyQ3JpbWVzLCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3cob3RoZXJDcmltZXMpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LW90aGVyQ3JpbWVzfQojIHByb2plY3QKb3RoZXJDcmltZXMgPC0gc3RfaW50ZXJzZWN0aW9uKG90aGVyQ3JpbWVzLCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KG90aGVyQ3JpbWVzKQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtb3RoZXJDcmltZXN9CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KG90aGVyQ3JpbWVzKSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCm90aGVyQ3JpbWVzICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShvdGhlcl9jcmltZSA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKG90aGVyX2NyaW1lID0gaWZlbHNlKGlzLm5hKG90aGVyX2NyaW1lKSA9PSBUUlVFLCAwLCBvdGhlcl9jcmltZSkpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKG90aGVyQ3JpbWVzKQpgYGAKCiMjIERpc29yZGVyClRoZSBjYWxscyBmb3IgZGlzb3JkZXIgZGF0YSBhcmUgc3RvcmVkIGluIGBkaXNvcmRlci5jc3ZgLiBBcyBiZWZvcmUsIEknbGwgcmVhZCB0aGVtIGluLCBwcm9qZWN0IHRoZW0sIGFuZCB0aGVuIHVzZSBhIHNwYXRpYWwgam9pbiB0byBjcmVhdGUgY291bnRzIHBlciBncmlkIHNxdWFyZS4gVGhlIHByb2plY3QgcHJvY2VzcyB2YXJpZXMgc2xpZ2h0bHkgYmVjYXVzZSB0aGVzZSBkYXRhIGFyZSBmcm9tIGEgZGlmZmVyZW50IHNvdXJjZS4gRmlyc3QsIHdlJ2xsIGxvYWQgdGhlIGRhdGEgYW5kIHByb2plY3QgdGhlbToKCmBgYHtyIGxvYWQtZGlzb3JkZXJ9CiMgbG9hZApkaXNvcmRlciA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgImRpc29yZGVyLmNzdiIpKQoKIyBwcm9qZWN0CmRpc29yZGVyIDwtIGNzYl9wcm9qZWN0WFkoZGlzb3JkZXIsIHZhclggPSBzcngsIHZhclkgPSBzcnksIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3coZGlzb3JkZXIpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LWRpc29yZGVyfQojIHByb2plY3QKZGlzb3JkZXIgPC0gc3RfaW50ZXJzZWN0aW9uKGRpc29yZGVyLCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KGRpc29yZGVyKQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtZGlzb3JkZXJ9CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KGRpc29yZGVyKSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCmRpc29yZGVyICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShkaXNvcmRlciA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKGRpc29yZGVyID0gaWZlbHNlKGlzLm5hKGRpc29yZGVyKSA9PSBUUlVFLCAwLCBkaXNvcmRlcikpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKGRpc29yZGVyKQpgYGAKCiMjIFZhY2FuY3kKVGhlIHZhY2FuY3kgY291bnRzIGFscmVhZHkgY29ycmVzcG9uZCB0byB0aGUgYGdyaWRzYCBvYmplY3QsIHNvIHRoZXkgb25seSBuZWVkIHRvIGJlIGpvaW5lZDoKCmBgYHtyIGpvaW4tdmFjYW5jeX0KIyBsb2FkCnZhY2FuY3kgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJ2YWNhbmN5LmNzdiIpKSAlPiUKICBzZWxlY3QoZ3JpZF9pZCwgcHJvcF92YWNhbnQpCgojIGpvaW4KZ3JpZHMgPC0gbGVmdF9qb2luKGdyaWRzLCB2YWNhbmN5LCBieSA9ICJncmlkX2lkIikKCiMgY2xlYW4tdXAKcm0odmFjYW5jeSkKYGBgCgojIyBDb250ZW1wb3JhcnkgRGVtb2dyYXBoaWMgRGF0YQpPdXIgZGVtb2dyYXBoaWMgbWVhc3VyZXMgYXJlIGF0IHRoZSBjZW5zdXMgdHJhY3QgbGV2ZWwsIHdoaWNoIG1lYW5zIHRoZXkgbmVlZCB0byBiZSBpbnRlcnBvbGF0ZWQgaW50byB0aGUgZ3JpZHMuIFRoaXMgcHJvY2VzcyByZXF1aXJlcyB0aGF0IHRoZSBkZW1vZ3JhcGhpYyBkYXRhIGJlIG1lcmdlZCB3aXRoIHRoZSBjb3JyZXNwb25kaW5nIGdlb21ldHJpYyBkYXRhLiBGaXJzdCwgd2UnbGwgZG93bmxvYWQgdGhvc2UgZGF0YToKCmBgYHtyIGRvd25sb2FkLXRyYWN0LWdlb21ldHJ5fQp0cmFjdHMgPC0gdHJhY3RzKHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgeWVhciA9IDIwMTcsIGNsYXNzID0gInNmIikgJT4lCiAgc2VsZWN0KEdFT0lEKQpgYGAKCk5leHQsIHdlJ2xsIGxvYWQgdGhlIGRlbW9ncmFwaGljIGRhdGEgYW5kIGpvaW4gdGhlbSB0byB0aGUgdHJhY3QgZ2VvbWV0cnk6CgpgYGB7ciBsb2FkLWFuZC1qb2luLWRlbW9zfQojIGxvYWQKZGVtb3MgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJkZW1vZ3JhcGhpY3MuY3N2IikpICU+JQogIG11dGF0ZShHRU9JRCA9IGFzLmNoYXJhY3RlcihHRU9JRCkpICU+JQogIHNlbGVjdChHRU9JRCwgdG90YWxQb3AsIG1lZGlhbkluYywgcmFjZVRvdGFsLCBibGFjaywgcHZ0eVRvdGFsLCBwdnR5LCAKICAgICAgICAgZW1wbHlUb3RhbCwgdW5lbXBseSwgb3duVG90YWwsIG93bk9jYykgJT4lCiAgcmVuYW1lKAogICAgdG90YWxfcG9wID0gdG90YWxQb3AsCiAgICBtZWRpYW5faW5jID0gbWVkaWFuSW5jCiAgKQoKIyBqb2luCnRyYWN0cyA8LSBsZWZ0X2pvaW4odHJhY3RzLCBkZW1vcywgYnkgPSAiR0VPSUQiKQoKIyB0cmFuc2Zvcm0KdHJhY3RzIDwtIHN0X3RyYW5zZm9ybSh0cmFjdHMsIGNycyA9IDI2OTE1KQoKIyBjbGVhbi11cApybShkZW1vcykKYGBgCgpXaXRoIG91ciB0cmFjdCBkYXRhIHByZXBhcmVkLCB3ZSdsbCBtYWtlIGEgY29weSBvZiB0aGUgZ3JpZHMgZGF0YSB0aGF0IGNvbnRhaW4gb25seSB0aGUgYGdyaWRfaWRgIGNvbHVtbjoKCmBgYHtyIHByZXAtZ3JpZHN9CmdyaWRzX2F3IDwtIGdyaWRzICU+JQogIHNlbGVjdChncmlkX2lkKQpgYGAKCk5vdyB0aGF0IHdlIGhhdmUgdGhlIGdyaWRzIGFuZCB0cmFjdCBkYXRhIHJlYWR5IHRvIGludGVycG9sYXRlLCB3ZSBjYW4gcGVyZm9ybSB0aGUgY2FsY3VsYXRpb25zOgoKYGBge3IgaW50ZXJwb2xhdGV9CmdyaWRzX2F3XzE3IDwtIGF3X2ludGVycG9sYXRlKGdyaWRzX2F3LCB0aWQgPSBncmlkX2lkLCBzb3VyY2UgPSB0cmFjdHMsIHNpZCA9IEdFT0lELAogICAgICAgICAgICAgICAgIHdlaWdodCA9ICJzdW0iLCBvdXRwdXQgPSAidGliYmxlIiwKICAgICAgICAgICAgICAgICBleHRlbnNpdmUgPSBjKCJ0b3RhbF9wb3AiLCAibWVkaWFuX2luYyIsICJyYWNlVG90YWwiLCAiYmxhY2siLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJwdnR5VG90YWwiLCAicHZ0eSIsICJlbXBseVRvdGFsIiwgInVuZW1wbHkiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm93blRvdGFsIiwgIm93bk9jYyIpKQpgYGAKClNpbmNlIHdlIGludGVycG9sYXRlZCBhbGwgc3BhdGlhbGx5IGV4dGVuc2l2ZSBtZWFzdXJlcywgd2UgbmVlZCB0byBjYWxjdWxhdGUgc29tZSByZWxldmFudCBwcm9wb3J0aW9ucyBhbmQgdGhlbiByZW1vdmUgdGhlIG9yaWdpbmFsIGNvdW50IGRhdGE6CgpgYGB7ciBjYWxjdWxhdGUtcHJvcG9ydGlvbnN9CmdyaWRzX2F3XzE3ICU+JQogIG11dGF0ZShibGFja19wcm9wID0gYmxhY2svcmFjZVRvdGFsKSAlPiUKICBtdXRhdGUocHZ0eV9wcm9wID0gcHZ0eS9wdnR5VG90YWwpICU+JQogIG11dGF0ZSh1bmVtcGx5X3Byb3AgPSB1bmVtcGx5L2VtcGx5VG90YWwpICU+JQogIG11dGF0ZShvd25PY2NfcHJvcCA9IG93bk9jYy9vd25Ub3RhbCkgJT4lCiAgc2VsZWN0KC1yYWNlVG90YWwsIC1ibGFjaywgLXB2dHlUb3RhbCwgLXB2dHksIAogICAgICAgICAtZW1wbHlUb3RhbCwgLXVuZW1wbHksIC1vd25Ub3RhbCwgLW93bk9jYykgLT4gZ3JpZHNfYXdfMTcKYGBgCgpGaW5hbGx5LCB3ZSdsbCByZW1vdmUgb3VyIHJhdyBkYXRhOgoKYGBge3IgY2xlYW4tdXB9CnJtKHRyYWN0cykKYGBgCgojIyBIaXN0b3JpYyBEZW1vZ3JhcGhpYyBEYXRhCk5leHQsIHdlJ2xsIGNyZWF0ZSBlc3RpbWF0ZXMgZm9yIGJvdGggdGhlIDE5NTAgdG90YWwgcG9wdWxhdGlvbiBhbmQgdGhlIDE5NzAgdG90YWwgcG9wdWxhdGlvbiBhdCB0aGUgZ3JpZCBsZXZlbCBhcyB3ZWxsLiBGaXJzdCwgd2UnbGwgcmVhZCB0aGUgMTk1MCBkYXRhIGluIGFuZCB0aGVuIGludGVycGxhdGUgaXQ6CgpgYGB7ciBlc3RpbWF0ZS0xOTUwfQojIHJlYWQgdGFidWxhciBkYXRhCnBvcDUwIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAicmF3IiwgImhpc3RvcmljLXBvcHVsYXRpb24iLCAiU1RMX0RFTU9HUkFQSElDU19wb3A1MC5jc3YiKSkgJT4lCiAgc2VsZWN0KEdlb19OYW1lLCBTRV9UMDAxXzAwMSkgJT4lCiAgcmVuYW1lKAogICAgVFJBQ1RJRCA9IEdlb19OYW1lLAogICAgcG9wNTAgPSBTRV9UMDAxXzAwMQogICkKCiMgcmVhZCBnZW9tZXRyaWMgZGF0YQp0cmFjdDUwIDwtIHN0X3JlYWQoaGVyZSgiZGF0YSIsICJyYXciLCAiaGlzdG9yaWMtcG9wdWxhdGlvbiIsICJTVExfREVNT0dSQVBISUNTX3RyYWN0czUwIiksCiAgICAgICAgICAgICAgICAgICBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JQogIHN0X3RyYW5zZm9ybShjcnMgPSAyNjkxNSkKCiMgam9pbgpwb3A1MCA8LSBsZWZ0X2pvaW4odHJhY3Q1MCwgcG9wNTAsIGJ5ID0gIlRSQUNUSUQiKQoKIyBpbnRlcnBvbGF0ZQpncmlkc19hd181MCA8LSBhd19pbnRlcnBvbGF0ZShncmlkc19hdywgdGlkID0gZ3JpZF9pZCwgc291cmNlID0gcG9wNTAsIHNpZCA9IFRSQUNUSUQsCiAgICAgICAgICAgICAgICAgd2VpZ2h0ID0gInN1bSIsIG91dHB1dCA9ICJ0aWJibGUiLCBleHRlbnNpdmUgPSAicG9wNTAiKQoKIyByZW1vdmUgcmF3IGRhdGEKcm0ocG9wNTAsIHRyYWN0NTApCmBgYAoKV2UnbGwgdGhlIHJlcGVhdCB0aGUgcHJvY2VzcyB3aXRoIHRoZSAxOTcwIGVyYSBkYXRhOgoKYGBge3IgZXN0aW1hdGUtMTk3MH0KIyByZWFkIHRhYnVsYXIgZGF0YQpwb3A3MCA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgInJhdyIsICJoaXN0b3JpYy1wb3B1bGF0aW9uIiwgIlNUTF9ERU1PR1JBUEhJQ1NfcG9wNzAuY3N2IikpICU+JQogIHNlbGVjdChHZW9fVHJhY3RDb2RlLCBTRV9UMDAxXzAwMSkgJT4lCiAgcmVuYW1lKAogICAgVFJBQ1RJRCA9IEdlb19UcmFjdENvZGUsCiAgICBwb3A3MCA9IFNFX1QwMDFfMDAxCiAgKQoKIyByZWFkIGdlb21ldHJpYyBkYXRhCnRyYWN0NzAgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgInJhdyIsICJoaXN0b3JpYy1wb3B1bGF0aW9uIiwgIlNUTF9ERU1PR1JBUEhJQ1NfdHJhY3RzNzAiKSwKICAgICAgICAgICAgICAgICAgIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lCiAgc3RfdHJhbnNmb3JtKGNycyA9IDI2OTE1KQoKIyBqb2luCnBvcDcwIDwtIGxlZnRfam9pbih0cmFjdDcwLCBwb3A3MCwgYnkgPSAiVFJBQ1RJRCIpCgojIGludGVycG9sYXRlCmdyaWRzX2F3XzcwIDwtIGF3X2ludGVycG9sYXRlKGdyaWRzX2F3LCB0aWQgPSBncmlkX2lkLCBzb3VyY2UgPSBwb3A3MCwgc2lkID0gVFJBQ1RJRCwKICAgICAgICAgICAgICAgICB3ZWlnaHQgPSAic3VtIiwgb3V0cHV0ID0gInRpYmJsZSIsIGV4dGVuc2l2ZSA9ICJwb3A3MCIpCgojIHJlbW92ZSByYXcgZGF0YQpybShwb3A3MCwgdHJhY3Q3MCkKYGBgCgojIyBDb21iaW5lIERhdGEKRmluYWxseSwgd2UnbGwgY29tYmluZSBvdXIgdmFyaW91cyBtZWFzdXJlcyBpbnRvIGEgc2luZ2xlIG9iamVjdDoKCmBgYHtyIGNvbWJpbmV9CiMgam9pbnMKZ3JpZHMgJT4lCiAgbGVmdF9qb2luKC4sIGdyaWRzX2F3XzUwLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbGVmdF9qb2luKC4sIGdyaWRzX2F3XzcwLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbGVmdF9qb2luKC4sIGdyaWRzX2F3XzE3LCBieSA9ICJncmlkX2lkIikgLT4gZ3JpZHMKCiMgY2xlYW4tdXAKcm0oZ3JpZHNfYXdfNTAsIGdyaWRzX2F3XzcwLCBncmlkc19hd18xNywgZ3JpZHNfYXcpCmBgYAoKIyMgV3JpdGUgRGF0YQpXaXRoIG91ciBkYXRhIGNyZWF0ZWQsIHdlIGNhbiB3cml0ZSB0aGUgYW5hbHl0aWNhbCBkYXRhIHNldCB0byB0aGUgYGRhdGEvYW5hbHlzaXNgIGRpcmVjdG9yeToKCmBgYHtyIHdyaXRlfQpzdF93cml0ZShncmlkcywgZHNuID0gaGVyZSgiZGF0YSIsICJhbmFseXNpcyIsICJzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb24iKSwKICAgICAgICAgZGVsZXRlX2RzbiA9IFRSVUUpCmBgYAoKRGF0YSBhcmUgd3JpdHRlbiBpbiBhbiBvcGVuIGZvcm1hdCB0byBpbXByb3ZlIHJlcHJvZHVjaWJpbGl0eS4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBHcmlkcyIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBidWlsZHMgb24gdGhlIGdyaWQtbGV2ZWwgdmFjYW5jeSBlc3RpbWF0ZXMgY3JlYXRlZCBpbiBgMDQtY3JlYXRlRGF0YS12YWNhbmN5LlJtZGAuIFRoZSBjcmltZSBhbmQgZGVtb2dyYXBoaWMgZGF0YSB3aWxsIGJlIGFkZGVkIHRvIGVhY2ggZ3JpZCBzcXVhcmUgdG8gY3JlYXRlIHRoZSBuZWlnaGJvcmhvb2QtbGV2ZWwgYW5hbHlzaXMgZGF0YSBzZXQuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZm9sbG93aW5nIHBhY2thZ2VzOgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoY29tcHN0YXRyKQpsaWJyYXJ5KHN0bGNzYikKCiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShhcmVhbCkKbGlicmFyeShzZikKbGlicmFyeSh0aWdyaXMpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBMb2FkIEJhc2UgRGF0YQpBbGwgb2YgdGhlIGRhdGEgd2lsbCBiZSBpbnRlcnBvbGF0ZWQgaW50byB0aGUgZ3JpZHMgdGhhdCBhbHJlYWR5IGNvbnRhaW4gdmFjYW5jeSBtZXRyaWNzOgoKYGBge3IgbG9hZC1ncmlkc30KIyByZWFkCmdyaWRzIDwtIHN0X3JlYWQoaGVyZSgiZGF0YSIsICJyYXciLCAiZ3JpZHMiKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiUKICByZW5hbWUoKQoKIyByZS1wcm9qZWN0CmdyaWRzIDwtIHN0X3RyYW5zZm9ybShncmlkcywgY3JzID0gMjY5MTUpCmBgYAoKIyMgQWRkIEFyc29uIERhdGEKVGhlIGFyc29uIGRhdGEgaXMgc3RvcmVkIGluIGBhcnNvbi5jc3ZgLiBTaW5jZSB0aGVzZSBhcmUgcG9pbnQgZGF0YSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC1hcnNvbn0KIyBsb2FkCmFyc29uIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAicG9pbnRfYXJzb24uY3N2IikpICU+JQogIGZpbHRlcihjc195ZWFyID49IDIwMTMgJiBjc195ZWFyIDw9IDIwMTcpCgojIHByb2plY3QKYXJzb24gPC0gY3NfcHJvamVjdFhZKGFyc29uLCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3coYXJzb24pCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LWFyc29ufQojIHByb2plY3QKYXJzb24gPC0gc3RfaW50ZXJzZWN0aW9uKGFyc29uLCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KGFyc29uKQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtYXJzb259CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KGFyc29uKSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCmFyc29uICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShhcnNvbiA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKGFyc29uID0gaWZlbHNlKGlzLm5hKGFyc29uKSA9PSBUUlVFLCAwLCBhcnNvbikpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKGFyc29uKQpgYGAKCiMjIFZpb2xlbnQgQ3JpbWVzClRoZSB2aW9sZW50IGNyaW1lIGRhdGEgaXMgc3RvcmVkIGluIGB2aW9sZW50LmNzdmAuIEFzIGJlZm9yZSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC12aW9sZW50fQojIGxvYWQKdmlvbGVudCA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgInBvaW50X3Zpb2xlbnQuY3N2IikpCgojIHByb2plY3QKdmlvbGVudCA8LSBjc19wcm9qZWN0WFkodmlvbGVudCwgdmFyWCA9IHhfY29vcmQsIHZhclkgPSB5X2Nvb3JkLCBjcnMgPSAyNjkxNSkKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KHZpb2xlbnQpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LXZpb2xlbnR9CiMgcHJvamVjdAp2aW9sZW50IDwtIHN0X2ludGVyc2VjdGlvbih2aW9sZW50LCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KHZpb2xlbnQpCmBgYAoKRmluYWxseSwgd2UnbGwgcmVtb3ZlIHRoZSBnZW9tZXRyeSwgc3VtIG91ciBkYXRhIGJ5IGBncmlkX2lkYCwgYW5kIGpvaW4gb3VyIGNvdW50cyB0byB0aGUgYGdyaWRzYCBvYmplY3Q6CgpgYGB7ciBjb3VudC12aW9sZW50fQojIHJlbW92ZSBnZW9tZXRyeQpzdF9nZW9tZXRyeSh2aW9sZW50KSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCnZpb2xlbnQgJT4lCiAgZ3JvdXBfYnkoZ3JpZF9pZCkgJT4lCiAgc3VtbWFyaXplKHZpb2xlbnQgPSBuKCkpICU+JQogIGxlZnRfam9pbihncmlkcywgLiwgYnkgPSAiZ3JpZF9pZCIpICU+JQogIG11dGF0ZSh2aW9sZW50ID0gaWZlbHNlKGlzLm5hKHZpb2xlbnQpID09IFRSVUUsIDAsIHZpb2xlbnQpKSAtPiBncmlkcwoKIyBjbGVhbi11cApybSh2aW9sZW50KQpgYGAKCiMjIFByb3BlcnR5IENyaW1lcwpUaGUgcHJvcGVydHkgY3JpbWUgZGF0YSBpcyBzdG9yZWQgaW4gYHByb3BlcnR5LmNzdmAuIEFzIGJlZm9yZSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC1wcm9wZXJ0eX0KIyBsb2FkCnByb3BlcnR5IDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAicG9pbnRfcHJvcGVydHkuY3N2IikpCgojIHByb2plY3QKcHJvcGVydHkgPC0gY3NfcHJvamVjdFhZKHByb3BlcnR5LCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3cocHJvcGVydHkpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LXByb3BlcnR5fQojIHByb2plY3QKcHJvcGVydHkgPC0gc3RfaW50ZXJzZWN0aW9uKHByb3BlcnR5LCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KHByb3BlcnR5KQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtcHJvcGVydHl9CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KHByb3BlcnR5KSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCnByb3BlcnR5ICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShwcm9wZXJ0eSA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKHByb3BlcnR5ID0gaWZlbHNlKGlzLm5hKHByb3BlcnR5KSA9PSBUUlVFLCAwLCBwcm9wZXJ0eSkpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKHByb3BlcnR5KQpgYGAKCiMjIE90aGVyIENyaW1lcwpUaGUgb3RoZXIgY3JpbWUgZGF0YSBpcyBzdG9yZWQgaW4gYG90aGVyQ3JpbWVzLmNzdmAuIEFzIGJlZm9yZSwgSSdsbCByZWFkIHRoZW0gaW4sIHByb2plY3QgdGhlbSwgYW5kIHRoZW4gdXNlIGEgc3BhdGlhbCBqb2luIHRvIGNyZWF0ZSBjb3VudHMgcGVyIGdyaWQgc3F1YXJlLiBGaXJzdCwgd2UnbGwgbG9hZCB0aGUgZGF0YSBhbmQgcHJvamVjdCB0aGVtOgoKYGBge3IgbG9hZC1vdGhlckNyaW1lc30KIyBsb2FkCm90aGVyQ3JpbWVzIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiY2xlYW4iLCAicG9pbnRfb3RoZXJDcmltZXMuY3N2IikpCgojIHByb2plY3QKb3RoZXJDcmltZXMgPC0gY3NfcHJvamVjdFhZKG90aGVyQ3JpbWVzLCB2YXJYID0geF9jb29yZCwgdmFyWSA9IHlfY29vcmQsIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3cob3RoZXJDcmltZXMpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LW90aGVyQ3JpbWVzfQojIHByb2plY3QKb3RoZXJDcmltZXMgPC0gc3RfaW50ZXJzZWN0aW9uKG90aGVyQ3JpbWVzLCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KG90aGVyQ3JpbWVzKQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtb3RoZXJDcmltZXN9CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KG90aGVyQ3JpbWVzKSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCm90aGVyQ3JpbWVzICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShvdGhlcl9jcmltZSA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKG90aGVyX2NyaW1lID0gaWZlbHNlKGlzLm5hKG90aGVyX2NyaW1lKSA9PSBUUlVFLCAwLCBvdGhlcl9jcmltZSkpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKG90aGVyQ3JpbWVzKQpgYGAKCiMjIERpc29yZGVyClRoZSBjYWxscyBmb3IgZGlzb3JkZXIgZGF0YSBhcmUgc3RvcmVkIGluIGBkaXNvcmRlci5jc3ZgLiBBcyBiZWZvcmUsIEknbGwgcmVhZCB0aGVtIGluLCBwcm9qZWN0IHRoZW0sIGFuZCB0aGVuIHVzZSBhIHNwYXRpYWwgam9pbiB0byBjcmVhdGUgY291bnRzIHBlciBncmlkIHNxdWFyZS4gVGhlIHByb2plY3QgcHJvY2VzcyB2YXJpZXMgc2xpZ2h0bHkgYmVjYXVzZSB0aGVzZSBkYXRhIGFyZSBmcm9tIGEgZGlmZmVyZW50IHNvdXJjZS4gRmlyc3QsIHdlJ2xsIGxvYWQgdGhlIGRhdGEgYW5kIHByb2plY3QgdGhlbToKCmBgYHtyIGxvYWQtZGlzb3JkZXJ9CiMgbG9hZApkaXNvcmRlciA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgInBvaW50X2Rpc29yZGVyLmNzdiIpKQoKIyBwcm9qZWN0CmRpc29yZGVyIDwtIGNzYl9wcm9qZWN0WFkoZGlzb3JkZXIsIHZhclggPSBzcngsIHZhclkgPSBzcnksIGNycyA9IDI2OTE1KQoKIyBwcmludCB2YWxpZCByb3dzCm5yb3coZGlzb3JkZXIpCmBgYAoKTmV4dCwgd2UnbGwgcGVyZm9ybSB0aGUgaW50ZXJzZWN0aW9uOgoKYGBge3IgaW50ZXJzZWN0LWRpc29yZGVyfQojIHByb2plY3QKZGlzb3JkZXIgPC0gc3RfaW50ZXJzZWN0aW9uKGRpc29yZGVyLCBncmlkcykKCiMgcHJpbnQgdmFsaWQgcm93cwpucm93KGRpc29yZGVyKQpgYGAKCkZpbmFsbHksIHdlJ2xsIHJlbW92ZSB0aGUgZ2VvbWV0cnksIHN1bSBvdXIgZGF0YSBieSBgZ3JpZF9pZGAsIGFuZCBqb2luIG91ciBjb3VudHMgdG8gdGhlIGBncmlkc2Agb2JqZWN0OgoKYGBge3IgY291bnQtZGlzb3JkZXJ9CiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KGRpc29yZGVyKSA8LSBOVUxMCgojIHBlcmZvcm0gc3BhdGlhbCBqb2luCmRpc29yZGVyICU+JQogIGdyb3VwX2J5KGdyaWRfaWQpICU+JQogIHN1bW1hcml6ZShkaXNvcmRlciA9IG4oKSkgJT4lCiAgbGVmdF9qb2luKGdyaWRzLCAuLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbXV0YXRlKGRpc29yZGVyID0gaWZlbHNlKGlzLm5hKGRpc29yZGVyKSA9PSBUUlVFLCAwLCBkaXNvcmRlcikpIC0+IGdyaWRzCgojIGNsZWFuLXVwCnJtKGRpc29yZGVyKQpgYGAKCiMjIFZhY2FuY3kKVGhlIHZhY2FuY3kgY291bnRzIGFscmVhZHkgY29ycmVzcG9uZCB0byB0aGUgYGdyaWRzYCBvYmplY3QsIHNvIHRoZXkgb25seSBuZWVkIHRvIGJlIGpvaW5lZDoKCmBgYHtyIGpvaW4tdmFjYW5jeX0KIyBsb2FkCnZhY2FuY3kgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJncmlkc192YWNhbmN5LmNzdiIpKSAlPiUKICBzZWxlY3QoZ3JpZF9pZCwgcHJvcF92YWNhbnQpCgojIGpvaW4KZ3JpZHMgPC0gbGVmdF9qb2luKGdyaWRzLCB2YWNhbmN5LCBieSA9ICJncmlkX2lkIikKCiMgY2xlYW4tdXAKcm0odmFjYW5jeSkKYGBgCgojIyBDb250ZW1wb3JhcnkgRGVtb2dyYXBoaWMgRGF0YQpPdXIgZGVtb2dyYXBoaWMgbWVhc3VyZXMgYXJlIGF0IHRoZSBjZW5zdXMgdHJhY3QgbGV2ZWwsIHdoaWNoIG1lYW5zIHRoZXkgbmVlZCB0byBiZSBpbnRlcnBvbGF0ZWQgaW50byB0aGUgZ3JpZHMuIFRoaXMgcHJvY2VzcyByZXF1aXJlcyB0aGF0IHRoZSBkZW1vZ3JhcGhpYyBkYXRhIGJlIG1lcmdlZCB3aXRoIHRoZSBjb3JyZXNwb25kaW5nIGdlb21ldHJpYyBkYXRhLiBGaXJzdCwgd2UnbGwgZG93bmxvYWQgdGhvc2UgZGF0YToKCmBgYHtyIGRvd25sb2FkLXRyYWN0LWdlb21ldHJ5fQp0cmFjdHMgPC0gdHJhY3RzKHN0YXRlID0gMjksIGNvdW50eSA9IDUxMCwgeWVhciA9IDIwMTcsIGNsYXNzID0gInNmIikgJT4lCiAgc2VsZWN0KEdFT0lEKQpgYGAKCk5leHQsIHdlJ2xsIGxvYWQgdGhlIGRlbW9ncmFwaGljIGRhdGEgYW5kIGpvaW4gdGhlbSB0byB0aGUgdHJhY3QgZ2VvbWV0cnk6CgpgYGB7ciBsb2FkLWFuZC1qb2luLWRlbW9zfQojIGxvYWQKZGVtb3MgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJ0cmFjdF9kZW1vZ3JhcGhpY3MuY3N2IikpICU+JQogIG11dGF0ZShHRU9JRCA9IGFzLmNoYXJhY3RlcihHRU9JRCkpICU+JQogIHNlbGVjdChHRU9JRCwgdG90YWxQb3AsIG1lZGlhbkluYywgcmFjZVRvdGFsLCBibGFjaywgcHZ0eVRvdGFsLCBwdnR5LCAKICAgICAgICAgZW1wbHlUb3RhbCwgdW5lbXBseSwgb3duVG90YWwsIG93bk9jYykgJT4lCiAgcmVuYW1lKAogICAgdG90YWxfcG9wID0gdG90YWxQb3AsCiAgICBtZWRpYW5faW5jID0gbWVkaWFuSW5jCiAgKQoKIyBqb2luCnRyYWN0cyA8LSBsZWZ0X2pvaW4odHJhY3RzLCBkZW1vcywgYnkgPSAiR0VPSUQiKQoKIyB0cmFuc2Zvcm0KdHJhY3RzIDwtIHN0X3RyYW5zZm9ybSh0cmFjdHMsIGNycyA9IDI2OTE1KQoKIyBjbGVhbi11cApybShkZW1vcykKYGBgCgpXaXRoIG91ciB0cmFjdCBkYXRhIHByZXBhcmVkLCB3ZSdsbCBtYWtlIGEgY29weSBvZiB0aGUgZ3JpZHMgZGF0YSB0aGF0IGNvbnRhaW4gb25seSB0aGUgYGdyaWRfaWRgIGNvbHVtbjoKCmBgYHtyIHByZXAtZ3JpZHN9CmdyaWRzX2F3IDwtIGdyaWRzICU+JQogIHNlbGVjdChncmlkX2lkKQpgYGAKCk5vdyB0aGF0IHdlIGhhdmUgdGhlIGdyaWRzIGFuZCB0cmFjdCBkYXRhIHJlYWR5IHRvIGludGVycG9sYXRlLCB3ZSBjYW4gcGVyZm9ybSB0aGUgY2FsY3VsYXRpb25zOgoKYGBge3IgaW50ZXJwb2xhdGV9CmdyaWRzX2F3XzE3IDwtIGF3X2ludGVycG9sYXRlKGdyaWRzX2F3LCB0aWQgPSBncmlkX2lkLCBzb3VyY2UgPSB0cmFjdHMsIHNpZCA9IEdFT0lELAogICAgICAgICAgICAgICAgIHdlaWdodCA9ICJzdW0iLCBvdXRwdXQgPSAidGliYmxlIiwKICAgICAgICAgICAgICAgICBleHRlbnNpdmUgPSBjKCJ0b3RhbF9wb3AiLCAibWVkaWFuX2luYyIsICJyYWNlVG90YWwiLCAiYmxhY2siLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJwdnR5VG90YWwiLCAicHZ0eSIsICJlbXBseVRvdGFsIiwgInVuZW1wbHkiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm93blRvdGFsIiwgIm93bk9jYyIpKQpgYGAKClNpbmNlIHdlIGludGVycG9sYXRlZCBhbGwgc3BhdGlhbGx5IGV4dGVuc2l2ZSBtZWFzdXJlcywgd2UgbmVlZCB0byBjYWxjdWxhdGUgc29tZSByZWxldmFudCBwcm9wb3J0aW9ucyBhbmQgdGhlbiByZW1vdmUgdGhlIG9yaWdpbmFsIGNvdW50IGRhdGE6CgpgYGB7ciBjYWxjdWxhdGUtcHJvcG9ydGlvbnN9CmdyaWRzX2F3XzE3ICU+JQogIG11dGF0ZShibGFja19wcm9wID0gYmxhY2svcmFjZVRvdGFsKSAlPiUKICBtdXRhdGUocHZ0eV9wcm9wID0gcHZ0eS9wdnR5VG90YWwpICU+JQogIG11dGF0ZSh1bmVtcGx5X3Byb3AgPSB1bmVtcGx5L2VtcGx5VG90YWwpICU+JQogIG11dGF0ZShvd25PY2NfcHJvcCA9IG93bk9jYy9vd25Ub3RhbCkgJT4lCiAgc2VsZWN0KC1yYWNlVG90YWwsIC1ibGFjaywgLXB2dHlUb3RhbCwgLXB2dHksIAogICAgICAgICAtZW1wbHlUb3RhbCwgLXVuZW1wbHksIC1vd25Ub3RhbCwgLW93bk9jYykgLT4gZ3JpZHNfYXdfMTcKYGBgCgpGaW5hbGx5LCB3ZSdsbCByZW1vdmUgb3VyIHJhdyBkYXRhOgoKYGBge3IgY2xlYW4tdXB9CnJtKHRyYWN0cykKYGBgCgojIyBIaXN0b3JpYyBEZW1vZ3JhcGhpYyBEYXRhCk5leHQsIHdlJ2xsIGNyZWF0ZSBlc3RpbWF0ZXMgZm9yIGJvdGggdGhlIDE5NTAgdG90YWwgcG9wdWxhdGlvbiBhbmQgdGhlIDE5NzAgdG90YWwgcG9wdWxhdGlvbiBhdCB0aGUgZ3JpZCBsZXZlbCBhcyB3ZWxsLiBGaXJzdCwgd2UnbGwgcmVhZCB0aGUgMTk1MCBkYXRhIGluIGFuZCB0aGVuIGludGVycGxhdGUgaXQ6CgpgYGB7ciBlc3RpbWF0ZS0xOTUwfQojIHJlYWQgdGFidWxhciBkYXRhCnBvcDUwIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAicmF3IiwgImhpc3RvcmljLXBvcHVsYXRpb24iLCAiU1RMX0RFTU9HUkFQSElDU19wb3A1MC5jc3YiKSkgJT4lCiAgc2VsZWN0KEdlb19OYW1lLCBTRV9UMDAxXzAwMSkgJT4lCiAgcmVuYW1lKAogICAgVFJBQ1RJRCA9IEdlb19OYW1lLAogICAgcG9wNTAgPSBTRV9UMDAxXzAwMQogICkKCiMgcmVhZCBnZW9tZXRyaWMgZGF0YQp0cmFjdDUwIDwtIHN0X3JlYWQoaGVyZSgiZGF0YSIsICJyYXciLCAiaGlzdG9yaWMtcG9wdWxhdGlvbiIsICJTVExfREVNT0dSQVBISUNTX3RyYWN0czUwIiksCiAgICAgICAgICAgICAgICAgICBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JQogIHN0X3RyYW5zZm9ybShjcnMgPSAyNjkxNSkKCiMgam9pbgpwb3A1MCA8LSBsZWZ0X2pvaW4odHJhY3Q1MCwgcG9wNTAsIGJ5ID0gIlRSQUNUSUQiKQoKIyBpbnRlcnBvbGF0ZQpncmlkc19hd181MCA8LSBhd19pbnRlcnBvbGF0ZShncmlkc19hdywgdGlkID0gZ3JpZF9pZCwgc291cmNlID0gcG9wNTAsIHNpZCA9IFRSQUNUSUQsCiAgICAgICAgICAgICAgICAgd2VpZ2h0ID0gInN1bSIsIG91dHB1dCA9ICJ0aWJibGUiLCBleHRlbnNpdmUgPSAicG9wNTAiKQoKIyByZW1vdmUgcmF3IGRhdGEKcm0ocG9wNTAsIHRyYWN0NTApCmBgYAoKV2UnbGwgdGhlIHJlcGVhdCB0aGUgcHJvY2VzcyB3aXRoIHRoZSAxOTcwIGVyYSBkYXRhOgoKYGBge3IgZXN0aW1hdGUtMTk3MH0KIyByZWFkIHRhYnVsYXIgZGF0YQpwb3A3MCA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgInJhdyIsICJoaXN0b3JpYy1wb3B1bGF0aW9uIiwgIlNUTF9ERU1PR1JBUEhJQ1NfcG9wNzAuY3N2IikpICU+JQogIHNlbGVjdChHZW9fVHJhY3RDb2RlLCBTRV9UMDAxXzAwMSkgJT4lCiAgcmVuYW1lKAogICAgVFJBQ1RJRCA9IEdlb19UcmFjdENvZGUsCiAgICBwb3A3MCA9IFNFX1QwMDFfMDAxCiAgKQoKIyByZWFkIGdlb21ldHJpYyBkYXRhCnRyYWN0NzAgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgInJhdyIsICJoaXN0b3JpYy1wb3B1bGF0aW9uIiwgIlNUTF9ERU1PR1JBUEhJQ1NfdHJhY3RzNzAiKSwKICAgICAgICAgICAgICAgICAgIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lCiAgc3RfdHJhbnNmb3JtKGNycyA9IDI2OTE1KQoKIyBqb2luCnBvcDcwIDwtIGxlZnRfam9pbih0cmFjdDcwLCBwb3A3MCwgYnkgPSAiVFJBQ1RJRCIpCgojIGludGVycG9sYXRlCmdyaWRzX2F3XzcwIDwtIGF3X2ludGVycG9sYXRlKGdyaWRzX2F3LCB0aWQgPSBncmlkX2lkLCBzb3VyY2UgPSBwb3A3MCwgc2lkID0gVFJBQ1RJRCwKICAgICAgICAgICAgICAgICB3ZWlnaHQgPSAic3VtIiwgb3V0cHV0ID0gInRpYmJsZSIsIGV4dGVuc2l2ZSA9ICJwb3A3MCIpCgojIHJlbW92ZSByYXcgZGF0YQpybShwb3A3MCwgdHJhY3Q3MCkKYGBgCgojIyBDb21iaW5lIERhdGEKRmluYWxseSwgd2UnbGwgY29tYmluZSBvdXIgdmFyaW91cyBtZWFzdXJlcyBpbnRvIGEgc2luZ2xlIG9iamVjdDoKCmBgYHtyIGNvbWJpbmV9CiMgam9pbnMKZ3JpZHMgJT4lCiAgbGVmdF9qb2luKC4sIGdyaWRzX2F3XzUwLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbGVmdF9qb2luKC4sIGdyaWRzX2F3XzcwLCBieSA9ICJncmlkX2lkIikgJT4lCiAgbGVmdF9qb2luKC4sIGdyaWRzX2F3XzE3LCBieSA9ICJncmlkX2lkIikgLT4gZ3JpZHMKCiMgY2xlYW4tdXAKcm0oZ3JpZHNfYXdfNTAsIGdyaWRzX2F3XzcwLCBncmlkc19hd18xNywgZ3JpZHNfYXcpCmBgYAoKIyMgV3JpdGUgRGF0YQpXaXRoIG91ciBkYXRhIGNyZWF0ZWQsIHdlIGNhbiB3cml0ZSB0aGUgYW5hbHl0aWNhbCBkYXRhIHNldCB0byB0aGUgYGRhdGEvYW5hbHlzaXNgIGRpcmVjdG9yeToKCmBgYHtyIHdyaXRlfQpzdF93cml0ZShncmlkcywgZHNuID0gaGVyZSgiZGF0YSIsICJhbmFseXNpcyIsICJzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb24iKSwKICAgICAgICAgZGVsZXRlX2RzbiA9IFRSVUUpCmBgYAoKRGF0YSBhcmUgd3JpdHRlbiBpbiBhbiBvcGVuIGZvcm1hdCB0byBpbXByb3ZlIHJlcHJvZHVjaWJpbGl0eS4K</div>
 
 
 
@@ -2433,29 +2420,6 @@ $(document).ready(function () {
 });
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("05-createData-grids.Rmd");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

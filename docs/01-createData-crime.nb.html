@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Christopher Prener, Ph.D." />
@@ -1485,7 +1484,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
+    if (show)
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -1615,6 +1614,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1712,10 +1712,28 @@ summary {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("01-createData-crime.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 
 
@@ -1746,7 +1764,7 @@ summary {
 
 <h1 class="title toc-ignore">Create Data - Crime</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(December 09, 2019)</h4>
+<h4 class="date">(December 13, 2019)</h4>
 
 </div>
 
@@ -1761,17 +1779,42 @@ summary {
 <p>This notebook requires a number of packages to working with data and wrangling it.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGNvbXBzdGF0cikgICAgICMgYWNjZXNzIGNyaW1lIGRhdGFcblxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpICAgICAgICAgIyBkYXRhIHdyYW5nbGluZ1xubGlicmFyeShyZWFkcikgICAgICAgICAjIHdyaXRlIGNzdiBmaWxlc1xuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpICAgICAgICAgICMgZmlsZSBwYXRoIG1hbmFnZW1lbnRcbmxpYnJhcnkodGVzdHRoYXQpICAgICAgIyB1bml0IHRlc3RpbmdcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KGNvbXBzdGF0cikgICAgICMgYWNjZXNzIGNyaW1lIGRhdGFcbmBgYCJ9 -->
 <pre class="r"><code># tidystl packages
-library(compstatr)     # access crime data
+library(compstatr)     # access crime data</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuIn0= -->
+<pre><code>Registered S3 method overwritten by 'dplyr':
+  method           from
+  print.rowwise_df     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpICAgICAgICAgIyBkYXRhIHdyYW5nbGluZ1xuYGBgIn0= -->
+<pre class="r"><code># tidyverse packages
+library(dplyr)         # data wrangling</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>
+Attaching package: ‘dplyr’
 
-# tidyverse packages
-library(dplyr)         # data wrangling
-library(readr)         # write csv files
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkcikgICAgICAgICAjIHdyaXRlIGNzdiBmaWxlc1xuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpICAgICAgICAgICMgZmlsZSBwYXRoIG1hbmFnZW1lbnRcbmBgYCJ9 -->
+<pre class="r"><code>library(readr)         # write csv files
 
 # other packages
-library(here)          # file path management
-library(testthat)      # unit testing</code></pre>
+library(here)          # file path management</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiaGVyZSgpIHN0YXJ0cyBhdCAvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb25cbiJ9 -->
+<pre><code>here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0ZXN0dGhhdCkgICAgICAjIHVuaXQgdGVzdGluZ1xuYGBgIn0= -->
+<pre class="r"><code>library(testthat)      # unit testing</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYdGVzdHRoYXTigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpkcGx5cuKAmTpcblxuICAgIG1hdGNoZXNcbiJ9 -->
 <pre><code>
@@ -1791,26 +1834,18 @@ The following object is masked from ‘package:dplyr’:
 <p>First, we’ll scrape data from the SLMPD website to create our raw data frames. To accomplish this, we need to create a index object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaSA8LSBjc19jcmVhdGVfaW5kZXgoKVxuYGBgIn0= -->
-<pre class="r"><code>i &lt;- cs_create_index()</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaSA8LSBjc19jcmVhdGVfaW5kZXgoKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r i &lt;- cs_create_index()</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>With our index, we can create raw year-list objects:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YTIwMThfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE4LCBpbmRleCA9IGkpXG5kYXRhMjAxN19yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTcsIGluZGV4ID0gaSlcbmRhdGEyMDE2X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxNiwgaW5kZXggPSBpKVxuZGF0YTIwMTVfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE1LCBpbmRleCA9IGkpXG5kYXRhMjAxNF9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTQsIGluZGV4ID0gaSlcbmRhdGEyMDEzX3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxMywgaW5kZXggPSBpKVxuZGF0YTIwMTJfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDEyLCBpbmRleCA9IGkpXG5kYXRhMjAxMV9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTEsIGluZGV4ID0gaSlcbmRhdGEyMDEwX3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxMCwgaW5kZXggPSBpKVxuZGF0YTIwMDlfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDA5LCBpbmRleCA9IGkpXG5kYXRhMjAwOF9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMDgsIGluZGV4ID0gaSlcbmBgYCJ9 -->
-<pre class="r"><code>data2018_raw &lt;- cs_get_data(year = 2018, index = i)
-data2017_raw &lt;- cs_get_data(year = 2017, index = i)
-data2016_raw &lt;- cs_get_data(year = 2016, index = i)
-data2015_raw &lt;- cs_get_data(year = 2015, index = i)
-data2014_raw &lt;- cs_get_data(year = 2014, index = i)
-data2013_raw &lt;- cs_get_data(year = 2013, index = i)
-data2012_raw &lt;- cs_get_data(year = 2012, index = i)
-data2011_raw &lt;- cs_get_data(year = 2011, index = i)
-data2010_raw &lt;- cs_get_data(year = 2010, index = i)
-data2009_raw &lt;- cs_get_data(year = 2009, index = i)
-data2008_raw &lt;- cs_get_data(year = 2008, index = i)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YTIwMThfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE4LCBpbmRleCA9IGkpXG5kYXRhMjAxN19yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTcsIGluZGV4ID0gaSlcbmRhdGEyMDE2X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxNiwgaW5kZXggPSBpKVxuZGF0YTIwMTVfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE1LCBpbmRleCA9IGkpXG5kYXRhMjAxNF9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTQsIGluZGV4ID0gaSlcbmRhdGEyMDEzX3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxMywgaW5kZXggPSBpKVxuZGF0YTIwMTJfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDEyLCBpbmRleCA9IGkpXG5kYXRhMjAxMV9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTEsIGluZGV4ID0gaSlcbmRhdGEyMDEwX3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxMCwgaW5kZXggPSBpKVxuZGF0YTIwMDlfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDA5LCBpbmRleCA9IGkpXG5kYXRhMjAwOF9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMDgsIGluZGV4ID0gaSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r data2018_raw &lt;- cs_get_data(year = 2018, index = i) data2017_raw &lt;- cs_get_data(year = 2017, index = i) data2016_raw &lt;- cs_get_data(year = 2016, index = i) data2015_raw &lt;- cs_get_data(year = 2015, index = i) data2014_raw &lt;- cs_get_data(year = 2014, index = i) data2013_raw &lt;- cs_get_data(year = 2013, index = i) data2012_raw &lt;- cs_get_data(year = 2012, index = i) data2011_raw &lt;- cs_get_data(year = 2011, index = i) data2010_raw &lt;- cs_get_data(year = 2010, index = i) data2009_raw &lt;- cs_get_data(year = 2009, index = i) data2008_raw &lt;- cs_get_data(year = 2008, index = i)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1820,41 +1855,44 @@ data2008_raw &lt;- cs_get_data(year = 2008, index = i)</code></pre>
 <p>We validate the data to make sure it can be collapsed using <code>cs_validate()</code>:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE4X3JhdywgeWVhciA9IFwiMjAxOFwiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>expect_equal(cs_validate(data2018_raw, year = &quot;2018&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE4X3JhdywgeWVhciA9IFxcMjAxOFxcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r expect_equal(cs_validate(data2018_raw, year = \2018), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since the validation result is a value of <code>TRUE</code>, we can proceed to collapsing the year-list object into a single tibble with <code>cs_collapse()</code> and then stripping out crimes reported in 2018 for earlier years using <code>cs_combine()</code>. We also strip out unfounded crimes that remain using <code>cs_filter_count()</code>:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE4X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxOF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTgsIGRhdGEyMDE4X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMThcbmBgYCJ9 -->
-<pre class="r"><code># collapse into single object
-data2018_raw &lt;- cs_collapse(data2018_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2018, data2018_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2018</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE4X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxOF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTgsIGRhdGEyMDE4X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMThcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # collapse into single object data2018_raw &lt;- cs_collapse(data2018_raw)</p>
+</div>
+</div>
+<div id="combine-and-filter" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2018, data2018_raw) %&gt;% cs_filter_count(var = count) -&gt; data2018</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The <code>data2018</code> object now contains only crimes reported in 2018.</p>
-</div>
 <div id="section-1" class="section level3">
 <h3>2017</h3>
 <p>We’ll repeat the validation process with the 2017 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9IFwiMjAxN1wiKSwgRkFMU0UpXG5gYGAifQ== -->
-<pre class="r"><code>expect_equal(cs_validate(data2017_raw, year = &quot;2017&quot;), FALSE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9IFxcMjAxN1xcKSwgRkFMU0UpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r expect_equal(cs_validate(data2017_raw, year = \2017), FALSE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTdfcmF3LCB5ZWFyID0gXCIyMDE3XCIsIHZlcmJvc2UgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>cs_validate(data2017_raw, year = &quot;2017&quot;, verbose = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTdfcmF3LCB5ZWFyID0gXFwyMDE3XFwsIHZlcmJvc2UgPSBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r cs_validate(data2017_raw, year = \2017, verbose = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6OCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOVZUdlc3Q01CQTJKQVluZ2dxcFE1K0NTRldIZGtWRkRFaTBVdjlFUnllNE5KS3hrZVBRZHV1cjloMDZrNTZERFNGTEJlclM0ZVQ3UHQrZnozZDN3K2xGT0EwUlFoN3lXZzNrWVZBUmZud1k5YThROHBzQUdzaEhnVG5md2VnVUZBTFNBK25ZaS9hWWlweXFEd3ZKaU1XcWd2R0VxdVRWZ2NGU3Bkd0NiMEtka1QvT0JkdnAzUEd0UVQ3UE0yMVJjTStXbWkxaXBsenEyMFRMSFNRM2NsVzlKa09XYlBCL3JEZ3NLellmY0poME4zN3RyOFBrNkh4LzdZZU84ZnY4MVc5dm1ISENhWmJac1hCa09LT2FSaStLTGxqTlBGRHlMUkxBWjdhL1RaT3ZLSXJ2ZWx4bjFDc1h4Y1kxNUd3aWhYWkRGU1p5dHMrUUZlVlZISlFXejR4dUJ3Y01LcEJJd1dyKzZscm1RbGZNbjZneXBheHJOYmJsVXFkU3dGWFRyRE91ZGFHaGFzUVpoRXFoTmF4dituTisyVjh4RmN1TTJhOXdYOWExZXFlaWswMXF2N0Foc1ZzU0p1YnBkbjB3cHpGekszWUNyUzZiR01IZWJaOFRBcHRGV21yS2R5M2tqaW5maU5ZL0ZPTktzczBFQUFBPSJ9 -->
 <div data-pagedtable="false">
@@ -1868,119 +1906,126 @@ cs_combine(type = &quot;year&quot;, date = 2018, data2018_raw) %&gt;%
 <p>The data for May 2017 do not pass the validation checks. We can extract this month and confirm that there are too many columns in the May 2017 release. Once we have that confirmed, we can standardize that month and re-run our validation.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBleHRyYWN0IGRhdGEgYW5kIHVuaXQgdGVzdCBjb2x1bW4gbnVtYmVyc1xuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxN19yYXcsIG1vbnRoID0gXCJNYXlcIikpLCAyNilcblxuIyBzdGFuZGFyZGl6ZSBtb250aHNcbmRhdGEyMDE3X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxN19yYXcsIG1vbnRoID0gXCJNYXlcIiwgY29uZmlnID0gMjYpXG5cbiMgdmFsaWRhdGUgZGF0YVxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9IFwiMjAxN1wiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code># extract data and unit test column numbers
-expect_equal(ncol(cs_extract_month(data2017_raw, month = &quot;May&quot;)), 26)
-
-# standardize months
-data2017_raw &lt;- cs_standardize(data2017_raw, month = &quot;May&quot;, config = 26)
-
-# validate data
-expect_equal(cs_validate(data2017_raw, year = &quot;2017&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBleHRyYWN0IGRhdGEgYW5kIHVuaXQgdGVzdCBjb2x1bW4gbnVtYmVyc1xuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxN19yYXcsIG1vbnRoID0gXFxNYXlcXCkpLCAyNilcblxuIyBzdGFuZGFyZGl6ZSBtb250aHNcbmRhdGEyMDE3X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxN19yYXcsIG1vbnRoID0gXFxNYXlcXCwgY29uZmlnID0gMjYpXG5cbiMgdmFsaWRhdGUgZGF0YVxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9IFxcMjAxN1xcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # extract data and unit test column numbers expect_equal(ncol(cs_extract_month(data2017_raw, month = )), 26)</p>
+</div>
+</div>
+<div id="standardize-months" class="section level1">
+<h1>standardize months</h1>
+<p>data2017_raw &lt;- cs_standardize(data2017_raw, month = , config = 26)</p>
+</div>
+<div id="validate-data" class="section level1">
+<h1>validate data</h1>
+<p>expect_equal(cs_validate(data2017_raw, year = \2017), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We now get a <code>TRUE</code> value for <code>cs_validate()</code> and can move on to collapsing the 2017 and 2018 raw data objects to create a new object, <code>data2017</code>, that contains all known 2017 crimes including those that were reported or upgraded in 2018.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE3X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxN19yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTcsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxN1xuYGBgIn0= -->
-<pre class="r"><code># collapse into single object
-data2017_raw &lt;- cs_collapse(data2017_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2017, data2018_raw, data2017_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2017</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE3X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxN19yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTcsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxN1xuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # collapse into single object data2017_raw &lt;- cs_collapse(data2017_raw)</p>
+</div>
+<div id="combine-and-filter-1" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2017, data2018_raw, data2017_raw) %&gt;% cs_filter_count(var = count) -&gt; data2017</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-2" class="section level3">
 <h3>2016</h3>
 <p>We’ll repeat the validation process with the 2016 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE2X3JhdywgeWVhciA9IFwiMjAxNlwiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>expect_equal(cs_validate(data2016_raw, year = &quot;2016&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE2X3JhdywgeWVhciA9IFxcMjAxNlxcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r expect_equal(cs_validate(data2016_raw, year = \2016), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since the validation process passes, we can immediately move on to creating our 2016 data object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE2X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNl9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTYsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDE2XG5gYGAifQ== -->
-<pre class="r"><code># collapse into single object
-data2016_raw &lt;- cs_collapse(data2016_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2016, data2018_raw, data2017_raw, data2016_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2016</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE2X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNl9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTYsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDE2XG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # collapse into single object data2016_raw &lt;- cs_collapse(data2016_raw)</p>
+</div>
+</div>
+<div id="combine-and-filter-2" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2016, data2018_raw, data2017_raw, data2016_raw) %&gt;% cs_filter_count(var = count) -&gt; data2016</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-3" class="section level3">
 <h3>2015</h3>
 <p>We’ll repeat the validation process with the 2015 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE1X3JhdywgeWVhciA9IFwiMjAxNVwiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>expect_equal(cs_validate(data2015_raw, year = &quot;2015&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE1X3JhdywgeWVhciA9IFxcMjAxNVxcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r expect_equal(cs_validate(data2015_raw, year = \2015), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since the validation process passes, we can immediately move on to creating our 2015 data object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE1X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTUsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTVcbmBgYCJ9 -->
-<pre class="r"><code># collapse into single object
-data2015_raw &lt;- cs_collapse(data2015_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2015, data2018_raw, data2017_raw, data2016_raw, data2015_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2015</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE1X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTUsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTVcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # collapse into single object data2015_raw &lt;- cs_collapse(data2015_raw)</p>
+</div>
+</div>
+<div id="combine-and-filter-3" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2015, data2018_raw, data2017_raw, data2016_raw, data2015_raw) %&gt;% cs_filter_count(var = count) -&gt; data2015</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-4" class="section level3">
 <h3>2014</h3>
 <p>We’ll repeat the validation process with the 2014 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE0X3JhdywgeWVhciA9IFwiMjAxNFwiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>expect_equal(cs_validate(data2014_raw, year = &quot;2014&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE0X3JhdywgeWVhciA9IFxcMjAxNFxcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r expect_equal(cs_validate(data2014_raw, year = \2014), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since the validation process passes, we can immediately move on to creating our 2015 data object:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE0X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTQsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxNFxuYGBgIn0= -->
-<pre class="r"><code># collapse into single object
-data2014_raw &lt;- cs_collapse(data2014_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2014, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2014</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDE0X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxNF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTQsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxNFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # collapse into single object data2014_raw &lt;- cs_collapse(data2014_raw)</p>
+</div>
+</div>
+<div id="combine-and-filter-4" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2014, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw) %&gt;% cs_filter_count(var = count) -&gt; data2014</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-5" class="section level3">
 <h3>2013</h3>
 <p>We’ll repeat the validation process with the 2013 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEzX3JhdywgeWVhciA9IFwiMjAxM1wiKSwgRkFMU0UpXG5gYGAifQ== -->
-<pre class="r"><code>expect_equal(cs_validate(data2013_raw, year = &quot;2013&quot;), FALSE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEzX3JhdywgeWVhciA9IFxcMjAxM1xcKSwgRkFMU0UpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r expect_equal(cs_validate(data2013_raw, year = \2013), FALSE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gXCIyMDEzXCIsIHZlcmJvc2UgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>cs_validate(data2013_raw, year = &quot;2013&quot;, verbose = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gXFwyMDEzXFwsIHZlcmJvc2UgPSBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r cs_validate(data2013_raw, year = \2013, verbose = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6OCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOVZUdlU3RE1CQjJtcVIxb2hZaE1mQVVqWVM2c0ZaVUhTb1ZKUDVVUmljMUpaSnJWNDVUWU9ORmVRdG13am0xMjlTd0ZDWWlYWExmZDMvTytlNTZOQnZFc3hnaDVDTy83U0UvQkJXRmQ3ZmovamxDUVF1QWh3SVU2ZThMT0oyQWdrR09RYnJHMEprUVhoTDVhaUFlMDFRMmNEZ2xNbnV5WUxpU09UUEFueExyRkV4S1RuYzZzM3g3V0M3S1Foa1UzZENWb3N1VVNsdjZLbE5pQi9HbFdEZk5lRVN6RGY2UEo0N3JFK3NMT0V4Nm03ak8rMkh5NjNwL2pmdnA4Uno5Vzl3YnZGelI5cWErTDN2REhHYU1GSVVaQzB2R2M2Skk4aWpKa2pydWtSVFBDUWUrTVAxdDZScFZWWDI0ZWEyVHpvdHRYazNPcDRJck8xUnhKdWI3REY0VDFzUlI3ZkZBeVhad3dLRUJzZURVaVpjWG91U3E0WDVQcEQ3S3AzUEdqbGlwWEhBd3RmUTZoMDRYUE9rUXA1QXFoOWJRdnU3UDJhQy9waklWQlRWWFlhK3FaL1J1UThlYjBrRmxVb1oyU1NoZjVOdjFDUmxKcVYyeEkyaDEzY1FFOW03N096R3dSYUtFSW16WFFtYVoraC9SNXhlTHFrRk56UVFBQUE9PSJ9 -->
 <div data-pagedtable="false">
@@ -1994,76 +2039,74 @@ cs_combine(type = &quot;year&quot;, date = 2014, data2018_raw, data2017_raw, dat
 <p>The data for January through May, July, and August do not pass the validation checks. We can extract these and confirm that there are not enough columns in each of these releases Once we have that confirmed, we can standardize that month and re-run our validation.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gXCJKYW51YXJ5XCIpKSwgMTgpXG5kYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9IFwiSmFudWFyeVwiLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFwiRmVicnVhcnlcIikpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXCJGZWJydWFyeVwiLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFwiTWFyY2hcIikpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXCJNYXJjaFwiLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFwiQXByaWxcIikpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXCJBcHJpbFwiLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSBcIk1heVwiKSksIDE4KVxuZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSBcIk1heVwiLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gXCJKdWx5XCIpKSwgMTgpXG5kYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9IFwiSnVseVwiLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSBcIkF1Z3VzdFwiKSksIDE4KVxuZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSBcIkF1Z3VzdFwiLCBjb25maWcgPSAxOClcbiMgcmVtb3ZlIG9iamVjdFxucm0obW9udGgxMylcbmBgYCJ9 -->
-<pre class="r"><code># January - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;January&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;January&quot;, config = 18)
-
-# February - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;February&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;February&quot;, config = 18)
-
-# March - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;March&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;March&quot;, config = 18)
-
-# April - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;April&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;April&quot;, config = 18)
-
-# May - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;May&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;May&quot;, config = 18)
-
-# July - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;July&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;July&quot;, config = 18)
-
-# August - extract data, unit test, and standardize
-expect_equal(ncol(cs_extract_month(data2013_raw, month = &quot;August&quot;)), 18)
-data2013_raw &lt;- cs_standardize(data2013_raw, month = &quot;August&quot;, config = 18)
-# remove object
-rm(month13)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxKYW51YXJ5XFwpKSwgMTgpXG5kYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcRmVicnVhcnlcXCkpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxGZWJydWFyeVxcLCBjb25maWcgPSAxOClcblxuIyBNYXJjaCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcTWFyY2hcXCkpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxNYXJjaFxcLCBjb25maWcgPSAxOClcblxuIyBBcHJpbCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemVcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcQXByaWxcXCkpLCAxOClcbmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxBcHJpbFxcLCBjb25maWcgPSAxOClcblxuIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXE1heVxcKSksIDE4KVxuZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXE1heVxcLCBjb25maWcgPSAxOClcblxuIyBKdWx5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZVxuZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gXFxKdWx5XFwpKSwgMTgpXG5kYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9IFxcSnVseVxcLCBjb25maWcgPSAxOClcblxuIyBBdWd1c3QgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplXG5leHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcKSksIDE4KVxuZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSBcXEF1Z3VzdFxcLCBjb25maWcgPSAxOClcbiMgcmVtb3ZlIG9iamVjdFxucm0obW9udGgxMylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # January - extract data, unit test, and standardize expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
+</div>
+</div>
+<div id="february---extract-data-unit-test-and-standardize" class="section level1">
+<h1>February - extract data, unit test, and standardize</h1>
+<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
+</div>
+<div id="march---extract-data-unit-test-and-standardize" class="section level1">
+<h1>March - extract data, unit test, and standardize</h1>
+<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
+</div>
+<div id="april---extract-data-unit-test-and-standardize" class="section level1">
+<h1>April - extract data, unit test, and standardize</h1>
+<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
+</div>
+<div id="may---extract-data-unit-test-and-standardize" class="section level1">
+<h1>May - extract data, unit test, and standardize</h1>
+<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
+</div>
+<div id="july---extract-data-unit-test-and-standardize" class="section level1">
+<h1>July - extract data, unit test, and standardize</h1>
+<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18)</p>
+</div>
+<div id="august---extract-data-unit-test-and-standardize" class="section level1">
+<h1>August - extract data, unit test, and standardize</h1>
+<p>expect_equal(ncol(cs_extract_month(data2013_raw, month = )), 18) data2013_raw &lt;- cs_standardize(data2013_raw, month = , config = 18) # remove object rm(month13)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoib2JqZWN0ICdtb250aDEzJyBub3QgZm91bmRcbiJ9 -->
-<pre><code>object &#39;month13&#39; not found</code></pre>
+<pre><code>object 'month13' not found</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB2YWxpZGF0ZSBkYXRhXG5leHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gXCIyMDEzXCIpLCBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code># validate data
-expect_equal(cs_validate(data2013_raw, year = &quot;2013&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB2YWxpZGF0ZSBkYXRhXG5leHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gXFwyMDEzXFwpLCBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # validate data expect_equal(cs_validate(data2013_raw, year = \2013), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We now get a <code>TRUE</code> value for <code>cs_validate()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2013</code>, that contains all known 2013 crimes including those that were reported or upgraded in subsequent years:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEzX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxM19yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTMsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxM1xuYGBgIn0= -->
-<pre class="r"><code># collapse into single object
-data2013_raw &lt;- cs_collapse(data2013_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2013, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
-           data2013_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2013</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEzX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxM19yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTMsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxM1xuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # collapse into single object data2013_raw &lt;- cs_collapse(data2013_raw)</p>
+</div>
+<div id="combine-and-filter-5" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2013, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw) %&gt;% cs_filter_count(var = count) -&gt; data2013</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-6" class="section level3">
 <h3>2012</h3>
 <p>We’ll repeat the validation process with the 2012 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEyX3JhdywgeWVhciA9IFwiMjAxMlwiKSwgRkFMU0UpXG5gYGAifQ== -->
-<pre class="r"><code>expect_equal(cs_validate(data2012_raw, year = &quot;2012&quot;), FALSE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEyX3JhdywgeWVhciA9IFxcMjAxMlxcKSwgRkFMU0UpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r expect_equal(cs_validate(data2012_raw, year = \2012), FALSE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTJfcmF3LCB5ZWFyID0gXCIyMDEyXCIsIHZlcmJvc2UgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>cs_validate(data2012_raw, year = &quot;2012&quot;, verbose = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTJfcmF3LCB5ZWFyID0gXFwyMDEyXFwsIHZlcmJvc2UgPSBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r cs_validate(data2012_raw, year = \2012, verbose = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6OCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOVZUelU3RE1BeE8xM1pOcXcwaGNlQXBWZ200Y0oyWWRwZzBrUGpUT0taZEdKVzZaRXJUQVRjZWxNZmd2T0sweVZaeUs1eW81TWJmRjl0eEhQdDJzcmlJRmhGQ3lFVnUzMEd1RHlyeUgrNm5vMHVFdkI0QUIza29WT3NiR0oyQWdrR09RUVo2STVnUlZoTHhyaUdlMGtTMHNEOG5JbjB4WUx3UldhNkJPeWZHeUp1VmpCNzAzUEQ5Y2JrcUM2bFJlRWMza3E0VEtzelJONm5rQjRpditiYTlqU2MwYmZCL3pEaXFNMVlQMEUyR2pWL3cyVTErZmQ1Zi9icCt0ZDhIL0xxSTFjeCttcE9pUUUxYkdESmFFa25pWjBIVzFESVBCWCtOR2ZDRnJtOVB4YXlxNnN1T2E0eFVYR3ppS25JNTUweWFwb3BTdnZ6SjRDM0oyemlzTFo0bzJUY09HTFFnNW94YS91S0tsMHkyekIrSlVLbnNyQndEdnBFWlo3RFZVK1BzVzFWd2hFV2NRcWdNU2tOSHFqNW41Nk10RlFrdnFINEtSei9MVU91RGxvNmJvNzFLaC9UTmtGQzJ5dmJqNCtja29XYkVqcURVZFJGam1MdjlkU0pnaTFoeVNmSkRDWFBEMUhkRXUyOS82c1owelFRQUFBPT0ifQ== -->
 <div data-pagedtable="false">
@@ -2077,48 +2120,51 @@ cs_combine(type = &quot;year&quot;, date = 2013, data2018_raw, data2017_raw, dat
 <p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFwiSmFudWFyeVwiKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplXG5kYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9IFwiYWxsXCIsIGNvbmZpZyA9IDE4KVxuXG4jIHZhbGlkYXRlIGRhdGFcbmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxMl9yYXcsIHllYXIgPSBcIjIwMTJcIiksIFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code># January - extract data, unit test
-expect_equal(ncol(cs_extract_month(data2012_raw, month = &quot;January&quot;)), 18)
-
-# standardize
-data2012_raw &lt;- cs_standardize(data2012_raw, month = &quot;all&quot;, config = 18)
-
-# validate data
-expect_equal(cs_validate(data2012_raw, year = &quot;2012&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplXG5kYXRhMjAxMl9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTJfcmF3LCBtb250aCA9IFxcYWxsXFwsIGNvbmZpZyA9IDE4KVxuXG4jIHZhbGlkYXRlIGRhdGFcbmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxMl9yYXcsIHllYXIgPSBcXDIwMTJcXCksIFRSVUUpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # January - extract data, unit test expect_equal(ncol(cs_extract_month(data2012_raw, month = )), 18)</p>
+</div>
+</div>
+<div id="standardize" class="section level1">
+<h1>standardize</h1>
+<p>data2012_raw &lt;- cs_standardize(data2012_raw, month = , config = 18)</p>
+</div>
+<div id="validate-data-1" class="section level1">
+<h1>validate data</h1>
+<p>expect_equal(cs_validate(data2012_raw, year = \2012), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We now get a <code>TRUE</code> value for <code>cs_validate()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2012</code>, that contains all known 2012 crimes including those that were reported or upgraded in subsequent years:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEyX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMl9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTIsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDEyXG5gYGAifQ== -->
-<pre class="r"><code># collapse into single object
-data2012_raw &lt;- cs_collapse(data2012_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2012, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
-           data2013_raw, data2012_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2012</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEyX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMl9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTIsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDEyXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # collapse into single object data2012_raw &lt;- cs_collapse(data2012_raw)</p>
+</div>
+<div id="combine-and-filter-6" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2012, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw) %&gt;% cs_filter_count(var = count) -&gt; data2012</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-7" class="section level3">
 <h3>2011</h3>
 <p>We’ll repeat the validation process with the 2011 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDExX3JhdywgeWVhciA9IFwiMjAxMVwiKSwgRkFMU0UpXG5gYGAifQ== -->
-<pre class="r"><code>expect_equal(cs_validate(data2011_raw, year = &quot;2011&quot;), FALSE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDExX3JhdywgeWVhciA9IFxcMjAxMVxcKSwgRkFMU0UpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r expect_equal(cs_validate(data2011_raw, year = \2011), FALSE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTFfcmF3LCB5ZWFyID0gXCIyMDExXCIsIHZlcmJvc2UgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>cs_validate(data2011_raw, year = &quot;2011&quot;, verbose = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTFfcmF3LCB5ZWFyID0gXFwyMDExXFwsIHZlcmJvc2UgPSBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r cs_validate(data2011_raw, year = \2011, verbose = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6OCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOVZUelU3RE1BeE8xMlpOcXcwaGNlQXBWbW5pd25WaTJtSFNRT0pQNDVoMllWVHFraWxOQjl4NFQxNkQ4NHJUSmx2cHJYQ2lraHQvWDJ6SGNlemI2ZklpWElZSUlSZTVmUWU1R0ZTRUgrNW5vMHVFdkI0QUIza28wT3NiR0oyQlFrQk9RUVptdzU5VFhsRDViaUNac1ZnMk1GNVFtYnhZTU5uS05EUEFYVkJyNU0wTHpvNTZadm4rcEZnWHVUSW91R05ieFRZeGsvYm9tMFNKSXlUWFl0ZmNKbE9XMVBnL1poeFdHZXNINkNiRDJzLy83Q2EvUHUrdmZsMi95dThEZmwyazFjdzR5V2llbzdvdExCbXVxS0xSczZRYjFqSVBwSGlOT1BDNXFXOVB4eXpMOHFzZDF4cnB1TVRHMWVScUliaXlUUlVtWXZXVElUdWFOWEZRV1R3eGVtZ2NNR2hBSWpocitjc3JVWERWTUgra1VxZXliK1hvaTYxS0JZZXRuaDVuM0txQ0kxdkVPWVJLb1RSc3BPc3pIbzkyVE1ZaVorWXBIUE1zUTZNUEdqcXBqL1pLRXhMYklXRjhuUjdHQjJjMFpuYkVUcURVVlJFam1MdkRkVUpnODBnSlJiTmpDVFBMVkhkRSsyK1hFU1g2elFRQUFBPT0ifQ== -->
 <div data-pagedtable="false">
@@ -2132,48 +2178,51 @@ cs_combine(type = &quot;year&quot;, date = 2012, data2018_raw, data2017_raw, dat
 <p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFwiSmFudWFyeVwiKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplXG5kYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9IFwiYWxsXCIsIGNvbmZpZyA9IDE4KVxuXG4jIHZhbGlkYXRlIGRhdGFcbmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxMV9yYXcsIHllYXIgPSBcIjIwMTFcIiksIFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code># January - extract data, unit test
-expect_equal(ncol(cs_extract_month(data2011_raw, month = &quot;January&quot;)), 18)
-
-# standardize
-data2011_raw &lt;- cs_standardize(data2011_raw, month = &quot;all&quot;, config = 18)
-
-# validate data
-expect_equal(cs_validate(data2011_raw, year = &quot;2011&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplXG5kYXRhMjAxMV9yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTFfcmF3LCBtb250aCA9IFxcYWxsXFwsIGNvbmZpZyA9IDE4KVxuXG4jIHZhbGlkYXRlIGRhdGFcbmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxMV9yYXcsIHllYXIgPSBcXDIwMTFcXCksIFRSVUUpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # January - extract data, unit test expect_equal(ncol(cs_extract_month(data2011_raw, month = )), 18)</p>
+</div>
+</div>
+<div id="standardize-1" class="section level1">
+<h1>standardize</h1>
+<p>data2011_raw &lt;- cs_standardize(data2011_raw, month = , config = 18)</p>
+</div>
+<div id="validate-data-2" class="section level1">
+<h1>validate data</h1>
+<p>expect_equal(cs_validate(data2011_raw, year = \2011), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We now get a <code>TRUE</code> value for <code>cs_validate()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2011</code>, that contains all known 2011 crimes including those that were reported or upgraded in subsequent years:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDExX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTEsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTFcbmBgYCJ9 -->
-<pre class="r"><code># collapse into single object
-data2011_raw &lt;- cs_collapse(data2011_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2011, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
-           data2013_raw, data2012_raw, data2011_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2011</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDExX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTEsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdykgJT4lXG4gIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTFcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # collapse into single object data2011_raw &lt;- cs_collapse(data2011_raw)</p>
+</div>
+<div id="combine-and-filter-7" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2011, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw) %&gt;% cs_filter_count(var = count) -&gt; data2011</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-8" class="section level3">
 <h3>2010</h3>
 <p>We’ll repeat the validation process with the 2010 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEwX3JhdywgeWVhciA9IFwiMjAxMFwiKSwgRkFMU0UpXG5gYGAifQ== -->
-<pre class="r"><code>expect_equal(cs_validate(data2010_raw, year = &quot;2010&quot;), FALSE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEwX3JhdywgeWVhciA9IFxcMjAxMFxcKSwgRkFMU0UpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r expect_equal(cs_validate(data2010_raw, year = \2010), FALSE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTBfcmF3LCB5ZWFyID0gXCIyMDEwXCIsIHZlcmJvc2UgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>cs_validate(data2010_raw, year = &quot;2010&quot;, verbose = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMTBfcmF3LCB5ZWFyID0gXFwyMDEwXFwsIHZlcmJvc2UgPSBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r cs_validate(data2010_raw, year = \2010, verbose = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6OCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOVZUelU3RE1BeE8xM1pOcXcwaGNlQXBWb0c0Y0oyWWRwZzBrUGpUT0taZEdKVzZaRXJUQVRlZWsrZmd2T0sweVZaeUs1eW81TWJmRjl0eEhQdDJzcmlJRmhGQ3lFVnUzMEd1RHlyeUgrNm5vMHVFdkI0QUIza29WT3NiR0oyQWdrR09RUVo2STVnUlZoTHhyaUdlMGtTMHNEOG5JbjB4WUx3UldhNkJPeWZHeUp1VmpCNzAzUEQ5Y2JrcUM2bFJlRWMza3E0VEtzelJONm5rQjRpditiYTlqU2MwYmZCL3pEaXFNMVlQMEUyR2pWL3cyVTErZmQ1Zi9icCt0ZDhIL0xxSTFjeCttcE9pUUUxYkdESmFFa25pWjBIVzFESVBCWCtOR2ZDRnJtOVB4YXlxNnN1T2E0eFVYR3ppS25JNTUweWFwb3BTdnZ6SjRDM0oyemlzTFo0bzJUY09HTFFnNW94YS91S0tsMHkyekIrSlVLbnNyQndEdnBFWlo3RFZVK1BzVzFWd2hFV2NRcWdNU2tOSHFqN25aNk10RlFrdnFINEtSei9MVU91RGxvNmJvNzFLaC9UTmtGQzJ5dmJqNCtja29XYkVqcURVZFJGam1MdjlkU0pnaTFoeVNmSkRDWFBEMUhkRXUyL3l1OXdPelFRQUFBPT0ifQ== -->
 <div data-pagedtable="false">
@@ -2187,48 +2236,51 @@ cs_combine(type = &quot;year&quot;, date = 2011, data2018_raw, data2017_raw, dat
 <p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFwiSmFudWFyeVwiKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplIGFsbCBtb250aHNcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXCJhbGxcIiwgY29uZmlnID0gMTgpXG5cbiMgdmFsaWRhdGUgZGF0YVxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEwX3JhdywgeWVhciA9IFwiMjAxMFwiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code># January - extract data, unit test
-expect_equal(ncol(cs_extract_month(data2010_raw, month = &quot;January&quot;)), 18)
-
-# standardize all months
-data2010_raw &lt;- cs_standardize(data2010_raw, month = &quot;all&quot;, config = 18)
-
-# validate data
-expect_equal(cs_validate(data2010_raw, year = &quot;2010&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTBfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplIGFsbCBtb250aHNcbmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gXFxhbGxcXCwgY29uZmlnID0gMTgpXG5cbiMgdmFsaWRhdGUgZGF0YVxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEwX3JhdywgeWVhciA9IFxcMjAxMFxcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # January - extract data, unit test expect_equal(ncol(cs_extract_month(data2010_raw, month = )), 18)</p>
+</div>
+</div>
+<div id="standardize-all-months" class="section level1">
+<h1>standardize all months</h1>
+<p>data2010_raw &lt;- cs_standardize(data2010_raw, month = , config = 18)</p>
+</div>
+<div id="validate-data-3" class="section level1">
+<h1>validate data</h1>
+<p>expect_equal(cs_validate(data2010_raw, year = \2010), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We now get a <code>TRUE</code> value for <code>cs_validate()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2010</code>, that contains all known 2010 crimes including those that were reported or upgraded in subsequent years:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEwX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMTAsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxMFxuYGBgIn0= -->
-<pre class="r"><code># collapse into single object
-data2010_raw &lt;- cs_collapse(data2010_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2010, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
-           data2013_raw, data2012_raw, data2011_raw, data2010_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2010</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDEwX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMF9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMTAsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3KSAlPiVcbiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxMFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # collapse into single object data2010_raw &lt;- cs_collapse(data2010_raw)</p>
+</div>
+<div id="combine-and-filter-8" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2010, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw) %&gt;% cs_filter_count(var = count) -&gt; data2010</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-9" class="section level3">
 <h3>2009</h3>
 <p>We’ll repeat the validation process with the 2009 data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDA5X3JhdywgeWVhciA9IFwiMjAwOVwiKSwgRkFMU0UpXG5gYGAifQ== -->
-<pre class="r"><code>expect_equal(cs_validate(data2009_raw, year = &quot;2009&quot;), FALSE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDA5X3JhdywgeWVhciA9IFxcMjAwOVxcKSwgRkFMU0UpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r expect_equal(cs_validate(data2009_raw, year = \2009), FALSE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we fail the validation, we can use the <code>verbose = TRUE</code> option to get a summary of where validation issues are occuring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMDlfcmF3LCB5ZWFyID0gXCIyMDA5XCIsIHZlcmJvc2UgPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>cs_validate(data2009_raw, year = &quot;2009&quot;, verbose = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3NfdmFsaWRhdGUoZGF0YTIwMDlfcmF3LCB5ZWFyID0gXFwyMDA5XFwsIHZlcmJvc2UgPSBUUlVFKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r cs_validate(data2009_raw, year = \2009, verbose = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6OCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOVZUelU3RE1BeE8xM1pOcXcwaGNlQXBWaUZ4Z2VQRXRNT2tnY1NmeGpIdHdxalVKVk9hRHJqeG1yd0g1eFduVGJhU1crRkVKVGYrdnRpTzQ5aTNrOFY1dElnUVFpNXkrdzV5ZlZDUi8zQS9IVjBnNVBVQU9NaERvVnJmd09nRUZBeHlERExRRzhHTXNKS0lkdzN4bENhaWhmMDVFZW1MQWVPTnlISU4zRGt4UnQ2c1pQU2c1NGJ2ajh0VldVaU53anU2a1hTZFVHR092a2tsUDBCOHpiZnRiVHloYVlQL1k4WlJuYkY2Z0c0eWJQeUN6Mjd5Ni9QKzZ0ZjFxLzArNE5kRnJHYjIwNXdVQldyYXdwRFJra2dTUHd1eXBwWjVLUGhyeklBdmRIMTdLbVpWVlY5MlhHT2s0bUlUVjVITE9XZlNORldVOHVWUEJtOUozc1poYmZGRXliNXh3S0FGTVdmVThoZFh2R1N5WmY1SWhFcGxaK1VZOEkzTU9JT3RuaHBuMzZxQ0l5emlGRUpsVUJvNlV2VTV1eHh0cVVoNFFmVlRPUHBaaGxvZnRIVGNITzFWT3FSdmhvU3lWYllmSHo4bkNUVWpkZ1Nscm9zWXc5enRyeE1CVzhTU1M1SWZTcGdicHI0ajJuMERKSHlPYjgwRUFBQT0ifQ== -->
 <div data-pagedtable="false">
@@ -2242,33 +2294,34 @@ cs_combine(type = &quot;year&quot;, date = 2010, data2018_raw, data2017_raw, dat
 <p>Every month contains the incorrect number of variables. We’ll address each of these:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFwiSmFudWFyeVwiKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplIGFsbCBtb250aHNcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXCJhbGxcIiwgY29uZmlnID0gMTgpXG5cbiMgdmFsaWRhdGUgZGF0YVxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDA5X3JhdywgeWVhciA9IFwiMjAwOVwiKSwgVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code># January - extract data, unit test
-expect_equal(ncol(cs_extract_month(data2009_raw, month = &quot;January&quot;)), 18)
-
-# standardize all months
-data2009_raw &lt;- cs_standardize(data2009_raw, month = &quot;all&quot;, config = 18)
-
-# validate data
-expect_equal(cs_validate(data2009_raw, year = &quot;2009&quot;), TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3RcbmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMDlfcmF3LCBtb250aCA9IFxcSmFudWFyeVxcKSksIDE4KVxuXG4jIHN0YW5kYXJkaXplIGFsbCBtb250aHNcbmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gXFxhbGxcXCwgY29uZmlnID0gMTgpXG5cbiMgdmFsaWRhdGUgZGF0YVxuZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDA5X3JhdywgeWVhciA9IFxcMjAwOVxcKSwgVFJVRSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # January - extract data, unit test expect_equal(ncol(cs_extract_month(data2009_raw, month = )), 18)</p>
+</div>
+</div>
+<div id="standardize-all-months-1" class="section level1">
+<h1>standardize all months</h1>
+<p>data2009_raw &lt;- cs_standardize(data2009_raw, month = , config = 18)</p>
+</div>
+<div id="validate-data-4" class="section level1">
+<h1>validate data</h1>
+<p>expect_equal(cs_validate(data2009_raw, year = \2009), TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We now get a <code>TRUE</code> value for <code>cs_validate()</code> and can move on to collapsing our raw data objects to create a new object, <code>data2009</code>, that contains all known 2009 crimes including those that were reported or upgraded in subsequent years:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDA5X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcInllYXJcIiwgZGF0ZSA9IDIwMDksIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAwOV9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDA5XG5gYGAifQ== -->
-<pre class="r"><code># collapse into single object
-data2009_raw &lt;- cs_collapse(data2009_raw)
-
-# combine and filter
-cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
-           data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw) %&gt;%
-  cs_filter_count(var = count) -&gt; data2009</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3RcbmRhdGEyMDA5X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOV9yYXcpXG5cbiMgY29tYmluZSBhbmQgZmlsdGVyXG5jc19jb21iaW5lKHR5cGUgPSBcXHllYXJcXCwgZGF0ZSA9IDIwMDksIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCBcbiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAwOV9yYXcpICU+JVxuICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDA5XG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # collapse into single object data2009_raw &lt;- cs_collapse(data2009_raw)</p>
+</div>
+<div id="combine-and-filter-9" class="section level1">
+<h1>combine and filter</h1>
+<p>cs_combine(type = , date = 2009, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw) %&gt;% cs_filter_count(var = count) -&gt; data2009</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="section-10" class="section level3">
 <h3>2008</h3>
 <p>We’ll repeat the validation process with the 2008 data:</p>
@@ -2284,14 +2337,14 @@ cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, dat
 <!-- rnb-text-end -->
 <!-- rnb-text-begin -->
 </div>
-</div>
 <div id="clean-up-enviornment" class="section level2">
 <h2>Clean-up Enviornment</h2>
 <p>We can remove the <code>_raw</code> objects at this point as well as the index:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0oZGF0YTIwMDhfcmF3LCBkYXRhMjAwOV9yYXcsIGRhdGEyMDEwX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDEzX3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxOF9yYXcsIGkpXG5gYGAifQ== -->
-<pre class="r"><code>rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw, i)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucm0oZGF0YTIwMDhfcmF3LCBkYXRhMjAwOV9yYXcsIGRhdGEyMDEwX3JhdywgZGF0YTIwMTFfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDEzX3JhdywgZGF0YTIwMTRfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxOF9yYXcsIGkpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw, i)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2301,9 +2354,9 @@ cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, dat
 <p>Next, we’ll create a single table before we remove individual years. We also subset columns to reduce the footprint of the table.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmluZF9yb3dzKGRhdGEyMDA4LCBkYXRhMjAwOSwgZGF0YTIwMTAsIGRhdGEyMDExLCBkYXRhMjAxMiwgZGF0YTIwMTMsIGRhdGEyMDE0LCBkYXRhMjAxNSwgZGF0YTIwMTYsIGRhdGEyMDE3LCBkYXRhMjAxOCkgJT4lXG4gIHNlbGVjdChjc195ZWFyLCBkYXRlX29jY3VyLCBjcmltZSwgZGVzY3JpcHRpb24sIGlsZWFkc19hZGRyZXNzLCBpbGVhZHNfc3RyZWV0LCB4X2Nvb3JkLCB5X2Nvb3JkKSAtPiBhbGxDcmltZXNcbmBgYCJ9 -->
-<pre class="r"><code>bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %&gt;%
-  select(cs_year, date_occur, crime, description, ileads_address, ileads_street, x_coord, y_coord) -&gt; allCrimes</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmluZF9yb3dzKGRhdGEyMDA4LCBkYXRhMjAwOSwgZGF0YTIwMTAsIGRhdGEyMDExLCBkYXRhMjAxMiwgZGF0YTIwMTMsIGRhdGEyMDE0LCBkYXRhMjAxNSwgZGF0YTIwMTYsIGRhdGEyMDE3LCBkYXRhMjAxOCkgJT4lXG4gIHNlbGVjdChjc195ZWFyLCBkYXRlX29jY3VyLCBjcmltZSwgZGVzY3JpcHRpb24sIGlsZWFkc19hZGRyZXNzLCBpbGVhZHNfc3RyZWV0LCB4X2Nvb3JkLCB5X2Nvb3JkKSAtPiBhbGxDcmltZXNcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %&gt;% select(cs_year, date_occur, crime, description, ileads_address, ileads_street, x_coord, y_coord) -&gt; allCrimes</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2312,8 +2365,9 @@ cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, dat
 <p>We’ll remove excess objects again:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0oZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KVxuYGBgIn0= -->
-<pre class="r"><code>rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucm0oZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2324,21 +2378,18 @@ cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, dat
 <p>Next, we’ll pull out arsons and then write them to a <code>.csv</code> file:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsQ3JpbWVzICU+JVxuICBjc19maWx0ZXJfY3JpbWUodmFyID0gY3JpbWUsIGNyaW1lID0gXCJhcnNvblwiKSAlPiVcbiAgd3JpdGVfY3N2KGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJhcnNvbi5jc3ZcIikpXG5gYGAifQ== -->
-<pre class="r"><code>allCrimes %&gt;%
-  cs_filter_crime(var = crime, crime = &quot;arson&quot;) %&gt;%
-  write_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;arson.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBjc19maWx0ZXJfY3JpbWUodmFyID0gY3JpbWUsIGNyaW1lID0gXFxhcnNvblxcKSAlPiVcbiAgd3JpdGVfY3N2KGhlcmUoXFxkYXRhXFwsIFxcY2xlYW5cXCwgXFxhcnNvbi5jc3ZcXCkpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r allCrimes %&gt;% cs_filter_crime(var = crime, crime = ) %&gt;% write_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Next, we’ll create a subset that is only violent crimes for our main study period, 2013-2017:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lXG4gIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSBcInZpb2xlbnRcIikgJT4lXG4gIHdyaXRlX2NzdihoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwidmlvbGVudC5jc3ZcIikpXG5gYGAifQ== -->
-<pre class="r"><code>allCrimes %&gt;%
-  filter(cs_year %in% c(2013:2017)) %&gt;%
-  cs_filter_crime(var = crime, crime = &quot;violent&quot;) %&gt;%
-  write_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;violent.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lXG4gIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSBcXHZpb2xlbnRcXCkgJT4lXG4gIHdyaXRlX2NzdihoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcdmlvbGVudC5jc3ZcXCkpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r allCrimes %&gt;% filter(cs_year %in% c(2013:2017)) %&gt;% cs_filter_crime(var = crime, crime = ) %&gt;% write_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2347,13 +2398,9 @@ cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, dat
 <p>Next, we’ll create a subset that is only non-arson property crimes:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lXG4gIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSBcInByb3BlcnR5XCIpICU+JVxuICBjc19jcmltZV9jYXQodmFyID0gY3JpbWUsIG5ld1ZhciA9IGNhdCwgb3V0cHV0ID0gXCJudW1lcmljXCIpIC0+IHggIyAlPiVcbiAgIyBmaWx0ZXIoY2F0ICVpbiUgYyhcIkJ1cmdhbGFyeVwiLCBcIkxhcmNlbnlcIiwgXCJNb3RvciBWZWhpY2xlIFRoZWZ0XCIpKSAlPiVcbiAgIyB3cml0ZV9jc3YoaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcInByb3BlcnR5LmNzdlwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>allCrimes %&gt;%
-  filter(cs_year %in% c(2013:2017)) %&gt;%
-  cs_filter_crime(var = crime, crime = &quot;property&quot;) %&gt;%
-  cs_crime_cat(var = crime, newVar = cat, output = &quot;numeric&quot;) -&gt; x # %&gt;%
-  # filter(cat %in% c(&quot;Burgalary&quot;, &quot;Larceny&quot;, &quot;Motor Vehicle Theft&quot;)) %&gt;%
-  # write_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;property.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lXG4gIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSBcXHByb3BlcnR5XFwpICU+JVxuICBjc19jcmltZV9jYXQodmFyID0gY3JpbWUsIG5ld1ZhciA9IGNhdCwgb3V0cHV0ID0gXFxudW1lcmljXFwpIC0+IHggIyAlPiVcbiAgIyBmaWx0ZXIoY2F0ICVpbiUgYyhcXEJ1cmdhbGFyeVxcLCBcXExhcmNlbnlcXCwgXFxNb3RvciBWZWhpY2xlIFRoZWZ0XFwpKSAlPiVcbiAgIyB3cml0ZV9jc3YoaGVyZShcXGRhdGFcXCwgXFxjbGVhblxcLCBcXHByb3BlcnR5LmNzdlxcKSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r allCrimes %&gt;% filter(cs_year %in% c(2013:2017)) %&gt;% cs_filter_crime(var = crime, crime = ) %&gt;% cs_crime_cat(var = crime, newVar = cat, output = ) -&gt; x # %&gt;% # filter(cat %in% c(, , Vehicle Theft)) %&gt;% # write_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2369,20 +2416,18 @@ cs_combine(type = &quot;year&quot;, date = 2009, data2018_raw, data2017_raw, dat
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lXG4gIGNzX2NyaW1lX2NhdCh2YXIgPSBjcmltZSwgbmV3VmFyID0gY2F0ZWdvcnksIG91dHB1dCA9IFwibnVtZXJpY1wiKSAlPiVcbiAgZmlsdGVyKGNhdGVnb3J5ICVpbiUgYygxNCwgMTUsIDE4LCAyNCkpICU+JVxuICB3cml0ZV9jc3YoaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcIm90aGVyQ3JpbWVzLmNzdlwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>allCrimes %&gt;%
-  filter(cs_year %in% c(2013:2017)) %&gt;%
-  cs_crime_cat(var = crime, newVar = category, output = &quot;numeric&quot;) %&gt;%
-  filter(category %in% c(14, 15, 18, 24)) %&gt;%
-  write_csv(here(&quot;data&quot;, &quot;clean&quot;, &quot;otherCrimes.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYWxsQ3JpbWVzICU+JVxuICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lXG4gIGNzX2NyaW1lX2NhdCh2YXIgPSBjcmltZSwgbmV3VmFyID0gY2F0ZWdvcnksIG91dHB1dCA9IFxcbnVtZXJpY1xcKSAlPiVcbiAgZmlsdGVyKGNhdGVnb3J5ICVpbiUgYygxNCwgMTUsIDE4LCAyNCkpICU+JVxuICB3cml0ZV9jc3YoaGVyZShcXGRhdGFcXCwgXFxjbGVhblxcLCBcXG90aGVyQ3JpbWVzLmNzdlxcKSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r allCrimes %&gt;% filter(cs_year %in% c(2013:2017)) %&gt;% cs_crime_cat(var = crime, newVar = category, output = ) %&gt;% filter(category %in% c(14, 15, 18, 24)) %&gt;% write_csv(here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBDcmltZSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIHRoZSBjcmltZSBkYXRhIHNldHMgbmVlZGVkIGZvciB0aGUgYXJzb24gYW5hbHlzZXMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyBhIG51bWJlciBvZiBwYWNrYWdlcyB0byB3b3JraW5nIHdpdGggZGF0YSBhbmQgd3JhbmdsaW5nIGl0LgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoY29tcHN0YXRyKSAgICAgIyBhY2Nlc3MgY3JpbWUgZGF0YQoKIyB0aWR5dmVyc2UgcGFja2FnZXMKbGlicmFyeShkcGx5cikgICAgICAgICAjIGRhdGEgd3JhbmdsaW5nCmxpYnJhcnkocmVhZHIpICAgICAgICAgIyB3cml0ZSBjc3YgZmlsZXMKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKSAgICAgICAgICAjIGZpbGUgcGF0aCBtYW5hZ2VtZW50CmxpYnJhcnkodGVzdHRoYXQpICAgICAgIyB1bml0IHRlc3RpbmcKYGBgCgojIyBQcmVwYXJlIERhdGEKIyMjIERvd25sb2FkIERhdGEKRmlyc3QsIHdlJ2xsIHNjcmFwZSBkYXRhIGZyb20gdGhlIFNMTVBEIHdlYnNpdGUgdG8gY3JlYXRlIG91ciByYXcgZGF0YSBmcmFtZXMuIFRvIGFjY29tcGxpc2ggdGhpcywgd2UgbmVlZCB0byBjcmVhdGUgYSBpbmRleCBvYmplY3Q6CgpgYGB7ciBjcmVhdGUtaW5kZXh9CmkgPC0gY3NfY3JlYXRlX2luZGV4KCkKYGBgCgpXaXRoIG91ciBpbmRleCwgd2UgY2FuIGNyZWF0ZSByYXcgeWVhci1saXN0IG9iamVjdHM6CgpgYGB7ciBzY3JhcGUtZGF0YX0KZGF0YTIwMThfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE4LCBpbmRleCA9IGkpCmRhdGEyMDE3X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxNywgaW5kZXggPSBpKQpkYXRhMjAxNl9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTYsIGluZGV4ID0gaSkKZGF0YTIwMTVfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE1LCBpbmRleCA9IGkpCmRhdGEyMDE0X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxNCwgaW5kZXggPSBpKQpkYXRhMjAxM19yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTMsIGluZGV4ID0gaSkKZGF0YTIwMTJfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDEyLCBpbmRleCA9IGkpCmRhdGEyMDExX3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxMSwgaW5kZXggPSBpKQpkYXRhMjAxMF9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTAsIGluZGV4ID0gaSkKZGF0YTIwMDlfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDA5LCBpbmRleCA9IGkpCmRhdGEyMDA4X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAwOCwgaW5kZXggPSBpKQpgYGAKCiMjIyAyMDE4CldlIHZhbGlkYXRlIHRoZSBkYXRhIHRvIG1ha2Ugc3VyZSBpdCBjYW4gYmUgY29sbGFwc2VkIHVzaW5nIGBjc192YWxpZGF0ZSgpYDoKCmBgYHtyIHZhbGlkYXRlLWRhdGExOH0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE4X3JhdywgeWVhciA9ICIyMDE4IiksIFRSVUUpCmBgYAoKU2luY2UgdGhlIHZhbGlkYXRpb24gcmVzdWx0IGlzIGEgdmFsdWUgb2YgYFRSVUVgLCB3ZSBjYW4gcHJvY2VlZCB0byBjb2xsYXBzaW5nIHRoZSB5ZWFyLWxpc3Qgb2JqZWN0IGludG8gYSBzaW5nbGUgdGliYmxlIHdpdGggYGNzX2NvbGxhcHNlKClgIGFuZCB0aGVuIHN0cmlwcGluZyBvdXQgY3JpbWVzIHJlcG9ydGVkIGluIDIwMTggZm9yIGVhcmxpZXIgeWVhcnMgdXNpbmcgYGNzX2NvbWJpbmUoKWAuIFdlIGFsc28gc3RyaXAgb3V0IHVuZm91bmRlZCBjcmltZXMgdGhhdCByZW1haW4gdXNpbmcgYGNzX2ZpbHRlcl9jb3VudCgpYDoKCmBgYHtyIGNvbGxhcHNlLWRhdGExOH0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMThfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE4X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTgsIGRhdGEyMDE4X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxOApgYGAKClRoZSBgZGF0YTIwMThgIG9iamVjdCBub3cgY29udGFpbnMgb25seSBjcmltZXMgcmVwb3J0ZWQgaW4gMjAxOC4KCiMjIyAyMDE3CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTcgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExN30KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9ICIyMDE3IiksIEZBTFNFKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExNy12ZXJib3NlfQpjc192YWxpZGF0ZShkYXRhMjAxN19yYXcsIHllYXIgPSAiMjAxNyIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKClRoZSBkYXRhIGZvciBNYXkgMjAxNyBkbyBub3QgcGFzcyB0aGUgdmFsaWRhdGlvbiBjaGVja3MuIFdlIGNhbiBleHRyYWN0IHRoaXMgbW9udGggYW5kIGNvbmZpcm0gdGhhdCB0aGVyZSBhcmUgdG9vIG1hbnkgY29sdW1ucyBpbiB0aGUgTWF5IDIwMTcgcmVsZWFzZS4gT25jZSB3ZSBoYXZlIHRoYXQgY29uZmlybWVkLCB3ZSBjYW4gc3RhbmRhcmRpemUgdGhhdCBtb250aCBhbmQgcmUtcnVuIG91ciB2YWxpZGF0aW9uLgoKYGBge3IgZml4LW1heTE3fQojIGV4dHJhY3QgZGF0YSBhbmQgdW5pdCB0ZXN0IGNvbHVtbiBudW1iZXJzCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTdfcmF3LCBtb250aCA9ICJNYXkiKSksIDI2KQoKIyBzdGFuZGFyZGl6ZSBtb250aHMKZGF0YTIwMTdfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDE3X3JhdywgbW9udGggPSAiTWF5IiwgY29uZmlnID0gMjYpCgojIHZhbGlkYXRlIGRhdGEKZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9ICIyMDE3IiksIFRSVUUpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIHRoZSAyMDE3IGFuZCAyMDE4IHJhdyBkYXRhIG9iamVjdHMgdG8gY3JlYXRlIGEgbmV3IG9iamVjdCwgYGRhdGEyMDE3YCwgdGhhdCBjb250YWlucyBhbGwga25vd24gMjAxNyBjcmltZXMgaW5jbHVkaW5nIHRob3NlIHRoYXQgd2VyZSByZXBvcnRlZCBvciB1cGdyYWRlZCBpbiAyMDE4LgoKYGBge3IgY29sbGFwc2UtZGF0YTE3fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxN19yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTdfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxNywgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTcKYGBgCgojIyMgMjAxNgpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDE2IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTZ9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxNl9yYXcsIHllYXIgPSAiMjAxNiIpLCBUUlVFKQpgYGAKClNpbmNlIHRoZSB2YWxpZGF0aW9uIHByb2Nlc3MgcGFzc2VzLCB3ZSBjYW4gaW1tZWRpYXRlbHkgbW92ZSBvbiB0byBjcmVhdGluZyBvdXIgMjAxNiBkYXRhIG9iamVjdDoKCmBgYHtyIGNvbGxhcHNlLWRhdGExNn0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTZfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE2X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTYsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTYKYGBgCgojIyMgMjAxNQpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDE1IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTV9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxNV9yYXcsIHllYXIgPSAiMjAxNSIpLCBUUlVFKQpgYGAKClNpbmNlIHRoZSB2YWxpZGF0aW9uIHByb2Nlc3MgcGFzc2VzLCB3ZSBjYW4gaW1tZWRpYXRlbHkgbW92ZSBvbiB0byBjcmVhdGluZyBvdXIgMjAxNSBkYXRhIG9iamVjdDoKCmBgYHtyIGNvbGxhcHNlLWRhdGExNX0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTVfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE1X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTUsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxNQpgYGAKCiMjIyAyMDE0CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTQgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExNH0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE0X3JhdywgeWVhciA9ICIyMDE0IiksIFRSVUUpCmBgYAoKU2luY2UgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyBwYXNzZXMsIHdlIGNhbiBpbW1lZGlhdGVseSBtb3ZlIG9uIHRvIGNyZWF0aW5nIG91ciAyMDE1IGRhdGEgb2JqZWN0OgoKYGBge3IgY29sbGFwc2UtZGF0YTE0fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxNF9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTRfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxNCwgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3LCBkYXRhMjAxNF9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTQKYGBgCgojIyMgMjAxMwpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDEzIGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTN9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxM19yYXcsIHllYXIgPSAiMjAxMyIpLCBGQUxTRSkKYGBgCgpTaW5jZSB3ZSBmYWlsIHRoZSB2YWxpZGF0aW9uLCB3ZSBjYW4gdXNlIHRoZSBgdmVyYm9zZSA9IFRSVUVgIG9wdGlvbiB0byBnZXQgYSBzdW1tYXJ5IG9mIHdoZXJlIHZhbGlkYXRpb24gaXNzdWVzIGFyZSBvY2N1cmluZy4gCgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTMtdmVyYm9zZX0KY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gIjIwMTMiLCB2ZXJib3NlID0gVFJVRSkKYGBgCgpUaGUgZGF0YSBmb3IgSmFudWFyeSB0aHJvdWdoIE1heSwgSnVseSwgYW5kIEF1Z3VzdCBkbyBub3QgcGFzcyB0aGUgdmFsaWRhdGlvbiBjaGVja3MuIFdlIGNhbiBleHRyYWN0IHRoZXNlIGFuZCBjb25maXJtIHRoYXQgdGhlcmUgYXJlIG5vdCBlbm91Z2ggY29sdW1ucyBpbiBlYWNoIG9mIHRoZXNlIHJlbGVhc2VzIE9uY2Ugd2UgaGF2ZSB0aGF0IGNvbmZpcm1lZCwgd2UgY2FuIHN0YW5kYXJkaXplIHRoYXQgbW9udGggYW5kIHJlLXJ1biBvdXIgdmFsaWRhdGlvbi4KCmBgYHtyIGZpeC1tb250aDEzfQojIEphbnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSAiSmFudWFyeSIsIGNvbmZpZyA9IDE4KQoKIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IikpLCAxOCkKZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSAiRmVicnVhcnkiLCBjb25maWcgPSAxOCkKCiMgTWFyY2ggLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJNYXJjaCIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIk1hcmNoIiwgY29uZmlnID0gMTgpCgojIEFwcmlsIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSAiQXByaWwiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJBcHJpbCIsIGNvbmZpZyA9IDE4KQoKIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJNYXkiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJNYXkiLCBjb25maWcgPSAxOCkKCiMgSnVseSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkp1bHkiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJKdWx5IiwgY29uZmlnID0gMTgpCgojIEF1Z3VzdCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkF1Z3VzdCIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIkF1Z3VzdCIsIGNvbmZpZyA9IDE4KQojIHJlbW92ZSBvYmplY3QKcm0obW9udGgxMykKCiMgdmFsaWRhdGUgZGF0YQpleHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gIjIwMTMiKSwgVFJVRSkKYGBgCgpXZSBub3cgZ2V0IGEgYFRSVUVgIHZhbHVlIGZvciBgY3NfdmFsaWRhdGUoKWAgYW5kIGNhbiBtb3ZlIG9uIHRvIGNvbGxhcHNpbmcgb3VyIHJhdyBkYXRhIG9iamVjdHMgdG8gY3JlYXRlIGEgbmV3IG9iamVjdCwgYGRhdGEyMDEzYCwgdGhhdCBjb250YWlucyBhbGwga25vd24gMjAxMyBjcmltZXMgaW5jbHVkaW5nIHRob3NlIHRoYXQgd2VyZSByZXBvcnRlZCBvciB1cGdyYWRlZCBpbiBzdWJzZXF1ZW50IHllYXJzOgoKYGBge3IgY29sbGFwc2UtZGF0YTEzfQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxM19yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTNfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxMywgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3LCBkYXRhMjAxNF9yYXcsIAogICAgICAgICAgIGRhdGEyMDEzX3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxMwpgYGAKCiMjIyAyMDEyCldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTIgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExMn0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEyX3JhdywgeWVhciA9ICIyMDEyIiksIEZBTFNFKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExMi12ZXJib3NlfQpjc192YWxpZGF0ZShkYXRhMjAxMl9yYXcsIHllYXIgPSAiMjAxMiIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKCkV2ZXJ5IG1vbnRoIGNvbnRhaW5zIHRoZSBpbmNvcnJlY3QgbnVtYmVyIG9mIHZhcmlhYmxlcy4gV2UnbGwgYWRkcmVzcyBlYWNoIG9mIHRoZXNlOgoKYGBge3IgZml4LW1vbnRoMTJ9CiMgSmFudWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0CmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKCiMgc3RhbmRhcmRpemUKZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSAiYWxsIiwgY29uZmlnID0gMTgpCgojIHZhbGlkYXRlIGRhdGEKZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEyX3JhdywgeWVhciA9ICIyMDEyIiksIFRSVUUpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxMmAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTIgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExMn0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTJfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDEyX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTIsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCAKICAgICAgICAgICBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxMgpgYGAKCiMjIyAyMDExCldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTEgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExMX0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDExX3JhdywgeWVhciA9ICIyMDExIiksIEZBTFNFKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExMS12ZXJib3NlfQpjc192YWxpZGF0ZShkYXRhMjAxMV9yYXcsIHllYXIgPSAiMjAxMSIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKCkV2ZXJ5IG1vbnRoIGNvbnRhaW5zIHRoZSBpbmNvcnJlY3QgbnVtYmVyIG9mIHZhcmlhYmxlcy4gV2UnbGwgYWRkcmVzcyBlYWNoIG9mIHRoZXNlOgoKYGBge3IgZml4LW1vbnRoMTF9CiMgSmFudWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0CmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKCiMgc3RhbmRhcmRpemUKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiYWxsIiwgY29uZmlnID0gMTgpCgojIHZhbGlkYXRlIGRhdGEKZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDExX3JhdywgeWVhciA9ICIyMDExIiksIFRSVUUpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxMWAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTEgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExMX0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTFfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDExX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTEsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCAKICAgICAgICAgICBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDExCmBgYAoKIyMjIDIwMTAKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAxMCBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTEwfQpleHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMTBfcmF3LCB5ZWFyID0gIjIwMTAiKSwgRkFMU0UpCmBgYAoKU2luY2Ugd2UgZmFpbCB0aGUgdmFsaWRhdGlvbiwgd2UgY2FuIHVzZSB0aGUgYHZlcmJvc2UgPSBUUlVFYCBvcHRpb24gdG8gZ2V0IGEgc3VtbWFyeSBvZiB3aGVyZSB2YWxpZGF0aW9uIGlzc3VlcyBhcmUgb2NjdXJpbmcuIAoKYGBge3IgdmFsaWRhdGUtZGF0YTEwLXZlcmJvc2V9CmNzX3ZhbGlkYXRlKGRhdGEyMDEwX3JhdywgeWVhciA9ICIyMDEwIiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgxMH0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQoKIyBzdGFuZGFyZGl6ZSBhbGwgbW9udGhzCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gImFsbCIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxMF9yYXcsIHllYXIgPSAiMjAxMCIpLCBUUlVFKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZSgpYCBhbmQgY2FuIG1vdmUgb24gdG8gY29sbGFwc2luZyBvdXIgcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMTBgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDEwIGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIHN1YnNlcXVlbnQgeWVhcnM6CgpgYGB7ciBjb2xsYXBzZS1kYXRhMTB9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDEwX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMF9yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDEwLCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE0X3JhdywgCiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDEwCmBgYAoKIyMjIDIwMDkKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAwOSBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTA5fQpleHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMDlfcmF3LCB5ZWFyID0gIjIwMDkiKSwgRkFMU0UpCmBgYAoKU2luY2Ugd2UgZmFpbCB0aGUgdmFsaWRhdGlvbiwgd2UgY2FuIHVzZSB0aGUgYHZlcmJvc2UgPSBUUlVFYCBvcHRpb24gdG8gZ2V0IGEgc3VtbWFyeSBvZiB3aGVyZSB2YWxpZGF0aW9uIGlzc3VlcyBhcmUgb2NjdXJpbmcuIAoKYGBge3IgdmFsaWRhdGUtZGF0YTA5LXZlcmJvc2V9CmNzX3ZhbGlkYXRlKGRhdGEyMDA5X3JhdywgeWVhciA9ICIyMDA5IiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgwOX0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQoKIyBzdGFuZGFyZGl6ZSBhbGwgbW9udGhzCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gImFsbCIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAwOV9yYXcsIHllYXIgPSAiMjAwOSIpLCBUUlVFKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZSgpYCBhbmQgY2FuIG1vdmUgb24gdG8gY29sbGFwc2luZyBvdXIgcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMDlgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDA5IGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIHN1YnNlcXVlbnQgeWVhcnM6CgpgYGB7ciBjb2xsYXBzZS1kYXRhMDl9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDA5X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOV9yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDA5LCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE0X3JhdywgCiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAwOV9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMDkKYGBgCgojIyMgMjAwOApXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDA4IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMDgsIGluY2x1ZGU9RkFMU0V9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAwOF9yYXcsIHllYXIgPSAiMjAwOCIpLCBGQUxTRSkKYGBgCgpTaW5jZSB3ZSBmYWlsIHRoZSB2YWxpZGF0aW9uLCB3ZSBjYW4gdXNlIHRoZSBgdmVyYm9zZSA9IFRSVUVgIG9wdGlvbiB0byBnZXQgYSBzdW1tYXJ5IG9mIHdoZXJlIHZhbGlkYXRpb24gaXNzdWVzIGFyZSBvY2N1cmluZy4gCgpgYGB7ciB2YWxpZGF0ZS1kYXRhMDgtdmVyYm9zZSwgaW5jbHVkZT1GQUxTRX0KY3NfdmFsaWRhdGUoZGF0YTIwMDhfcmF3LCB5ZWFyID0gIjIwMDgiLCB2ZXJib3NlID0gVFJVRSkKYGBgCgpFdmVyeSBtb250aCBjb250YWlucyB0aGUgaW5jb3JyZWN0IG51bWJlciBvZiB2YXJpYWJsZXMuIFdlJ2xsIGFkZHJlc3MgZWFjaCBvZiB0aGVzZToKCmBgYHtyIGZpeC1tb250aDA4LCBpbmNsdWRlPUZBTFNFfQojIEphbnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQoKIyBzdGFuZGFyZGl6ZSBhbGwgbW9udGhzCmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gImFsbCIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAwOF9yYXcsIHllYXIgPSAiMjAwOCIpLCBUUlVFKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZSgpYCBhbmQgY2FuIG1vdmUgb24gdG8gY29sbGFwc2luZyBvdXIgcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMDhgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDA4IGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIHN1YnNlcXVlbnQgeWVhcnM6CgpgYGB7ciBjb2xsYXBzZS1kYXRhMDgsIGluY2x1ZGU9RkFMU0V9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDA4X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOF9yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDA4LCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE0X3JhdywgCiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAwOV9yYXcsIGRhdGEyMDA4X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAwOApgYGAKCiMjIENsZWFuLXVwIEVudmlvcm5tZW50CldlIGNhbiByZW1vdmUgdGhlIGBfcmF3YCBvYmplY3RzIGF0IHRoaXMgcG9pbnQgYXMgd2VsbCBhcyB0aGUgaW5kZXg6CgpgYGB7ciByZW1vdmUtcmF3fQpybShkYXRhMjAwOF9yYXcsIGRhdGEyMDA5X3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAxMV9yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTNfcmF3LCBkYXRhMjAxNF9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE4X3JhdywgaSkKYGBgCgojIyBDcmVhdGUgU2luZ2xlIFRhYmxlCk5leHQsIHdlJ2xsIGNyZWF0ZSBhIHNpbmdsZSB0YWJsZSBiZWZvcmUgd2UgcmVtb3ZlIGluZGl2aWR1YWwgeWVhcnMuIFdlIGFsc28gc3Vic2V0IGNvbHVtbnMgdG8gcmVkdWNlIHRoZSBmb290cHJpbnQgb2YgdGhlIHRhYmxlLgoKYGBge3IgY29sbGFwc2UtYWxsfQpiaW5kX3Jvd3MoZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KSAlPiUKICBzZWxlY3QoY3NfeWVhciwgZGF0ZV9vY2N1ciwgY3JpbWUsIGRlc2NyaXB0aW9uLCBpbGVhZHNfYWRkcmVzcywgaWxlYWRzX3N0cmVldCwgeF9jb29yZCwgeV9jb29yZCkgLT4gYWxsQ3JpbWVzCmBgYAoKIyMjIENsZWFuLXVwIEVudmlvcm5tZW50CldlJ2xsIHJlbW92ZSBleGNlc3Mgb2JqZWN0cyBhZ2FpbjoKCmBgYHtyIHJlbW92ZS15ZWFyc30Kcm0oZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KQpgYGAKCiMjIENhdGVnb3JpemUgQ3JpbWVzIGFuZCBTdWJzZXQKTmV4dCwgd2UnbGwgcHVsbCBvdXQgYXJzb25zIGFuZCB0aGVuIHdyaXRlIHRoZW0gdG8gYSBgLmNzdmAgZmlsZToKCmBgYHtyIHN1YnNldC1hcnNvbn0KYWxsQ3JpbWVzICU+JQogIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSAiYXJzb24iKSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJhcnNvbi5jc3YiKSkKYGBgCgpOZXh0LCB3ZSdsbCBjcmVhdGUgYSBzdWJzZXQgdGhhdCBpcyBvbmx5IHZpb2xlbnQgY3JpbWVzIGZvciBvdXIgbWFpbiBzdHVkeSBwZXJpb2QsIDIwMTMtMjAxNzoKCmBgYHtyIHN1YnNldC12aW9sZW50fQphbGxDcmltZXMgJT4lCiAgZmlsdGVyKGNzX3llYXIgJWluJSBjKDIwMTM6MjAxNykpICU+JQogIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSAidmlvbGVudCIpICU+JQogIHdyaXRlX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgInZpb2xlbnQuY3N2IikpCmBgYAoKIyMjIFByb3BlcnR5IENyaW1lcwpOZXh0LCB3ZSdsbCBjcmVhdGUgYSBzdWJzZXQgdGhhdCBpcyBvbmx5IG5vbi1hcnNvbiBwcm9wZXJ0eSBjcmltZXM6CgpgYGB7ciBzdWJzZXQtcHJvcGVydHl9CmFsbENyaW1lcyAlPiUKICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lCiAgY3NfZmlsdGVyX2NyaW1lKHZhciA9IGNyaW1lLCBjcmltZSA9ICJwcm9wZXJ0eSIpICU+JQogIGNzX2NyaW1lX2NhdCh2YXIgPSBjcmltZSwgbmV3VmFyID0gY2F0LCBvdXRwdXQgPSAibnVtZXJpYyIpICU+JQogIGZpbHRlcihjYXQgJWluJSBjKDU6NykpICU+JQogIHNlbGVjdCgtY2F0KSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJwcm9wZXJ0eS5jc3YiKSkKYGBgCgojIyMgT3RoZXIgQ3JpbWVzCkZpbmFsbHksIHdlJ2xsIGNyZWF0ZSBhIHN1YnNldCB3aXRoIGEgZmV3IGtleSBQYXJ0IDIgY3JpbWVzOgoKKiBWYW5kYWxpc20KKiBXZWFwb25zCiogRHJ1ZyBBYnVzZSBWaW9sYXRpb25zCiogVmFncmFuY3kKCmBgYHtyIHN1YnNldC1vdGhlcn0KYWxsQ3JpbWVzICU+JQogIGZpbHRlcihjc195ZWFyICVpbiUgYygyMDEzOjIwMTcpKSAlPiUKICBjc19jcmltZV9jYXQodmFyID0gY3JpbWUsIG5ld1ZhciA9IGNhdCwgb3V0cHV0ID0gIm51bWVyaWMiKSAlPiUKICBmaWx0ZXIoY2F0ICVpbiUgYygxNCwgMTUsIDE4LCAyNCkpICU+JQogIHNlbGVjdCgtY2F0KSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJvdGhlckNyaW1lcy5jc3YiKSkKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBDcmltZSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIHRoZSBjcmltZSBkYXRhIHNldHMgbmVlZGVkIGZvciB0aGUgYXJzb24gYW5hbHlzZXMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyBhIG51bWJlciBvZiBwYWNrYWdlcyB0byB3b3JraW5nIHdpdGggZGF0YSBhbmQgd3JhbmdsaW5nIGl0LgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5c3RsIHBhY2thZ2VzCmxpYnJhcnkoY29tcHN0YXRyKSAgICAgIyBhY2Nlc3MgY3JpbWUgZGF0YQoKIyB0aWR5dmVyc2UgcGFja2FnZXMKbGlicmFyeShkcGx5cikgICAgICAgICAjIGRhdGEgd3JhbmdsaW5nCmxpYnJhcnkocmVhZHIpICAgICAgICAgIyB3cml0ZSBjc3YgZmlsZXMKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKSAgICAgICAgICAjIGZpbGUgcGF0aCBtYW5hZ2VtZW50CmxpYnJhcnkodGVzdHRoYXQpICAgICAgIyB1bml0IHRlc3RpbmcKYGBgCgojIyBQcmVwYXJlIERhdGEKIyMjIERvd25sb2FkIERhdGEKRmlyc3QsIHdlJ2xsIHNjcmFwZSBkYXRhIGZyb20gdGhlIFNMTVBEIHdlYnNpdGUgdG8gY3JlYXRlIG91ciByYXcgZGF0YSBmcmFtZXMuIFRvIGFjY29tcGxpc2ggdGhpcywgd2UgbmVlZCB0byBjcmVhdGUgYSBpbmRleCBvYmplY3Q6CgpgYGB7ciBjcmVhdGUtaW5kZXh9CmkgPC0gY3NfY3JlYXRlX2luZGV4KCkKYGBgCgpXaXRoIG91ciBpbmRleCwgd2UgY2FuIGNyZWF0ZSByYXcgeWVhci1saXN0IG9iamVjdHM6CgpgYGB7ciBzY3JhcGUtZGF0YX0KZGF0YTIwMThfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE4LCBpbmRleCA9IGkpCmRhdGEyMDE3X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxNywgaW5kZXggPSBpKQpkYXRhMjAxNl9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTYsIGluZGV4ID0gaSkKZGF0YTIwMTVfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDE1LCBpbmRleCA9IGkpCmRhdGEyMDE0X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxNCwgaW5kZXggPSBpKQpkYXRhMjAxM19yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTMsIGluZGV4ID0gaSkKZGF0YTIwMTJfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDEyLCBpbmRleCA9IGkpCmRhdGEyMDExX3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAxMSwgaW5kZXggPSBpKQpkYXRhMjAxMF9yYXcgPC0gY3NfZ2V0X2RhdGEoeWVhciA9IDIwMTAsIGluZGV4ID0gaSkKZGF0YTIwMDlfcmF3IDwtIGNzX2dldF9kYXRhKHllYXIgPSAyMDA5LCBpbmRleCA9IGkpCmRhdGEyMDA4X3JhdyA8LSBjc19nZXRfZGF0YSh5ZWFyID0gMjAwOCwgaW5kZXggPSBpKQpgYGAKCiMjIyAyMDE4CldlIHZhbGlkYXRlIHRoZSBkYXRhIHRvIG1ha2Ugc3VyZSBpdCBjYW4gYmUgY29sbGFwc2VkIHVzaW5nIGBjc192YWxpZGF0ZSgpYDoKCmBgYHtyIHZhbGlkYXRlLWRhdGExOH0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE4X3JhdywgeWVhciA9ICIyMDE4IiksIFRSVUUpCmBgYAoKU2luY2UgdGhlIHZhbGlkYXRpb24gcmVzdWx0IGlzIGEgdmFsdWUgb2YgYFRSVUVgLCB3ZSBjYW4gcHJvY2VlZCB0byBjb2xsYXBzaW5nIHRoZSB5ZWFyLWxpc3Qgb2JqZWN0IGludG8gYSBzaW5nbGUgdGliYmxlIHdpdGggYGNzX2NvbGxhcHNlKClgIGFuZCB0aGVuIHN0cmlwcGluZyBvdXQgY3JpbWVzIHJlcG9ydGVkIGluIDIwMTggZm9yIGVhcmxpZXIgeWVhcnMgdXNpbmcgYGNzX2NvbWJpbmUoKWAuIFdlIGFsc28gc3RyaXAgb3V0IHVuZm91bmRlZCBjcmltZXMgdGhhdCByZW1haW4gdXNpbmcgYGNzX2ZpbHRlcl9jb3VudCgpYDoKCmBgYHtyIGNvbGxhcHNlLWRhdGExOH0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMThfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE4X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTgsIGRhdGEyMDE4X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxOApgYGAKClRoZSBgZGF0YTIwMThgIG9iamVjdCBub3cgY29udGFpbnMgb25seSBjcmltZXMgcmVwb3J0ZWQgaW4gMjAxOC4KCiMjIyAyMDE3CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTcgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExN30KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9ICIyMDE3IiksIEZBTFNFKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExNy12ZXJib3NlfQpjc192YWxpZGF0ZShkYXRhMjAxN19yYXcsIHllYXIgPSAiMjAxNyIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKClRoZSBkYXRhIGZvciBNYXkgMjAxNyBkbyBub3QgcGFzcyB0aGUgdmFsaWRhdGlvbiBjaGVja3MuIFdlIGNhbiBleHRyYWN0IHRoaXMgbW9udGggYW5kIGNvbmZpcm0gdGhhdCB0aGVyZSBhcmUgdG9vIG1hbnkgY29sdW1ucyBpbiB0aGUgTWF5IDIwMTcgcmVsZWFzZS4gT25jZSB3ZSBoYXZlIHRoYXQgY29uZmlybWVkLCB3ZSBjYW4gc3RhbmRhcmRpemUgdGhhdCBtb250aCBhbmQgcmUtcnVuIG91ciB2YWxpZGF0aW9uLgoKYGBge3IgZml4LW1heTE3fQojIGV4dHJhY3QgZGF0YSBhbmQgdW5pdCB0ZXN0IGNvbHVtbiBudW1iZXJzCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTdfcmF3LCBtb250aCA9ICJNYXkiKSksIDI2KQoKIyBzdGFuZGFyZGl6ZSBtb250aHMKZGF0YTIwMTdfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDE3X3JhdywgbW9udGggPSAiTWF5IiwgY29uZmlnID0gMjYpCgojIHZhbGlkYXRlIGRhdGEKZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE3X3JhdywgeWVhciA9ICIyMDE3IiksIFRSVUUpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIHRoZSAyMDE3IGFuZCAyMDE4IHJhdyBkYXRhIG9iamVjdHMgdG8gY3JlYXRlIGEgbmV3IG9iamVjdCwgYGRhdGEyMDE3YCwgdGhhdCBjb250YWlucyBhbGwga25vd24gMjAxNyBjcmltZXMgaW5jbHVkaW5nIHRob3NlIHRoYXQgd2VyZSByZXBvcnRlZCBvciB1cGdyYWRlZCBpbiAyMDE4LgoKYGBge3IgY29sbGFwc2UtZGF0YTE3fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxN19yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTdfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxNywgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTcKYGBgCgojIyMgMjAxNgpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDE2IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTZ9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxNl9yYXcsIHllYXIgPSAiMjAxNiIpLCBUUlVFKQpgYGAKClNpbmNlIHRoZSB2YWxpZGF0aW9uIHByb2Nlc3MgcGFzc2VzLCB3ZSBjYW4gaW1tZWRpYXRlbHkgbW92ZSBvbiB0byBjcmVhdGluZyBvdXIgMjAxNiBkYXRhIG9iamVjdDoKCmBgYHtyIGNvbGxhcHNlLWRhdGExNn0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTZfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE2X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTYsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTYKYGBgCgojIyMgMjAxNQpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDE1IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTV9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxNV9yYXcsIHllYXIgPSAiMjAxNSIpLCBUUlVFKQpgYGAKClNpbmNlIHRoZSB2YWxpZGF0aW9uIHByb2Nlc3MgcGFzc2VzLCB3ZSBjYW4gaW1tZWRpYXRlbHkgbW92ZSBvbiB0byBjcmVhdGluZyBvdXIgMjAxNSBkYXRhIG9iamVjdDoKCmBgYHtyIGNvbGxhcHNlLWRhdGExNX0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTVfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDE1X3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTUsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxNQpgYGAKCiMjIyAyMDE0CldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTQgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExNH0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDE0X3JhdywgeWVhciA9ICIyMDE0IiksIFRSVUUpCmBgYAoKU2luY2UgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyBwYXNzZXMsIHdlIGNhbiBpbW1lZGlhdGVseSBtb3ZlIG9uIHRvIGNyZWF0aW5nIG91ciAyMDE1IGRhdGEgb2JqZWN0OgoKYGBge3IgY29sbGFwc2UtZGF0YTE0fQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxNF9yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTRfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxNCwgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3LCBkYXRhMjAxNF9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMTQKYGBgCgojIyMgMjAxMwpXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDEzIGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTN9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxM19yYXcsIHllYXIgPSAiMjAxMyIpLCBGQUxTRSkKYGBgCgpTaW5jZSB3ZSBmYWlsIHRoZSB2YWxpZGF0aW9uLCB3ZSBjYW4gdXNlIHRoZSBgdmVyYm9zZSA9IFRSVUVgIG9wdGlvbiB0byBnZXQgYSBzdW1tYXJ5IG9mIHdoZXJlIHZhbGlkYXRpb24gaXNzdWVzIGFyZSBvY2N1cmluZy4gCgpgYGB7ciB2YWxpZGF0ZS1kYXRhMTMtdmVyYm9zZX0KY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gIjIwMTMiLCB2ZXJib3NlID0gVFJVRSkKYGBgCgpUaGUgZGF0YSBmb3IgSmFudWFyeSB0aHJvdWdoIE1heSwgSnVseSwgYW5kIEF1Z3VzdCBkbyBub3QgcGFzcyB0aGUgdmFsaWRhdGlvbiBjaGVja3MuIFdlIGNhbiBleHRyYWN0IHRoZXNlIGFuZCBjb25maXJtIHRoYXQgdGhlcmUgYXJlIG5vdCBlbm91Z2ggY29sdW1ucyBpbiBlYWNoIG9mIHRoZXNlIHJlbGVhc2VzIE9uY2Ugd2UgaGF2ZSB0aGF0IGNvbmZpcm1lZCwgd2UgY2FuIHN0YW5kYXJkaXplIHRoYXQgbW9udGggYW5kIHJlLXJ1biBvdXIgdmFsaWRhdGlvbi4KCmBgYHtyIGZpeC1tb250aDEzfQojIEphbnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSAiSmFudWFyeSIsIGNvbmZpZyA9IDE4KQoKIyBGZWJydWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkZlYnJ1YXJ5IikpLCAxOCkKZGF0YTIwMTNfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEzX3JhdywgbW9udGggPSAiRmVicnVhcnkiLCBjb25maWcgPSAxOCkKCiMgTWFyY2ggLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJNYXJjaCIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIk1hcmNoIiwgY29uZmlnID0gMTgpCgojIEFwcmlsIC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QsIGFuZCBzdGFuZGFyZGl6ZQpleHBlY3RfZXF1YWwobmNvbChjc19leHRyYWN0X21vbnRoKGRhdGEyMDEzX3JhdywgbW9udGggPSAiQXByaWwiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJBcHJpbCIsIGNvbmZpZyA9IDE4KQoKIyBNYXkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwgYW5kIHN0YW5kYXJkaXplCmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJNYXkiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJNYXkiLCBjb25maWcgPSAxOCkKCiMgSnVseSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkp1bHkiKSksIDE4KQpkYXRhMjAxM19yYXcgPC0gY3Nfc3RhbmRhcmRpemUoZGF0YTIwMTNfcmF3LCBtb250aCA9ICJKdWx5IiwgY29uZmlnID0gMTgpCgojIEF1Z3VzdCAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0LCBhbmQgc3RhbmRhcmRpemUKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxM19yYXcsIG1vbnRoID0gIkF1Z3VzdCIpKSwgMTgpCmRhdGEyMDEzX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxM19yYXcsIG1vbnRoID0gIkF1Z3VzdCIsIGNvbmZpZyA9IDE4KQojIHJlbW92ZSBvYmplY3QKcm0obW9udGgxMykKCiMgdmFsaWRhdGUgZGF0YQpleHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMTNfcmF3LCB5ZWFyID0gIjIwMTMiKSwgVFJVRSkKYGBgCgpXZSBub3cgZ2V0IGEgYFRSVUVgIHZhbHVlIGZvciBgY3NfdmFsaWRhdGUoKWAgYW5kIGNhbiBtb3ZlIG9uIHRvIGNvbGxhcHNpbmcgb3VyIHJhdyBkYXRhIG9iamVjdHMgdG8gY3JlYXRlIGEgbmV3IG9iamVjdCwgYGRhdGEyMDEzYCwgdGhhdCBjb250YWlucyBhbGwga25vd24gMjAxMyBjcmltZXMgaW5jbHVkaW5nIHRob3NlIHRoYXQgd2VyZSByZXBvcnRlZCBvciB1cGdyYWRlZCBpbiBzdWJzZXF1ZW50IHllYXJzOgoKYGBge3IgY29sbGFwc2UtZGF0YTEzfQojIGNvbGxhcHNlIGludG8gc2luZ2xlIG9iamVjdApkYXRhMjAxM19yYXcgPC0gY3NfY29sbGFwc2UoZGF0YTIwMTNfcmF3KQoKIyBjb21iaW5lIGFuZCBmaWx0ZXIKY3NfY29tYmluZSh0eXBlID0gInllYXIiLCBkYXRlID0gMjAxMywgZGF0YTIwMThfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE2X3JhdywgZGF0YTIwMTVfcmF3LCBkYXRhMjAxNF9yYXcsIAogICAgICAgICAgIGRhdGEyMDEzX3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxMwpgYGAKCiMjIyAyMDEyCldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTIgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExMn0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEyX3JhdywgeWVhciA9ICIyMDEyIiksIEZBTFNFKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExMi12ZXJib3NlfQpjc192YWxpZGF0ZShkYXRhMjAxMl9yYXcsIHllYXIgPSAiMjAxMiIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKCkV2ZXJ5IG1vbnRoIGNvbnRhaW5zIHRoZSBpbmNvcnJlY3QgbnVtYmVyIG9mIHZhcmlhYmxlcy4gV2UnbGwgYWRkcmVzcyBlYWNoIG9mIHRoZXNlOgoKYGBge3IgZml4LW1vbnRoMTJ9CiMgSmFudWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0CmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTJfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKCiMgc3RhbmRhcmRpemUKZGF0YTIwMTJfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDEyX3JhdywgbW9udGggPSAiYWxsIiwgY29uZmlnID0gMTgpCgojIHZhbGlkYXRlIGRhdGEKZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDEyX3JhdywgeWVhciA9ICIyMDEyIiksIFRSVUUpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxMmAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTIgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExMn0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTJfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDEyX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTIsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCAKICAgICAgICAgICBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAxMgpgYGAKCiMjIyAyMDExCldlJ2xsIHJlcGVhdCB0aGUgdmFsaWRhdGlvbiBwcm9jZXNzIHdpdGggdGhlIDIwMTEgZGF0YToKCmBgYHtyIHZhbGlkYXRlLWRhdGExMX0KZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDExX3JhdywgeWVhciA9ICIyMDExIiksIEZBTFNFKQpgYGAKClNpbmNlIHdlIGZhaWwgdGhlIHZhbGlkYXRpb24sIHdlIGNhbiB1c2UgdGhlIGB2ZXJib3NlID0gVFJVRWAgb3B0aW9uIHRvIGdldCBhIHN1bW1hcnkgb2Ygd2hlcmUgdmFsaWRhdGlvbiBpc3N1ZXMgYXJlIG9jY3VyaW5nLiAKCmBgYHtyIHZhbGlkYXRlLWRhdGExMS12ZXJib3NlfQpjc192YWxpZGF0ZShkYXRhMjAxMV9yYXcsIHllYXIgPSAiMjAxMSIsIHZlcmJvc2UgPSBUUlVFKQpgYGAKCkV2ZXJ5IG1vbnRoIGNvbnRhaW5zIHRoZSBpbmNvcnJlY3QgbnVtYmVyIG9mIHZhcmlhYmxlcy4gV2UnbGwgYWRkcmVzcyBlYWNoIG9mIHRoZXNlOgoKYGBge3IgZml4LW1vbnRoMTF9CiMgSmFudWFyeSAtIGV4dHJhY3QgZGF0YSwgdW5pdCB0ZXN0CmV4cGVjdF9lcXVhbChuY29sKGNzX2V4dHJhY3RfbW9udGgoZGF0YTIwMTFfcmF3LCBtb250aCA9ICJKYW51YXJ5IikpLCAxOCkKCiMgc3RhbmRhcmRpemUKZGF0YTIwMTFfcmF3IDwtIGNzX3N0YW5kYXJkaXplKGRhdGEyMDExX3JhdywgbW9udGggPSAiYWxsIiwgY29uZmlnID0gMTgpCgojIHZhbGlkYXRlIGRhdGEKZXhwZWN0X2VxdWFsKGNzX3ZhbGlkYXRlKGRhdGEyMDExX3JhdywgeWVhciA9ICIyMDExIiksIFRSVUUpCmBgYAoKV2Ugbm93IGdldCBhIGBUUlVFYCB2YWx1ZSBmb3IgYGNzX3ZhbGlkYXRlKClgIGFuZCBjYW4gbW92ZSBvbiB0byBjb2xsYXBzaW5nIG91ciByYXcgZGF0YSBvYmplY3RzIHRvIGNyZWF0ZSBhIG5ldyBvYmplY3QsIGBkYXRhMjAxMWAsIHRoYXQgY29udGFpbnMgYWxsIGtub3duIDIwMTEgY3JpbWVzIGluY2x1ZGluZyB0aG9zZSB0aGF0IHdlcmUgcmVwb3J0ZWQgb3IgdXBncmFkZWQgaW4gc3Vic2VxdWVudCB5ZWFyczoKCmBgYHtyIGNvbGxhcHNlLWRhdGExMX0KIyBjb2xsYXBzZSBpbnRvIHNpbmdsZSBvYmplY3QKZGF0YTIwMTFfcmF3IDwtIGNzX2NvbGxhcHNlKGRhdGEyMDExX3JhdykKCiMgY29tYmluZSBhbmQgZmlsdGVyCmNzX2NvbWJpbmUodHlwZSA9ICJ5ZWFyIiwgZGF0ZSA9IDIwMTEsIGRhdGEyMDE4X3JhdywgZGF0YTIwMTdfcmF3LCBkYXRhMjAxNl9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTRfcmF3LCAKICAgICAgICAgICBkYXRhMjAxM19yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTFfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDExCmBgYAoKIyMjIDIwMTAKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAxMCBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTEwfQpleHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMTBfcmF3LCB5ZWFyID0gIjIwMTAiKSwgRkFMU0UpCmBgYAoKU2luY2Ugd2UgZmFpbCB0aGUgdmFsaWRhdGlvbiwgd2UgY2FuIHVzZSB0aGUgYHZlcmJvc2UgPSBUUlVFYCBvcHRpb24gdG8gZ2V0IGEgc3VtbWFyeSBvZiB3aGVyZSB2YWxpZGF0aW9uIGlzc3VlcyBhcmUgb2NjdXJpbmcuIAoKYGBge3IgdmFsaWRhdGUtZGF0YTEwLXZlcmJvc2V9CmNzX3ZhbGlkYXRlKGRhdGEyMDEwX3JhdywgeWVhciA9ICIyMDEwIiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgxMH0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAxMF9yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQoKIyBzdGFuZGFyZGl6ZSBhbGwgbW9udGhzCmRhdGEyMDEwX3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAxMF9yYXcsIG1vbnRoID0gImFsbCIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAxMF9yYXcsIHllYXIgPSAiMjAxMCIpLCBUUlVFKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZSgpYCBhbmQgY2FuIG1vdmUgb24gdG8gY29sbGFwc2luZyBvdXIgcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMTBgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDEwIGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIHN1YnNlcXVlbnQgeWVhcnM6CgpgYGB7ciBjb2xsYXBzZS1kYXRhMTB9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDEwX3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAxMF9yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDEwLCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE0X3JhdywgCiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3KSAlPiUKICBjc19maWx0ZXJfY291bnQodmFyID0gY291bnQpIC0+IGRhdGEyMDEwCmBgYAoKIyMjIDIwMDkKV2UnbGwgcmVwZWF0IHRoZSB2YWxpZGF0aW9uIHByb2Nlc3Mgd2l0aCB0aGUgMjAwOSBkYXRhOgoKYGBge3IgdmFsaWRhdGUtZGF0YTA5fQpleHBlY3RfZXF1YWwoY3NfdmFsaWRhdGUoZGF0YTIwMDlfcmF3LCB5ZWFyID0gIjIwMDkiKSwgRkFMU0UpCmBgYAoKU2luY2Ugd2UgZmFpbCB0aGUgdmFsaWRhdGlvbiwgd2UgY2FuIHVzZSB0aGUgYHZlcmJvc2UgPSBUUlVFYCBvcHRpb24gdG8gZ2V0IGEgc3VtbWFyeSBvZiB3aGVyZSB2YWxpZGF0aW9uIGlzc3VlcyBhcmUgb2NjdXJpbmcuIAoKYGBge3IgdmFsaWRhdGUtZGF0YTA5LXZlcmJvc2V9CmNzX3ZhbGlkYXRlKGRhdGEyMDA5X3JhdywgeWVhciA9ICIyMDA5IiwgdmVyYm9zZSA9IFRSVUUpCmBgYAoKRXZlcnkgbW9udGggY29udGFpbnMgdGhlIGluY29ycmVjdCBudW1iZXIgb2YgdmFyaWFibGVzLiBXZSdsbCBhZGRyZXNzIGVhY2ggb2YgdGhlc2U6CgpgYGB7ciBmaXgtbW9udGgwOX0KIyBKYW51YXJ5IC0gZXh0cmFjdCBkYXRhLCB1bml0IHRlc3QKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOV9yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQoKIyBzdGFuZGFyZGl6ZSBhbGwgbW9udGhzCmRhdGEyMDA5X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOV9yYXcsIG1vbnRoID0gImFsbCIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAwOV9yYXcsIHllYXIgPSAiMjAwOSIpLCBUUlVFKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZSgpYCBhbmQgY2FuIG1vdmUgb24gdG8gY29sbGFwc2luZyBvdXIgcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMDlgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDA5IGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIHN1YnNlcXVlbnQgeWVhcnM6CgpgYGB7ciBjb2xsYXBzZS1kYXRhMDl9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDA5X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOV9yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDA5LCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE0X3JhdywgCiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAwOV9yYXcpICU+JQogIGNzX2ZpbHRlcl9jb3VudCh2YXIgPSBjb3VudCkgLT4gZGF0YTIwMDkKYGBgCgojIyMgMjAwOApXZSdsbCByZXBlYXQgdGhlIHZhbGlkYXRpb24gcHJvY2VzcyB3aXRoIHRoZSAyMDA4IGRhdGE6CgpgYGB7ciB2YWxpZGF0ZS1kYXRhMDgsIGluY2x1ZGU9RkFMU0V9CmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAwOF9yYXcsIHllYXIgPSAiMjAwOCIpLCBGQUxTRSkKYGBgCgpTaW5jZSB3ZSBmYWlsIHRoZSB2YWxpZGF0aW9uLCB3ZSBjYW4gdXNlIHRoZSBgdmVyYm9zZSA9IFRSVUVgIG9wdGlvbiB0byBnZXQgYSBzdW1tYXJ5IG9mIHdoZXJlIHZhbGlkYXRpb24gaXNzdWVzIGFyZSBvY2N1cmluZy4gCgpgYGB7ciB2YWxpZGF0ZS1kYXRhMDgtdmVyYm9zZSwgaW5jbHVkZT1GQUxTRX0KY3NfdmFsaWRhdGUoZGF0YTIwMDhfcmF3LCB5ZWFyID0gIjIwMDgiLCB2ZXJib3NlID0gVFJVRSkKYGBgCgpFdmVyeSBtb250aCBjb250YWlucyB0aGUgaW5jb3JyZWN0IG51bWJlciBvZiB2YXJpYWJsZXMuIFdlJ2xsIGFkZHJlc3MgZWFjaCBvZiB0aGVzZToKCmBgYHtyIGZpeC1tb250aDA4LCBpbmNsdWRlPUZBTFNFfQojIEphbnVhcnkgLSBleHRyYWN0IGRhdGEsIHVuaXQgdGVzdCwKZXhwZWN0X2VxdWFsKG5jb2woY3NfZXh0cmFjdF9tb250aChkYXRhMjAwOF9yYXcsIG1vbnRoID0gIkphbnVhcnkiKSksIDE4KQoKIyBzdGFuZGFyZGl6ZSBhbGwgbW9udGhzCmRhdGEyMDA4X3JhdyA8LSBjc19zdGFuZGFyZGl6ZShkYXRhMjAwOF9yYXcsIG1vbnRoID0gImFsbCIsIGNvbmZpZyA9IDE4KQoKIyB2YWxpZGF0ZSBkYXRhCmV4cGVjdF9lcXVhbChjc192YWxpZGF0ZShkYXRhMjAwOF9yYXcsIHllYXIgPSAiMjAwOCIpLCBUUlVFKQpgYGAKCldlIG5vdyBnZXQgYSBgVFJVRWAgdmFsdWUgZm9yIGBjc192YWxpZGF0ZSgpYCBhbmQgY2FuIG1vdmUgb24gdG8gY29sbGFwc2luZyBvdXIgcmF3IGRhdGEgb2JqZWN0cyB0byBjcmVhdGUgYSBuZXcgb2JqZWN0LCBgZGF0YTIwMDhgLCB0aGF0IGNvbnRhaW5zIGFsbCBrbm93biAyMDA4IGNyaW1lcyBpbmNsdWRpbmcgdGhvc2UgdGhhdCB3ZXJlIHJlcG9ydGVkIG9yIHVwZ3JhZGVkIGluIHN1YnNlcXVlbnQgeWVhcnM6CgpgYGB7ciBjb2xsYXBzZS1kYXRhMDgsIGluY2x1ZGU9RkFMU0V9CiMgY29sbGFwc2UgaW50byBzaW5nbGUgb2JqZWN0CmRhdGEyMDA4X3JhdyA8LSBjc19jb2xsYXBzZShkYXRhMjAwOF9yYXcpCgojIGNvbWJpbmUgYW5kIGZpbHRlcgpjc19jb21iaW5lKHR5cGUgPSAieWVhciIsIGRhdGUgPSAyMDA4LCBkYXRhMjAxOF9yYXcsIGRhdGEyMDE3X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxNV9yYXcsIGRhdGEyMDE0X3JhdywgCiAgICAgICAgICAgZGF0YTIwMTNfcmF3LCBkYXRhMjAxMl9yYXcsIGRhdGEyMDExX3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAwOV9yYXcsIGRhdGEyMDA4X3JhdykgJT4lCiAgY3NfZmlsdGVyX2NvdW50KHZhciA9IGNvdW50KSAtPiBkYXRhMjAwOApgYGAKCiMjIENsZWFuLXVwIEVudmlvcm5tZW50CldlIGNhbiByZW1vdmUgdGhlIGBfcmF3YCBvYmplY3RzIGF0IHRoaXMgcG9pbnQgYXMgd2VsbCBhcyB0aGUgaW5kZXg6CgpgYGB7ciByZW1vdmUtcmF3fQpybShkYXRhMjAwOF9yYXcsIGRhdGEyMDA5X3JhdywgZGF0YTIwMTBfcmF3LCBkYXRhMjAxMV9yYXcsIGRhdGEyMDEyX3JhdywgZGF0YTIwMTNfcmF3LCBkYXRhMjAxNF9yYXcsIGRhdGEyMDE1X3JhdywgZGF0YTIwMTZfcmF3LCBkYXRhMjAxN19yYXcsIGRhdGEyMDE4X3JhdywgaSkKYGBgCgojIyBDcmVhdGUgU2luZ2xlIFRhYmxlCk5leHQsIHdlJ2xsIGNyZWF0ZSBhIHNpbmdsZSB0YWJsZSBiZWZvcmUgd2UgcmVtb3ZlIGluZGl2aWR1YWwgeWVhcnMuIFdlIGFsc28gc3Vic2V0IGNvbHVtbnMgdG8gcmVkdWNlIHRoZSBmb290cHJpbnQgb2YgdGhlIHRhYmxlLgoKYGBge3IgY29sbGFwc2UtYWxsfQpiaW5kX3Jvd3MoZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KSAlPiUKICBzZWxlY3QoY3NfeWVhciwgZGF0ZV9vY2N1ciwgY3JpbWUsIGRlc2NyaXB0aW9uLCBpbGVhZHNfYWRkcmVzcywgaWxlYWRzX3N0cmVldCwgeF9jb29yZCwgeV9jb29yZCkgLT4gYWxsQ3JpbWVzCmBgYAoKIyMjIENsZWFuLXVwIEVudmlvcm5tZW50CldlJ2xsIHJlbW92ZSBleGNlc3Mgb2JqZWN0cyBhZ2FpbjoKCmBgYHtyIHJlbW92ZS15ZWFyc30Kcm0oZGF0YTIwMDgsIGRhdGEyMDA5LCBkYXRhMjAxMCwgZGF0YTIwMTEsIGRhdGEyMDEyLCBkYXRhMjAxMywgZGF0YTIwMTQsIGRhdGEyMDE1LCBkYXRhMjAxNiwgZGF0YTIwMTcsIGRhdGEyMDE4KQpgYGAKCiMjIENhdGVnb3JpemUgQ3JpbWVzIGFuZCBTdWJzZXQKTmV4dCwgd2UnbGwgcHVsbCBvdXQgYXJzb25zIGFuZCB0aGVuIHdyaXRlIHRoZW0gdG8gYSBgLmNzdmAgZmlsZToKCmBgYHtyIHN1YnNldC1hcnNvbn0KYWxsQ3JpbWVzICU+JQogIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSAiYXJzb24iKSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJwb2ludF9hcnNvbi5jc3YiKSkKYGBgCgpOZXh0LCB3ZSdsbCBjcmVhdGUgYSBzdWJzZXQgdGhhdCBpcyBvbmx5IHZpb2xlbnQgY3JpbWVzIGZvciBvdXIgbWFpbiBzdHVkeSBwZXJpb2QsIDIwMTMtMjAxNzoKCmBgYHtyIHN1YnNldC12aW9sZW50fQphbGxDcmltZXMgJT4lCiAgZmlsdGVyKGNzX3llYXIgJWluJSBjKDIwMTM6MjAxNykpICU+JQogIGNzX2ZpbHRlcl9jcmltZSh2YXIgPSBjcmltZSwgY3JpbWUgPSAidmlvbGVudCIpICU+JQogIHdyaXRlX2NzdihoZXJlKCJkYXRhIiwgImNsZWFuIiwgInBvaW50X3Zpb2xlbnQuY3N2IikpCmBgYAoKIyMjIFByb3BlcnR5IENyaW1lcwpOZXh0LCB3ZSdsbCBjcmVhdGUgYSBzdWJzZXQgdGhhdCBpcyBvbmx5IG5vbi1hcnNvbiBwcm9wZXJ0eSBjcmltZXM6CgpgYGB7ciBzdWJzZXQtcHJvcGVydHl9CmFsbENyaW1lcyAlPiUKICBmaWx0ZXIoY3NfeWVhciAlaW4lIGMoMjAxMzoyMDE3KSkgJT4lCiAgY3NfZmlsdGVyX2NyaW1lKHZhciA9IGNyaW1lLCBjcmltZSA9ICJwcm9wZXJ0eSIpICU+JQogIGNzX2NyaW1lX2NhdCh2YXIgPSBjcmltZSwgbmV3VmFyID0gY2F0LCBvdXRwdXQgPSAibnVtZXJpYyIpICU+JQogIGZpbHRlcihjYXQgJWluJSBjKDU6NykpICU+JQogIHNlbGVjdCgtY2F0KSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJwb2ludF9wcm9wZXJ0eS5jc3YiKSkKYGBgCgojIyMgT3RoZXIgQ3JpbWVzCkZpbmFsbHksIHdlJ2xsIGNyZWF0ZSBhIHN1YnNldCB3aXRoIGEgZmV3IGtleSBQYXJ0IDIgY3JpbWVzOgoKKiBWYW5kYWxpc20KKiBXZWFwb25zCiogRHJ1ZyBBYnVzZSBWaW9sYXRpb25zCiogVmFncmFuY3kKCmBgYHtyIHN1YnNldC1vdGhlcn0KYWxsQ3JpbWVzICU+JQogIGZpbHRlcihjc195ZWFyICVpbiUgYygyMDEzOjIwMTcpKSAlPiUKICBjc19jcmltZV9jYXQodmFyID0gY3JpbWUsIG5ld1ZhciA9IGNhdCwgb3V0cHV0ID0gIm51bWVyaWMiKSAlPiUKICBmaWx0ZXIoY2F0ICVpbiUgYygxNCwgMTUsIDE4LCAyNCkpICU+JQogIHNlbGVjdCgtY2F0KSAlPiUKICB3cml0ZV9jc3YoaGVyZSgiZGF0YSIsICJjbGVhbiIsICJwb2ludF9vdGhlckNyaW1lcy5jc3YiKSkKYGBgCgo=</div>
 
 
 
@@ -2411,29 +2456,6 @@ $(document).ready(function () {
 });
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("01-createData-crime.Rmd");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

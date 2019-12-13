@@ -132,5 +132,5 @@ Finally, we'll write the data to a `.csv` file:
 
 ```{r write-data}
 # write
-write_csv(x = demos, path = here("data", "clean", "demographics.csv"))
+write_csv(x = demos, path = here("data", "clean", "tract_demographics.csv"))
 ```

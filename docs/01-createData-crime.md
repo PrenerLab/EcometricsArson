@@ -1,7 +1,7 @@
 Create Data - Crime
 ================
 Christopher Prener, Ph.D.
-(December 09, 2019)
+(December 13, 2019)
 
 ## Introduction
 
@@ -38,7 +38,7 @@ library(readr)         # write csv files
 library(here)          # file path management
 ```
 
-    ## here() starts at /Users/chris/GitHub/PrenerLab/EcometricsArson
+    ## here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson
 
 ``` r
 library(testthat)      # unit testing
@@ -578,7 +578,8 @@ upgraded in subsequent years:
 
 ## Clean-up Enviornment
 
-We can remove the `_raw` objects at this point as well as the index:
+We can remove the `_raw` objects at this point as well as the
+index:
 
 ``` r
 rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw, i)
@@ -587,7 +588,8 @@ rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data201
 ## Create Single Table
 
 Next, we’ll create a single table before we remove individual years. We
-also subset columns to reduce the footprint of the table.
+also subset columns to reduce the footprint of the
+table.
 
 ``` r
 bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
@@ -596,7 +598,8 @@ bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, 
 
 ### Clean-up Enviornment
 
-We’ll remove excess objects again:
+We’ll remove excess objects
+again:
 
 ``` r
 rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018)
@@ -609,7 +612,7 @@ Next, we’ll pull out arsons and then write them to a `.csv` file:
 ``` r
 allCrimes %>%
   cs_filter_crime(var = crime, crime = "arson") %>%
-  write_csv(here("data", "clean", "arson.csv"))
+  write_csv(here("data", "clean", "point_arson.csv"))
 ```
 
 Next, we’ll create a subset that is only violent crimes for our main
@@ -619,7 +622,7 @@ study period, 2013-2017:
 allCrimes %>%
   filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "violent") %>%
-  write_csv(here("data", "clean", "violent.csv"))
+  write_csv(here("data", "clean", "point_violent.csv"))
 ```
 
 ### Property Crimes
@@ -633,7 +636,7 @@ allCrimes %>%
   cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
   filter(cat %in% c(5:7)) %>%
   select(-cat) %>%
-  write_csv(here("data", "clean", "property.csv"))
+  write_csv(here("data", "clean", "point_property.csv"))
 ```
 
 ### Other Crimes
@@ -653,5 +656,5 @@ allCrimes %>%
   cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
   filter(cat %in% c(14, 15, 18, 24)) %>%
   select(-cat) %>%
-  write_csv(here("data", "clean", "otherCrimes.csv"))
+  write_csv(here("data", "clean", "point_otherCrimes.csv"))
 ```

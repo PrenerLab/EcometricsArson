@@ -1764,7 +1764,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Create Data - Disorder</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(December 05, 2019)</h4>
+<h4 class="date">(December 13, 2019)</h4>
 
 </div>
 
@@ -1779,28 +1779,28 @@ $(document).ready(function () {
 <p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KHN0bGNzYilcblxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHJlYWRyKVxuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpXG5gYGAifQ== -->
-<pre class="r"><code># tidystl packages
-library(stlcsb)
-
-# tidyverse packages
-library(dplyr)
-library(readr)
-
-# other packages
-library(here)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0aWR5c3RsIHBhY2thZ2VzXG5saWJyYXJ5KHN0bGNzYilcblxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHJlYWRyKVxuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # tidystl packages library(stlcsb)</p>
+</div>
+<div id="tidyverse-packages" class="section level1">
+<h1>tidyverse packages</h1>
+<p>library(dplyr) library(readr)</p>
+</div>
+<div id="other-packages" class="section level1">
+<h1>other packages</h1>
+<p>library(here)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="download-data" class="section level2">
 <h2>Download Data</h2>
 <p>We’ll start by downloading all csb calls for 2013 through 2017 from the St. Louis Open Data website via the <code>stlcsb</code> package:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkb3dubG9hZFxuYWxsX2NhbGxzIDwtIGNzYl9nZXRfZGF0YSh5ZWFycyA9IDIwMTM6MjAxNylcbmBgYCJ9 -->
-<pre class="r"><code># download
-all_calls &lt;- csb_get_data(years = 2013:2017)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBkb3dubG9hZFxuYWxsX2NhbGxzIDwtIGNzYl9nZXRfZGF0YSh5ZWFycyA9IDIwMTM6MjAxNylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # download all_calls &lt;- csb_get_data(years = 2013:2017)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoidHJ5aW5nIFVSTCAnaHR0cHM6Ly93d3cuc3Rsb3Vpcy1tby5nb3YvZGF0YS91cGxvYWQvZGF0YS1maWxlcy9jc2IuemlwJ1xuQ29udGVudCB0eXBlICdhcHBsaWNhdGlvbi94LXppcC1jb21wcmVzc2VkJyBsZW5ndGggNzMwNDM3ODAgYnl0ZXMgKDY5LjcgTUIpXG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuZG93bmxvYWRlZCA2OS43IE1CXG4ifQ== -->
 <pre><code>trying URL 'https://www.stlouis-mo.gov/data/upload/data-files/csb.zip'
@@ -1808,9 +1808,9 @@ Content type 'application/x-zip-compressed' length 73043780 bytes (69.7 MB)
 ==================================================
 downloaded 69.7 MB</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzdG9yZSBudW1iZXIgb2Ygcm93c1xudG90YWxfcm93cyA8LSBucm93KGFsbF9jYWxscylcbmBgYCJ9 -->
-<pre class="r"><code># store number of rows
-total_rows &lt;- nrow(all_calls)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBzdG9yZSBudW1iZXIgb2Ygcm93c1xudG90YWxfcm93cyA8LSBucm93KGFsbF9jYWxscylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # store number of rows total_rows &lt;- nrow(all_calls)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1820,73 +1820,71 @@ total_rows &lt;- nrow(all_calls)</code></pre>
 <p>Some of these calls were cancelled, so we’ll remove them from the data set:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzdWJzZXRcbmFsbF9jYWxscyAlPiUgXG4gIGNzYl9jYW5jZWxlZCh2YXIgPSBcImRhdGVjYW5jZWxsZWRcIikgJT4lXG4gIGNzYl9taXNzaW5nWFkodmFyWCA9IHNyeCwgdmFyWSA9IHNyeSwgbmV3VmFyID0gbWlzc2luZykgJT4lXG4gIGZpbHRlcihtaXNzaW5nID09IEZBTFNFKSAlPiVcbiAgc2VsZWN0KC1taXNzaW5nKSAtPiBhbGxfY2FsbHNcblxuIyBzdG9yZSByZW1haW5pbmcgbnVtYmVyIG9mIHJvd3NcbnJlbWFpbmluZ19yb3dzIDwtIG5yb3coYWxsX2NhbGxzKVxuYGBgIn0= -->
-<pre class="r"><code># subset
-all_calls %&gt;% 
-  csb_canceled(var = &quot;datecancelled&quot;) %&gt;%
-  csb_missingXY(varX = srx, varY = sry, newVar = missing) %&gt;%
-  filter(missing == FALSE) %&gt;%
-  select(-missing) -&gt; all_calls
-
-# store remaining number of rows
-remaining_rows &lt;- nrow(all_calls)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBzdWJzZXRcbmFsbF9jYWxscyAlPiUgXG4gIGNzYl9jYW5jZWxlZCh2YXIgPSBcXGRhdGVjYW5jZWxsZWRcXCkgJT4lXG4gIGNzYl9taXNzaW5nWFkodmFyWCA9IHNyeCwgdmFyWSA9IHNyeSwgbmV3VmFyID0gbWlzc2luZykgJT4lXG4gIGZpbHRlcihtaXNzaW5nID09IEZBTFNFKSAlPiVcbiAgc2VsZWN0KC1taXNzaW5nKSAtPiBhbGxfY2FsbHNcblxuIyBzdG9yZSByZW1haW5pbmcgbnVtYmVyIG9mIHJvd3NcbnJlbWFpbmluZ19yb3dzIDwtIG5yb3coYWxsX2NhbGxzKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # subset all_calls %&gt;% csb_canceled(var = ) %&gt;% csb_missingXY(varX = srx, varY = sry, newVar = missing) %&gt;% filter(missing == FALSE) %&gt;% select(-missing) -&gt; all_calls</p>
+</div>
+</div>
+<div id="store-remaining-number-of-rows" class="section level1">
+<h1>store remaining number of rows</h1>
+<p>remaining_rows &lt;- nrow(all_calls)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>As an aside, we want to know how many rows were removed by this process:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVtYWluaW5nX3Jvd3MvdG90YWxfcm93cyoxMDBcbmBgYCJ9 -->
-<pre class="r"><code>remaining_rows/total_rows*100</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucmVtYWluaW5nX3Jvd3MvdG90YWxfcm93cyoxMDBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r remaining_rows/total_rows*100</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDk0LjY0MDg2XG4ifQ== -->
 <pre><code>[1] 94.64086</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="cateogrize-data" class="section level2">
 <h2>Cateogrize Data</h2>
 <p>Next, we’ll focus our analysis on particular categories of calls:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzdWJzZXRcbmFsbF9jYWxscyAlPiUgXG4gIGNzYl9jYXRlZ29yaXplKHZhciA9IHByb2JsZW1jb2RlLCBuZXdWYXIgPSBjYXRlZ29yeSkgJT4lXG4gIHNlbGVjdChyZXF1ZXN0aWQsIGRhdGV0aW1laW5pdCwgY2F0ZWdvcnksIGV2ZXJ5dGhpbmcoKSkgJT4lXG4gIGZpbHRlcihjYXRlZ29yeSAlaW4lIGMoXCJEZWJyaXNcIiwgXCJEZWdyYWRlXCIsIFwiRGlzdHVyYmFuY2VcIiwgXCJMYXdcIikpICU+JVxuICBzZWxlY3QoZGF0ZXRpbWVpbml0LCBjYXRlZ29yeSwgcHJvYmFkZHJlc3MsIHByb2JsZW1jb2RlLCBzcngsIHNyeSkgLT4gZm9jYWxfY2FsbHNcblxuIyBzdG9yZSByZW1haW5pbmcgbnVtYmVyIG9mIHJvd3NcbmZvY2FsX3Jvd3MgPC0gbnJvdyhmb2NhbF9jYWxscylcbmBgYCJ9 -->
-<pre class="r"><code># subset
-all_calls %&gt;% 
-  csb_categorize(var = problemcode, newVar = category) %&gt;%
-  select(requestid, datetimeinit, category, everything()) %&gt;%
-  filter(category %in% c(&quot;Debris&quot;, &quot;Degrade&quot;, &quot;Disturbance&quot;, &quot;Law&quot;)) %&gt;%
-  select(datetimeinit, category, probaddress, problemcode, srx, sry) -&gt; focal_calls
-
-# store remaining number of rows
-focal_rows &lt;- nrow(focal_calls)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBzdWJzZXRcbmFsbF9jYWxscyAlPiUgXG4gIGNzYl9jYXRlZ29yaXplKHZhciA9IHByb2JsZW1jb2RlLCBuZXdWYXIgPSBjYXRlZ29yeSkgJT4lXG4gIHNlbGVjdChyZXF1ZXN0aWQsIGRhdGV0aW1laW5pdCwgY2F0ZWdvcnksIGV2ZXJ5dGhpbmcoKSkgJT4lXG4gIGZpbHRlcihjYXRlZ29yeSAlaW4lIGMoXFxEZWJyaXNcXCwgXFxEZWdyYWRlXFwsIFxcRGlzdHVyYmFuY2VcXCwgXFxMYXdcXCkpICU+JVxuICBzZWxlY3QoZGF0ZXRpbWVpbml0LCBjYXRlZ29yeSwgcHJvYmFkZHJlc3MsIHByb2JsZW1jb2RlLCBzcngsIHNyeSkgLT4gZm9jYWxfY2FsbHNcblxuIyBzdG9yZSByZW1haW5pbmcgbnVtYmVyIG9mIHJvd3NcbmZvY2FsX3Jvd3MgPC0gbnJvdyhmb2NhbF9jYWxscylcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # subset all_calls %&gt;% csb_categorize(var = problemcode, newVar = category) %&gt;% select(requestid, datetimeinit, category, everything()) %&gt;% filter(category %in% c(, , , )) %&gt;% select(datetimeinit, category, probaddress, problemcode, srx, sry) -&gt; focal_calls</p>
+</div>
+</div>
+<div id="store-remaining-number-of-rows-1" class="section level1">
+<h1>store remaining number of rows</h1>
+<p>focal_rows &lt;- nrow(focal_calls)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>As an aside, we want to know how many rows were removed by this process:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9jYWxfcm93cy9yZW1haW5pbmdfcm93cyoxMDBcbmBgYCJ9 -->
-<pre class="r"><code>focal_rows/remaining_rows*100</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZm9jYWxfcm93cy9yZW1haW5pbmdfcm93cyoxMDBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r focal_rows/remaining_rows*100</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI4Ljk0MThcbiJ9 -->
 <pre><code>[1] 28.9418</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="write-data-to-csv" class="section level2">
 <h2>Write Data to CSV</h2>
 <p>With these data prepared, we can write them to <code>.csv</code>:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KGZvY2FsX2NhbGxzLCBwYXRoID0gaGVyZShcImRhdGFcIiwgXCJjbGVhblwiLCBcImRpc29yZGVyLmNzdlwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>write_csv(focal_calls, path = here(&quot;data&quot;, &quot;clean&quot;, &quot;disorder.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud3JpdGVfY3N2KGZvY2FsX2NhbGxzLCBwYXRoID0gaGVyZShcXGRhdGFcXCwgXFxjbGVhblxcLCBcXGRpc29yZGVyLmNzdlxcKSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r write_csv(focal_calls, path = here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBEaXNvcmRlciIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIGEgZGF0YSBzZXQgb2YgZGlzb3JkZXIgY2FsbHMgZm9yIHRoZSBDaXR5IG9mIFN0LiBMb3Vpcy4KCiMjIERlcGVuZGVuY2llcwpUaGlzIG5vdGVib29rIHJlcXVpcmVzIHRoZSBmb2xsb3dpbmcgcGFja2FnZXM6CgpgYGB7ciBsb2FkLXBhY2thZ2VzfQojIHRpZHlzdGwgcGFja2FnZXMKbGlicmFyeShzdGxjc2IpCgojIHRpZHl2ZXJzZSBwYWNrYWdlcwpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHJlYWRyKQoKIyBvdGhlciBwYWNrYWdlcwpsaWJyYXJ5KGhlcmUpCmBgYAoKIyMgRG93bmxvYWQgRGF0YQpXZSdsbCBzdGFydCBieSBkb3dubG9hZGluZyBhbGwgY3NiIGNhbGxzIGZvciAyMDEzIHRocm91Z2ggMjAxNyBmcm9tIHRoZSBTdC4gTG91aXMgT3BlbiBEYXRhIHdlYnNpdGUgdmlhIHRoZSBgc3RsY3NiYCBwYWNrYWdlOgoKYGBge3IgZG93bmxvYWQtZGF0YX0KIyBkb3dubG9hZAphbGxfY2FsbHMgPC0gY3NiX2dldF9kYXRhKHllYXJzID0gMjAxMzoyMDE3KQoKIyBzdG9yZSBudW1iZXIgb2Ygcm93cwp0b3RhbF9yb3dzIDwtIG5yb3coYWxsX2NhbGxzKQpgYGAKCiMjIFN1YnNldApTb21lIG9mIHRoZXNlIGNhbGxzIHdlcmUgY2FuY2VsbGVkLCBzbyB3ZSdsbCByZW1vdmUgdGhlbSBmcm9tIHRoZSBkYXRhIHNldDoKCmBgYHtyIHN1YnNldH0KIyBzdWJzZXQKYWxsX2NhbGxzICU+JSAKICBjc2JfY2FuY2VsZWQodmFyID0gImRhdGVjYW5jZWxsZWQiKSAlPiUKICBjc2JfbWlzc2luZ1hZKHZhclggPSBzcngsIHZhclkgPSBzcnksIG5ld1ZhciA9IG1pc3NpbmcpICU+JQogIGZpbHRlcihtaXNzaW5nID09IEZBTFNFKSAlPiUKICBzZWxlY3QoLW1pc3NpbmcpIC0+IGFsbF9jYWxscwoKIyBzdG9yZSByZW1haW5pbmcgbnVtYmVyIG9mIHJvd3MKcmVtYWluaW5nX3Jvd3MgPC0gbnJvdyhhbGxfY2FsbHMpCmBgYAoKQXMgYW4gYXNpZGUsIHdlIHdhbnQgdG8ga25vdyBob3cgbWFueSByb3dzIHdlcmUgcmVtb3ZlZCBieSB0aGlzIHByb2Nlc3M6CgpgYGB7ciBwZXJjZW50LXJlbW92ZWR9CnJlbWFpbmluZ19yb3dzL3RvdGFsX3Jvd3MqMTAwCmBgYAoKIyMgQ2F0ZW9ncml6ZSBEYXRhCk5leHQsIHdlJ2xsIGZvY3VzIG91ciBhbmFseXNpcyBvbiBwYXJ0aWN1bGFyIGNhdGVnb3JpZXMgb2YgY2FsbHM6CgpgYGB7ciBjYXRlZ29yaXplLWFuZC1zdWJzZXR9CiMgc3Vic2V0CmFsbF9jYWxscyAlPiUgCiAgY3NiX2NhdGVnb3JpemUodmFyID0gcHJvYmxlbWNvZGUsIG5ld1ZhciA9IGNhdGVnb3J5KSAlPiUKICBzZWxlY3QocmVxdWVzdGlkLCBkYXRldGltZWluaXQsIGNhdGVnb3J5LCBldmVyeXRoaW5nKCkpICU+JQogIGZpbHRlcihjYXRlZ29yeSAlaW4lIGMoIkRlYnJpcyIsICJEZWdyYWRlIiwgIkRpc3R1cmJhbmNlIiwgIkxhdyIpKSAlPiUKICBzZWxlY3QoZGF0ZXRpbWVpbml0LCBjYXRlZ29yeSwgcHJvYmFkZHJlc3MsIHByb2JsZW1jb2RlLCBzcngsIHNyeSkgLT4gZm9jYWxfY2FsbHMKCiMgc3RvcmUgcmVtYWluaW5nIG51bWJlciBvZiByb3dzCmZvY2FsX3Jvd3MgPC0gbnJvdyhmb2NhbF9jYWxscykKYGBgCgpBcyBhbiBhc2lkZSwgd2Ugd2FudCB0byBrbm93IGhvdyBtYW55IHJvd3Mgd2VyZSByZW1vdmVkIGJ5IHRoaXMgcHJvY2VzczoKCmBgYHtyIHBlcmNlbnQtcmVtYWluaW5nfQpmb2NhbF9yb3dzL3JlbWFpbmluZ19yb3dzKjEwMApgYGAKCiMjIFdyaXRlIERhdGEgdG8gQ1NWCldpdGggdGhlc2UgZGF0YSBwcmVwYXJlZCwgd2UgY2FuIHdyaXRlIHRoZW0gdG8gYC5jc3ZgOgoKYGBge3Igd3JpdGUtdG8tY3N2fQp3cml0ZV9jc3YoZm9jYWxfY2FsbHMsIHBhdGggPSBoZXJlKCJkYXRhIiwgImNsZWFuIiwgImRpc29yZGVyLmNzdiIpKQpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBEaXNvcmRlciIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBjcmVhdGVzIGEgZGF0YSBzZXQgb2YgZGlzb3JkZXIgY2FsbHMgZm9yIHRoZSBDaXR5IG9mIFN0LiBMb3Vpcy4KCiMjIERlcGVuZGVuY2llcwpUaGlzIG5vdGVib29rIHJlcXVpcmVzIHRoZSBmb2xsb3dpbmcgcGFja2FnZXM6CgpgYGB7ciBsb2FkLXBhY2thZ2VzfQojIHRpZHlzdGwgcGFja2FnZXMKbGlicmFyeShzdGxjc2IpCgojIHRpZHl2ZXJzZSBwYWNrYWdlcwpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHJlYWRyKQoKIyBvdGhlciBwYWNrYWdlcwpsaWJyYXJ5KGhlcmUpCmBgYAoKIyMgRG93bmxvYWQgRGF0YQpXZSdsbCBzdGFydCBieSBkb3dubG9hZGluZyBhbGwgY3NiIGNhbGxzIGZvciAyMDEzIHRocm91Z2ggMjAxNyBmcm9tIHRoZSBTdC4gTG91aXMgT3BlbiBEYXRhIHdlYnNpdGUgdmlhIHRoZSBgc3RsY3NiYCBwYWNrYWdlOgoKYGBge3IgZG93bmxvYWQtZGF0YX0KIyBkb3dubG9hZAphbGxfY2FsbHMgPC0gY3NiX2dldF9kYXRhKHllYXJzID0gMjAxMzoyMDE3KQoKIyBzdG9yZSBudW1iZXIgb2Ygcm93cwp0b3RhbF9yb3dzIDwtIG5yb3coYWxsX2NhbGxzKQpgYGAKCiMjIFN1YnNldApTb21lIG9mIHRoZXNlIGNhbGxzIHdlcmUgY2FuY2VsbGVkLCBzbyB3ZSdsbCByZW1vdmUgdGhlbSBmcm9tIHRoZSBkYXRhIHNldDoKCmBgYHtyIHN1YnNldH0KIyBzdWJzZXQKYWxsX2NhbGxzICU+JSAKICBjc2JfY2FuY2VsZWQodmFyID0gImRhdGVjYW5jZWxsZWQiKSAlPiUKICBjc2JfbWlzc2luZ1hZKHZhclggPSBzcngsIHZhclkgPSBzcnksIG5ld1ZhciA9IG1pc3NpbmcpICU+JQogIGZpbHRlcihtaXNzaW5nID09IEZBTFNFKSAlPiUKICBzZWxlY3QoLW1pc3NpbmcpIC0+IGFsbF9jYWxscwoKIyBzdG9yZSByZW1haW5pbmcgbnVtYmVyIG9mIHJvd3MKcmVtYWluaW5nX3Jvd3MgPC0gbnJvdyhhbGxfY2FsbHMpCmBgYAoKQXMgYW4gYXNpZGUsIHdlIHdhbnQgdG8ga25vdyBob3cgbWFueSByb3dzIHdlcmUgcmVtb3ZlZCBieSB0aGlzIHByb2Nlc3M6CgpgYGB7ciBwZXJjZW50LXJlbW92ZWR9CnJlbWFpbmluZ19yb3dzL3RvdGFsX3Jvd3MqMTAwCmBgYAoKIyMgQ2F0ZW9ncml6ZSBEYXRhCk5leHQsIHdlJ2xsIGZvY3VzIG91ciBhbmFseXNpcyBvbiBwYXJ0aWN1bGFyIGNhdGVnb3JpZXMgb2YgY2FsbHM6CgpgYGB7ciBjYXRlZ29yaXplLWFuZC1zdWJzZXR9CiMgc3Vic2V0CmFsbF9jYWxscyAlPiUgCiAgY3NiX2NhdGVnb3JpemUodmFyID0gcHJvYmxlbWNvZGUsIG5ld1ZhciA9IGNhdGVnb3J5KSAlPiUKICBzZWxlY3QocmVxdWVzdGlkLCBkYXRldGltZWluaXQsIGNhdGVnb3J5LCBldmVyeXRoaW5nKCkpICU+JQogIGZpbHRlcihjYXRlZ29yeSAlaW4lIGMoIkRlYnJpcyIsICJEZWdyYWRlIiwgIkRpc3R1cmJhbmNlIiwgIkxhdyIpKSAlPiUKICBzZWxlY3QoZGF0ZXRpbWVpbml0LCBjYXRlZ29yeSwgcHJvYmFkZHJlc3MsIHByb2JsZW1jb2RlLCBzcngsIHNyeSkgLT4gZm9jYWxfY2FsbHMKCiMgc3RvcmUgcmVtYWluaW5nIG51bWJlciBvZiByb3dzCmZvY2FsX3Jvd3MgPC0gbnJvdyhmb2NhbF9jYWxscykKYGBgCgpBcyBhbiBhc2lkZSwgd2Ugd2FudCB0byBrbm93IGhvdyBtYW55IHJvd3Mgd2VyZSByZW1vdmVkIGJ5IHRoaXMgcHJvY2VzczoKCmBgYHtyIHBlcmNlbnQtcmVtYWluaW5nfQpmb2NhbF9yb3dzL3JlbWFpbmluZ19yb3dzKjEwMApgYGAKCiMjIFdyaXRlIERhdGEgdG8gQ1NWCldpdGggdGhlc2UgZGF0YSBwcmVwYXJlZCwgd2UgY2FuIHdyaXRlIHRoZW0gdG8gYC5jc3ZgOgoKYGBge3Igd3JpdGUtdG8tY3N2fQp3cml0ZV9jc3YoZm9jYWxfY2FsbHMsIHBhdGggPSBoZXJlKCJkYXRhIiwgImNsZWFuIiwgInBvaW50X2Rpc29yZGVyLmNzdiIpKQpgYGAK</div>
 
 
 

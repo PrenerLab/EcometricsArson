@@ -1,7 +1,7 @@
 Create Data - Vacancy
 ================
 Christopher Prener, Ph.D.
-(December 09, 2019)
+(December 13, 2019)
 
 ## Introduction
 
@@ -36,19 +36,20 @@ library(readr)
 library(sf)
 ```
 
-    ## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0
+    ## Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
 
 ``` r
 # other packages
 library(here)
 ```
 
-    ## here() starts at /Users/chris/GitHub/PrenerLab/EcometricsArson
+    ## here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson
 
 ## Open Grid Data
 
 The grid data have a large number of variables from a prior study. We’ll
-start by cleaning them up on import:
+start by cleaning them up on
+import:
 
 ``` r
 vacancy <- st_read(here("data", "raw", "vacancy"), stringsAsFactors = FALSE) %>%
@@ -61,13 +62,13 @@ vacancy <- st_read(here("data", "raw", "vacancy"), stringsAsFactors = FALSE) %>%
   )
 ```
 
-    ## Reading layer `grids_low' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/vacancy' using driver `ESRI Shapefile'
+    ## Reading layer `grids_low' from data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/vacancy' using driver `ESRI Shapefile'
     ## Simple feature collection with 215 features and 33 fields
     ## geometry type:  MULTIPOLYGON
     ## dimension:      XY
     ## bbox:           xmin: 265635.5 ymin: 299492.6 xmax: 278988.1 ymax: 326438.7
-    ## epsg (SRID):    26996
-    ## proj4string:    +proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.999933333 +x_0=250000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
+    ## epsg (SRID):    NA
+    ## proj4string:    +proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.9999333333333333 +x_0=250000 +y_0=0 +datum=NAD83 +units=m +no_defs
 
 Next, we’ll create a copy that only contains the `grid_id` column. Since
 shapefile variable names get truncated, we’ll store the main analytical
@@ -89,18 +90,21 @@ st_geometry(vacancy) <- NULL
 
 Since the goal of the `data/clean/` folder is to keep a record of all
 the individual data sets being used in the project, I’ll write a copy of
-the `grids` object into that subdirectory:
+the `grids` object into that
+subdirectory:
 
 ``` r
-st_write(obj = grids, dsn = here("data", "clean", "grids", "grids.shp"), delete_dsn = TRUE)
+st_write(obj = grids, dsn = here("data", "raw", "grids", "grids.shp"), delete_dsn = TRUE)
 ```
 
-    ## Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp' using driver `ESRI Shapefile'
-    ## Writing layer `grids' to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp' using driver `ESRI Shapefile'
-    ## Writing 215 features with 1 fields and geometry type Multi Polygon.
+    ## Deleting source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/grids/grids.shp' using driver `ESRI Shapefile'
+    ## Writing layer `grids' to data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/grids/grids.shp' using driver `ESRI Shapefile'
+    ## features:       215
+    ## fields:         1
+    ## geometry type:  Multi Polygon
 
 We’ll also write the vacancy data as a `.csv` file:
 
 ``` r
-write_csv(vacancy, path = here("data", "clean", "vacancy.csv"))
+write_csv(vacancy, path = here("data", "clean", "grids_vacancy.csv"))
 ```

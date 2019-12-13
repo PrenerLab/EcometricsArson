@@ -1,7 +1,7 @@
 Create Data - Grids
 ================
 Christopher Prener, Ph.D.
-(December 11, 2019)
+(December 13, 2019)
 
 ## Introduction
 
@@ -42,7 +42,7 @@ library(areal)
 library(sf)
 ```
 
-    ## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0
+    ## Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
 
 ``` r
 library(tigris)
@@ -63,7 +63,7 @@ library(tigris)
 library(here)
 ```
 
-    ## here() starts at /Users/chris/GitHub/PrenerLab/EcometricsArson
+    ## here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson
 
 ## Load Base Data
 
@@ -76,7 +76,7 @@ grids <- st_read(here("data", "raw", "grids"), stringsAsFactors = FALSE) %>%
   rename()
 ```
 
-    ## Reading layer `grids' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/grids' using driver `ESRI Shapefile'
+    ## Reading layer `grids' from data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/grids' using driver `ESRI Shapefile'
     ## Simple feature collection with 215 features and 1 field
     ## geometry type:  MULTIPOLYGON
     ## dimension:      XY
@@ -97,7 +97,7 @@ counts per grid square. First, we’ll load the data and project them:
 
 ``` r
 # load
-arson <- read_csv(here("data", "clean", "arson.csv")) %>%
+arson <- read_csv(here("data", "clean", "point_arson.csv")) %>%
   filter(cs_year >= 2013 & cs_year <= 2017)
 ```
 
@@ -166,7 +166,7 @@ grid square. First, we’ll load the data and project them:
 
 ``` r
 # load
-violent <- read_csv(here("data", "clean", "violent.csv"))
+violent <- read_csv(here("data", "clean", "point_violent.csv"))
 ```
 
     ## Parsed with column specification:
@@ -234,7 +234,7 @@ per grid square. First, we’ll load the data and project them:
 
 ``` r
 # load
-property <- read_csv(here("data", "clean", "property.csv"))
+property <- read_csv(here("data", "clean", "point_property.csv"))
 ```
 
     ## Parsed with column specification:
@@ -302,7 +302,7 @@ per grid square. First, we’ll load the data and project them:
 
 ``` r
 # load
-otherCrimes <- read_csv(here("data", "clean", "otherCrimes.csv"))
+otherCrimes <- read_csv(here("data", "clean", "point_otherCrimes.csv"))
 ```
 
     ## Parsed with column specification:
@@ -372,7 +372,7 @@ project them:
 
 ``` r
 # load
-disorder <- read_csv(here("data", "clean", "disorder.csv"))
+disorder <- read_csv(here("data", "clean", "point_disorder.csv"))
 ```
 
     ## Parsed with column specification:
@@ -437,7 +437,7 @@ only need to be joined:
 
 ``` r
 # load
-vacancy <- read_csv(here("data", "clean", "vacancy.csv")) %>%
+vacancy <- read_csv(here("data", "clean", "grids_vacancy.csv")) %>%
   select(grid_id, prop_vacant)
 ```
 
@@ -462,7 +462,8 @@ rm(vacancy)
 Our demographic measures are at the census tract level, which means they
 need to be interpolated into the grids. This process requires that the
 demographic data be merged with the corresponding geometric data. First,
-we’ll download those data:
+we’ll download those
+data:
 
 ``` r
 tracts <- tracts(state = 29, county = 510, year = 2017, class = "sf") %>%
@@ -784,7 +785,7 @@ geometry:
 
 ``` r
 # load
-demos <- read_csv(here("data", "clean", "demographics.csv")) %>%
+demos <- read_csv(here("data", "clean", "tract_demographics.csv")) %>%
   mutate(GEOID = as.character(GEOID)) %>%
   select(GEOID, totalPop, medianInc, raceTotal, black, pvtyTotal, pvty, 
          emplyTotal, unemply, ownTotal, ownOcc) %>%
@@ -821,7 +822,8 @@ grids_aw <- grids %>%
 ```
 
 Now that we have the grids and tract data ready to interpolate, we can
-perform the calculations:
+perform the
+calculations:
 
 ``` r
 grids_aw_17 <- aw_interpolate(grids_aw, tid = grid_id, source = tracts, sid = GEOID,
@@ -885,7 +887,7 @@ tract50 <- st_read(here("data", "raw", "historic-population", "STL_DEMOGRAPHICS_
   st_transform(crs = 26915)
 ```
 
-    ## Reading layer `STL_DEMOGRAPHICS_tracts50' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/historic-population/STL_DEMOGRAPHICS_tracts50' using driver `ESRI Shapefile'
+    ## Reading layer `STL_DEMOGRAPHICS_tracts50' from data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/historic-population/STL_DEMOGRAPHICS_tracts50' using driver `ESRI Shapefile'
     ## Simple feature collection with 128 features and 1 field
     ## geometry type:  POLYGON
     ## dimension:      XY
@@ -940,7 +942,7 @@ tract70 <- st_read(here("data", "raw", "historic-population", "STL_DEMOGRAPHICS_
   st_transform(crs = 26915)
 ```
 
-    ## Reading layer `STL_DEMOGRAPHICS_tracts70' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/historic-population/STL_DEMOGRAPHICS_tracts70' using driver `ESRI Shapefile'
+    ## Reading layer `STL_DEMOGRAPHICS_tracts70' from data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/raw/historic-population/STL_DEMOGRAPHICS_tracts70' using driver `ESRI Shapefile'
     ## Simple feature collection with 126 features and 1 field
     ## geometry type:  POLYGON
     ## dimension:      XY
@@ -978,15 +980,18 @@ rm(grids_aw_50, grids_aw_70, grids_aw_17, grids_aw)
 ## Write Data
 
 With our data created, we can write the analytical data set to the
-`data/analysis` directory:
+`data/analysis`
+directory:
 
 ``` r
 st_write(grids, dsn = here("data", "analysis", "spatial_analysis.geojson"),
          delete_dsn = TRUE)
 ```
 
-    ## Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson' using driver `GeoJSON'
-    ## Writing layer `spatial_analysis' to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson' using driver `GeoJSON'
-    ## Writing 215 features with 15 fields and geometry type Multi Polygon.
+    ## Deleting source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson' using driver `GeoJSON'
+    ## Writing layer `spatial_analysis' to data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson' using driver `GeoJSON'
+    ## features:       215
+    ## fields:         15
+    ## geometry type:  Multi Polygon
 
 Data are written in an open format to improve reproducibility.

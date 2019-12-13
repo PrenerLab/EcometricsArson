@@ -1,7 +1,7 @@
 Create Data - Disorder
 ================
 Christopher Prener, Ph.D.
-(December 05, 2019)
+(December 13, 2019)
 
 ## Introduction
 
@@ -76,7 +76,7 @@ As an aside, we want to know how many rows were removed by this process:
 remaining_rows/total_rows*100
 ```
 
-    ## [1] 94.64086
+    ## [1] 94.64087
 
 ## Cateogrize Data
 
@@ -100,12 +100,13 @@ As an aside, we want to know how many rows were removed by this process:
 focal_rows/remaining_rows*100
 ```
 
-    ## [1] 28.9418
+    ## [1] 28.94174
 
 ## Write Data to CSV
 
-With these data prepared, we can write them to `.csv`:
+With these data prepared, we can write them to
+`.csv`:
 
 ``` r
-write_csv(focal_calls, path = here("data", "clean", "disorder.csv"))
+write_csv(focal_calls, path = here("data", "clean", "point_disorder.csv"))
 ```

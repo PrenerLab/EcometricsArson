@@ -441,7 +441,7 @@ Next, we'll pull out arsons and then write them to a `.csv` file:
 ```{r subset-arson}
 allCrimes %>%
   cs_filter_crime(var = crime, crime = "arson") %>%
-  write_csv(here("data", "clean", "arson.csv"))
+  write_csv(here("data", "clean", "point_arson.csv"))
 ```
 
 Next, we'll create a subset that is only violent crimes for our main study period, 2013-2017:
@@ -450,7 +450,7 @@ Next, we'll create a subset that is only violent crimes for our main study perio
 allCrimes %>%
   filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "violent") %>%
-  write_csv(here("data", "clean", "violent.csv"))
+  write_csv(here("data", "clean", "point_violent.csv"))
 ```
 
 ### Property Crimes
@@ -463,7 +463,7 @@ allCrimes %>%
   cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
   filter(cat %in% c(5:7)) %>%
   select(-cat) %>%
-  write_csv(here("data", "clean", "property.csv"))
+  write_csv(here("data", "clean", "point_property.csv"))
 ```
 
 ### Other Crimes
@@ -480,6 +480,6 @@ allCrimes %>%
   cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
   filter(cat %in% c(14, 15, 18, 24)) %>%
   select(-cat) %>%
-  write_csv(here("data", "clean", "otherCrimes.csv"))
+  write_csv(here("data", "clean", "point_otherCrimes.csv"))
 ```
 

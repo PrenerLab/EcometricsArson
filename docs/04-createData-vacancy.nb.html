@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Christopher Prener, Ph.D." />
@@ -1485,7 +1484,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
+    if (show)
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -1615,6 +1614,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1712,10 +1712,28 @@ summary {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("04-createData-vacancy.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 
 
@@ -1746,7 +1764,7 @@ summary {
 
 <h1 class="title toc-ignore">Create Data - Vacancy</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(December 09, 2019)</h4>
+<h4 class="date">(December 13, 2019)</h4>
 
 </div>
 
@@ -1761,37 +1779,31 @@ summary {
 <p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHJlYWRyKVxuXG4jIHNwYXRpYWwgcGFja2FnZXNcbmxpYnJhcnkoc2YpXG5cbiMgb3RoZXIgcGFja2FnZXNcbmxpYnJhcnkoaGVyZSlcbmBgYCJ9 -->
-<pre class="r"><code># tidyverse packages
-library(dplyr)
-library(readr)
-
-# spatial packages
-library(sf)
-
-# other packages
-library(here)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHJlYWRyKVxuXG4jIHNwYXRpYWwgcGFja2FnZXNcbmxpYnJhcnkoc2YpXG5cbiMgb3RoZXIgcGFja2FnZXNcbmxpYnJhcnkoaGVyZSlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # tidyverse packages library(dplyr) library(readr)</p>
+</div>
+<div id="spatial-packages" class="section level1">
+<h1>spatial packages</h1>
+<p>library(sf)</p>
+</div>
+<div id="other-packages" class="section level1">
+<h1>other packages</h1>
+<p>library(here)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="open-grid-data" class="section level2">
 <h2>Open Grid Data</h2>
 <p>The grid data have a large number of variables from a prior study. We’ll start by cleaning them up on import:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFjYW5jeSA8LSBzdF9yZWFkKGhlcmUoXCJkYXRhXCIsIFwicmF3XCIsIFwidmFjYW5jeVwiKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JVxuICByZW5hbWUoXG4gICAgZ3JpZF9pZCA9IE9CSkVDVElEXzEsXG4gICAgYXJlYV9tMiA9IHNxX20sXG4gICAgdmFjYW50X20yID0gdl9zcV9tLFxuICAgIHByb3BfdmFjYW50ID0gcF92YWNhbnRcbiAgKVxuYGBgIn0= -->
-<pre class="r"><code>vacancy &lt;- st_read(here(&quot;data&quot;, &quot;raw&quot;, &quot;vacancy&quot;), stringsAsFactors = FALSE) %&gt;%
-  select(OBJECTID_1, sq_m, v_sq_m, p_vacant) %&gt;%
-  rename(
-    grid_id = OBJECTID_1,
-    area_m2 = sq_m,
-    vacant_m2 = v_sq_m,
-    prop_vacant = p_vacant
-  )</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudmFjYW5jeSA8LSBzdF9yZWFkKGhlcmUoXFxkYXRhXFwsIFxccmF3XFwsIFxcdmFjYW5jeVxcKSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiVcbiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JVxuICByZW5hbWUoXG4gICAgZ3JpZF9pZCA9IE9CSkVDVElEXzEsXG4gICAgYXJlYV9tMiA9IHNxX20sXG4gICAgdmFjYW50X20yID0gdl9zcV9tLFxuICAgIHByb3BfdmFjYW50ID0gcF92YWNhbnRcbiAgKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r vacancy &lt;- st_read(here(, , ), stringsAsFactors = FALSE) %&gt;% select(OBJECTID_1, sq_m, v_sq_m, p_vacant) %&gt;% rename( grid_id = OBJECTID_1, area_m2 = sq_m, vacant_m2 = v_sq_m, prop_vacant = p_vacant )</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgZ3JpZHNfbG93JyBmcm9tIGRhdGEgc291cmNlIGAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9yYXcvdmFjYW5jeScgdXNpbmcgZHJpdmVyIGBFU1JJIFNoYXBlZmlsZSdcblNpbXBsZSBmZWF0dXJlIGNvbGxlY3Rpb24gd2l0aCAyMTUgZmVhdHVyZXMgYW5kIDMzIGZpZWxkc1xuZ2VvbWV0cnkgdHlwZTogIE1VTFRJUE9MWUdPTlxuZGltZW5zaW9uOiAgICAgIFhZXG5iYm94OiAgICAgICAgICAgeG1pbjogMjY1NjM1LjUgeW1pbjogMjk5NDkyLjYgeG1heDogMjc4OTg4LjEgeW1heDogMzI2NDM4LjdcbmVwc2cgKFNSSUQpOiAgICAyNjk5NlxucHJvajRzdHJpbmc6ICAgICtwcm9qPXRtZXJjICtsYXRfMD0zNS44MzMzMzMzMzMzMzMzNCArbG9uXzA9LTkwLjUgK2s9MC45OTk5MzMzMzMgK3hfMD0yNTAwMDAgK3lfMD0wICtlbGxwcz1HUlM4MCArdG93Z3M4ND0wLDAsMCwwLDAsMCwwICt1bml0cz1tICtub19kZWZzXG4ifQ== -->
-<pre><code>Reading layer `grids_low&#39; from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/vacancy&#39; using driver `ESRI Shapefile&#39;
+<pre><code>Reading layer `grids_low' from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/raw/vacancy' using driver `ESRI Shapefile'
 Simple feature collection with 215 features and 33 fields
 geometry type:  MULTIPOLYGON
 dimension:      XY
@@ -1804,34 +1816,34 @@ proj4string:    +proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.999933333
 <p>Next, we’ll create a copy that only contains the <code>grid_id</code> column. Since shapefile variable names get truncated, we’ll store the main analytical data set as a <code>.csv</code> file separate from the geometric data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtYWtlIGNvcHlcbmdyaWRzIDwtIHZhY2FuY3kgJT4lXG4gIHNlbGVjdChncmlkX2lkKVxuXG4jIHJlLXByb2plY3RcbmdyaWRzIDwtIHN0X3RyYW5zZm9ybShncmlkcywgY3JzID0gMjY5MTUpXG5cbiMgcmVtb3ZlIGdlb21ldHJ5XG5zdF9nZW9tZXRyeSh2YWNhbmN5KSA8LSBOVUxMXG5gYGAifQ== -->
-<pre class="r"><code># make copy
-grids &lt;- vacancy %&gt;%
-  select(grid_id)
-
-# re-project
-grids &lt;- st_transform(grids, crs = 26915)
-
-# remove geometry
-st_geometry(vacancy) &lt;- NULL</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBtYWtlIGNvcHlcbmdyaWRzIDwtIHZhY2FuY3kgJT4lXG4gIHNlbGVjdChncmlkX2lkKVxuXG4jIHJlLXByb2plY3RcbmdyaWRzIDwtIHN0X3RyYW5zZm9ybShncmlkcywgY3JzID0gMjY5MTUpXG5cbiMgcmVtb3ZlIGdlb21ldHJ5XG5zdF9nZW9tZXRyeSh2YWNhbmN5KSA8LSBOVUxMXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # make copy grids &lt;- vacancy %&gt;% select(grid_id)</p>
+</div>
+</div>
+<div id="re-project" class="section level1">
+<h1>re-project</h1>
+<p>grids &lt;- st_transform(grids, crs = 26915)</p>
+</div>
+<div id="remove-geometry" class="section level1">
+<h1>remove geometry</h1>
+<p>st_geometry(vacancy) &lt;- NULL</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="store-copy" class="section level2">
 <h2>Store Copy</h2>
 <p>Since the goal of the <code>data/clean/</code> folder is to keep a record of all the individual data sets being used in the project, I’ll write a copy of the <code>grids</code> object into that subdirectory:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Rfd3JpdGUob2JqID0gZ3JpZHMsIGRzbiA9IGhlcmUoXCJkYXRhXCIsIFwiY2xlYW5cIiwgXCJncmlkc1wiLCBcImdyaWRzLnNocFwiKSwgZGVsZXRlX2RzbiA9IFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>st_write(obj = grids, dsn = here(&quot;data&quot;, &quot;clean&quot;, &quot;grids&quot;, &quot;grids.shp&quot;), delete_dsn = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3Rfd3JpdGUob2JqID0gZ3JpZHMsIGRzbiA9IGhlcmUoXFxkYXRhXFwsIFxcY2xlYW5cXCwgXFxncmlkc1xcLCBcXGdyaWRzLnNocFxcKSwgZGVsZXRlX2RzbiA9IFRSVUUpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r st_write(obj = grids, dsn = here(, , , .shp), delete_dsn = TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR0RBTCBFcnJvciAxOiAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAgZG9lcyBub3QgYXBwZWFyIHRvIGJlIGEgZmlsZSBvciBkaXJlY3RvcnkuXG4ifQ== -->
-<pre><code>GDAL Error 1: /Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp does not appear to be a file or directory.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRGVsZXRpbmcgc291cmNlIGAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAnIGZhaWxlZFxuV3JpdGluZyBsYXllciBgZ3JpZHMnIHRvIGRhdGEgc291cmNlIGAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAnIHVzaW5nIGRyaXZlciBgRVNSSSBTaGFwZWZpbGUnXG5Xcml0aW5nIDIxNSBmZWF0dXJlcyB3aXRoIDEgZmllbGRzIGFuZCBnZW9tZXRyeSB0eXBlIE11bHRpIFBvbHlnb24uXG4ifQ== -->
-<pre><code>Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp&#39; failed
-Writing layer `grids&#39; to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp&#39; using driver `ESRI Shapefile&#39;
+<!-- rnb-output-begin eyJkYXRhIjoiR0RBTCBFcnJvciAxOiAvVXNlcnMvY2hyaXMvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb24vZGF0YS9jbGVhbi9ncmlkcy9ncmlkcy5zaHAgZG9lcyBub3QgYXBwZWFyIHRvIGJlIGEgZmlsZSBvciBkaXJlY3RvcnkuXG5EZWxldGluZyBzb3VyY2UgYC9Vc2Vycy9jaHJpcy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL2NsZWFuL2dyaWRzL2dyaWRzLnNocCcgZmFpbGVkXG5Xcml0aW5nIGxheWVyIGBncmlkcycgdG8gZGF0YSBzb3VyY2UgYC9Vc2Vycy9jaHJpcy9HaXRIdWIvUHJlbmVyTGFiL0Vjb21ldHJpY3NBcnNvbi9kYXRhL2NsZWFuL2dyaWRzL2dyaWRzLnNocCcgdXNpbmcgZHJpdmVyIGBFU1JJIFNoYXBlZmlsZSdcbldyaXRpbmcgMjE1IGZlYXR1cmVzIHdpdGggMSBmaWVsZHMgYW5kIGdlb21ldHJ5IHR5cGUgTXVsdGkgUG9seWdvbi5cbiJ9 -->
+<pre><code>GDAL Error 1: /Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp does not appear to be a file or directory.
+Deleting source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp' failed
+Writing layer `grids' to data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/clean/grids/grids.shp' using driver `ESRI Shapefile'
 Writing 215 features with 1 fields and geometry type Multi Polygon.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
@@ -1839,15 +1851,17 @@ Writing 215 features with 1 fields and geometry type Multi Polygon.</code></pre>
 <p>We’ll also write the vacancy data as a <code>.csv</code> file:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KHZhY2FuY3ksIHBhdGggPSBoZXJlKFwiZGF0YVwiLCBcImNsZWFuXCIsIFwidmFjYW5jeS5jc3ZcIikpXG5gYGAifQ== -->
-<pre class="r"><code>write_csv(vacancy, path = here(&quot;data&quot;, &quot;clean&quot;, &quot;vacancy.csv&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud3JpdGVfY3N2KHZhY2FuY3ksIHBhdGggPSBoZXJlKFxcZGF0YVxcLCBcXGNsZWFuXFwsIFxcdmFjYW5jeS5jc3ZcXCkpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r write_csv(vacancy, path = here(, , .csv))</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBWYWNhbmN5IgphdXRob3I6ICJDaHJpc3RvcGhlciBQcmVuZXIsIFBoLkQuIgpkYXRlOiAnKGByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgKScKb3V0cHV0OiAKICBnaXRodWJfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0IAotLS0KCiMjIEludHJvZHVjdGlvbgpUaGlzIG5vdGVib29rIGNyZWF0ZXMgdGhlIGdyaWQtbGV2ZWwgdmFjYW5jeSBlc3RpbWF0ZXMgZm9yIGZ1cnRoZXIgYW5hbHlzZXMuIFRoZXNlIHNwYXRpYWwgZGF0YSB3aWxsIGFsc28gYmUgdXNlZCBhcyBhIGJhc2UgdG8gaW50ZXJwb2xhdGUgZGVtb2dyYXBoaWMgZGF0YSBpbnRvLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShzZikKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKQpgYGAKCiMjIE9wZW4gR3JpZCBEYXRhClRoZSBncmlkIGRhdGEgaGF2ZSBhIGxhcmdlIG51bWJlciBvZiB2YXJpYWJsZXMgZnJvbSBhIHByaW9yIHN0dWR5LiBXZSdsbCBzdGFydCBieSBjbGVhbmluZyB0aGVtIHVwIG9uIGltcG9ydDoKCmBgYHtyIG9wZW4tZ3JpZHN9CnZhY2FuY3kgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgInJhdyIsICJ2YWNhbmN5IiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lCiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JQogIHJlbmFtZSgKICAgIGdyaWRfaWQgPSBPQkpFQ1RJRF8xLAogICAgYXJlYV9tMiA9IHNxX20sCiAgICB2YWNhbnRfbTIgPSB2X3NxX20sCiAgICBwcm9wX3ZhY2FudCA9IHBfdmFjYW50CiAgKQpgYGAKCk5leHQsIHdlJ2xsIGNyZWF0ZSBhIGNvcHkgdGhhdCBvbmx5IGNvbnRhaW5zIHRoZSBgZ3JpZF9pZGAgY29sdW1uLiBTaW5jZSBzaGFwZWZpbGUgdmFyaWFibGUgbmFtZXMgZ2V0IHRydW5jYXRlZCwgd2UnbGwgc3RvcmUgdGhlIG1haW4gYW5hbHl0aWNhbCBkYXRhIHNldCBhcyBhIGAuY3N2YCBmaWxlIHNlcGFyYXRlIGZyb20gdGhlIGdlb21ldHJpYyBkYXRhOgoKYGBge3J9CiMgbWFrZSBjb3B5CmdyaWRzIDwtIHZhY2FuY3kgJT4lCiAgc2VsZWN0KGdyaWRfaWQpCgojIHJlLXByb2plY3QKZ3JpZHMgPC0gc3RfdHJhbnNmb3JtKGdyaWRzLCBjcnMgPSAyNjkxNSkKCiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KHZhY2FuY3kpIDwtIE5VTEwKYGBgCgoKIyMgU3RvcmUgQ29weQpTaW5jZSB0aGUgZ29hbCBvZiB0aGUgYGRhdGEvY2xlYW4vYCBmb2xkZXIgaXMgdG8ga2VlcCBhIHJlY29yZCBvZiBhbGwgdGhlIGluZGl2aWR1YWwgZGF0YSBzZXRzIGJlaW5nIHVzZWQgaW4gdGhlIHByb2plY3QsIEknbGwgd3JpdGUgYSBjb3B5IG9mIHRoZSBgZ3JpZHNgIG9iamVjdCBpbnRvIHRoYXQgc3ViZGlyZWN0b3J5OgoKYGBge3Igd3JpdGUtZ3JpZHN9CnN0X3dyaXRlKG9iaiA9IGdyaWRzLCBkc24gPSBoZXJlKCJkYXRhIiwgImNsZWFuIiwgImdyaWRzIiwgImdyaWRzLnNocCIpLCBkZWxldGVfZHNuID0gVFJVRSkKYGBgCgpXZSdsbCBhbHNvIHdyaXRlIHRoZSB2YWNhbmN5IGRhdGEgYXMgYSBgLmNzdmAgZmlsZToKCmBgYHtyIHdyaXRlLXZhY2FuY3l9CndyaXRlX2Nzdih2YWNhbmN5LCBwYXRoID0gaGVyZSgiZGF0YSIsICJjbGVhbiIsICJ2YWNhbmN5LmNzdiIpKQpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3JlYXRlIERhdGEgLSBWYWNhbmN5IgphdXRob3I6ICJDaHJpc3RvcGhlciBQcmVuZXIsIFBoLkQuIgpkYXRlOiAnKGByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgKScKb3V0cHV0OiAKICBnaXRodWJfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0IAotLS0KCiMjIEludHJvZHVjdGlvbgpUaGlzIG5vdGVib29rIGNyZWF0ZXMgdGhlIGdyaWQtbGV2ZWwgdmFjYW5jeSBlc3RpbWF0ZXMgZm9yIGZ1cnRoZXIgYW5hbHlzZXMuIFRoZXNlIHNwYXRpYWwgZGF0YSB3aWxsIGFsc28gYmUgdXNlZCBhcyBhIGJhc2UgdG8gaW50ZXJwb2xhdGUgZGVtb2dyYXBoaWMgZGF0YSBpbnRvLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocmVhZHIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShzZikKCiMgb3RoZXIgcGFja2FnZXMKbGlicmFyeShoZXJlKQpgYGAKCiMjIE9wZW4gR3JpZCBEYXRhClRoZSBncmlkIGRhdGEgaGF2ZSBhIGxhcmdlIG51bWJlciBvZiB2YXJpYWJsZXMgZnJvbSBhIHByaW9yIHN0dWR5LiBXZSdsbCBzdGFydCBieSBjbGVhbmluZyB0aGVtIHVwIG9uIGltcG9ydDoKCmBgYHtyIG9wZW4tZ3JpZHN9CnZhY2FuY3kgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgInJhdyIsICJ2YWNhbmN5IiksIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lCiAgc2VsZWN0KE9CSkVDVElEXzEsIHNxX20sIHZfc3FfbSwgcF92YWNhbnQpICU+JQogIHJlbmFtZSgKICAgIGdyaWRfaWQgPSBPQkpFQ1RJRF8xLAogICAgYXJlYV9tMiA9IHNxX20sCiAgICB2YWNhbnRfbTIgPSB2X3NxX20sCiAgICBwcm9wX3ZhY2FudCA9IHBfdmFjYW50CiAgKQpgYGAKCk5leHQsIHdlJ2xsIGNyZWF0ZSBhIGNvcHkgdGhhdCBvbmx5IGNvbnRhaW5zIHRoZSBgZ3JpZF9pZGAgY29sdW1uLiBTaW5jZSBzaGFwZWZpbGUgdmFyaWFibGUgbmFtZXMgZ2V0IHRydW5jYXRlZCwgd2UnbGwgc3RvcmUgdGhlIG1haW4gYW5hbHl0aWNhbCBkYXRhIHNldCBhcyBhIGAuY3N2YCBmaWxlIHNlcGFyYXRlIGZyb20gdGhlIGdlb21ldHJpYyBkYXRhOgoKYGBge3J9CiMgbWFrZSBjb3B5CmdyaWRzIDwtIHZhY2FuY3kgJT4lCiAgc2VsZWN0KGdyaWRfaWQpCgojIHJlLXByb2plY3QKZ3JpZHMgPC0gc3RfdHJhbnNmb3JtKGdyaWRzLCBjcnMgPSAyNjkxNSkKCiMgcmVtb3ZlIGdlb21ldHJ5CnN0X2dlb21ldHJ5KHZhY2FuY3kpIDwtIE5VTEwKYGBgCgoKIyMgU3RvcmUgQ29weQpTaW5jZSB0aGUgZ29hbCBvZiB0aGUgYGRhdGEvY2xlYW4vYCBmb2xkZXIgaXMgdG8ga2VlcCBhIHJlY29yZCBvZiBhbGwgdGhlIGluZGl2aWR1YWwgZGF0YSBzZXRzIGJlaW5nIHVzZWQgaW4gdGhlIHByb2plY3QsIEknbGwgd3JpdGUgYSBjb3B5IG9mIHRoZSBgZ3JpZHNgIG9iamVjdCBpbnRvIHRoYXQgc3ViZGlyZWN0b3J5OgoKYGBge3Igd3JpdGUtZ3JpZHN9CnN0X3dyaXRlKG9iaiA9IGdyaWRzLCBkc24gPSBoZXJlKCJkYXRhIiwgInJhdyIsICJncmlkcyIsICJncmlkcy5zaHAiKSwgZGVsZXRlX2RzbiA9IFRSVUUpCmBgYAoKV2UnbGwgYWxzbyB3cml0ZSB0aGUgdmFjYW5jeSBkYXRhIGFzIGEgYC5jc3ZgIGZpbGU6CgpgYGB7ciB3cml0ZS12YWNhbmN5fQp3cml0ZV9jc3YodmFjYW5jeSwgcGF0aCA9IGhlcmUoImRhdGEiLCAiY2xlYW4iLCAiZ3JpZHNfdmFjYW5jeS5jc3YiKSkKYGBgCgo=</div>
 
 
 
@@ -1876,29 +1890,6 @@ $(document).ready(function () {
 });
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("04-createData-vacancy.Rmd");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,7 +1,7 @@
 Create Data - Demographics
 ================
 Christopher Prener, Ph.D.
-(December 11, 2019)
+(December 13, 2019)
 
 ## Introduction
 
@@ -35,7 +35,7 @@ library(readr)
 library(here)
 ```
 
-    ## here() starts at /Users/chris/GitHub/PrenerLab/EcometricsArson
+    ## here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson
 
 ``` r
 library(tidycensus)
@@ -49,7 +49,8 @@ Census Bureau’s API, which I’ll access using `tidycensus`.
 ### Total Population
 
 We’ll start with total population per census tract, which comes from
-table `B01003`.
+table
+`B01003`.
 
 ``` r
 get_acs(geography = "tract", variables = "B01003_001", year = 2017, state = 29, county = 510) %>%
@@ -65,7 +66,8 @@ get_acs(geography = "tract", variables = "B01003_001", year = 2017, state = 29, 
 ### Race
 
 Next, we’ll calculate the proportion of each tract’s residents that are
-African American. The underlying race data come from table `B02001`.
+African American. The underlying race data come from table
+`B02001`.
 
 ``` r
 get_acs(geography = "tract", table = "B02001", year = 2017, state = 29, county = 510, output = "wide") %>%
@@ -80,13 +82,16 @@ get_acs(geography = "tract", table = "B02001", year = 2017, state = 29, county =
 
     ## Getting data from the 2013-2017 5-year ACS
 
+    ## Loading ACS5 variables for 2017 from table B02001. To cache this dataset for faster access to ACS tables in the future, run this function with `cache_table = TRUE`. You only need to do this once per ACS dataset.
+
 We’ll also preserve the total and black counts, along with their
 associated margins of error, for the intermediary data set.
 
 ### Median Income
 
 Next, we’ll get the median household income per census tract, which
-comes from table `B19013`.
+comes from table
+`B19013`.
 
 ``` r
 get_acs(geography = "tract", variables = "B19013_001", year = 2017, state = 29, county = 510) %>%
@@ -103,7 +108,8 @@ get_acs(geography = "tract", variables = "B19013_001", year = 2017, state = 29, 
 
 Next, we’ll calculate the proportion of each tract’s residents that are
 living below 100% of the poverty line. The underlying poverty data come
-from table `B06012`.
+from table
+`B06012`.
 
 ``` r
 get_acs(geography = "tract", table = "B06012", year = 2017, state = 29, county = 510, output = "wide") %>%
@@ -118,13 +124,16 @@ get_acs(geography = "tract", table = "B06012", year = 2017, state = 29, county =
 
     ## Getting data from the 2013-2017 5-year ACS
 
+    ## Loading ACS5 variables for 2017 from table B06012. To cache this dataset for faster access to ACS tables in the future, run this function with `cache_table = TRUE`. You only need to do this once per ACS dataset.
+
 As with the race data, the original columns the calculation is based on
 are preserved here.
 
 ### Unemployment
 
 Finally, we’ll calculate the proportion of each tract’s residents that
-are unemployed. The underlying employment data come from table `B23025`.
+are unemployed. The underlying employment data come from table
+`B23025`.
 
 ``` r
 get_acs(geography = "tract", table = "B23025", year = 2017, state = 29, county = 510, output = "wide") %>%
@@ -139,11 +148,14 @@ get_acs(geography = "tract", table = "B23025", year = 2017, state = 29, county =
 
     ## Getting data from the 2013-2017 5-year ACS
 
+    ## Loading ACS5 variables for 2017 from table B23025. To cache this dataset for faster access to ACS tables in the future, run this function with `cache_table = TRUE`. You only need to do this once per ACS dataset.
+
 ## Owner Occupied
 
 We’ll also calculate the proportion of each tract’s residents that are
 living in owner occupied housing. The underlying residence data come
-from table `B25026`.
+from table
+`B25026`.
 
 ``` r
 get_acs(geography = "tract", table = "B25026", year = 2017, state = 29, county = 510, output = "wide") %>%
@@ -157,6 +169,8 @@ get_acs(geography = "tract", table = "B25026", year = 2017, state = 29, county =
 ```
 
     ## Getting data from the 2013-2017 5-year ACS
+
+    ## Loading ACS5 variables for 2017 from table B25026. To cache this dataset for faster access to ACS tables in the future, run this function with `cache_table = TRUE`. You only need to do this once per ACS dataset.
 
 ### Combine
 
@@ -182,5 +196,5 @@ Finally, we’ll write the data to a `.csv` file:
 
 ``` r
 # write
-write_csv(x = demos, path = here("data", "clean", "demographics.csv"))
+write_csv(x = demos, path = here("data", "clean", "tract_demographics.csv"))
 ```

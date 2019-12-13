@@ -48,7 +48,7 @@ The arson data is stored in `arson.csv`. Since these are point data, I'll read t
 
 ```{r load-arson}
 # load
-arson <- read_csv(here("data", "clean", "arson.csv")) %>%
+arson <- read_csv(here("data", "clean", "point_arson.csv")) %>%
   filter(cs_year >= 2013 & cs_year <= 2017)
 
 # project
@@ -90,7 +90,7 @@ The violent crime data is stored in `violent.csv`. As before, I'll read them in,
 
 ```{r load-violent}
 # load
-violent <- read_csv(here("data", "clean", "violent.csv"))
+violent <- read_csv(here("data", "clean", "point_violent.csv"))
 
 # project
 violent <- cs_projectXY(violent, varX = x_coord, varY = y_coord, crs = 26915)
@@ -131,7 +131,7 @@ The property crime data is stored in `property.csv`. As before, I'll read them i
 
 ```{r load-property}
 # load
-property <- read_csv(here("data", "clean", "property.csv"))
+property <- read_csv(here("data", "clean", "point_property.csv"))
 
 # project
 property <- cs_projectXY(property, varX = x_coord, varY = y_coord, crs = 26915)
@@ -172,7 +172,7 @@ The other crime data is stored in `otherCrimes.csv`. As before, I'll read them i
 
 ```{r load-otherCrimes}
 # load
-otherCrimes <- read_csv(here("data", "clean", "otherCrimes.csv"))
+otherCrimes <- read_csv(here("data", "clean", "point_otherCrimes.csv"))
 
 # project
 otherCrimes <- cs_projectXY(otherCrimes, varX = x_coord, varY = y_coord, crs = 26915)
@@ -213,7 +213,7 @@ The calls for disorder data are stored in `disorder.csv`. As before, I'll read t
 
 ```{r load-disorder}
 # load
-disorder <- read_csv(here("data", "clean", "disorder.csv"))
+disorder <- read_csv(here("data", "clean", "point_disorder.csv"))
 
 # project
 disorder <- csb_projectXY(disorder, varX = srx, varY = sry, crs = 26915)
@@ -254,7 +254,7 @@ The vacancy counts already correspond to the `grids` object, so they only need t
 
 ```{r join-vacancy}
 # load
-vacancy <- read_csv(here("data", "clean", "vacancy.csv")) %>%
+vacancy <- read_csv(here("data", "clean", "grids_vacancy.csv")) %>%
   select(grid_id, prop_vacant)
 
 # join
@@ -276,7 +276,7 @@ Next, we'll load the demographic data and join them to the tract geometry:
 
 ```{r load-and-join-demos}
 # load
-demos <- read_csv(here("data", "clean", "demographics.csv")) %>%
+demos <- read_csv(here("data", "clean", "tract_demographics.csv")) %>%
   mutate(GEOID = as.character(GEOID)) %>%
   select(GEOID, totalPop, medianInc, raceTotal, black, pvtyTotal, pvty, 
          emplyTotal, unemply, ownTotal, ownOcc) %>%
