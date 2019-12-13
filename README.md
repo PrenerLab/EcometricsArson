@@ -6,5 +6,6 @@
 The repository relies on one git submodules, `MO_CRIME_Database`, that are both installed into `data/` when the repository is cloned. The vacancy data that forms the basis for the neighborhood-level estimates can be found in its original version [here](https://github.com/PrenerLab/EcometricsPrairie/tree/master/02_Data/final/shapefiles/grids_low).
 
 ```bash
+git submodule init
 git submodule update --remote
 ```
