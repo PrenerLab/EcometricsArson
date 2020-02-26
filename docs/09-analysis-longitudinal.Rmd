@@ -1,0 +1,63 @@
+---
+title: "Analysis - Longitudinal Data"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: github_document
+---
+
+## Introduction
+This notebook performs the longitudinal analyses for the arson data.
+
+## Dependencies
+The following packages are needed:
+
+```{r load-dependencies}
+# tidyverse
+library(ggplot2)
+library(readr)
+
+# other packages
+library(here)
+library(scales)
+```
+
+## Load Data
+The data for these analyses are:
+
+```{r load-data}
+long <- read_csv(here("data", "analysis", "longitudinal_analysis.csv"))
+```
+
+
+## Plots
+
+```{r plot-arson}
+ggplot(long, mapping = aes(x = year, y = arson_rate)) +
+  geom_line() +
+  scale_x_continuous(breaks = c(1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2018)) +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    title = "Arson Rate in St. Louis, 1980-2018",
+    x = "Year",
+    y = "Rate per 100,000 Residents"
+  ) -> plot
+
+ggsave(filename = here("results", "rate.png"), width = 7, height = 4, units = "in", dpi = 500)
+```
+
+
+```{r}
+ggplot(long) +
+  geom_line(mapping = aes(x = year, y = pop)) +
+  geom_line(mapping = aes(x = year, y = manu_jobs)) + 
+  scale_x_continuous(breaks = c(1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2018)) +
+  scale_y_continuous(labels = comma) +
+  labs(
+    title = "Demographic Declines, 1980-2018",
+    x = "Year",
+    y = "Count"
+  )
+```
+
+
+
