@@ -12,6 +12,10 @@ This notebook performs the longitudinal analyses for the arson data.
 The following packages are needed:
 
 ```{r load-dependencies}
+# time series
+library(forecast)
+library(ggfortify)
+
 # tidyverse
 library(ggplot2)
 library(readr)
@@ -59,5 +63,21 @@ ggplot(long) +
   )
 ```
 
+## Convet to TS Object
+
+```{r}
+long <- ts(long, start = 1980, end = 2018, frequency = 1)
+```
+
+```{r}
+autoplot(long[,c("arson_rate", "violent_rate")])
+```
+
+
+```{r}
+m1 <- tslm(arson_rate ~ violent_rate, data = long)
+
+summary(m1)
+```
 
 
