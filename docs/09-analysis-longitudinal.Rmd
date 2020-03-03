@@ -21,6 +21,7 @@ library(ggplot2)
 library(readr)
 
 # other packages
+library(heplots)
 library(here)
 library(scales)
 ```
@@ -70,14 +71,35 @@ long <- ts(long, start = 1980, end = 2018, frequency = 1)
 ```
 
 ```{r}
-autoplot(long[,c("arson_rate", "violent_rate")])
+# autoplot(long[,c("arson_rate", "violent_rate")])
 ```
 
 
 ```{r}
-m1 <- tslm(arson_rate ~ violent_rate, data = long)
+m1 <- tslm(arson_rate ~ violent_rate + larceny_rate, data = long)
 
 summary(m1)
 ```
 
+```{r}
+m2 <- tslm(arson_rate ~ pop_delta + manu_delta, data = long)
+
+summary(m2)
+```
+
+```{r}
+m2 <- tslm(arson_rate ~ pop_delta + manu_delta5, data = long)
+
+summary(m2)
+```
+
+```{r}
+m3 <- tslm(arson_rate ~ violent_rate + larceny_rate + pop_delta + manu_delta, data = long)
+
+summary(m3)
+```
+
+```{r}
+etasq(m3, partial = FALSE)
+```
 
