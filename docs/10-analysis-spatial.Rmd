@@ -15,9 +15,12 @@ This notebook requires...
 
 ```{r load-packages}
 # tidyverse packages
+library(dplyr)
 
 # spatial packages
 library(sf)
+library(sp)
+library(spdep)
 
 # other packages
 library(here)
@@ -30,12 +33,104 @@ This notebook requires...
 x <- st_read(here("data", "analysis", "spatial_analysis.geojson"), crs = 26915)
 ```
 
-## Part 1
-### Question 1
-A description of what your code should accomplish.
+## Caluclate Pop Change
 
-```{r p1-q1}
-
+```{r}
+x <- mutate(x, delta50 = (total_pop-pop50)/pop50*100)
+x <- mutate(x, delta70 = total_pop-pop70/pop70*100)
 ```
 
-A description of the results.
+
+## Weights Matrix
+
+```{r}
+weights <- poly2nb(x, queen=FALSE)
+weights <- nb2listw(weights, style="W", zero.policy=TRUE)
+```
+
+## Moran's I
+
+```{r}
+moran.test(x$arson,weights)
+```
+
+
+```{r}
+model.poisson <- glm(arson ~ violent + property, family = poisson, data = x)
+
+summary(model.poisson)
+```
+
+
+```{r}
+model.poisson2 <- glm(arson ~ violent + property + scale(prop_vacant) + 
+                        scale(delta50) + median_inc + scale(black_prop) +
+                        scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+                      family = poisson, data = x)
+
+summary(model.poisson2)
+```
+
+```{r}
+model.poisson3 <- glm(arson ~ violent + property + (prop_vacant) + delta70, 
+                      family = poisson, data = x)
+
+summary(model.poisson3)
+```
+
+```{r}
+lm.morantest(model.poisson3, listw = weights)
+```
+
+```{r}
+AER::dispersiontest(model.poisson3, alternative = "two.sided")
+```
+
+```{r}
+library(MASS)
+
+model.nb <- glm.nb(arson ~ violent + property + (prop_vacant) + delta70, 
+                      data = x)
+
+summary(model.nb)
+```
+
+```{r}
+round(exp(coef(model.nb)), 3)
+```
+
+```{r}
+me.fit<-ME(arson ~ violent + property + (prop_vacant) + delta70, 
+                      data = x, family = negative.binomial(1.729), listw = weights, verbose = TRUE, alpha = .05)
+```
+
+```{r}
+me.fit
+```
+
+
+```{r}
+model.nb2 <- glm.nb(arson ~ violent + property + (prop_vacant) + delta70 + fitted(me.fit), 
+                      data = x)
+
+summary(model.nb2)
+```
+
+```{r}
+lm.morantest(model.nb, listw = weights)
+lm.morantest(model.nb2, listw = weights)
+```
+
+```{r}
+round(exp(coef(model.nb2)), 3)
+```
+
+```{r}
+library(pscl)
+
+model.zoin <- zeroinfl(arson ~ violent + property + (prop_vacant) + black_prop, 
+                      dist = "poisson", data = x)
+
+summary(model.zoin)
+```
+
