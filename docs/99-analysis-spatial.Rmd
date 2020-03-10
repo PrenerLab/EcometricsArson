@@ -8,10 +8,10 @@ output:
 ---
 
 ## Introduction
-This notebook...
+This notebook fits some experimental poisson and zero-inflated models.
 
 ## Dependencies
-This notebook requires...
+This notebook requires the following packages:
 
 ```{r load-packages}
 # tidyverse packages
@@ -22,12 +22,17 @@ library(sf)
 library(sp)
 library(spdep)
 
+# modeling packages
+library(MASS)
+library(pscl)
+library(INLA)
+
 # other packages
 library(here)
 ```
 
 ## Load Data
-This notebook requires...
+This notebook requires the final data set:
 
 ```{r load-data}
 x <- st_read(here("data", "analysis", "spatial_analysis.geojson"), crs = 26915)
@@ -48,12 +53,27 @@ weights <- poly2nb(x, queen=FALSE)
 weights <- nb2listw(weights, style="W", zero.policy=TRUE)
 ```
 
+Convert the spatial weight matrix into an INLA usable format:
+
+```{r}
+weights_alt <- poly2nb(x, queen=FALSE)
+weights_alt <- nb2mat(weights_alt, style = "W") #W for row standarization
+```
+
+Create index in the one km dataset to match the spatial weight
+
+```{r}
+x$idx <- 1:nrow(x)
+```
+
 ## Moran's I
 
 ```{r}
 moran.test(x$arson,weights)
 ```
 
+
+## Standard Poisson
 
 ```{r}
 model.poisson <- glm(arson ~ violent + property, family = poisson, data = x)
@@ -86,9 +106,9 @@ lm.morantest(model.poisson3, listw = weights)
 AER::dispersiontest(model.poisson3, alternative = "two.sided")
 ```
 
-```{r}
-library(MASS)
+## Negative Binomial
 
+```{r}
 model.nb <- glm.nb(arson ~ violent + property + (prop_vacant) + delta70, 
                       data = x)
 
@@ -125,12 +145,37 @@ lm.morantest(model.nb2, listw = weights)
 round(exp(coef(model.nb2)), 3)
 ```
 
-```{r}
-library(pscl)
+## Zero-Inflated Poisson
 
-model.zoin <- zeroinfl(arson ~ violent + property + (prop_vacant) + black_prop, 
+```{r}
+model.zoin <- zeroinfl(arson ~ violent + property + prop_vacant + black_prop, 
                       dist = "poisson", data = x)
 
 summary(model.zoin)
 ```
 
+## R-INLA
+
+### Poisson
+
+```{r}
+formula <- arson ~ violent + property + prop_vacant + black_prop + f(idx, model="besag", graph = weights_alt)
+
+poi_inla <- inla(formula, family = "poisson", data = x,
+  control.compute = list(dic = TRUE),
+  control.inla = list(tolerance = 1e-20, h = 1e-08), 
+  control.predictor = list(compute = TRUE))
+
+summary(poi_inla)
+```
+
+### Zero Inflated
+
+```{r}
+zero_inla <- inla(formula, family = "zeroinflatedpoisson0", data = x,
+  control.compute = list(dic = TRUE),
+  control.inla = list(tolerance = 1e-20, h = 1e-08), 
+  control.predictor = list(compute = TRUE))
+
+summary(zero_inla)
+```
