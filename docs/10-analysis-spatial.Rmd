@@ -1,0 +1,69 @@
+---
+title: "Analysis - Longitudinal Data"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook fits some experimental zero-inflated models using eigenvector filtering to reduce the impact of spatial auto-correlation on the results.
+
+## Dependencies
+This notebook requires the following packages:
+
+```{r load-packages}
+# tidyverse packages
+library(dplyr)
+
+# spatial packages
+library(sf)
+library(sp)
+library(spdep)
+
+# modeling packages
+library(MASS)
+library(pscl)
+
+# other packages
+library(here)
+```
+
+## Load Data
+This notebook requires the final data set:
+
+```{r load-data}
+grid <- st_read(here("data", "analysis", "spatial_analysis.geojson"), crs = 26915)
+```
+
+## Caluclate Pop Change
+We'll calculate the proportion of change from 1950 through 2017 and 1970 through 2017:
+
+```{r pop-change}
+grid %>%
+  mutate(delta50 = (total_pop-pop50)/pop50) %>%
+  mutate(delta70 = total_pop-pop70/pop70) -> grid
+```
+
+## Weights Matrix
+We also need a spatial weights matrix for our models. We'll use rook since we have gridded data:
+
+```{r weights-matrix}
+weights <- poly2nb(grid, queen=FALSE)
+weights <- nb2listw(weights, style="W", zero.policy=TRUE)
+```
+
+## Moran's I
+Next, we'll use our gridded data and our spatial weights matrix to calculate Moran's $I$, which is a measure of spatial autocorrelation:
+
+```{r evaluate-i}
+moran.test(grid$arson,weights)
+```
+
+We have a moderate degree of spatial autocorrelation present in our data. This suggests that we need to use a modeling strategy that allows us to account for the impact of spatial autocorrelation.
+
+## Modeling
+
+
+
