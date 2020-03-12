@@ -23,6 +23,7 @@ library(sp)
 library(spdep)
 
 # modeling packages
+library(AER)
 library(MASS)
 library(pscl)
 
@@ -64,6 +65,57 @@ moran.test(grid$arson,weights)
 We have a moderate degree of spatial autocorrelation present in our data. This suggests that we need to use a modeling strategy that allows us to account for the impact of spatial autocorrelation.
 
 ## Modeling
+### Poisson Model 1 - Main Effect
 
+```{r}
+model.poisson <- glm(arson ~ scale(delta70) , family = poisson, data = grid)
+
+summary(model.poisson)
+```
+
+
+### Poisson Model 2 - Crime
+
+```{r}
+model.poisson2 <- glm(arson ~ violent + property, family = poisson, data = grid)
+
+summary(model.poisson2)
+```
+
+### Poisson Model 3 - Combined
+
+```{r}
+model.poisson3 <- glm(arson ~ scale(delta70) + violent + property, family = poisson, data = grid)
+
+summary(model.poisson3)
+```
+
+### Poisson Model 4 - 
+
+```{r}
+model.poisson4 <- glm(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+                         median_inc + scale(black_prop) +
+                        scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+                      family = poisson, data = grid)
+
+summary(model.poisson4)
+```
+
+### Check Dispersion
+
+```{r}
+dispersiontest(model.poisson4, alternative = "two.sided")
+```
+
+###
+
+```{r}
+model.zoin <- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) 
+                       | scale(prop_vacant), 
+                      dist = "negbin", data = grid)
+
+summary(model.zoin)
+```
 
 
