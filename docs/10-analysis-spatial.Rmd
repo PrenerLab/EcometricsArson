@@ -47,6 +47,13 @@ grid %>%
   mutate(delta70 = total_pop-pop70/pop70) -> grid
 ```
 
+There are two grids with missing data:
+
+```{r}
+grid <- filter(grid, is.na(pop70) == FALSE)
+```
+
+
 ## Weights Matrix
 We also need a spatial weights matrix for our models. We'll use rook since we have gridded data:
 
@@ -107,15 +114,37 @@ summary(model.poisson4)
 dispersiontest(model.poisson4, alternative = "two.sided")
 ```
 
-###
+### Fit a Zero-Inflated Model
+This uses a negative binomial distribution to compenstate for over dispersion. The zero-inflated aspect of the model is designed to model data with a large number of zeros, which is appropriate for these arson data because most grids have a count of 0.
 
 ```{r}
 model.zoin <- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
-                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) 
-                       | scale(prop_vacant), 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
                       dist = "negbin", data = grid)
 
 summary(model.zoin)
+```
+
+Next, we'll fig a series of eigenvectors 
+
+```{r}
+me.fit <- spatialreg::ME(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+                      data = grid, family = negative.binomial(model.zoin$theta), 
+           listw = weights, verbose = TRUE, alpha = .05)
+```
+
+```{r}
+me.fit
+```
+
+```{r}
+model.zoin.fit <- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) +
+                         fitted(me.fit), 
+                      dist = "negbin", data = grid)
+
+summary(model.zoin.fit)
 ```
 
 

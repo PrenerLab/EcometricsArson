@@ -14,19 +14,6 @@
 
 <title>Analysis - Longitudinal Data</title>
 
-<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
-// be compatible with the behavior of Pandoc < 2.8).
-document.addEventListener('DOMContentLoaded', function(e) {
-  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
-  var i, h, a;
-  for (i = 0; i < hs.length; i++) {
-    h = hs[i];
-    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
-    a = h.attributes;
-    while (a.length > 0) h.removeAttribute(a[0].name);
-  }
-});
-</script>
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -1759,7 +1746,7 @@ summary {
 
 <h1 class="title toc-ignore">Analysis - Longitudinal Data</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(March 11, 2020)</h4>
+<h4 class="date">(March 12, 2020)</h4>
 
 </div>
 
@@ -1774,21 +1761,51 @@ summary {
 <p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5cbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShzZilcbmxpYnJhcnkoc3ApXG5saWJyYXJ5KHNwZGVwKVxuXG4jIG1vZGVsaW5nIHBhY2thZ2VzXG5saWJyYXJ5KEFFUilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5gYGAifQ== -->
 <pre class="r"><code># tidyverse packages
-library(dplyr)
+library(dplyr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>Registered S3 method overwritten by 'dplyr':
+  method           from
+  print.rowwise_df     
 
-# spatial packages
-library(sf)
-library(sp)
-library(spdep)
+Attaching package: ‘dplyr’
 
-# modeling packages
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzcGF0aWFsIHBhY2thZ2VzXG5saWJyYXJ5KHNmKVxuYGBgIn0= -->
+<pre class="r"><code># spatial packages
+library(sf)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlua2luZyB0byBHRU9TIDMuNy4yLCBHREFMIDIuNC4yLCBQUk9KIDUuMi4wXG4ifQ== -->
+<pre><code>Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzcClcbmxpYnJhcnkoc3BkZXApXG5gYGAifQ== -->
+<pre class="r"><code>library(sp)
+library(spdep)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzcERhdGFcblRvIGFjY2VzcyBsYXJnZXIgZGF0YXNldHMgaW4gdGhpcyBwYWNrYWdlLCBpbnN0YWxsIHRoZSBzcERhdGFMYXJnZSBwYWNrYWdlIHdpdGg6IGBpbnN0YWxsLnBhY2thZ2VzKCdzcERhdGFMYXJnZScsIHJlcG9zPSdodHRwczovL25vd29zYWQuZ2l0aHViLmlvL2RyYXQvJyxcbnR5cGU9J3NvdXJjZScpYFxuIn0= -->
+<pre><code>Loading required package: spData
+To access larger datasets in this package, install the spDataLarge package with: `install.packages('spDataLarge', repos='https://nowosad.github.io/drat/',
+type='source')`</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtb2RlbGluZyBwYWNrYWdlc1xubGlicmFyeShBRVIpXG5gYGAifQ== -->
+<pre class="r"><code># modeling packages
 library(AER)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBjYXJcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogY2FyRGF0YVxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYY2Fy4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZHBseXLigJk6XG5cbiAgICByZWNvZGVcblxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBsbXRlc3RcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogem9vXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJh6b2/igJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBhcy5EYXRlLCBhcy5EYXRlLm51bWVyaWNcblxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzYW5kd2ljaFxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzdXJ2aXZhbFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBjYXJcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogY2FyRGF0YVxuUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJhjYXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpkcGx5cuKAmTpcblxuICAgIHJlY29kZVxuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGxtdGVzdFxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB6b29cblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmHpvb+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIGFzLkRhdGUsIGFzLkRhdGUubnVtZXJpY1xuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHNhbmR3aWNoXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHN1cnZpdmFsXG4ifQ== -->
 <pre><code>Loading required package: car
 Loading required package: carData
+Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
 
 Attaching package: ‘car’
 
@@ -1808,13 +1825,35 @@ The following objects are masked from ‘package:base’:
 Loading required package: sandwich
 Loading required package: survival</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShNQVNTKVxubGlicmFyeShwc2NsKVxuXG4jIG90aGVyIHBhY2thZ2VzXG5saWJyYXJ5KGhlcmUpXG5gYGAifQ== -->
-<pre class="r"><code>library(MASS)
-library(pscl)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShNQVNTKVxuYGBgIn0= -->
+<pre class="r"><code>library(MASS)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYTUFTU+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRwbHly4oCZOlxuXG4gICAgc2VsZWN0XG4ifQ== -->
+<pre><code>
+Attaching package: ‘MASS’
 
-# other packages
+The following object is masked from ‘package:dplyr’:
+
+    select</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwc2NsKVxuYGBgIn0= -->
+<pre class="r"><code>library(pscl)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQ2xhc3NlcyBhbmQgTWV0aG9kcyBmb3IgUiBkZXZlbG9wZWQgaW4gdGhlXG5Qb2xpdGljYWwgU2NpZW5jZSBDb21wdXRhdGlvbmFsIExhYm9yYXRvcnlcbkRlcGFydG1lbnQgb2YgUG9saXRpY2FsIFNjaWVuY2VcblN0YW5mb3JkIFVuaXZlcnNpdHlcblNpbW9uIEphY2ttYW5cbmh1cmRsZSBhbmQgemVyb2luZmwgZnVuY3Rpb25zIGJ5IEFjaGltIFplaWxlaXNcbiJ9 -->
+<pre><code>Classes and Methods for R developed in the
+Political Science Computational Laboratory
+Department of Political Science
+Stanford University
+Simon Jackman
+hurdle and zeroinfl functions by Achim Zeileis</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxuYGBgIn0= -->
+<pre class="r"><code># other packages
 library(here)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiaGVyZSgpIHN0YXJ0cyBhdCAvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb25cbiJ9 -->
+<pre><code>here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1826,8 +1865,8 @@ library(here)</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZCA8LSBzdF9yZWFkKGhlcmUoXCJkYXRhXCIsIFwiYW5hbHlzaXNcIiwgXCJzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb25cIiksIGNycyA9IDI2OTE1KVxuYGBgIn0= -->
 <pre class="r"><code>grid &lt;- st_read(here(&quot;data&quot;, &quot;analysis&quot;, &quot;spatial_analysis.geojson&quot;), crs = 26915)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgc3BhdGlhbF9hbmFseXNpcycgZnJvbSBkYXRhIHNvdXJjZSBgL1VzZXJzL2NocmlzL0dpdEh1Yi9QcmVuZXJMYWIvRWNvbWV0cmljc0Fyc29uL2RhdGEvYW5hbHlzaXMvc3BhdGlhbF9hbmFseXNpcy5nZW9qc29uJyB1c2luZyBkcml2ZXIgYEdlb0pTT04nXG4ifQ== -->
-<pre><code>Reading layer `spatial_analysis&#39; from data source `/Users/chris/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson&#39; using driver `GeoJSON&#39;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiUmVhZGluZyBsYXllciBgc3BhdGlhbF9hbmFseXNpcycgZnJvbSBkYXRhIHNvdXJjZSBgL1VzZXJzL3ByZW5lcmNnL0dpdEh1Yi9QcmVuZXJMYWIvRWNvbWV0cmljc0Fyc29uL2RhdGEvYW5hbHlzaXMvc3BhdGlhbF9hbmFseXNpcy5nZW9qc29uJyB1c2luZyBkcml2ZXIgYEdlb0pTT04nXG4ifQ== -->
+<pre><code>Reading layer `spatial_analysis' from data source `/Users/prenercg/GitHub/PrenerLab/EcometricsArson/data/analysis/spatial_analysis.geojson' using driver `GeoJSON'</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoic3RfY3JzPC0gOiByZXBsYWNpbmcgY3JzIGRvZXMgbm90IHJlcHJvamVjdCBkYXRhOyB1c2Ugc3RfdHJhbnNmb3JtIGZvciB0aGF0XG4ifQ== -->
 <pre><code>st_crs&lt;- : replacing crs does not reproject data; use st_transform for that</code></pre>
@@ -1855,6 +1894,14 @@ proj4string:    +proj=utm +zone=15 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m 
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>There are two grids with missing data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JpZCA8LSBmaWx0ZXIoZ3JpZCwgaXMubmEocG9wNzApID09IEZBTFNFKVxuYGBgIn0= -->
+<pre class="r"><code>grid &lt;- filter(grid, is.na(pop70) == FALSE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="weights-matrix" class="section level2">
 <h2>Weights Matrix</h2>
@@ -1876,18 +1923,18 @@ weights &lt;- nb2listw(weights, style=&quot;W&quot;, zero.policy=TRUE)</code></p
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9yYW4udGVzdChncmlkJGFyc29uLHdlaWdodHMpXG5gYGAifQ== -->
 <pre class="r"><code>moran.test(grid$arson,weights)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE1vcmFuIEkgdGVzdCB1bmRlciByYW5kb21pc2F0aW9uXG5cbmRhdGE6ICBncmlkJGFyc29uICBcbndlaWdodHM6IHdlaWdodHMgICAgXG5cbk1vcmFuIEkgc3RhdGlzdGljIHN0YW5kYXJkIGRldmlhdGUgPSAxMi4yNDcsIHAtdmFsdWUgPCAyLjJlLTE2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiBncmVhdGVyXG5zYW1wbGUgZXN0aW1hdGVzOlxuTW9yYW4gSSBzdGF0aXN0aWMgICAgICAgRXhwZWN0YXRpb24gICAgICAgICAgVmFyaWFuY2UgXG4gICAgICAwLjUyNjkzOTU2MCAgICAgIC0wLjAwNDY3Mjg5NyAgICAgICAwLjAwMTg4NDI3NSBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE1vcmFuIEkgdGVzdCB1bmRlciByYW5kb21pc2F0aW9uXG5cbmRhdGE6ICBncmlkJGFyc29uICBcbndlaWdodHM6IHdlaWdodHMgICAgXG5cbk1vcmFuIEkgc3RhdGlzdGljIHN0YW5kYXJkIGRldmlhdGUgPSAxMi4xMDYsIHAtdmFsdWUgPCAyLjJlLTE2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiBncmVhdGVyXG5zYW1wbGUgZXN0aW1hdGVzOlxuTW9yYW4gSSBzdGF0aXN0aWMgICAgICAgRXhwZWN0YXRpb24gICAgICAgICAgVmFyaWFuY2UgXG4gICAgICAwLjUyMzY1MTk2NCAgICAgIC0wLjAwNDcxNjk4MSAgICAgICAwLjAwMTkwNDc2NyBcbiJ9 -->
 <pre><code>
     Moran I test under randomisation
 
 data:  grid$arson  
 weights: weights    
 
-Moran I statistic standard deviate = 12.247, p-value &lt; 2.2e-16
+Moran I statistic standard deviate = 12.106, p-value &lt; 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-      0.526939560      -0.004672897       0.001884275 </code></pre>
+      0.523651964      -0.004716981       0.001904767 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1904,7 +1951,7 @@ Moran I statistic       Expectation          Variance
 
 summary(model.poisson)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApLCBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZClcblxuRGV2aWFuY2UgUmVzaWR1YWxzOiBcbiAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuLTQuNjM4OCAgLTIuNDE5MyAgLTEuMzc0OCAgIDAuNTIwMyAgIDguNDQxNCAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAxLjU5MTU1ICAgIDAuMDMyMTggICA0OS40NSAgIDwyZS0xNiAqKipcbnNjYWxlKGRlbHRhNzApICAwLjQ1MzcxICAgIDAuMDI2MjkgICAxNy4yNSAgIDwyZS0xNiAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIHBvaXNzb24gZmFtaWx5IHRha2VuIHRvIGJlIDEpXG5cbiAgICBOdWxsIGRldmlhbmNlOiAxODk3LjIgIG9uIDIxMiAgZGVncmVlcyBvZiBmcmVlZG9tXG5SZXNpZHVhbCBkZXZpYW5jZTogMTYxNS43ICBvbiAyMTEgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuICAoMiBvYnNlcnZhdGlvbnMgZGVsZXRlZCBkdWUgdG8gbWlzc2luZ25lc3MpXG5BSUM6IDIxMjAuOVxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNlxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApLCBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZClcblxuRGV2aWFuY2UgUmVzaWR1YWxzOiBcbiAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuLTQuNjM4OCAgLTIuNDE5MyAgLTEuMzc0OCAgIDAuNTIwMyAgIDguNDQxNCAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAxLjU5MTU1ICAgIDAuMDMyMTggICA0OS40NSAgIDwyZS0xNiAqKipcbnNjYWxlKGRlbHRhNzApICAwLjQ1MzcxICAgIDAuMDI2MjkgICAxNy4yNSAgIDwyZS0xNiAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIHBvaXNzb24gZmFtaWx5IHRha2VuIHRvIGJlIDEpXG5cbiAgICBOdWxsIGRldmlhbmNlOiAxODk3LjIgIG9uIDIxMiAgZGVncmVlcyBvZiBmcmVlZG9tXG5SZXNpZHVhbCBkZXZpYW5jZTogMTYxNS43ICBvbiAyMTEgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAyMTIwLjlcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDZcbiJ9 -->
 <pre><code>
 Call:
 glm(formula = arson ~ scale(delta70), family = poisson, data = grid)
@@ -1924,7 +1971,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
     Null deviance: 1897.2  on 212  degrees of freedom
 Residual deviance: 1615.7  on 211  degrees of freedom
-  (2 observations deleted due to missingness)
 AIC: 2120.9
 
 Number of Fisher Scoring iterations: 6</code></pre>
@@ -1941,28 +1987,28 @@ Number of Fisher Scoring iterations: 6</code></pre>
 
 summary(model.poisson2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHZpb2xlbnQgKyBwcm9wZXJ0eSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpXG5cbkRldmlhbmNlIFJlc2lkdWFsczogXG4gICAgTWluICAgICAgIDFRICAgTWVkaWFuICAgICAgIDNRICAgICAgTWF4ICBcbi03Ljc5MzMgIC0yLjI1NDUgIC0wLjY4ODQgICAwLjU3NzkgICA2LjE1OTEgIFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICA5LjMzNWUtMDEgIDQuODI2ZS0wMiAgMTkuMzQ2ICA8IDJlLTE2ICoqKlxudmlvbGVudCAgICAgIDUuNTcxZS0wMyAgMi4xODRlLTA0ICAyNS41MDkgIDwgMmUtMTYgKioqXG5wcm9wZXJ0eSAgICAtNS43MzZlLTA0ICA4LjYzM2UtMDUgIC02LjY0MyAzLjA2ZS0xMSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIHBvaXNzb24gZmFtaWx5IHRha2VuIHRvIGJlIDEpXG5cbiAgICBOdWxsIGRldmlhbmNlOiAxOTE5LjEgIG9uIDIxNCAgZGVncmVlcyBvZiBmcmVlZG9tXG5SZXNpZHVhbCBkZXZpYW5jZTogIDkxNy4xICBvbiAyMTIgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxNDI0LjNcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHZpb2xlbnQgKyBwcm9wZXJ0eSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpXG5cbkRldmlhbmNlIFJlc2lkdWFsczogXG4gICAgTWluICAgICAgIDFRICAgTWVkaWFuICAgICAgIDNRICAgICAgTWF4ICBcbi03LjczMzggIC0yLjI2NzYgIC0wLjY3NzEgICAwLjYwMzEgICA2LjE0NTAgIFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICA5LjQ1NWUtMDEgIDQuODM4ZS0wMiAgMTkuNTQ0ICA8IDJlLTE2ICoqKlxudmlvbGVudCAgICAgIDUuNTYxZS0wMyAgMi4xODVlLTA0ICAyNS40NDUgIDwgMmUtMTYgKioqXG5wcm9wZXJ0eSAgICAtNS43OTVlLTA0ICA4LjY1MWUtMDUgIC02LjY5OSAgMi4xZS0xMSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIHBvaXNzb24gZmFtaWx5IHRha2VuIHRvIGJlIDEpXG5cbiAgICBOdWxsIGRldmlhbmNlOiAxODk3LjE5ICBvbiAyMTIgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuUmVzaWR1YWwgZGV2aWFuY2U6ICA5MDYuODcgIG9uIDIxMCAgZGVncmVlcyBvZiBmcmVlZG9tXG5BSUM6IDE0MTQuMVxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNVxuIn0= -->
 <pre><code>
 Call:
 glm(formula = arson ~ violent + property, family = poisson, data = grid)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--7.7933  -2.2545  -0.6884   0.5779   6.1591  
+-7.7338  -2.2676  -0.6771   0.6031   6.1450  
 
 Coefficients:
               Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  9.335e-01  4.826e-02  19.346  &lt; 2e-16 ***
-violent      5.571e-03  2.184e-04  25.509  &lt; 2e-16 ***
-property    -5.736e-04  8.633e-05  -6.643 3.06e-11 ***
+(Intercept)  9.455e-01  4.838e-02  19.544  &lt; 2e-16 ***
+violent      5.561e-03  2.185e-04  25.445  &lt; 2e-16 ***
+property    -5.795e-04  8.651e-05  -6.699  2.1e-11 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
-    Null deviance: 1919.1  on 214  degrees of freedom
-Residual deviance:  917.1  on 212  degrees of freedom
-AIC: 1424.3
+    Null deviance: 1897.19  on 212  degrees of freedom
+Residual deviance:  906.87  on 210  degrees of freedom
+AIC: 1414.1
 
 Number of Fisher Scoring iterations: 5</code></pre>
 <!-- rnb-output-end -->
@@ -1978,7 +2024,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 
 summary(model.poisson3)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5LCBmYW1pbHkgPSBwb2lzc29uLCBcbiAgICBkYXRhID0gZ3JpZClcblxuRGV2aWFuY2UgUmVzaWR1YWxzOiBcbiAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuLTcuNzg4OCAgLTIuMjI4OCAgLTAuNjk1MCAgIDAuNTc0NSAgIDYuMTczOCAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgIDAuOTk2MjE0NCAgMC4wNTkxNDA1ICAxNi44NDUgIDwgMmUtMTYgKioqXG5zY2FsZShkZWx0YTcwKSAgMC4wNjk2NDg5ICAwLjA0NjIzOTMgICAxLjUwNiAgICAwLjEzMiAgICBcbnZpb2xlbnQgICAgICAgICAwLjAwNTUxMDggIDAuMDAwMjIzOCAgMjQuNjE4ICA8IDJlLTE2ICoqKlxucHJvcGVydHkgICAgICAgLTAuMDAwNjcxOSAgMC4wMDAxMTA5ICAtNi4wNTkgMS4zN2UtMDkgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgOTA0LjU3ICBvbiAyMDkgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuICAoMiBvYnNlcnZhdGlvbnMgZGVsZXRlZCBkdWUgdG8gbWlzc2luZ25lc3MpXG5BSUM6IDE0MTMuOFxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5LCBmYW1pbHkgPSBwb2lzc29uLCBcbiAgICBkYXRhID0gZ3JpZClcblxuRGV2aWFuY2UgUmVzaWR1YWxzOiBcbiAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuLTcuNzg4OCAgLTIuMjI4OCAgLTAuNjk1MCAgIDAuNTc0NSAgIDYuMTczOCAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgIDAuOTk2MjE0NCAgMC4wNTkxNDA1ICAxNi44NDUgIDwgMmUtMTYgKioqXG5zY2FsZShkZWx0YTcwKSAgMC4wNjk2NDg5ICAwLjA0NjIzOTMgICAxLjUwNiAgICAwLjEzMiAgICBcbnZpb2xlbnQgICAgICAgICAwLjAwNTUxMDggIDAuMDAwMjIzOCAgMjQuNjE4ICA8IDJlLTE2ICoqKlxucHJvcGVydHkgICAgICAgLTAuMDAwNjcxOSAgMC4wMDAxMTA5ICAtNi4wNTkgMS4zN2UtMDkgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgOTA0LjU3ICBvbiAyMDkgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxNDEzLjhcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
 <pre><code>
 Call:
 glm(formula = arson ~ scale(delta70) + violent + property, family = poisson, 
@@ -2001,7 +2047,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
     Null deviance: 1897.19  on 212  degrees of freedom
 Residual deviance:  904.57  on 209  degrees of freedom
-  (2 observations deleted due to missingness)
 AIC: 1413.8
 
 Number of Fisher Scoring iterations: 5</code></pre>
@@ -2021,7 +2066,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 
 summary(model.poisson4)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgbWVkaWFuX2luYyArIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBcbiAgICBzY2FsZShvd25PY2NfcHJvcCksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5EZXZpYW5jZSBSZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCAgXG4tMy43MzI3ICAtMS4zODQxICAtMC42OTkwICAgMC42MDYxICAgNy4zNTk0ICBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDMuMTk5ZS0wMSAgMS4yMzJlLTAxICAgMi41OTYgIDAuMDA5NDIgKiogXG5zY2FsZShkZWx0YTcwKSAgICAgICAxLjM5OGUtMDEgIDcuMjk4ZS0wMiAgIDEuOTE2ICAwLjA1NTQwIC4gIFxudmlvbGVudCAgICAgICAgICAgICAgMy4xMjdlLTAzICAzLjU3MGUtMDQgICA4Ljc1OSAgPCAyZS0xNiAqKipcbnByb3BlcnR5ICAgICAgICAgICAgIDMuMzAzZS0wNCAgMS4zMTdlLTA0ICAgMi41MDggIDAuMDEyMTUgKiAgXG5zY2FsZShwcm9wX3ZhY2FudCkgICAzLjE5NGUtMDEgIDQuNTM4ZS0wMiAgIDcuMDM5IDEuOTRlLTEyICoqKlxubWVkaWFuX2luYyAgICAgICAgICAgMS4xMjhlLTA1ICA0LjcyNmUtMDYgICAyLjM4NiAgMC4wMTcwMSAqICBcbnNjYWxlKGJsYWNrX3Byb3ApICAgIDMuNzc1ZS0wMSAgNi42NTVlLTAyICAgNS42NzMgMS40MWUtMDggKioqXG5zY2FsZShwdnR5X3Byb3ApICAgICAzLjMxNWUtMDEgIDYuMjM0ZS0wMiAgIDUuMzE4IDEuMDVlLTA3ICoqKlxuc2NhbGUodW5lbXBseV9wcm9wKSAtMS4zMjBlLTAxICA3LjA0OWUtMDIgIC0xLjg3MyAgMC4wNjEwNiAuICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIDQuNzYwZS0wMSAgNC45MjhlLTAyICAgOS42NjAgIDwgMmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgNTY2Ljg4ICBvbiAyMDMgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuICAoMiBvYnNlcnZhdGlvbnMgZGVsZXRlZCBkdWUgdG8gbWlzc2luZ25lc3MpXG5BSUM6IDEwODguMVxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgbWVkaWFuX2luYyArIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBcbiAgICBzY2FsZShvd25PY2NfcHJvcCksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5EZXZpYW5jZSBSZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCAgXG4tMy43MzI3ICAtMS4zODQxICAtMC42OTkwICAgMC42MDYxICAgNy4zNTk0ICBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDMuMjc2ZS0wMSAgMS4yMzFlLTAxICAgMi42NjIgIDAuMDA3NzggKiogXG5zY2FsZShkZWx0YTcwKSAgICAgICAxLjM5OGUtMDEgIDcuMjk4ZS0wMiAgIDEuOTE2ICAwLjA1NTQwIC4gIFxudmlvbGVudCAgICAgICAgICAgICAgMy4xMjdlLTAzICAzLjU3MGUtMDQgICA4Ljc1OSAgPCAyZS0xNiAqKipcbnByb3BlcnR5ICAgICAgICAgICAgIDMuMzAzZS0wNCAgMS4zMTdlLTA0ICAgMi41MDggIDAuMDEyMTUgKiAgXG5zY2FsZShwcm9wX3ZhY2FudCkgICAzLjE5M2UtMDEgIDQuNTM3ZS0wMiAgIDcuMDM5IDEuOTRlLTEyICoqKlxubWVkaWFuX2luYyAgICAgICAgICAgMS4xMjhlLTA1ICA0LjcyNmUtMDYgICAyLjM4NiAgMC4wMTcwMSAqICBcbnNjYWxlKGJsYWNrX3Byb3ApICAgIDMuNzY5ZS0wMSAgNi42NDVlLTAyICAgNS42NzMgMS40MWUtMDggKioqXG5zY2FsZShwdnR5X3Byb3ApICAgICAzLjI3N2UtMDEgIDYuMTYyZS0wMiAgIDUuMzE4IDEuMDVlLTA3ICoqKlxuc2NhbGUodW5lbXBseV9wcm9wKSAtMS4zMjBlLTAxICA3LjA0NmUtMDIgIC0xLjg3MyAgMC4wNjEwNiAuICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIDQuNzAyZS0wMSAgNC44NjhlLTAyICAgOS42NjAgIDwgMmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgNTY2Ljg4ICBvbiAyMDMgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxMDg4LjFcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
 <pre><code>
 Call:
 glm(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
@@ -2034,16 +2079,16 @@ Deviance Residuals:
 
 Coefficients:
                       Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)          3.199e-01  1.232e-01   2.596  0.00942 ** 
+(Intercept)          3.276e-01  1.231e-01   2.662  0.00778 ** 
 scale(delta70)       1.398e-01  7.298e-02   1.916  0.05540 .  
 violent              3.127e-03  3.570e-04   8.759  &lt; 2e-16 ***
 property             3.303e-04  1.317e-04   2.508  0.01215 *  
-scale(prop_vacant)   3.194e-01  4.538e-02   7.039 1.94e-12 ***
+scale(prop_vacant)   3.193e-01  4.537e-02   7.039 1.94e-12 ***
 median_inc           1.128e-05  4.726e-06   2.386  0.01701 *  
-scale(black_prop)    3.775e-01  6.655e-02   5.673 1.41e-08 ***
-scale(pvty_prop)     3.315e-01  6.234e-02   5.318 1.05e-07 ***
-scale(unemply_prop) -1.320e-01  7.049e-02  -1.873  0.06106 .  
-scale(ownOcc_prop)   4.760e-01  4.928e-02   9.660  &lt; 2e-16 ***
+scale(black_prop)    3.769e-01  6.645e-02   5.673 1.41e-08 ***
+scale(pvty_prop)     3.277e-01  6.162e-02   5.318 1.05e-07 ***
+scale(unemply_prop) -1.320e-01  7.046e-02  -1.873  0.06106 .  
+scale(ownOcc_prop)   4.702e-01  4.868e-02   9.660  &lt; 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -2051,7 +2096,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
     Null deviance: 1897.19  on 212  degrees of freedom
 Residual deviance:  566.88  on 203  degrees of freedom
-  (2 observations deleted due to missingness)
 AIC: 1088.1
 
 Number of Fisher Scoring iterations: 5</code></pre>
@@ -2080,51 +2124,139 @@ dispersion
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="section" class="section level3">
-<h3></h3>
+<div id="fit-a-zero-inflated-model" class="section level3">
+<h3>Fit a Zero-Inflated Model</h3>
+<p>This uses a negative binomial distribution to compenstate for over dispersion. The zero-inflated aspect of the model is designed to model data with a large number of zeros, which is appropriate for these arson data because most grids have a count of 0.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbiA8LSB6ZXJvaW5mbChhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSBcbiAgICAgICAgICAgICAgICAgICAgICAgfCBzY2FsZShwcm9wX3ZhY2FudCksIFxuICAgICAgICAgICAgICAgICAgICAgIGRpc3QgPSBcIm5lZ2JpblwiLCBkYXRhID0gZ3JpZClcblxuc3VtbWFyeShtb2RlbC56b2luKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbiA8LSB6ZXJvaW5mbChhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwgXG4gICAgICAgICAgICAgICAgICAgICAgZGlzdCA9IFwibmVnYmluXCIsIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnpvaW4pXG5gYGAifQ== -->
 <pre class="r"><code>model.zoin &lt;- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
-                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) 
-                       | scale(prop_vacant), 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
                       dist = &quot;negbin&quot;, data = grid)
 
 summary(model.zoin)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZShibGFja19wcm9wKSArIFxuICAgIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApIHwgc2NhbGUocHJvcF92YWNhbnQpLCBkYXRhID0gZ3JpZCwgZGlzdCA9IFwibmVnYmluXCIpXG5cblBlYXJzb24gcmVzaWR1YWxzOlxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTEuMzUxNyAtMC43MTEzIC0wLjM5MzggIDAuNDI5OCAgNi4xNTAzIFxuXG5Db3VudCBtb2RlbCBjb2VmZmljaWVudHMgKG5lZ2JpbiB3aXRoIGxvZyBsaW5rKTpcbiAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAwLjIyMTgxNTggIDAuMTQxMTI0NSAgIDEuNTcyIDAuMTE2MDAzICAgIFxuc2NhbGUoZGVsdGE3MCkgICAgICAgMC4yMTM0OTkwICAwLjEwNTc4MzAgICAyLjAxOCAwLjA0MzU2MyAqICBcbnZpb2xlbnQgICAgICAgICAgICAgIDAuMDA0MjUxNSAgMC4wMDA5MzA2ICAgNC41NjkgNC45MWUtMDYgKioqXG5wcm9wZXJ0eSAgICAgICAgICAgICAwLjAwMDQ5MjEgIDAuMDAwMzMwOCAgIDEuNDg4IDAuMTM2ODY5ICAgIFxuc2NhbGUocHJvcF92YWNhbnQpICAgMC40NzU4NDk5ICAwLjEwMTYyMzggICA0LjY4MiAyLjgzZS0wNiAqKipcbnNjYWxlKGJsYWNrX3Byb3ApICAgIDAuMTcyMjk1MCAgMC4xMjc3MjEyICAgMS4zNDkgMC4xNzczMzkgICAgXG5zY2FsZShwdnR5X3Byb3ApICAgICAwLjQzMjI2MTUgIDAuMTE4Mjk4OSAgIDMuNjU0IDAuMDAwMjU4ICoqKlxuc2NhbGUodW5lbXBseV9wcm9wKSAtMC4yOTM0NTY5ICAwLjEyNTcyODQgIC0yLjMzNCAwLjAxOTU5MyAqICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIDAuNTU2NjIxMyAgMC4wODgwODIyICAgNi4zMTkgMi42M2UtMTAgKioqXG5Mb2codGhldGEpICAgICAgICAgICAxLjA2NjMwMzcgIDAuMjA0MjQ1MiAgIDUuMjIxIDEuNzhlLTA3ICoqKlxuXG5aZXJvLWluZmxhdGlvbiBtb2RlbCBjb2VmZmljaWVudHMgKGJpbm9taWFsIHdpdGggbG9naXQgbGluayk6XG4gICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpXG4oSW50ZXJjZXB0KSAgICAgICAgIC0xNC4xNzUgICAgICA4LjcxNiAgLTEuNjI2ICAgIDAuMTA0XG5zY2FsZShwcm9wX3ZhY2FudCkgICAgNi4wMTUgICAgICAzLjg4NSAgIDEuNTQ4ICAgIDAuMTIyXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxIFxuXG5UaGV0YSA9IDIuOTA0NiBcbk51bWJlciBvZiBpdGVyYXRpb25zIGluIEJGR1Mgb3B0aW1pemF0aW9uOiA0NSBcbkxvZy1saWtlbGlob29kOiAtNDUxLjMgb24gMTIgRGZcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCBcbiAgICBkYXRhID0gZ3JpZCwgZGlzdCA9IFwibmVnYmluXCIpXG5cblBlYXJzb24gcmVzaWR1YWxzOlxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTEuNjE1NSAtMC41ODAzIC0wLjI0OTggIDAuMjk5MiAxMC40MzQ1IFxuXG5Db3VudCBtb2RlbCBjb2VmZmljaWVudHMgKG5lZ2JpbiB3aXRoIGxvZyBsaW5rKTpcbiAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICA4LjI3OGUtMDEgIDEuNTY5ZS0wMSAgIDUuMjc1IDEuMzJlLTA3ICoqKlxuc2NhbGUoZGVsdGE3MCkgICAgICAgMS4zNzJlLTAxICA5LjQxMWUtMDIgICAxLjQ1OCAwLjE0NDgwNyAgICBcbnZpb2xlbnQgICAgICAgICAgICAgIDQuMjE5ZS0wMyAgOC4xMjBlLTA0ICAgNS4xOTUgMi4wNGUtMDcgKioqXG5wcm9wZXJ0eSAgICAgICAgICAgIC0yLjg4MWUtMDUgIDMuNTIwZS0wNCAgLTAuMDgyIDAuOTM0NzY1ICAgIFxuc2NhbGUocHJvcF92YWNhbnQpICAgMy4xNjdlLTAxICA5LjI1NmUtMDIgICAzLjQyMiAwLjAwMDYyMSAqKipcbnNjYWxlKGJsYWNrX3Byb3ApICAgIDEuMTQ4ZS0wMSAgMS4xMjRlLTAxICAgMS4wMjEgMC4zMDc0NDAgICAgXG5zY2FsZShwdnR5X3Byb3ApICAgICAyLjUwMmUtMDEgIDEuMDYyZS0wMSAgIDIuMzU2IDAuMDE4NDkyICogIFxuc2NhbGUodW5lbXBseV9wcm9wKSAtOS41NDllLTAyICAxLjI1MGUtMDEgIC0wLjc2NCAwLjQ0NDg0NCAgICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIDMuNjAzZS0wMSAgOC41MjhlLTAyICAgNC4yMjUgMi4zOWUtMDUgKioqXG5Mb2codGhldGEpICAgICAgICAgICAxLjY0OWUrMDAgIDIuNDA2ZS0wMSAgIDYuODU0IDcuMTdlLTEyICoqKlxuXG5aZXJvLWluZmxhdGlvbiBtb2RlbCBjb2VmZmljaWVudHMgKGJpbm9taWFsIHdpdGggbG9naXQgbGluayk6XG4gICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDIuODE5NzkwICAgMS4wMDYzMjEgICAyLjgwMiAgMC4wMDUwOCAqKlxuc2NhbGUoZGVsdGE3MCkgICAgICAgMS4xOTEwMTYgICAwLjc5OTgyNiAgIDEuNDg5ICAwLjEzNjQ2ICAgXG52aW9sZW50ICAgICAgICAgICAgIC0wLjAzODg5MiAgIDAuMDI1OTIxICAtMS41MDAgIDAuMTMzNTIgICBcbnByb3BlcnR5ICAgICAgICAgICAgLTAuMDA5NTcxICAgMC4wMDUyMDIgIC0xLjg0MCAgMC4wNjU4MSAuIFxuc2NhbGUocHJvcF92YWNhbnQpICAtMC4xODcwODEgICAwLjI3OTkzNyAgLTAuNjY4ICAwLjUwMzk0ICAgXG5zY2FsZShibGFja19wcm9wKSAgIC0wLjE5ODgyNCAgIDAuNjExNzA0ICAtMC4zMjUgIDAuNzQ1MTYgICBcbnNjYWxlKHB2dHlfcHJvcCkgICAgLTAuODkzNjQ4ICAgMC41NDY2NjUgIC0xLjYzNSAgMC4xMDIxMSAgIFxuc2NhbGUodW5lbXBseV9wcm9wKSAgMC4yMzk5NjMgICAwLjQyOTQ1MSAgIDAuNTU5ICAwLjU3NjMyICAgXG5zY2FsZShvd25PY2NfcHJvcCkgIC0xLjQ0ODYwMCAgIDAuNTE2MDU5ICAtMi44MDcgIDAuMDA1MDAgKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDEgXG5cblRoZXRhID0gNS4yMDE2IFxuTnVtYmVyIG9mIGl0ZXJhdGlvbnMgaW4gQkZHUyBvcHRpbWl6YXRpb246IDMzIFxuTG9nLWxpa2VsaWhvb2Q6IC00MjQuNyBvbiAxOSBEZlxuIn0= -->
 <pre><code>
 Call:
-zeroinfl(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + scale(black_prop) + 
-    scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) | scale(prop_vacant), data = grid, dist = &quot;negbin&quot;)
+zeroinfl(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+    data = grid, dist = &quot;negbin&quot;)
 
 Pearson residuals:
     Min      1Q  Median      3Q     Max 
--1.3517 -0.7113 -0.3938  0.4298  6.1503 
+-1.6155 -0.5803 -0.2498  0.2992 10.4345 
 
 Count model coefficients (negbin with log link):
                       Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)          0.2218158  0.1411245   1.572 0.116003    
-scale(delta70)       0.2134990  0.1057830   2.018 0.043563 *  
-violent              0.0042515  0.0009306   4.569 4.91e-06 ***
-property             0.0004921  0.0003308   1.488 0.136869    
-scale(prop_vacant)   0.4758499  0.1016238   4.682 2.83e-06 ***
-scale(black_prop)    0.1722950  0.1277212   1.349 0.177339    
-scale(pvty_prop)     0.4322615  0.1182989   3.654 0.000258 ***
-scale(unemply_prop) -0.2934569  0.1257284  -2.334 0.019593 *  
-scale(ownOcc_prop)   0.5566213  0.0880822   6.319 2.63e-10 ***
-Log(theta)           1.0663037  0.2042452   5.221 1.78e-07 ***
+(Intercept)          8.278e-01  1.569e-01   5.275 1.32e-07 ***
+scale(delta70)       1.372e-01  9.411e-02   1.458 0.144807    
+violent              4.219e-03  8.120e-04   5.195 2.04e-07 ***
+property            -2.881e-05  3.520e-04  -0.082 0.934765    
+scale(prop_vacant)   3.167e-01  9.256e-02   3.422 0.000621 ***
+scale(black_prop)    1.148e-01  1.124e-01   1.021 0.307440    
+scale(pvty_prop)     2.502e-01  1.062e-01   2.356 0.018492 *  
+scale(unemply_prop) -9.549e-02  1.250e-01  -0.764 0.444844    
+scale(ownOcc_prop)   3.603e-01  8.528e-02   4.225 2.39e-05 ***
+Log(theta)           1.649e+00  2.406e-01   6.854 7.17e-12 ***
 
 Zero-inflation model coefficients (binomial with logit link):
-                   Estimate Std. Error z value Pr(&gt;|z|)
-(Intercept)         -14.175      8.716  -1.626    0.104
-scale(prop_vacant)    6.015      3.885   1.548    0.122
+                     Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)          2.819790   1.006321   2.802  0.00508 **
+scale(delta70)       1.191016   0.799826   1.489  0.13646   
+violent             -0.038892   0.025921  -1.500  0.13352   
+property            -0.009571   0.005202  -1.840  0.06581 . 
+scale(prop_vacant)  -0.187081   0.279937  -0.668  0.50394   
+scale(black_prop)   -0.198824   0.611704  -0.325  0.74516   
+scale(pvty_prop)    -0.893648   0.546665  -1.635  0.10211   
+scale(unemply_prop)  0.239963   0.429451   0.559  0.57632   
+scale(ownOcc_prop)  -1.448600   0.516059  -2.807  0.00500 **
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Theta = 2.9046 
-Number of iterations in BFGS optimization: 45 
-Log-likelihood: -451.3 on 12 Df</code></pre>
+Theta = 5.2016 
+Number of iterations in BFGS optimization: 33 
+Log-likelihood: -424.7 on 19 Df</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Next, we’ll fig a series of eigenvectors</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWUuZml0IDwtIHNwYXRpYWxyZWc6Ok1FKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBcbiAgICAgICAgICAgICAgICAgICAgICAgICBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCBcbiAgICAgICAgICAgICAgICAgICAgICBkYXRhID0gZ3JpZCwgZmFtaWx5ID0gbmVnYXRpdmUuYmlub21pYWwobW9kZWwuem9pbiR0aGV0YSksIFxuICAgICAgICAgICBsaXN0dyA9IHdlaWdodHMsIHZlcmJvc2UgPSBUUlVFLCBhbHBoYSA9IC4wNSlcbmBgYCJ9 -->
+<pre class="r"><code>me.fit &lt;- spatialreg::ME(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+                      data = grid, family = negative.binomial(model.zoin$theta), 
+           listw = weights, verbose = TRUE, alpha = .05)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZVZbLDQ5XSwgSTogMC4wNTc5NjIwNSBaSTogTkEsIHByKFpJKTogMC4wOFxuIn0= -->
+<pre><code>eV[,49], I: 0.05796205 ZI: NA, pr(ZI): 0.08</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWUuZml0XG5gYGAifQ== -->
+<pre class="r"><code>me.fit</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBFaWdlbnZlY3RvciBaSSBwcihaSSlcbjAgICAgICAgICAgTkEgTkEgICAwLjAxXG4xICAgICAgICAgIDQ5IE5BICAgMC4wOFxuIn0= -->
+<pre><code>  Eigenvector ZI pr(ZI)
+0          NA NA   0.01
+1          49 NA   0.08</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbi5maXQgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSArIHNjYWxlKHByb3BfdmFjYW50KSArIFxuICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCkgK1xuICAgICAgICAgICAgICAgICAgICAgICAgIGZpdHRlZChtZS5maXQpLCBcbiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gXCJuZWdiaW5cIiwgZGF0YSA9IGdyaWQpXG5cbnN1bW1hcnkobW9kZWwuem9pbi5maXQpXG5gYGAifQ== -->
+<pre class="r"><code>model.zoin.fit &lt;- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) +
+                         fitted(me.fit), 
+                      dist = &quot;negbin&quot;, data = grid)
+
+summary(model.zoin.fit)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApICsgXG4gICAgZml0dGVkKG1lLmZpdCksIGRhdGEgPSBncmlkLCBkaXN0ID0gXCJuZWdiaW5cIilcblxuUGVhcnNvbiByZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMS42ODczIC0wLjU0MjQgLTAuMjIyOCAgMC4zNjk5IDExLjY5MDIgXG5cbkNvdW50IG1vZGVsIGNvZWZmaWNpZW50cyAobmVnYmluIHdpdGggbG9nIGxpbmspOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDcuNDc5ZS0wMSAgMS42NDVlLTAxICAgNC41NDYgNS40NmUtMDYgKioqXG5zY2FsZShkZWx0YTcwKSAgICAgICAxLjA5M2UtMDEgIDkuMjIzZS0wMiAgIDEuMTg2IDAuMjM1NzcxICAgIFxudmlvbGVudCAgICAgICAgICAgICAgNC40MDdlLTAzICA3Ljg4NmUtMDQgICA1LjU4OCAyLjMwZS0wOCAqKipcbnByb3BlcnR5ICAgICAgICAgICAgIDUuNDAyZS0wNSAgMy42MzVlLTA0ICAgMC4xNDkgMC44ODE4NTcgICAgXG5zY2FsZShwcm9wX3ZhY2FudCkgICAzLjM1OWUtMDEgIDguOTE1ZS0wMiAgIDMuNzY4IDAuMDAwMTY1ICoqKlxuc2NhbGUoYmxhY2tfcHJvcCkgICAgOS42NDJlLTAyICAxLjA5M2UtMDEgICAwLjg4MiAwLjM3NzUxMiAgICBcbnNjYWxlKHB2dHlfcHJvcCkgICAgIDIuMjIwZS0wMSAgMS4wMjhlLTAxICAgMi4xNjAgMC4wMzA3NTkgKiAgXG5zY2FsZSh1bmVtcGx5X3Byb3ApIC04LjIxM2UtMDIgIDEuMjEzZS0wMSAgLTAuNjc3IDAuNDk4MzIzICAgIFxuc2NhbGUob3duT2NjX3Byb3ApICAgMy43MjZlLTAxICA4LjQ1NmUtMDIgICA0LjQwNiAxLjA1ZS0wNSAqKipcbmZpdHRlZChtZS5maXQpICAgICAgLTIuNTE2ZSswMCAgNy4yOTVlLTAxICAtMy40NDkgMC4wMDA1NjMgKioqXG5Mb2codGhldGEpICAgICAgICAgICAxLjc4NGUrMDAgIDIuNjIxZS0wMSAgIDYuODA2IDEuMDBlLTExICoqKlxuXG5aZXJvLWluZmxhdGlvbiBtb2RlbCBjb2VmZmljaWVudHMgKGJpbm9taWFsIHdpdGggbG9naXQgbGluayk6XG4gICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgMi44MTg4NDcgICAxLjA2NTQyNyAgIDIuNjQ2ICAwLjAwODE1ICoqXG5zY2FsZShkZWx0YTcwKSAgICAgICAgMS4wNzI4MDIgICAwLjg5MTkyMCAgIDEuMjAzICAwLjIyOTA1ICAgXG52aW9sZW50ICAgICAgICAgICAgICAtMC4wNDUyODcgICAwLjAzMjMxOSAgLTEuNDAxICAwLjE2MTEzICAgXG5wcm9wZXJ0eSAgICAgICAgICAgICAtMC4wMDk1NjggICAwLjAwNTcyNiAgLTEuNjcxICAwLjA5NDc0IC4gXG5zY2FsZShwcm9wX3ZhY2FudCkgICAtMC4wNTgyMjIgICAwLjI5NjQ0NSAgLTAuMTk2ICAwLjg0NDMwICAgXG5zY2FsZShibGFja19wcm9wKSAgICAgMC4xNDk4NjMgICAwLjczOTA0NyAgIDAuMjAzICAwLjgzOTMxICAgXG5zY2FsZShwdnR5X3Byb3ApICAgICAtMS40Njk3MjcgICAwLjY4NzE2NyAgLTIuMTM5ICAwLjAzMjQ1ICogXG5zY2FsZSh1bmVtcGx5X3Byb3ApICAgMC4yMDQyNTggICAwLjQ1NTc0MSAgIDAuNDQ4ICAwLjY1NDAyICAgXG5zY2FsZShvd25PY2NfcHJvcCkgICAtMS42NDM1MjggICAwLjYwMjkxNCAgLTIuNzI2ICAwLjAwNjQxICoqXG5maXR0ZWQobWUuZml0KSAgICAgIC0xMi45MTQ3MjkgICA2LjUxNDc4OSAgLTEuOTgyICAwLjA0NzQ0ICogXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxIFxuXG5UaGV0YSA9IDUuOTUzNyBcbk51bWJlciBvZiBpdGVyYXRpb25zIGluIEJGR1Mgb3B0aW1pemF0aW9uOiAzNiBcbkxvZy1saWtlbGlob29kOiAtNDE2Ljcgb24gMjEgRGZcbiJ9 -->
+<pre><code>
+Call:
+zeroinfl(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) + 
+    fitted(me.fit), data = grid, dist = &quot;negbin&quot;)
+
+Pearson residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6873 -0.5424 -0.2228  0.3699 11.6902 
+
+Count model coefficients (negbin with log link):
+                      Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          7.479e-01  1.645e-01   4.546 5.46e-06 ***
+scale(delta70)       1.093e-01  9.223e-02   1.186 0.235771    
+violent              4.407e-03  7.886e-04   5.588 2.30e-08 ***
+property             5.402e-05  3.635e-04   0.149 0.881857    
+scale(prop_vacant)   3.359e-01  8.915e-02   3.768 0.000165 ***
+scale(black_prop)    9.642e-02  1.093e-01   0.882 0.377512    
+scale(pvty_prop)     2.220e-01  1.028e-01   2.160 0.030759 *  
+scale(unemply_prop) -8.213e-02  1.213e-01  -0.677 0.498323    
+scale(ownOcc_prop)   3.726e-01  8.456e-02   4.406 1.05e-05 ***
+fitted(me.fit)      -2.516e+00  7.295e-01  -3.449 0.000563 ***
+Log(theta)           1.784e+00  2.621e-01   6.806 1.00e-11 ***
+
+Zero-inflation model coefficients (binomial with logit link):
+                      Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)           2.818847   1.065427   2.646  0.00815 **
+scale(delta70)        1.072802   0.891920   1.203  0.22905   
+violent              -0.045287   0.032319  -1.401  0.16113   
+property             -0.009568   0.005726  -1.671  0.09474 . 
+scale(prop_vacant)   -0.058222   0.296445  -0.196  0.84430   
+scale(black_prop)     0.149863   0.739047   0.203  0.83931   
+scale(pvty_prop)     -1.469727   0.687167  -2.139  0.03245 * 
+scale(unemply_prop)   0.204258   0.455741   0.448  0.65402   
+scale(ownOcc_prop)   -1.643528   0.602914  -2.726  0.00641 **
+fitted(me.fit)      -12.914729   6.514789  -1.982  0.04744 * 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Theta = 5.9537 
+Number of iterations in BFGS optimization: 36 
+Log-likelihood: -416.7 on 21 Df</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2132,7 +2264,7 @@ Log-likelihood: -451.3 on 12 Df</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQW5hbHlzaXMgLSBMb25naXR1ZGluYWwgRGF0YSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBmaXRzIHNvbWUgZXhwZXJpbWVudGFsIHplcm8taW5mbGF0ZWQgbW9kZWxzIHVzaW5nIGVpZ2VudmVjdG9yIGZpbHRlcmluZyB0byByZWR1Y2UgdGhlIGltcGFjdCBvZiBzcGF0aWFsIGF1dG8tY29ycmVsYXRpb24gb24gdGhlIHJlc3VsdHMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZm9sbG93aW5nIHBhY2thZ2VzOgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5dmVyc2UgcGFja2FnZXMKbGlicmFyeShkcGx5cikKCiMgc3BhdGlhbCBwYWNrYWdlcwpsaWJyYXJ5KHNmKQpsaWJyYXJ5KHNwKQpsaWJyYXJ5KHNwZGVwKQoKIyBtb2RlbGluZyBwYWNrYWdlcwpsaWJyYXJ5KEFFUikKbGlicmFyeShNQVNTKQpsaWJyYXJ5KHBzY2wpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBMb2FkIERhdGEKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZmluYWwgZGF0YSBzZXQ6CgpgYGB7ciBsb2FkLWRhdGF9CmdyaWQgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgImFuYWx5c2lzIiwgInNwYXRpYWxfYW5hbHlzaXMuZ2VvanNvbiIpLCBjcnMgPSAyNjkxNSkKYGBgCgojIyBDYWx1Y2xhdGUgUG9wIENoYW5nZQpXZSdsbCBjYWxjdWxhdGUgdGhlIHByb3BvcnRpb24gb2YgY2hhbmdlIGZyb20gMTk1MCB0aHJvdWdoIDIwMTcgYW5kIDE5NzAgdGhyb3VnaCAyMDE3OgoKYGBge3IgcG9wLWNoYW5nZX0KZ3JpZCAlPiUKICBtdXRhdGUoZGVsdGE1MCA9ICh0b3RhbF9wb3AtcG9wNTApL3BvcDUwKSAlPiUKICBtdXRhdGUoZGVsdGE3MCA9IHRvdGFsX3BvcC1wb3A3MC9wb3A3MCkgLT4gZ3JpZApgYGAKCiMjIFdlaWdodHMgTWF0cml4CldlIGFsc28gbmVlZCBhIHNwYXRpYWwgd2VpZ2h0cyBtYXRyaXggZm9yIG91ciBtb2RlbHMuIFdlJ2xsIHVzZSByb29rIHNpbmNlIHdlIGhhdmUgZ3JpZGRlZCBkYXRhOgoKYGBge3Igd2VpZ2h0cy1tYXRyaXh9CndlaWdodHMgPC0gcG9seTJuYihncmlkLCBxdWVlbj1GQUxTRSkKd2VpZ2h0cyA8LSBuYjJsaXN0dyh3ZWlnaHRzLCBzdHlsZT0iVyIsIHplcm8ucG9saWN5PVRSVUUpCmBgYAoKIyMgTW9yYW4ncyBJCk5leHQsIHdlJ2xsIHVzZSBvdXIgZ3JpZGRlZCBkYXRhIGFuZCBvdXIgc3BhdGlhbCB3ZWlnaHRzIG1hdHJpeCB0byBjYWxjdWxhdGUgTW9yYW4ncyAkSSQsIHdoaWNoIGlzIGEgbWVhc3VyZSBvZiBzcGF0aWFsIGF1dG9jb3JyZWxhdGlvbjoKCmBgYHtyIGV2YWx1YXRlLWl9Cm1vcmFuLnRlc3QoZ3JpZCRhcnNvbix3ZWlnaHRzKQpgYGAKCldlIGhhdmUgYSBtb2RlcmF0ZSBkZWdyZWUgb2Ygc3BhdGlhbCBhdXRvY29ycmVsYXRpb24gcHJlc2VudCBpbiBvdXIgZGF0YS4gVGhpcyBzdWdnZXN0cyB0aGF0IHdlIG5lZWQgdG8gdXNlIGEgbW9kZWxpbmcgc3RyYXRlZ3kgdGhhdCBhbGxvd3MgdXMgdG8gYWNjb3VudCBmb3IgdGhlIGltcGFjdCBvZiBzcGF0aWFsIGF1dG9jb3JyZWxhdGlvbi4KCiMjIE1vZGVsaW5nCiMjIyBQb2lzc29uIE1vZGVsIDEgLSBNYWluIEVmZmVjdAoKYGBge3J9Cm1vZGVsLnBvaXNzb24gPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgLCBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZCkKCnN1bW1hcnkobW9kZWwucG9pc3NvbikKYGBgCgoKIyMjIFBvaXNzb24gTW9kZWwgMiAtIENyaW1lCgpgYGB7cn0KbW9kZWwucG9pc3NvbjIgPC0gZ2xtKGFyc29uIH4gdmlvbGVudCArIHByb3BlcnR5LCBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZCkKCnN1bW1hcnkobW9kZWwucG9pc3NvbjIpCmBgYAoKIyMjIFBvaXNzb24gTW9kZWwgMyAtIENvbWJpbmVkCgpgYGB7cn0KbW9kZWwucG9pc3NvbjMgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uMykKYGBgCgojIyMgUG9pc3NvbiBNb2RlbCA0IC0gCgpgYGB7cn0KbW9kZWwucG9pc3NvbjQgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyAKICAgICAgICAgICAgICAgICAgICAgICAgIG1lZGlhbl9pbmMgKyBzY2FsZShibGFja19wcm9wKSArCiAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCAKICAgICAgICAgICAgICAgICAgICAgIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uNCkKYGBgCgojIyMgQ2hlY2sgRGlzcGVyc2lvbgoKYGBge3J9CmRpc3BlcnNpb250ZXN0KG1vZGVsLnBvaXNzb240LCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpgYGAKCiMjIwoKYGBge3J9Cm1vZGVsLnpvaW4gPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSArIHNjYWxlKHByb3BfdmFjYW50KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSAKICAgICAgICAgICAgICAgICAgICAgICB8IHNjYWxlKHByb3BfdmFjYW50KSwgCiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gIm5lZ2JpbiIsIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC56b2luKQpgYGAKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQW5hbHlzaXMgLSBMb25naXR1ZGluYWwgRGF0YSIKYXV0aG9yOiAiQ2hyaXN0b3BoZXIgUHJlbmVyLCBQaC5ELiIKZGF0ZTogJyhgciBmb3JtYXQoU3lzLnRpbWUoKSwgIiVCICVkLCAlWSIpYCknCm91dHB1dDogCiAgZ2l0aHViX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdCAKLS0tCgojIyBJbnRyb2R1Y3Rpb24KVGhpcyBub3RlYm9vayBmaXRzIHNvbWUgZXhwZXJpbWVudGFsIHplcm8taW5mbGF0ZWQgbW9kZWxzIHVzaW5nIGVpZ2VudmVjdG9yIGZpbHRlcmluZyB0byByZWR1Y2UgdGhlIGltcGFjdCBvZiBzcGF0aWFsIGF1dG8tY29ycmVsYXRpb24gb24gdGhlIHJlc3VsdHMuCgojIyBEZXBlbmRlbmNpZXMKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZm9sbG93aW5nIHBhY2thZ2VzOgoKYGBge3IgbG9hZC1wYWNrYWdlc30KIyB0aWR5dmVyc2UgcGFja2FnZXMKbGlicmFyeShkcGx5cikKCiMgc3BhdGlhbCBwYWNrYWdlcwpsaWJyYXJ5KHNmKQpsaWJyYXJ5KHNwKQpsaWJyYXJ5KHNwZGVwKQoKIyBtb2RlbGluZyBwYWNrYWdlcwpsaWJyYXJ5KEFFUikKbGlicmFyeShNQVNTKQpsaWJyYXJ5KHBzY2wpCgojIG90aGVyIHBhY2thZ2VzCmxpYnJhcnkoaGVyZSkKYGBgCgojIyBMb2FkIERhdGEKVGhpcyBub3RlYm9vayByZXF1aXJlcyB0aGUgZmluYWwgZGF0YSBzZXQ6CgpgYGB7ciBsb2FkLWRhdGF9CmdyaWQgPC0gc3RfcmVhZChoZXJlKCJkYXRhIiwgImFuYWx5c2lzIiwgInNwYXRpYWxfYW5hbHlzaXMuZ2VvanNvbiIpLCBjcnMgPSAyNjkxNSkKYGBgCgojIyBDYWx1Y2xhdGUgUG9wIENoYW5nZQpXZSdsbCBjYWxjdWxhdGUgdGhlIHByb3BvcnRpb24gb2YgY2hhbmdlIGZyb20gMTk1MCB0aHJvdWdoIDIwMTcgYW5kIDE5NzAgdGhyb3VnaCAyMDE3OgoKYGBge3IgcG9wLWNoYW5nZX0KZ3JpZCAlPiUKICBtdXRhdGUoZGVsdGE1MCA9ICh0b3RhbF9wb3AtcG9wNTApL3BvcDUwKSAlPiUKICBtdXRhdGUoZGVsdGE3MCA9IHRvdGFsX3BvcC1wb3A3MC9wb3A3MCkgLT4gZ3JpZApgYGAKClRoZXJlIGFyZSB0d28gZ3JpZHMgd2l0aCBtaXNzaW5nIGRhdGE6CgpgYGB7cn0KZ3JpZCA8LSBmaWx0ZXIoZ3JpZCwgaXMubmEocG9wNzApID09IEZBTFNFKQpgYGAKCgojIyBXZWlnaHRzIE1hdHJpeApXZSBhbHNvIG5lZWQgYSBzcGF0aWFsIHdlaWdodHMgbWF0cml4IGZvciBvdXIgbW9kZWxzLiBXZSdsbCB1c2Ugcm9vayBzaW5jZSB3ZSBoYXZlIGdyaWRkZWQgZGF0YToKCmBgYHtyIHdlaWdodHMtbWF0cml4fQp3ZWlnaHRzIDwtIHBvbHkybmIoZ3JpZCwgcXVlZW49RkFMU0UpCndlaWdodHMgPC0gbmIybGlzdHcod2VpZ2h0cywgc3R5bGU9IlciLCB6ZXJvLnBvbGljeT1UUlVFKQpgYGAKCiMjIE1vcmFuJ3MgSQpOZXh0LCB3ZSdsbCB1c2Ugb3VyIGdyaWRkZWQgZGF0YSBhbmQgb3VyIHNwYXRpYWwgd2VpZ2h0cyBtYXRyaXggdG8gY2FsY3VsYXRlIE1vcmFuJ3MgJEkkLCB3aGljaCBpcyBhIG1lYXN1cmUgb2Ygc3BhdGlhbCBhdXRvY29ycmVsYXRpb246CgpgYGB7ciBldmFsdWF0ZS1pfQptb3Jhbi50ZXN0KGdyaWQkYXJzb24sd2VpZ2h0cykKYGBgCgpXZSBoYXZlIGEgbW9kZXJhdGUgZGVncmVlIG9mIHNwYXRpYWwgYXV0b2NvcnJlbGF0aW9uIHByZXNlbnQgaW4gb3VyIGRhdGEuIFRoaXMgc3VnZ2VzdHMgdGhhdCB3ZSBuZWVkIHRvIHVzZSBhIG1vZGVsaW5nIHN0cmF0ZWd5IHRoYXQgYWxsb3dzIHVzIHRvIGFjY291bnQgZm9yIHRoZSBpbXBhY3Qgb2Ygc3BhdGlhbCBhdXRvY29ycmVsYXRpb24uCgojIyBNb2RlbGluZwojIyMgUG9pc3NvbiBNb2RlbCAxIC0gTWFpbiBFZmZlY3QKCmBgYHtyfQptb2RlbC5wb2lzc29uIDwtIGdsbShhcnNvbiB+IHNjYWxlKGRlbHRhNzApICwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnBvaXNzb24pCmBgYAoKCiMjIyBQb2lzc29uIE1vZGVsIDIgLSBDcmltZQoKYGBge3J9Cm1vZGVsLnBvaXNzb24yIDwtIGdsbShhcnNvbiB+IHZpb2xlbnQgKyBwcm9wZXJ0eSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnBvaXNzb24yKQpgYGAKCiMjIyBQb2lzc29uIE1vZGVsIDMgLSBDb21iaW5lZAoKYGBge3J9Cm1vZGVsLnBvaXNzb24zIDwtIGdsbShhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5LCBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZCkKCnN1bW1hcnkobW9kZWwucG9pc3NvbjMpCmBgYAoKIyMjIFBvaXNzb24gTW9kZWwgNCAtIAoKYGBge3J9Cm1vZGVsLnBvaXNzb240IDwtIGdsbShhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgCiAgICAgICAgICAgICAgICAgICAgICAgICBtZWRpYW5faW5jICsgc2NhbGUoYmxhY2tfcHJvcCkgKwogICAgICAgICAgICAgICAgICAgICAgICBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwgCiAgICAgICAgICAgICAgICAgICAgICBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZCkKCnN1bW1hcnkobW9kZWwucG9pc3NvbjQpCmBgYAoKIyMjIENoZWNrIERpc3BlcnNpb24KCmBgYHtyfQpkaXNwZXJzaW9udGVzdChtb2RlbC5wb2lzc29uNCwgYWx0ZXJuYXRpdmUgPSAidHdvLnNpZGVkIikKYGBgCgojIyMgRml0IGEgWmVyby1JbmZsYXRlZCBNb2RlbApUaGlzIHVzZXMgYSBuZWdhdGl2ZSBiaW5vbWlhbCBkaXN0cmlidXRpb24gdG8gY29tcGVuc3RhdGUgZm9yIG92ZXIgZGlzcGVyc2lvbi4gVGhlIHplcm8taW5mbGF0ZWQgYXNwZWN0IG9mIHRoZSBtb2RlbCBpcyBkZXNpZ25lZCB0byBtb2RlbCBkYXRhIHdpdGggYSBsYXJnZSBudW1iZXIgb2YgemVyb3MsIHdoaWNoIGlzIGFwcHJvcHJpYXRlIGZvciB0aGVzZSBhcnNvbiBkYXRhIGJlY2F1c2UgbW9zdCBncmlkcyBoYXZlIGEgY291bnQgb2YgMC4KCmBgYHtyfQptb2RlbC56b2luIDwtIHplcm9pbmZsKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyAKICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIAogICAgICAgICAgICAgICAgICAgICAgZGlzdCA9ICJuZWdiaW4iLCBkYXRhID0gZ3JpZCkKCnN1bW1hcnkobW9kZWwuem9pbikKYGBgCgpOZXh0LCB3ZSdsbCBmaWcgYSBzZXJpZXMgb2YgZWlnZW52ZWN0b3JzIAoKYGBge3J9Cm1lLmZpdCA8LSBzcGF0aWFscmVnOjpNRShhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgCiAgICAgICAgICAgICAgICAgICAgICAgICBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCAKICAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBncmlkLCBmYW1pbHkgPSBuZWdhdGl2ZS5iaW5vbWlhbChtb2RlbC56b2luJHRoZXRhKSwgCiAgICAgICAgICAgbGlzdHcgPSB3ZWlnaHRzLCB2ZXJib3NlID0gVFJVRSwgYWxwaGEgPSAuMDUpCmBgYAoKYGBge3J9Cm1lLmZpdApgYGAKCmBgYHtyfQptb2RlbC56b2luLmZpdCA8LSB6ZXJvaW5mbChhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgCiAgICAgICAgICAgICAgICAgICAgICAgICBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApICsKICAgICAgICAgICAgICAgICAgICAgICAgIGZpdHRlZChtZS5maXQpLCAKICAgICAgICAgICAgICAgICAgICAgIGRpc3QgPSAibmVnYmluIiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnpvaW4uZml0KQpgYGAKCgo=</div>
 
 
 
