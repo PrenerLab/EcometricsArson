@@ -378,19 +378,19 @@ cs_combine(type = "year", date = 2009, data2018_raw, data2017_raw, data2016_raw,
 ### 2008
 We'll repeat the validation process with the 2008 data:
 
-```{r validate-data08, include=FALSE}
+```{r validate-data08}
 expect_equal(cs_validate(data2008_raw, year = "2008"), FALSE)
 ```
 
 Since we fail the validation, we can use the `verbose = TRUE` option to get a summary of where validation issues are occuring. 
 
-```{r validate-data08-verbose, include=FALSE}
+```{r validate-data08-verbose}
 cs_validate(data2008_raw, year = "2008", verbose = TRUE)
 ```
 
 Every month contains the incorrect number of variables. We'll address each of these:
 
-```{r fix-month08, include=FALSE}
+```{r fix-month08}
 # January - extract data, unit test,
 expect_equal(ncol(cs_extract_month(data2008_raw, month = "January")), 18)
 
@@ -444,7 +444,7 @@ allCrimes %>%
   write_csv(here("data", "clean", "point_arson.csv"))
 ```
 
-Next, we'll create a subset that is only violent crimes for our main study period, 2013-2017:
+Next, we'll create a subset that is only violent crimes:
 
 ```{r subset-violent}
 allCrimes %>%
