@@ -90,7 +90,8 @@ The violent crime data is stored in `violent.csv`. As before, I'll read them in,
 
 ```{r load-violent}
 # load
-violent <- read_csv(here("data", "clean", "point_violent.csv"))
+violent <- read_csv(here("data", "clean", "point_violent.csv")) %>%
+  filter(cs_year >= 2013 & cs_year <= 2017)
 
 # project
 violent <- cs_projectXY(violent, varX = x_coord, varY = y_coord, crs = 26915)
@@ -131,8 +132,9 @@ The property crime data is stored in `property.csv`. As before, I'll read them i
 
 ```{r load-property}
 # load
-property <- read_csv(here("data", "clean", "point_property.csv"))
-
+property <- read_csv(here("data", "clean", "point_property.csv")) %>%
+  filter(cs_year >= 2013 & cs_year <= 2017)
+ 
 # project
 property <- cs_projectXY(property, varX = x_coord, varY = y_coord, crs = 26915)
 
@@ -172,7 +174,8 @@ The other crime data is stored in `otherCrimes.csv`. As before, I'll read them i
 
 ```{r load-otherCrimes}
 # load
-otherCrimes <- read_csv(here("data", "clean", "point_otherCrimes.csv"))
+otherCrimes <- read_csv(here("data", "clean", "point_otherCrimes.csv")) %>%
+  filter(cs_year >= 2013 & cs_year <= 2017)
 
 # project
 otherCrimes <- cs_projectXY(otherCrimes, varX = x_coord, varY = y_coord, crs = 26915)
@@ -213,7 +216,8 @@ The calls for disorder data are stored in `disorder.csv`. As before, I'll read t
 
 ```{r load-disorder}
 # load
-disorder <- read_csv(here("data", "clean", "point_disorder.csv"))
+disorder <- read_csv(here("data", "clean", "point_disorder.csv")) %>%
+  filter(year >= 2013 & year <= 2017)
 
 # project
 disorder <- csb_projectXY(disorder, varX = srx, varY = sry, crs = 26915)
