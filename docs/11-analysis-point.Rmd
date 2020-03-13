@@ -35,10 +35,10 @@ This notebook requires the final data set:
 
 ```{r load-data}
 arson_point <- read_csv(here("data", "clean", "point_arson.csv")) %>%
-  filter(cs_year > 2008) %>%
+  filter(cs_year > 2008 & cs_year < 2019) %>%
   cs_projectXY(varX = x_coord, varY = y_coord)
 
-violent_point <- read_csv(here("data", "clean", "point_violent_full.csv")) %>%
+violent_point <- read_csv(here("data", "clean", "point_violent.csv")) %>%
   cs_projectXY(varX = x_coord, varY = y_coord)
 ```
 
