@@ -65,6 +65,7 @@ i <- cs_create_index()
 With our index, we can create raw year-list objects:
 
 ``` r
+data2019_raw <- cs_get_data(year = 2019, index = i)
 data2018_raw <- cs_get_data(year = 2018, index = i)
 data2017_raw <- cs_get_data(year = 2017, index = i)
 data2016_raw <- cs_get_data(year = 2016, index = i)
@@ -77,6 +78,32 @@ data2010_raw <- cs_get_data(year = 2010, index = i)
 data2009_raw <- cs_get_data(year = 2009, index = i)
 data2008_raw <- cs_get_data(year = 2008, index = i)
 ```
+
+### 2019
+
+We validate the data to make sure it can be collapsed using
+`cs_validate()`:
+
+``` r
+expect_equal(cs_validate(data2019_raw, year = "2019"), TRUE)
+```
+
+Since the validation result is a value of `TRUE`, we can proceed to
+collapsing the year-list object into a single tibble with
+`cs_collapse()` and then stripping out crimes reported in 2018 for
+earlier years using `cs_combine()`. We also strip out unfounded crimes
+that remain using `cs_filter_count()`:
+
+``` r
+# collapse into single object
+data2019_raw <- cs_collapse(data2019_raw)
+
+# combine and filter
+cs_combine(type = "year", date = 2019, data2019_raw) %>%
+  cs_filter_count(var = count) -> data2019
+```
+
+The `data2019` object now contains only crimes reported in 2018.
 
 ### 2018
 
@@ -98,7 +125,7 @@ that remain using `cs_filter_count()`:
 data2018_raw <- cs_collapse(data2018_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2018, data2018_raw) %>%
+cs_combine(type = "year", date = 2018, data2019_raw, data2018_raw) %>%
   cs_filter_count(var = count) -> data2018
 ```
 
@@ -161,7 +188,7 @@ were reported or upgraded in 2018.
 data2017_raw <- cs_collapse(data2017_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2017, data2018_raw, data2017_raw) %>%
+cs_combine(type = "year", date = 2017, data2019_raw, data2018_raw, data2017_raw) %>%
   cs_filter_count(var = count) -> data2017
 ```
 
@@ -181,7 +208,7 @@ creating our 2016 data object:
 data2016_raw <- cs_collapse(data2016_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2016, data2018_raw, data2017_raw, data2016_raw) %>%
+cs_combine(type = "year", date = 2016, data2019_raw, data2018_raw, data2017_raw, data2016_raw) %>%
   cs_filter_count(var = count) -> data2016
 ```
 
@@ -201,7 +228,7 @@ creating our 2015 data object:
 data2015_raw <- cs_collapse(data2015_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2015, data2018_raw, data2017_raw, data2016_raw, data2015_raw) %>%
+cs_combine(type = "year", date = 2015, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw) %>%
   cs_filter_count(var = count) -> data2015
 ```
 
@@ -221,7 +248,7 @@ creating our 2015 data object:
 data2014_raw <- cs_collapse(data2014_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2014, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw) %>%
+cs_combine(type = "year", date = 2014, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw) %>%
   cs_filter_count(var = count) -> data2014
 ```
 
@@ -310,7 +337,7 @@ upgraded in subsequent years:
 data2013_raw <- cs_collapse(data2013_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2013, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+cs_combine(type = "year", date = 2013, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
            data2013_raw) %>%
   cs_filter_count(var = count) -> data2013
 ```
@@ -370,7 +397,7 @@ upgraded in subsequent years:
 data2012_raw <- cs_collapse(data2012_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2012, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+cs_combine(type = "year", date = 2012, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
            data2013_raw, data2012_raw) %>%
   cs_filter_count(var = count) -> data2012
 ```
@@ -430,7 +457,7 @@ upgraded in subsequent years:
 data2011_raw <- cs_collapse(data2011_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2011, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+cs_combine(type = "year", date = 2011, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
            data2013_raw, data2012_raw, data2011_raw) %>%
   cs_filter_count(var = count) -> data2011
 ```
@@ -490,7 +517,7 @@ upgraded in subsequent years:
 data2010_raw <- cs_collapse(data2010_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2010, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+cs_combine(type = "year", date = 2010, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
            data2013_raw, data2012_raw, data2011_raw, data2010_raw) %>%
   cs_filter_count(var = count) -> data2010
 ```
@@ -550,7 +577,7 @@ upgraded in subsequent years:
 data2009_raw <- cs_collapse(data2009_raw)
 
 # combine and filter
-cs_combine(type = "year", date = 2009, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
+cs_combine(type = "year", date = 2009, data2019_raw, data2018_raw, data2017_raw, data2016_raw, data2015_raw, data2014_raw, 
            data2013_raw, data2012_raw, data2011_raw, data2010_raw, data2009_raw) %>%
   cs_filter_count(var = count) -> data2009
 ```
@@ -611,7 +638,7 @@ We can remove the `_raw` objects at this point as well as the
 index:
 
 ``` r
-rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw, i)
+rm(data2008_raw, data2009_raw, data2010_raw, data2011_raw, data2012_raw, data2013_raw, data2014_raw, data2015_raw, data2016_raw, data2017_raw, data2018_raw, data2019_raw, i)
 ```
 
 ## Create Single Table
