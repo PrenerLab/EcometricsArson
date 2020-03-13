@@ -448,7 +448,6 @@ Next, we'll create a subset that is only violent crimes for our main study perio
 
 ```{r subset-violent}
 allCrimes %>%
-  filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "violent") %>%
   write_csv(here("data", "clean", "point_violent.csv"))
 ```
@@ -458,7 +457,6 @@ Next, we'll create a subset that is only non-arson property crimes:
 
 ```{r subset-property}
 allCrimes %>%
-  filter(cs_year %in% c(2013:2017)) %>%
   cs_filter_crime(var = crime, crime = "property") %>%
   cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
   filter(cat %in% c(5:7)) %>%
@@ -476,7 +474,6 @@ Finally, we'll create a subset with a few key Part 2 crimes:
 
 ```{r subset-other}
 allCrimes %>%
-  filter(cs_year %in% c(2013:2017)) %>%
   cs_crime_cat(var = crime, newVar = cat, output = "numeric") %>%
   filter(cat %in% c(14, 15, 18, 24)) %>%
   select(-cat) %>%

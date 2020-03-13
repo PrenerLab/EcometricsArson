@@ -1,5 +1,5 @@
 ---
-title: "Analysis - Longitudinal Data"
+title: "Analysis - Spatial Data"
 author: "Christopher Prener, Ph.D."
 date: '(`r format(Sys.time(), "%B %d, %Y")`)'
 output: 
