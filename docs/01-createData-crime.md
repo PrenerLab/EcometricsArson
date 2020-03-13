@@ -648,7 +648,7 @@ also subset columns to reduce the footprint of the
 table.
 
 ``` r
-bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018) %>%
+bind_rows(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018, data2019) %>%
   select(cs_year, date_occur, crime, description, ileads_address, ileads_street, x_coord, y_coord) -> allCrimes
 ```
 
@@ -658,7 +658,7 @@ We’ll remove excess objects
 again:
 
 ``` r
-rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018)
+rm(data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018, data2019)
 ```
 
 ## Categorize Crimes and Subset
