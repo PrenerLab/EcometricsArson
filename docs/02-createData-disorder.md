@@ -1,7 +1,7 @@
 Create Data - Disorder
 ================
 Christopher Prener, Ph.D.
-(December 13, 2019)
+(March 13, 2020)
 
 ## Introduction
 
@@ -32,6 +32,17 @@ library(dplyr)
     ##     intersect, setdiff, setequal, union
 
 ``` r
+library(lubridate)
+```
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     date
+
+``` r
 library(readr)
 
 # other packages
@@ -40,6 +51,13 @@ library(here)
 
     ## here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson
 
+    ## 
+    ## Attaching package: 'here'
+
+    ## The following object is masked from 'package:lubridate':
+    ## 
+    ##     here
+
 ## Download Data
 
 We’ll start by downloading all csb calls for 2013 through 2017 from the
@@ -47,10 +65,21 @@ St. Louis Open Data website via the `stlcsb` package:
 
 ``` r
 # download
-all_calls <- csb_get_data(years = 2013:2017)
+all_calls <- csb_get_data(years = 2009:2019)
 
 # store number of rows
 total_rows <- nrow(all_calls)
+```
+
+## Add Year
+
+We’ll add a year variable (equivalent to `cs_year` in the crime data):
+
+``` r
+all_calls %>%
+  mutate(year = ymd_hms(datetimeinit)) %>%
+  mutate(year = year(year)) %>%
+  select(year, everything()) -> all_calls
 ```
 
 ## Subset
@@ -76,7 +105,7 @@ As an aside, we want to know how many rows were removed by this process:
 remaining_rows/total_rows*100
 ```
 
-    ## [1] 94.64087
+    ## [1] 95.59417
 
 ## Cateogrize Data
 
@@ -88,7 +117,7 @@ all_calls %>%
   csb_categorize(var = problemcode, newVar = category) %>%
   select(requestid, datetimeinit, category, everything()) %>%
   filter(category %in% c("Debris", "Degrade", "Disturbance", "Law")) %>%
-  select(datetimeinit, category, probaddress, problemcode, srx, sry) -> focal_calls
+  select(year, datetimeinit, category, probaddress, problemcode, srx, sry) -> focal_calls
 
 # store remaining number of rows
 focal_rows <- nrow(focal_calls)
@@ -100,7 +129,7 @@ As an aside, we want to know how many rows were removed by this process:
 focal_rows/remaining_rows*100
 ```
 
-    ## [1] 28.94174
+    ## [1] 28.45654
 
 ## Write Data to CSV
 
