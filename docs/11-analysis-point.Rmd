@@ -1,0 +1,47 @@
+---
+title: "Create Data - Point Data"
+author: "Christopher Prener, Ph.D."
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+## Introduction
+This notebook traces the number of crimes and CSB calls around arson properties before and after the fires.
+
+## Dependencies
+This notebook requires the following packages:
+
+```{r load-packages}
+# tidystl packages
+library(compstatr)
+
+# tidyverse packages
+library(dplyr)
+library(lubridate)
+library(purrr)
+library(readr)
+
+# spatial packages
+library(sf)
+
+# other packages
+library(here)
+```
+
+## Load Data
+This notebook requires the final data set:
+
+```{r load-data}
+arson_point <- read_csv(here("data", "clean", "point_arson.csv")) %>%
+  filter(cs_year > 2008) %>%
+  cs_projectXY(varX = x_coord, varY = y_coord)
+
+violent_point <- read_csv(here("data", "clean", "point_violent_full.csv")) %>%
+  cs_projectXY(varX = x_coord, varY = y_coord)
+```
+
+
+
+
