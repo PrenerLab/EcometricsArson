@@ -22,6 +22,7 @@ library(dplyr)
 library(lubridate)
 library(purrr)
 library(readr)
+library(tibble)
 
 # spatial packages
 library(sf)
@@ -36,12 +37,22 @@ This notebook requires the final data set:
 ```{r load-data}
 arson_point <- read_csv(here("data", "clean", "point_arson.csv")) %>%
   filter(cs_year > 2008 & cs_year < 2019) %>%
-  cs_projectXY(varX = x_coord, varY = y_coord)
+  cs_projectXY(varX = x_coord, varY = y_coord) %>%
+  rowid_to_column(var = "id") %>%
+  st_transform(crs = 26915)
 
 violent_point <- read_csv(here("data", "clean", "point_violent.csv")) %>%
-  cs_projectXY(varX = x_coord, varY = y_coord)
+  cs_projectXY(varX = x_coord, varY = y_coord) %>%
+  st_transform(crs = 26915)
 ```
 
 
+```{r}
+arsons <- arson_point$id
+
+arsons %>%
+  unlist() %>%
+  map_df(~query(i = .x, target = violent_point, source = arson_point)) -> violent_counts
+```
 
 
