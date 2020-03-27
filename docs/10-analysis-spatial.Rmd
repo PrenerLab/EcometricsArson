@@ -59,7 +59,7 @@ We also need a spatial weights matrix for our models. We'll use rook since we ha
 
 ```{r weights-matrix}
 weights <- poly2nb(grid, queen=FALSE)
-weights <- nb2listw(weights, style="W", zero.policy=TRUE)
+weights <- nb2listw(weights, style="C", zero.policy=TRUE)
 ```
 
 ## Moran's I
@@ -84,7 +84,7 @@ summary(model.poisson)
 ### Poisson Model 2 - Crime
 
 ```{r}
-model.poisson2 <- glm(arson ~ violent + property, family = poisson, data = grid)
+model.poisson2 <- glm(arson ~ scale(violent) + scale(property), family = poisson, data = grid)
 
 summary(model.poisson2)
 ```
@@ -92,7 +92,7 @@ summary(model.poisson2)
 ### Poisson Model 3 - Combined
 
 ```{r}
-model.poisson3 <- glm(arson ~ scale(delta70) + violent + property, family = poisson, data = grid)
+model.poisson3 <- glm(arson ~ scale(delta70) + scale(violent) + scale(property), family = poisson, data = grid)
 
 summary(model.poisson3)
 ```
@@ -100,8 +100,8 @@ summary(model.poisson3)
 ### Poisson Model 4 - 
 
 ```{r}
-model.poisson4 <- glm(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
-                         median_inc + scale(black_prop) +
+model.poisson4 <- glm(arson ~ scale(delta70) + scale(violent) + scale(property) + scale(prop_vacant) + 
+                         scale(median_inc) + scale(black_prop) +
                         scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
                       family = poisson, data = grid)
 
@@ -114,23 +114,61 @@ summary(model.poisson4)
 dispersiontest(model.poisson4, alternative = "two.sided")
 ```
 
+### Fit a Negative Binomial Model
+
+```{r}
+model.nb <- glm.nb(arson ~ scale(delta70) + + scale(prop_vacant) + scale(violent) + scale(property) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop),
+                   data = grid)
+```
+
+
+
 ### Fit a Zero-Inflated Model
 This uses a negative binomial distribution to compenstate for over dispersion. The zero-inflated aspect of the model is designed to model data with a large number of zeros, which is appropriate for these arson data because most grids have a count of 0.
 
 ```{r}
-model.zoin <- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+model.zoin1 <- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant), 
+                      dist = "negbin", data = grid)
+
+summary(model.zoin1)
+```
+
+```{r}
+model.zoin2 <- zeroinfl(arson ~ scale(violent) + scale(property), 
+                      dist = "negbin", data = grid)
+
+summary(model.zoin2)
+```
+
+```{r}
+model.zoin3 <- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property), 
+                      dist = "negbin", data = grid)
+
+summary(model.zoin3)
+```
+
+
+
+```{r}
+model.zoin4 <- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property) + 
                          scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
                       dist = "negbin", data = grid)
 
-summary(model.zoin)
+summary(model.zoin4)
 ```
+
+```{r}
+vuong(model.zoin4, model.nb)
+```
+
 
 Next, we'll fig a series of eigenvectors 
 
 ```{r}
-me.fit <- spatialreg::ME(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+me.fit <- spatialreg::ME(arson ~ scale(delta50) + scale(violent) + scale(property) + scale(prop_vacant) + 
                          scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
-                      data = grid, family = negative.binomial(model.zoin$theta), 
+                      data = grid, family = negative.binomial(model.zoin4$theta), 
            listw = weights, verbose = TRUE, alpha = .05)
 ```
 
@@ -139,12 +177,22 @@ me.fit
 ```
 
 ```{r}
-model.zoin.fit <- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+model.zoin5 <- zeroinfl(arson ~ scale(delta50) + scale(violent) + scale(property) + scale(prop_vacant) + 
                          scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) +
                          fitted(me.fit), 
                       dist = "negbin", data = grid)
 
-summary(model.zoin.fit)
+summary(model.zoin5)
 ```
+
+
+
+```{r}
+library(ggplot2)
+
+ggplot(data = grid, mapping = aes(arson)) +
+  geom_histogram(bins = 26)
+```
+
 
 

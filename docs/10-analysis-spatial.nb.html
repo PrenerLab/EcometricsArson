@@ -1746,7 +1746,7 @@ summary {
 
 <h1 class="title toc-ignore">Analysis - Spatial Data</h1>
 <h4 class="author">Christopher Prener, Ph.D.</h4>
-<h4 class="date">(March 13, 2020)</h4>
+<h4 class="date">(March 27, 2020)</h4>
 
 </div>
 
@@ -1761,99 +1761,23 @@ summary {
 <p>This notebook requires the following packages:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgcGFja2FnZXNcbmxpYnJhcnkoZHBseXIpXG5cbiMgc3BhdGlhbCBwYWNrYWdlc1xubGlicmFyeShzZilcbmxpYnJhcnkoc3ApXG5saWJyYXJ5KHNwZGVwKVxuXG4jIG1vZGVsaW5nIHBhY2thZ2VzXG5saWJyYXJ5KEFFUilcbmxpYnJhcnkoTUFTUylcbmxpYnJhcnkocHNjbClcblxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxuYGBgIn0= -->
 <pre class="r"><code># tidyverse packages
-library(dplyr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
-<pre><code>Registered S3 method overwritten by 'dplyr':
-  method           from
-  print.rowwise_df     
+library(dplyr)
 
-Attaching package: ‘dplyr’
+# spatial packages
+library(sf)
+library(sp)
+library(spdep)
 
-The following objects are masked from ‘package:stats’:
+# modeling packages
+library(AER)
+library(MASS)
+library(pscl)
 
-    filter, lag
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzcGF0aWFsIHBhY2thZ2VzXG5saWJyYXJ5KHNmKVxuYGBgIn0= -->
-<pre class="r"><code># spatial packages
-library(sf)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlua2luZyB0byBHRU9TIDMuNy4yLCBHREFMIDIuNC4yLCBQUk9KIDUuMi4wXG4ifQ== -->
-<pre><code>Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzcClcbmxpYnJhcnkoc3BkZXApXG5gYGAifQ== -->
-<pre class="r"><code>library(sp)
-library(spdep)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzcERhdGFcblRvIGFjY2VzcyBsYXJnZXIgZGF0YXNldHMgaW4gdGhpcyBwYWNrYWdlLCBpbnN0YWxsIHRoZSBzcERhdGFMYXJnZSBwYWNrYWdlIHdpdGg6IGBpbnN0YWxsLnBhY2thZ2VzKCdzcERhdGFMYXJnZScsIHJlcG9zPSdodHRwczovL25vd29zYWQuZ2l0aHViLmlvL2RyYXQvJyxcbnR5cGU9J3NvdXJjZScpYFxuIn0= -->
-<pre><code>Loading required package: spData
-To access larger datasets in this package, install the spDataLarge package with: `install.packages('spDataLarge', repos='https://nowosad.github.io/drat/',
-type='source')`</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtb2RlbGluZyBwYWNrYWdlc1xubGlicmFyeShBRVIpXG5gYGAifQ== -->
-<pre class="r"><code># modeling packages
-library(AER)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBjYXJcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogY2FyRGF0YVxuUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJhjYXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpkcGx5cuKAmTpcblxuICAgIHJlY29kZVxuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGxtdGVzdFxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB6b29cblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmHpvb+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIGFzLkRhdGUsIGFzLkRhdGUubnVtZXJpY1xuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHNhbmR3aWNoXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHN1cnZpdmFsXG4ifQ== -->
-<pre><code>Loading required package: car
-Loading required package: carData
-Registered S3 method overwritten by 'data.table':
-  method           from
-  print.data.table     
-
-Attaching package: ‘car’
-
-The following object is masked from ‘package:dplyr’:
-
-    recode
-
-Loading required package: lmtest
-Loading required package: zoo
-
-Attaching package: ‘zoo’
-
-The following objects are masked from ‘package:base’:
-
-    as.Date, as.Date.numeric
-
-Loading required package: sandwich
-Loading required package: survival</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShNQVNTKVxuYGBgIn0= -->
-<pre class="r"><code>library(MASS)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYTUFTU+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRwbHly4oCZOlxuXG4gICAgc2VsZWN0XG4ifQ== -->
-<pre><code>
-Attaching package: ‘MASS’
-
-The following object is masked from ‘package:dplyr’:
-
-    select</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwc2NsKVxuYGBgIn0= -->
-<pre class="r"><code>library(pscl)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQ2xhc3NlcyBhbmQgTWV0aG9kcyBmb3IgUiBkZXZlbG9wZWQgaW4gdGhlXG5Qb2xpdGljYWwgU2NpZW5jZSBDb21wdXRhdGlvbmFsIExhYm9yYXRvcnlcbkRlcGFydG1lbnQgb2YgUG9saXRpY2FsIFNjaWVuY2VcblN0YW5mb3JkIFVuaXZlcnNpdHlcblNpbW9uIEphY2ttYW5cbmh1cmRsZSBhbmQgemVyb2luZmwgZnVuY3Rpb25zIGJ5IEFjaGltIFplaWxlaXNcbiJ9 -->
-<pre><code>Classes and Methods for R developed in the
-Political Science Computational Laboratory
-Department of Political Science
-Stanford University
-Simon Jackman
-hurdle and zeroinfl functions by Achim Zeileis</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBvdGhlciBwYWNrYWdlc1xubGlicmFyeShoZXJlKVxuYGBgIn0= -->
-<pre class="r"><code># other packages
+# other packages
 library(here)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiaGVyZSgpIHN0YXJ0cyBhdCAvVXNlcnMvcHJlbmVyY2cvR2l0SHViL1ByZW5lckxhYi9FY29tZXRyaWNzQXJzb25cbiJ9 -->
-<pre><code>here() starts at /Users/prenercg/GitHub/PrenerLab/EcometricsArson</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1908,9 +1832,9 @@ proj4string:    +proj=utm +zone=15 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m 
 <p>We also need a spatial weights matrix for our models. We’ll use rook since we have gridded data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2VpZ2h0cyA8LSBwb2x5Mm5iKGdyaWQsIHF1ZWVuPUZBTFNFKVxud2VpZ2h0cyA8LSBuYjJsaXN0dyh3ZWlnaHRzLCBzdHlsZT1cIldcIiwgemVyby5wb2xpY3k9VFJVRSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2VpZ2h0cyA8LSBwb2x5Mm5iKGdyaWQsIHF1ZWVuPUZBTFNFKVxud2VpZ2h0cyA8LSBuYjJsaXN0dyh3ZWlnaHRzLCBzdHlsZT1cIkNcIiwgemVyby5wb2xpY3k9VFJVRSlcbmBgYCJ9 -->
 <pre class="r"><code>weights &lt;- poly2nb(grid, queen=FALSE)
-weights &lt;- nb2listw(weights, style=&quot;W&quot;, zero.policy=TRUE)</code></pre>
+weights &lt;- nb2listw(weights, style=&quot;C&quot;, zero.policy=TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1923,18 +1847,18 @@ weights &lt;- nb2listw(weights, style=&quot;W&quot;, zero.policy=TRUE)</code></p
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9yYW4udGVzdChncmlkJGFyc29uLHdlaWdodHMpXG5gYGAifQ== -->
 <pre class="r"><code>moran.test(grid$arson,weights)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE1vcmFuIEkgdGVzdCB1bmRlciByYW5kb21pc2F0aW9uXG5cbmRhdGE6ICBncmlkJGFyc29uICBcbndlaWdodHM6IHdlaWdodHMgICAgXG5cbk1vcmFuIEkgc3RhdGlzdGljIHN0YW5kYXJkIGRldmlhdGUgPSAxMi4xMDYsIHAtdmFsdWUgPCAyLjJlLTE2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiBncmVhdGVyXG5zYW1wbGUgZXN0aW1hdGVzOlxuTW9yYW4gSSBzdGF0aXN0aWMgICAgICAgRXhwZWN0YXRpb24gICAgICAgICAgVmFyaWFuY2UgXG4gICAgICAwLjUyMzY1MTk2NCAgICAgIC0wLjAwNDcxNjk4MSAgICAgICAwLjAwMTkwNDc2NyBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE1vcmFuIEkgdGVzdCB1bmRlciByYW5kb21pc2F0aW9uXG5cbmRhdGE6ICBncmlkJGFyc29uICBcbndlaWdodHM6IHdlaWdodHMgICAgXG5cbk1vcmFuIEkgc3RhdGlzdGljIHN0YW5kYXJkIGRldmlhdGUgPSAxMy44NTMsIHAtdmFsdWUgPCAyLjJlLTE2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiBncmVhdGVyXG5zYW1wbGUgZXN0aW1hdGVzOlxuTW9yYW4gSSBzdGF0aXN0aWMgICAgICAgRXhwZWN0YXRpb24gICAgICAgICAgVmFyaWFuY2UgXG4gICAgICAwLjU3NzE4NTQxMyAgICAgIC0wLjAwNDcxNjk4MSAgICAgICAwLjAwMTc2NDM0NyBcbiJ9 -->
 <pre><code>
     Moran I test under randomisation
 
 data:  grid$arson  
 weights: weights    
 
-Moran I statistic standard deviate = 12.106, p-value &lt; 2.2e-16
+Moran I statistic standard deviate = 13.853, p-value &lt; 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-      0.523651964      -0.004716981       0.001904767 </code></pre>
+      0.577185413      -0.004716981       0.001764347 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1982,25 +1906,26 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <h3>Poisson Model 2 - Crime</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwucG9pc3NvbjIgPC0gZ2xtKGFyc29uIH4gdmlvbGVudCArIHByb3BlcnR5LCBmYW1pbHkgPSBwb2lzc29uLCBkYXRhID0gZ3JpZClcblxuc3VtbWFyeShtb2RlbC5wb2lzc29uMilcbmBgYCJ9 -->
-<pre class="r"><code>model.poisson2 &lt;- glm(arson ~ violent + property, family = poisson, data = grid)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwucG9pc3NvbjIgPC0gZ2xtKGFyc29uIH4gc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnBvaXNzb24yKVxuYGBgIn0= -->
+<pre class="r"><code>model.poisson2 &lt;- glm(arson ~ scale(violent) + scale(property), family = poisson, data = grid)
 
 summary(model.poisson2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHZpb2xlbnQgKyBwcm9wZXJ0eSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpXG5cbkRldmlhbmNlIFJlc2lkdWFsczogXG4gICAgTWluICAgICAgIDFRICAgTWVkaWFuICAgICAgIDNRICAgICAgTWF4ICBcbi03LjczMzggIC0yLjI2NzYgIC0wLjY3NzEgICAwLjYwMzEgICA2LjE0NTAgIFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICA5LjQ1NWUtMDEgIDQuODM4ZS0wMiAgMTkuNTQ0ICA8IDJlLTE2ICoqKlxudmlvbGVudCAgICAgIDUuNTYxZS0wMyAgMi4xODVlLTA0ICAyNS40NDUgIDwgMmUtMTYgKioqXG5wcm9wZXJ0eSAgICAtNS43OTVlLTA0ICA4LjY1MWUtMDUgIC02LjY5OSAgMi4xZS0xMSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIHBvaXNzb24gZmFtaWx5IHRha2VuIHRvIGJlIDEpXG5cbiAgICBOdWxsIGRldmlhbmNlOiAxODk3LjE5ICBvbiAyMTIgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuUmVzaWR1YWwgZGV2aWFuY2U6ICA5MDYuODcgIG9uIDIxMCAgZGVncmVlcyBvZiBmcmVlZG9tXG5BSUM6IDE0MTQuMVxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKHZpb2xlbnQpICsgc2NhbGUocHJvcGVydHkpLCBmYW1pbHkgPSBwb2lzc29uLCBcbiAgICBkYXRhID0gZ3JpZClcblxuRGV2aWFuY2UgUmVzaWR1YWxzOiBcbiAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuLTcuNzMzOCAgLTIuMjY3NiAgLTAuNjc3MSAgIDAuNjAzMSAgIDYuMTQ1MCAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgIDEuMzk0MTcgICAgMC4wMzU2NiAgMzkuMDk3ICA8IDJlLTE2ICoqKlxuc2NhbGUodmlvbGVudCkgICAwLjg0OTU1ICAgIDAuMDMzMzkgIDI1LjQ0NSAgPCAyZS0xNiAqKipcbnNjYWxlKHByb3BlcnR5KSAtMC4yNzgwOSAgICAwLjA0MTUxICAtNi42OTkgIDIuMWUtMTEgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgOTA2Ljg3ICBvbiAyMTAgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxNDE0LjFcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
 <pre><code>
 Call:
-glm(formula = arson ~ violent + property, family = poisson, data = grid)
+glm(formula = arson ~ scale(violent) + scale(property), family = poisson, 
+    data = grid)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
 -7.7338  -2.2676  -0.6771   0.6031   6.1450  
 
 Coefficients:
-              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  9.455e-01  4.838e-02  19.544  &lt; 2e-16 ***
-violent      5.561e-03  2.185e-04  25.445  &lt; 2e-16 ***
-property    -5.795e-04  8.651e-05  -6.699  2.1e-11 ***
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)      1.39417    0.03566  39.097  &lt; 2e-16 ***
+scale(violent)   0.84955    0.03339  25.445  &lt; 2e-16 ***
+scale(property) -0.27809    0.04151  -6.699  2.1e-11 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -2019,27 +1944,27 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <h3>Poisson Model 3 - Combined</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwucG9pc3NvbjMgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnBvaXNzb24zKVxuYGBgIn0= -->
-<pre class="r"><code>model.poisson3 &lt;- glm(arson ~ scale(delta70) + violent + property, family = poisson, data = grid)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwucG9pc3NvbjMgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpXG5cbnN1bW1hcnkobW9kZWwucG9pc3NvbjMpXG5gYGAifQ== -->
+<pre class="r"><code>model.poisson3 &lt;- glm(arson ~ scale(delta70) + scale(violent) + scale(property), family = poisson, data = grid)
 
 summary(model.poisson3)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5LCBmYW1pbHkgPSBwb2lzc29uLCBcbiAgICBkYXRhID0gZ3JpZClcblxuRGV2aWFuY2UgUmVzaWR1YWxzOiBcbiAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuLTcuNzg4OCAgLTIuMjI4OCAgLTAuNjk1MCAgIDAuNTc0NSAgIDYuMTczOCAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgIDAuOTk2MjE0NCAgMC4wNTkxNDA1ICAxNi44NDUgIDwgMmUtMTYgKioqXG5zY2FsZShkZWx0YTcwKSAgMC4wNjk2NDg5ICAwLjA0NjIzOTMgICAxLjUwNiAgICAwLjEzMiAgICBcbnZpb2xlbnQgICAgICAgICAwLjAwNTUxMDggIDAuMDAwMjIzOCAgMjQuNjE4ICA8IDJlLTE2ICoqKlxucHJvcGVydHkgICAgICAgLTAuMDAwNjcxOSAgMC4wMDAxMTA5ICAtNi4wNTkgMS4zN2UtMDkgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgOTA0LjU3ICBvbiAyMDkgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxNDEzLjhcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSksIFxuICAgIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5EZXZpYW5jZSBSZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCAgXG4tNy43ODg4ICAtMi4yMjg4ICAtMC42OTUwICAgMC41NzQ1ICAgNi4xNzM4ICBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgMS4zOTUyMyAgICAwLjAzNTYyICAzOS4xNjggIDwgMmUtMTYgKioqXG5zY2FsZShkZWx0YTcwKSAgIDAuMDY5NjUgICAgMC4wNDYyNCAgIDEuNTA2ICAgIDAuMTMyICAgIFxuc2NhbGUodmlvbGVudCkgICAwLjg0MTkwICAgIDAuMDM0MjAgIDI0LjYxOCAgPCAyZS0xNiAqKipcbnNjYWxlKHByb3BlcnR5KSAtMC4zMjI0NiAgICAwLjA1MzIyICAtNi4wNTkgMS4zN2UtMDkgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgOTA0LjU3ICBvbiAyMDkgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxNDEzLjhcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
 <pre><code>
 Call:
-glm(formula = arson ~ scale(delta70) + violent + property, family = poisson, 
-    data = grid)
+glm(formula = arson ~ scale(delta70) + scale(violent) + scale(property), 
+    family = poisson, data = grid)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
 -7.7888  -2.2288  -0.6950   0.5745   6.1738  
 
 Coefficients:
-                 Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)     0.9962144  0.0591405  16.845  &lt; 2e-16 ***
-scale(delta70)  0.0696489  0.0462393   1.506    0.132    
-violent         0.0055108  0.0002238  24.618  &lt; 2e-16 ***
-property       -0.0006719  0.0001109  -6.059 1.37e-09 ***
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)      1.39523    0.03562  39.168  &lt; 2e-16 ***
+scale(delta70)   0.06965    0.04624   1.506    0.132    
+scale(violent)   0.84190    0.03420  24.618  &lt; 2e-16 ***
+scale(property) -0.32246    0.05322  -6.059 1.37e-09 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -2058,37 +1983,38 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <h3>Poisson Model 4 -</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwucG9pc3NvbjQgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBcbiAgICAgICAgICAgICAgICAgICAgICAgICBtZWRpYW5faW5jICsgc2NhbGUoYmxhY2tfcHJvcCkgK1xuICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIFxuICAgICAgICAgICAgICAgICAgICAgIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnBvaXNzb240KVxuYGBgIn0= -->
-<pre class="r"><code>model.poisson4 &lt;- glm(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
-                         median_inc + scale(black_prop) +
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwucG9pc3NvbjQgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIHNjYWxlKHByb3BfdmFjYW50KSArIFxuICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKG1lZGlhbl9pbmMpICsgc2NhbGUoYmxhY2tfcHJvcCkgK1xuICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIFxuICAgICAgICAgICAgICAgICAgICAgIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnBvaXNzb240KVxuYGBgIn0= -->
+<pre class="r"><code>model.poisson4 &lt;- glm(arson ~ scale(delta70) + scale(violent) + scale(property) + scale(prop_vacant) + 
+                         scale(median_inc) + scale(black_prop) +
                         scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
                       family = poisson, data = grid)
 
 summary(model.poisson4)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgbWVkaWFuX2luYyArIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBcbiAgICBzY2FsZShvd25PY2NfcHJvcCksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5EZXZpYW5jZSBSZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCAgXG4tMy43MzI3ICAtMS4zODQxICAtMC42OTkwICAgMC42MDYxICAgNy4zNTk0ICBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDMuMjc2ZS0wMSAgMS4yMzFlLTAxICAgMi42NjIgIDAuMDA3NzggKiogXG5zY2FsZShkZWx0YTcwKSAgICAgICAxLjM5OGUtMDEgIDcuMjk4ZS0wMiAgIDEuOTE2ICAwLjA1NTQwIC4gIFxudmlvbGVudCAgICAgICAgICAgICAgMy4xMjdlLTAzICAzLjU3MGUtMDQgICA4Ljc1OSAgPCAyZS0xNiAqKipcbnByb3BlcnR5ICAgICAgICAgICAgIDMuMzAzZS0wNCAgMS4zMTdlLTA0ICAgMi41MDggIDAuMDEyMTUgKiAgXG5zY2FsZShwcm9wX3ZhY2FudCkgICAzLjE5M2UtMDEgIDQuNTM3ZS0wMiAgIDcuMDM5IDEuOTRlLTEyICoqKlxubWVkaWFuX2luYyAgICAgICAgICAgMS4xMjhlLTA1ICA0LjcyNmUtMDYgICAyLjM4NiAgMC4wMTcwMSAqICBcbnNjYWxlKGJsYWNrX3Byb3ApICAgIDMuNzY5ZS0wMSAgNi42NDVlLTAyICAgNS42NzMgMS40MWUtMDggKioqXG5zY2FsZShwdnR5X3Byb3ApICAgICAzLjI3N2UtMDEgIDYuMTYyZS0wMiAgIDUuMzE4IDEuMDVlLTA3ICoqKlxuc2NhbGUodW5lbXBseV9wcm9wKSAtMS4zMjBlLTAxICA3LjA0NmUtMDIgIC0xLjg3MyAgMC4wNjEwNiAuICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIDQuNzAyZS0wMSAgNC44NjhlLTAyICAgOS42NjAgIDwgMmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBwb2lzc29uIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogMTg5Ny4xOSAgb24gMjEyICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiAgNTY2Ljg4ICBvbiAyMDMgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiAxMDg4LjFcblxuTnVtYmVyIG9mIEZpc2hlciBTY29yaW5nIGl0ZXJhdGlvbnM6IDVcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSkgKyBcbiAgICBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZShtZWRpYW5faW5jKSArIHNjYWxlKGJsYWNrX3Byb3ApICsgXG4gICAgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIFxuICAgIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKVxuXG5EZXZpYW5jZSBSZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCAgXG4tMy43MzI3ICAtMS4zODQxICAtMC42OTkwICAgMC42MDYxICAgNy4zNTk0ICBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAxLjA5NDk2ICAgIDAuMDQ3MDggIDIzLjI1NyAgPCAyZS0xNiAqKipcbnNjYWxlKGRlbHRhNzApICAgICAgIDAuMTM5ODEgICAgMC4wNzI5OCAgIDEuOTE2ICAgMC4wNTU0IC4gIFxuc2NhbGUodmlvbGVudCkgICAgICAgMC40Nzc3MCAgICAwLjA1NDU0ICAgOC43NTkgIDwgMmUtMTYgKioqXG5zY2FsZShwcm9wZXJ0eSkgICAgICAwLjE1ODUwICAgIDAuMDYzMjAgICAyLjUwOCAgIDAuMDEyMSAqICBcbnNjYWxlKHByb3BfdmFjYW50KSAgIDAuMzE5MzIgICAgMC4wNDUzNyAgIDcuMDM5IDEuOTRlLTEyICoqKlxuc2NhbGUobWVkaWFuX2luYykgICAgMC4xNzIxNyAgICAwLjA3MjE0ICAgMi4zODYgICAwLjAxNzAgKiAgXG5zY2FsZShibGFja19wcm9wKSAgICAwLjM3Njk0ICAgIDAuMDY2NDUgICA1LjY3MyAxLjQxZS0wOCAqKipcbnNjYWxlKHB2dHlfcHJvcCkgICAgIDAuMzI3NzAgICAgMC4wNjE2MiAgIDUuMzE4IDEuMDVlLTA3ICoqKlxuc2NhbGUodW5lbXBseV9wcm9wKSAtMC4xMzE5OCAgICAwLjA3MDQ2ICAtMS44NzMgICAwLjA2MTEgLiAgXG5zY2FsZShvd25PY2NfcHJvcCkgICAwLjQ3MDIyICAgIDAuMDQ4NjggICA5LjY2MCAgPCAyZS0xNiAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIHBvaXNzb24gZmFtaWx5IHRha2VuIHRvIGJlIDEpXG5cbiAgICBOdWxsIGRldmlhbmNlOiAxODk3LjE5ICBvbiAyMTIgIGRlZ3JlZXMgb2YgZnJlZWRvbVxuUmVzaWR1YWwgZGV2aWFuY2U6ICA1NjYuODggIG9uIDIwMyAgZGVncmVlcyBvZiBmcmVlZG9tXG5BSUM6IDEwODguMVxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNVxuIn0= -->
 <pre><code>
 Call:
-glm(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
-    median_inc + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + 
-    scale(ownOcc_prop), family = poisson, data = grid)
+glm(formula = arson ~ scale(delta70) + scale(violent) + scale(property) + 
+    scale(prop_vacant) + scale(median_inc) + scale(black_prop) + 
+    scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+    family = poisson, data = grid)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
 -3.7327  -1.3841  -0.6990   0.6061   7.3594  
 
 Coefficients:
-                      Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)          3.276e-01  1.231e-01   2.662  0.00778 ** 
-scale(delta70)       1.398e-01  7.298e-02   1.916  0.05540 .  
-violent              3.127e-03  3.570e-04   8.759  &lt; 2e-16 ***
-property             3.303e-04  1.317e-04   2.508  0.01215 *  
-scale(prop_vacant)   3.193e-01  4.537e-02   7.039 1.94e-12 ***
-median_inc           1.128e-05  4.726e-06   2.386  0.01701 *  
-scale(black_prop)    3.769e-01  6.645e-02   5.673 1.41e-08 ***
-scale(pvty_prop)     3.277e-01  6.162e-02   5.318 1.05e-07 ***
-scale(unemply_prop) -1.320e-01  7.046e-02  -1.873  0.06106 .  
-scale(ownOcc_prop)   4.702e-01  4.868e-02   9.660  &lt; 2e-16 ***
+                    Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          1.09496    0.04708  23.257  &lt; 2e-16 ***
+scale(delta70)       0.13981    0.07298   1.916   0.0554 .  
+scale(violent)       0.47770    0.05454   8.759  &lt; 2e-16 ***
+scale(property)      0.15850    0.06320   2.508   0.0121 *  
+scale(prop_vacant)   0.31932    0.04537   7.039 1.94e-12 ***
+scale(median_inc)    0.17217    0.07214   2.386   0.0170 *  
+scale(black_prop)    0.37694    0.06645   5.673 1.41e-08 ***
+scale(pvty_prop)     0.32770    0.06162   5.318 1.05e-07 ***
+scale(unemply_prop) -0.13198    0.07046  -1.873   0.0611 .  
+scale(ownOcc_prop)   0.47022    0.04868   9.660  &lt; 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -2124,72 +2050,226 @@ dispersion
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
+<div id="fit-a-negative-binomial-model" class="section level3">
+<h3>Fit a Negative Binomial Model</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwubmIgPC0gZ2xtLm5iKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIHNjYWxlKHByb3BfdmFjYW50KSArIFxuICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksXG4gICAgICAgICAgICAgICAgICAgZGF0YSA9IGdyaWQpXG5gYGAifQ== -->
+<pre class="r"><code>model.nb &lt;- glm.nb(arson ~ scale(delta70) + scale(violent) + scale(property) + scale(prop_vacant) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop),
+                   data = grid)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
 <div id="fit-a-zero-inflated-model" class="section level3">
 <h3>Fit a Zero-Inflated Model</h3>
 <p>This uses a negative binomial distribution to compenstate for over dispersion. The zero-inflated aspect of the model is designed to model data with a large number of zeros, which is appropriate for these arson data because most grids have a count of 0.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbiA8LSB6ZXJvaW5mbChhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwgXG4gICAgICAgICAgICAgICAgICAgICAgZGlzdCA9IFwibmVnYmluXCIsIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnpvaW4pXG5gYGAifQ== -->
-<pre class="r"><code>model.zoin &lt;- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
-                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
-                      dist = &quot;negbin&quot;, data = grid)
-
-summary(model.zoin)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbjEgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTUwKSArIHNjYWxlKHByb3BfdmFjYW50KSwgXG4gICAgICAgICAgICAgICAgICAgICAgZGlzdCA9IFwibmVnYmluXCIsIGRhdGEgPSBncmlkKVxuYGBgIn0= -->
+<pre class="r"><code>model.zoin1 &lt;- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant), 
+                      dist = &quot;negbin&quot;, data = grid)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCBcbiAgICBkYXRhID0gZ3JpZCwgZGlzdCA9IFwibmVnYmluXCIpXG5cblBlYXJzb24gcmVzaWR1YWxzOlxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTEuNjE1NSAtMC41ODAzIC0wLjI0OTggIDAuMjk5MiAxMC40MzQ1IFxuXG5Db3VudCBtb2RlbCBjb2VmZmljaWVudHMgKG5lZ2JpbiB3aXRoIGxvZyBsaW5rKTpcbiAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICA4LjI3OGUtMDEgIDEuNTY5ZS0wMSAgIDUuMjc1IDEuMzJlLTA3ICoqKlxuc2NhbGUoZGVsdGE3MCkgICAgICAgMS4zNzJlLTAxICA5LjQxMWUtMDIgICAxLjQ1OCAwLjE0NDgwNyAgICBcbnZpb2xlbnQgICAgICAgICAgICAgIDQuMjE5ZS0wMyAgOC4xMjBlLTA0ICAgNS4xOTUgMi4wNGUtMDcgKioqXG5wcm9wZXJ0eSAgICAgICAgICAgIC0yLjg4MWUtMDUgIDMuNTIwZS0wNCAgLTAuMDgyIDAuOTM0NzY1ICAgIFxuc2NhbGUocHJvcF92YWNhbnQpICAgMy4xNjdlLTAxICA5LjI1NmUtMDIgICAzLjQyMiAwLjAwMDYyMSAqKipcbnNjYWxlKGJsYWNrX3Byb3ApICAgIDEuMTQ4ZS0wMSAgMS4xMjRlLTAxICAgMS4wMjEgMC4zMDc0NDAgICAgXG5zY2FsZShwdnR5X3Byb3ApICAgICAyLjUwMmUtMDEgIDEuMDYyZS0wMSAgIDIuMzU2IDAuMDE4NDkyICogIFxuc2NhbGUodW5lbXBseV9wcm9wKSAtOS41NDllLTAyICAxLjI1MGUtMDEgIC0wLjc2NCAwLjQ0NDg0NCAgICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIDMuNjAzZS0wMSAgOC41MjhlLTAyICAgNC4yMjUgMi4zOWUtMDUgKioqXG5Mb2codGhldGEpICAgICAgICAgICAxLjY0OWUrMDAgIDIuNDA2ZS0wMSAgIDYuODU0IDcuMTdlLTEyICoqKlxuXG5aZXJvLWluZmxhdGlvbiBtb2RlbCBjb2VmZmljaWVudHMgKGJpbm9taWFsIHdpdGggbG9naXQgbGluayk6XG4gICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDIuODE5NzkwICAgMS4wMDYzMjEgICAyLjgwMiAgMC4wMDUwOCAqKlxuc2NhbGUoZGVsdGE3MCkgICAgICAgMS4xOTEwMTYgICAwLjc5OTgyNiAgIDEuNDg5ICAwLjEzNjQ2ICAgXG52aW9sZW50ICAgICAgICAgICAgIC0wLjAzODg5MiAgIDAuMDI1OTIxICAtMS41MDAgIDAuMTMzNTIgICBcbnByb3BlcnR5ICAgICAgICAgICAgLTAuMDA5NTcxICAgMC4wMDUyMDIgIC0xLjg0MCAgMC4wNjU4MSAuIFxuc2NhbGUocHJvcF92YWNhbnQpICAtMC4xODcwODEgICAwLjI3OTkzNyAgLTAuNjY4ICAwLjUwMzk0ICAgXG5zY2FsZShibGFja19wcm9wKSAgIC0wLjE5ODgyNCAgIDAuNjExNzA0ICAtMC4zMjUgIDAuNzQ1MTYgICBcbnNjYWxlKHB2dHlfcHJvcCkgICAgLTAuODkzNjQ4ICAgMC41NDY2NjUgIC0xLjYzNSAgMC4xMDIxMSAgIFxuc2NhbGUodW5lbXBseV9wcm9wKSAgMC4yMzk5NjMgICAwLjQyOTQ1MSAgIDAuNTU5ICAwLjU3NjMyICAgXG5zY2FsZShvd25PY2NfcHJvcCkgIC0xLjQ0ODYwMCAgIDAuNTE2MDU5ICAtMi44MDcgIDAuMDA1MDAgKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDEgXG5cblRoZXRhID0gNS4yMDE2IFxuTnVtYmVyIG9mIGl0ZXJhdGlvbnMgaW4gQkZHUyBvcHRpbWl6YXRpb246IDMzIFxuTG9nLWxpa2VsaWhvb2Q6IC00MjQuNyBvbiAxOSBEZlxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiZ2xtLmZpdDogZml0dGVkIHByb2JhYmlsaXRpZXMgbnVtZXJpY2FsbHkgMCBvciAxIG9jY3VycmVkXG4ifQ== -->
+<pre><code>glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtb2RlbC56b2luMSlcbmBgYCJ9 -->
+<pre class="r"><code>summary(model.zoin1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE1MCkgKyBzY2FsZShwcm9wX3ZhY2FudCksIGRhdGEgPSBncmlkLCBkaXN0ID0gXCJuZWdiaW5cIilcblxuUGVhcnNvbiByZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMC43ODI3IC0wLjY5NzcgLTAuMzYxNiAgMC4zMjA1ICA1LjA0MjUgXG5cbkNvdW50IG1vZGVsIGNvZWZmaWNpZW50cyAobmVnYmluIHdpdGggbG9nIGxpbmspOlxuICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDEuMTg4MyAgICAgMC4xNjU0ICAgNy4xODUgNi43NGUtMTMgKioqXG5zY2FsZShkZWx0YTUwKSAgICAgIC01LjMxMjYgICAgIDEuODI5MSAgLTIuOTA1ICAwLjAwMzY4ICoqIFxuc2NhbGUocHJvcF92YWNhbnQpICAgMC42MDMxICAgICAwLjEzNDIgICA0LjQ5MyA3LjAyZS0wNiAqKipcbkxvZyh0aGV0YSkgICAgICAgICAgLTAuNDI1NyAgICAgMC4xMzE3ICAtMy4yMzIgIDAuMDAxMjMgKiogXG5cblplcm8taW5mbGF0aW9uIG1vZGVsIGNvZWZmaWNpZW50cyAoYmlub21pYWwgd2l0aCBsb2dpdCBsaW5rKTpcbiAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgIFxuKEludGVyY2VwdCkgICAgICAgICAtMTIuNzY4ICAgICAgNy4wNDMgIC0xLjgxMyAgIDAuMDY5OCAuXG5zY2FsZShkZWx0YTUwKSAgICAgICAgMi43MTcgICAgICA1LjczOCAgIDAuNDczICAgMC42MzU5ICBcbnNjYWxlKHByb3BfdmFjYW50KSAgICA1Ljc2NCAgICAgIDMuNDQ1ICAgMS42NzMgICAwLjA5NDMgLlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMSBcblxuVGhldGEgPSAwLjY1MzMgXG5OdW1iZXIgb2YgaXRlcmF0aW9ucyBpbiBCRkdTIG9wdGltaXphdGlvbjogNzYgXG5Mb2ctbGlrZWxpaG9vZDogLTU0MS44IG9uIDcgRGZcbiJ9 -->
 <pre><code>
 Call:
-zeroinfl(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
-    data = grid, dist = &quot;negbin&quot;)
+zeroinfl(formula = arson ~ scale(delta50) + scale(prop_vacant), data = grid, dist = &quot;negbin&quot;)
 
 Pearson residuals:
     Min      1Q  Median      3Q     Max 
--1.6155 -0.5803 -0.2498  0.2992 10.4345 
+-0.7827 -0.6977 -0.3616  0.3205  5.0425 
 
 Count model coefficients (negbin with log link):
-                      Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)          8.278e-01  1.569e-01   5.275 1.32e-07 ***
-scale(delta70)       1.372e-01  9.411e-02   1.458 0.144807    
-violent              4.219e-03  8.120e-04   5.195 2.04e-07 ***
-property            -2.881e-05  3.520e-04  -0.082 0.934765    
-scale(prop_vacant)   3.167e-01  9.256e-02   3.422 0.000621 ***
-scale(black_prop)    1.148e-01  1.124e-01   1.021 0.307440    
-scale(pvty_prop)     2.502e-01  1.062e-01   2.356 0.018492 *  
-scale(unemply_prop) -9.549e-02  1.250e-01  -0.764 0.444844    
-scale(ownOcc_prop)   3.603e-01  8.528e-02   4.225 2.39e-05 ***
-Log(theta)           1.649e+00  2.406e-01   6.854 7.17e-12 ***
+                   Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          1.1883     0.1654   7.185 6.74e-13 ***
+scale(delta50)      -5.3126     1.8291  -2.905  0.00368 ** 
+scale(prop_vacant)   0.6031     0.1342   4.493 7.02e-06 ***
+Log(theta)          -0.4257     0.1317  -3.232  0.00123 ** 
 
 Zero-inflation model coefficients (binomial with logit link):
-                     Estimate Std. Error z value Pr(&gt;|z|)   
-(Intercept)          2.819790   1.006321   2.802  0.00508 **
-scale(delta70)       1.191016   0.799826   1.489  0.13646   
-violent             -0.038892   0.025921  -1.500  0.13352   
-property            -0.009571   0.005202  -1.840  0.06581 . 
-scale(prop_vacant)  -0.187081   0.279937  -0.668  0.50394   
-scale(black_prop)   -0.198824   0.611704  -0.325  0.74516   
-scale(pvty_prop)    -0.893648   0.546665  -1.635  0.10211   
-scale(unemply_prop)  0.239963   0.429451   0.559  0.57632   
-scale(ownOcc_prop)  -1.448600   0.516059  -2.807  0.00500 **
+                   Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept)         -12.768      7.043  -1.813   0.0698 .
+scale(delta50)        2.717      5.738   0.473   0.6359  
+scale(prop_vacant)    5.764      3.445   1.673   0.0943 .
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Theta = 5.2016 
-Number of iterations in BFGS optimization: 33 
-Log-likelihood: -424.7 on 19 Df</code></pre>
+Theta = 0.6533 
+Number of iterations in BFGS optimization: 76 
+Log-likelihood: -541.8 on 7 Df</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbjIgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSwgXG4gICAgICAgICAgICAgICAgICAgICAgZGlzdCA9IFwibmVnYmluXCIsIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnpvaW4yKVxuYGBgIn0= -->
+<pre class="r"><code>model.zoin2 &lt;- zeroinfl(arson ~ scale(violent) + scale(property), 
+                      dist = &quot;negbin&quot;, data = grid)
+
+summary(model.zoin2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSksIGRhdGEgPSBncmlkLCBkaXN0ID0gXCJuZWdiaW5cIilcblxuUGVhcnNvbiByZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMS42NTM2IC0wLjUxNjAgLTAuMzY4NSAgMC4zMTUyICA0LjgxNTYgXG5cbkNvdW50IG1vZGVsIGNvZWZmaWNpZW50cyAobmVnYmluIHdpdGggbG9nIGxpbmspOlxuICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgMS41MTk1MyAgICAwLjA3NTQ5ICAyMC4xMjkgIDwgMmUtMTYgKioqXG5zY2FsZSh2aW9sZW50KSAgIDEuMDY0NDMgICAgMC4wOTE0OCAgMTEuNjM2ICA8IDJlLTE2ICoqKlxuc2NhbGUocHJvcGVydHkpIC0wLjQyOTA5ICAgIDAuMDg4MDMgIC00Ljg3NCAxLjA5ZS0wNiAqKipcbkxvZyh0aGV0YSkgICAgICAgMS4xODI0MiAgICAwLjE5NDU1ICAgNi4wNzggMS4yMmUtMDkgKioqXG5cblplcm8taW5mbGF0aW9uIG1vZGVsIGNvZWZmaWNpZW50cyAoYmlub21pYWwgd2l0aCBsb2dpdCBsaW5rKTpcbiAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICBcbihJbnRlcmNlcHQpICAgICAgIC02Ljk1OSAgICAgIDIuNTQ3ICAtMi43MzMgIDAuMDA2MjggKipcbnNjYWxlKHZpb2xlbnQpICAgIC04LjM3NiAgICAgIDMuNTAzICAtMi4zOTEgIDAuMDE2ODAgKiBcbnNjYWxlKHByb3BlcnR5KSAgIC0xLjI4OCAgICAgIDEuMzY5ICAtMC45NDEgIDAuMzQ2NTYgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDEgXG5cblRoZXRhID0gMy4yNjIzIFxuTnVtYmVyIG9mIGl0ZXJhdGlvbnMgaW4gQkZHUyBvcHRpbWl6YXRpb246IDI3IFxuTG9nLWxpa2VsaWhvb2Q6ICAtNDQ5IG9uIDcgRGZcbiJ9 -->
+<pre><code>
+Call:
+zeroinfl(formula = arson ~ scale(violent) + scale(property), data = grid, dist = &quot;negbin&quot;)
+
+Pearson residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6536 -0.5160 -0.3685  0.3152  4.8156 
+
+Count model coefficients (negbin with log link):
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)      1.51953    0.07549  20.129  &lt; 2e-16 ***
+scale(violent)   1.06443    0.09148  11.636  &lt; 2e-16 ***
+scale(property) -0.42909    0.08803  -4.874 1.09e-06 ***
+Log(theta)       1.18242    0.19455   6.078 1.22e-09 ***
+
+Zero-inflation model coefficients (binomial with logit link):
+                Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)       -6.959      2.547  -2.733  0.00628 **
+scale(violent)    -8.376      3.503  -2.391  0.01680 * 
+scale(property)   -1.288      1.369  -0.941  0.34656   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Theta = 3.2623 
+Number of iterations in BFGS optimization: 27 
+Log-likelihood:  -449 on 7 Df</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbjMgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTUwKSArIHNjYWxlKHByb3BfdmFjYW50KSArIHNjYWxlKHZpb2xlbnQpICsgc2NhbGUocHJvcGVydHkpLCBcbiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gXCJuZWdiaW5cIiwgZGF0YSA9IGdyaWQpXG5cbnN1bW1hcnkobW9kZWwuem9pbjMpXG5gYGAifQ== -->
+<pre class="r"><code>model.zoin3 &lt;- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property), 
+                      dist = &quot;negbin&quot;, data = grid)
+
+summary(model.zoin3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE1MCkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSwgZGF0YSA9IGdyaWQsIGRpc3QgPSBcIm5lZ2JpblwiKVxuXG5QZWFyc29uIHJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi0xLjY2NjEgLTAuNTMzMCAtMC4zMjAzICAwLjMyMTMgIDUuMDQzMCBcblxuQ291bnQgbW9kZWwgY29lZmZpY2llbnRzIChuZWdiaW4gd2l0aCBsb2cgbGluayk6XG4gICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgICAgICAxLjQ0NDM0ICAgIDAuMTE1ODQgIDEyLjQ2OCAgPCAyZS0xNiAqKipcbnNjYWxlKGRlbHRhNTApICAgICAtMC41MjUzOCAgICAxLjA5Mjg4ICAtMC40ODEgIDAuNjMwNzEgICAgXG5zY2FsZShwcm9wX3ZhY2FudCkgIDAuMTkxMjIgICAgMC4wODU0NSAgIDIuMjM4ICAwLjAyNTI0ICogIFxuc2NhbGUodmlvbGVudCkgICAgICAwLjkxMjcyICAgIDAuMTA0NTIgICA4LjczMyAgPCAyZS0xNiAqKipcbnNjYWxlKHByb3BlcnR5KSAgICAtMC4yODUzMSAgICAwLjEwNDU5ICAtMi43MjggIDAuMDA2MzcgKiogXG5Mb2codGhldGEpICAgICAgICAgIDEuMjYyOTEgICAgMC4yMDc1OSAgIDYuMDg0IDEuMTdlLTA5ICoqKlxuXG5aZXJvLWluZmxhdGlvbiBtb2RlbCBjb2VmZmljaWVudHMgKGJpbm9taWFsIHdpdGggbG9naXQgbGluayk6XG4gICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICBcbihJbnRlcmNlcHQpICAgICAgICAgLTcuMjYwNyAgICAgMi45OTY5ICAtMi40MjMgICAwLjAxNTQgKlxuc2NhbGUoZGVsdGE1MCkgICAgICAtMS41NjE4ICAgICA0LjIxNzkgIC0wLjM3MCAgIDAuNzExMiAgXG5zY2FsZShwcm9wX3ZhY2FudCkgIC0wLjE5MjkgICAgIDAuMjM4MSAgLTAuODEwICAgMC40MTc5ICBcbnNjYWxlKHZpb2xlbnQpICAgICAgLTcuOTc1NCAgICAgMy44MTczICAtMi4wODkgICAwLjAzNjcgKlxuc2NhbGUocHJvcGVydHkpICAgICAtMS45MDAzICAgICAxLjY5MDIgIC0xLjEyNCAgIDAuMjYwOSAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxIFxuXG5UaGV0YSA9IDMuNTM1NyBcbk51bWJlciBvZiBpdGVyYXRpb25zIGluIEJGR1Mgb3B0aW1pemF0aW9uOiAzMCBcbkxvZy1saWtlbGlob29kOiAtNDQ1LjMgb24gMTEgRGZcbiJ9 -->
+<pre><code>
+Call:
+zeroinfl(formula = arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property), data = grid, dist = &quot;negbin&quot;)
+
+Pearson residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6661 -0.5330 -0.3203  0.3213  5.0430 
+
+Count model coefficients (negbin with log link):
+                   Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)         1.44434    0.11584  12.468  &lt; 2e-16 ***
+scale(delta50)     -0.52538    1.09288  -0.481  0.63071    
+scale(prop_vacant)  0.19122    0.08545   2.238  0.02524 *  
+scale(violent)      0.91272    0.10452   8.733  &lt; 2e-16 ***
+scale(property)    -0.28531    0.10459  -2.728  0.00637 ** 
+Log(theta)          1.26291    0.20759   6.084 1.17e-09 ***
+
+Zero-inflation model coefficients (binomial with logit link):
+                   Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept)         -7.2607     2.9969  -2.423   0.0154 *
+scale(delta50)      -1.5618     4.2179  -0.370   0.7112  
+scale(prop_vacant)  -0.1929     0.2381  -0.810   0.4179  
+scale(violent)      -7.9754     3.8173  -2.089   0.0367 *
+scale(property)     -1.9003     1.6902  -1.124   0.2609  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Theta = 3.5357 
+Number of iterations in BFGS optimization: 30 
+Log-likelihood: -445.3 on 11 Df</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbjQgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTUwKSArIHNjYWxlKHByb3BfdmFjYW50KSArIHNjYWxlKHZpb2xlbnQpICsgc2NhbGUocHJvcGVydHkpICsgXG4gICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwgXG4gICAgICAgICAgICAgICAgICAgICAgZGlzdCA9IFwibmVnYmluXCIsIGRhdGEgPSBncmlkKVxuXG5zdW1tYXJ5KG1vZGVsLnpvaW40KVxuYGBgIn0= -->
+<pre class="r"><code>model.zoin4 &lt;- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property) + 
+                         scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
+                      dist = &quot;negbin&quot;, data = grid)
+
+summary(model.zoin4)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE1MCkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBcbiAgICBzY2FsZShvd25PY2NfcHJvcCksIGRhdGEgPSBncmlkLCBkaXN0ID0gXCJuZWdiaW5cIilcblxuUGVhcnNvbiByZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMS41ODAyIC0wLjUzMjQgLTAuMjQ3MiAgMC4zMjEwICA5LjEzMDQgXG5cbkNvdW50IG1vZGVsIGNvZWZmaWNpZW50cyAobmVnYmluIHdpdGggbG9nIGxpbmspOlxuICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAxLjIxODU2ICAgIDAuMTIxOTggICA5Ljk5MCAgPCAyZS0xNiAqKipcbnNjYWxlKGRlbHRhNTApICAgICAgLTEuODQ2ODUgICAgMS4xNzA2MyAgLTEuNTc4ICAwLjExNDY0ICAgIFxuc2NhbGUocHJvcF92YWNhbnQpICAgMC4yNzU2OCAgICAwLjA5MjE2ICAgMi45OTIgIDAuMDAyNzggKiogXG5zY2FsZSh2aW9sZW50KSAgICAgICAwLjY2NDk2ICAgIDAuMTA4NjcgICA2LjExOSA5LjQwZS0xMCAqKipcbnNjYWxlKHByb3BlcnR5KSAgICAgIDAuMDc3MjggICAgMC4xMjEyOCAgIDAuNjM3ICAwLjUyMzk4ICAgIFxuc2NhbGUoYmxhY2tfcHJvcCkgICAgMC4wNDkwMSAgICAwLjEwODc1ICAgMC40NTEgIDAuNjUyMjUgICAgXG5zY2FsZShwdnR5X3Byb3ApICAgICAwLjI3MzQ2ICAgIDAuMTA2MTggICAyLjU3NSAgMC4wMTAwMSAqICBcbnNjYWxlKHVuZW1wbHlfcHJvcCkgLTAuMDUxNTcgICAgMC4xMjcxOSAgLTAuNDA1ICAwLjY4NTE1ICAgIFxuc2NhbGUob3duT2NjX3Byb3ApICAgMC40MTUzMSAgICAwLjA4NjM2ICAgNC44MDkgMS41MmUtMDYgKioqXG5Mb2codGhldGEpICAgICAgICAgICAxLjYxNjIzICAgIDAuMjM0MTAgICA2LjkwNCA1LjA2ZS0xMiAqKipcblxuWmVyby1pbmZsYXRpb24gbW9kZWwgY29lZmZpY2llbnRzIChiaW5vbWlhbCB3aXRoIGxvZ2l0IGxpbmspOlxuICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgIFxuKEludGVyY2VwdCkgICAgICAgICAgLTYuNzQ2MiAgICAgMi44MzY5ICAtMi4zNzggICAwLjAxNzQgKlxuc2NhbGUoZGVsdGE1MCkgICAgICAgLTAuNDI5NSAgICAgNS4xNDQ3ICAtMC4wODMgICAwLjkzMzUgIFxuc2NhbGUocHJvcF92YWNhbnQpICAgLTAuMjA3OSAgICAgMC4yODUzICAtMC43MjkgICAwLjQ2NjMgIFxuc2NhbGUodmlvbGVudCkgICAgICAgLTYuMDM4NSAgICAgNC4zNzEwICAtMS4zODEgICAwLjE2NzEgIFxuc2NhbGUocHJvcGVydHkpICAgICAgLTMuMzI4MyAgICAgMi45ODkyICAtMS4xMTMgICAwLjI2NTUgIFxuc2NhbGUoYmxhY2tfcHJvcCkgICAgLTAuMjkyNiAgICAgMC42NDQzICAtMC40NTQgICAwLjY0OTggIFxuc2NhbGUocHZ0eV9wcm9wKSAgICAgLTAuODY0OCAgICAgMC41NzI2ICAtMS41MTAgICAwLjEzMTAgIFxuc2NhbGUodW5lbXBseV9wcm9wKSAgIDAuMTgzNiAgICAgMC40NjM4ICAgMC4zOTYgICAwLjY5MjMgIFxuc2NhbGUob3duT2NjX3Byb3ApICAgLTEuMjY3MCAgICAgMC41NDQwICAtMi4zMjkgICAwLjAxOTkgKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMSBcblxuVGhldGEgPSA1LjAzNDEgXG5OdW1iZXIgb2YgaXRlcmF0aW9ucyBpbiBCRkdTIG9wdGltaXphdGlvbjogMzQgXG5Mb2ctbGlrZWxpaG9vZDogLTQyNS41IG9uIDE5IERmXG4ifQ== -->
+<pre><code>
+Call:
+zeroinfl(formula = arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property) + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + 
+    scale(ownOcc_prop), data = grid, dist = &quot;negbin&quot;)
+
+Pearson residuals:
+    Min      1Q  Median      3Q     Max 
+-1.5802 -0.5324 -0.2472  0.3210  9.1304 
+
+Count model coefficients (negbin with log link):
+                    Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          1.21856    0.12198   9.990  &lt; 2e-16 ***
+scale(delta50)      -1.84685    1.17063  -1.578  0.11464    
+scale(prop_vacant)   0.27568    0.09216   2.992  0.00278 ** 
+scale(violent)       0.66496    0.10867   6.119 9.40e-10 ***
+scale(property)      0.07728    0.12128   0.637  0.52398    
+scale(black_prop)    0.04901    0.10875   0.451  0.65225    
+scale(pvty_prop)     0.27346    0.10618   2.575  0.01001 *  
+scale(unemply_prop) -0.05157    0.12719  -0.405  0.68515    
+scale(ownOcc_prop)   0.41531    0.08636   4.809 1.52e-06 ***
+Log(theta)           1.61623    0.23410   6.904 5.06e-12 ***
+
+Zero-inflation model coefficients (binomial with logit link):
+                    Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept)          -6.7462     2.8369  -2.378   0.0174 *
+scale(delta50)       -0.4295     5.1447  -0.083   0.9335  
+scale(prop_vacant)   -0.2079     0.2853  -0.729   0.4663  
+scale(violent)       -6.0385     4.3710  -1.381   0.1671  
+scale(property)      -3.3283     2.9892  -1.113   0.2655  
+scale(black_prop)    -0.2926     0.6443  -0.454   0.6498  
+scale(pvty_prop)     -0.8648     0.5726  -1.510   0.1310  
+scale(unemply_prop)   0.1836     0.4638   0.396   0.6923  
+scale(ownOcc_prop)   -1.2670     0.5440  -2.329   0.0199 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Theta = 5.0341 
+Number of iterations in BFGS optimization: 34 
+Log-likelihood: -425.5 on 19 Df</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudnVvbmcobW9kZWwuem9pbjQsIG1vZGVsLm5iKVxuYGBgIn0= -->
+<pre class="r"><code>vuong(model.zoin4, model.nb)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVnVvbmcgTm9uLU5lc3RlZCBIeXBvdGhlc2lzIFRlc3QtU3RhdGlzdGljOiBcbih0ZXN0LXN0YXRpc3RpYyBpcyBhc3ltcHRvdGljYWxseSBkaXN0cmlidXRlZCBOKDAsMSkgdW5kZXIgdGhlXG4gbnVsbCB0aGF0IHRoZSBtb2RlbHMgYXJlIGluZGlzdGluZ3Vpc2hpYmxlKVxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuIn0= -->
+<pre><code>Vuong Non-Nested Hypothesis Test-Statistic: 
+(test-statistic is asymptotically distributed N(0,1) under the
+ null that the models are indistinguishible)
+-------------------------------------------------------------</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVNUVTdDUUJRZU9yU0VKdndZMXlaY29FMUxKZUJHUVkzUnBVUU5yblJzQjJ3Y082U2RnbkhySGJ5Qk8xMll1SFBwQ2J5QkovQUk0TFRNQk5vUUY4MTg3NXYzdnUrOU4rMGZEaHg5b0FNQUlJQ2FBcURLSVZEUHo0Nk1EZ0JGaFFjRlVBVGw1SHpnU1p0cEpnRFY1T3pXZmo2M3J0Kyt1dHEzK3R3OGZkMzd2WHo1OE42ZitGVkY1QldXWDBaTUkzaUNTY1JSZllXdDNWTVBFN3V4MjBoQk0xZWt1Z1JGK1JwdGlGeEdRNDVtSzc3U1cxbElLSE5SQlVWVjJUSXRxMm0zN2M2UzRORjJ5OTRSaE82WVRydmR3WWJWV21qQStYL08yVVlEZEkram5PWEdSVXlEVWVQUmlCaGlmc1I4VjF6QTQ2dWVnS1d4TVVFa3hqbTlja2luNWpwTjJFZFRBU3U5a3dQRHBXR0lYWVk5U2U1bnlQVno2QjVpeUJ5R1hIL05MQ1U2Wmo0TnVMT1NQTDZhS3k2RU9hSWVCMG1ubnVIZXhzR2RZVHVKdzhxZlVCRW56T0xFc3lnN1UrV0djVER5QXl5M1N0QU5KaUtvOHBXa0d6SEhvUjh3T1Fwbkk1TlJobVNlN2xJaW1YUTRNUHNETDgyRzlQUUNBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Vuong z-statistic"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["H_A"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["p-value"],"name":[3],"type":["fctr"],"align":["left"]}],"data":[{"1":"3.9847319","2":"model1 > model2","3":"3.3778e-05","_rn_":"Raw"},{"1":"2.8520614","2":"model1 > model2","3":"0.0021718","_rn_":"AIC-corrected"},{"1":"0.9484433","2":"model1 > model2","3":"0.1714519","_rn_":"BIC-corrected"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Next, we’ll fig a series of eigenvectors</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWUuZml0IDwtIHNwYXRpYWxyZWc6Ok1FKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBcbiAgICAgICAgICAgICAgICAgICAgICAgICBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCBcbiAgICAgICAgICAgICAgICAgICAgICBkYXRhID0gZ3JpZCwgZmFtaWx5ID0gbmVnYXRpdmUuYmlub21pYWwobW9kZWwuem9pbiR0aGV0YSksIFxuICAgICAgICAgICBsaXN0dyA9IHdlaWdodHMsIHZlcmJvc2UgPSBUUlVFLCBhbHBoYSA9IC4wNSlcbmBgYCJ9 -->
-<pre class="r"><code>me.fit &lt;- spatialreg::ME(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWUuZml0IDwtIHNwYXRpYWxyZWc6Ok1FKGFyc29uIH4gc2NhbGUoZGVsdGE1MCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIHNjYWxlKHByb3BfdmFjYW50KSArIFxuICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIFxuICAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBncmlkLCBmYW1pbHkgPSBuZWdhdGl2ZS5iaW5vbWlhbChtb2RlbC56b2luNCR0aGV0YSksIFxuICAgICAgICAgICBsaXN0dyA9IHdlaWdodHMsIHZlcmJvc2UgPSBUUlVFLCBhbHBoYSA9IC4wNSlcbmBgYCJ9 -->
+<pre class="r"><code>me.fit &lt;- spatialreg::ME(arson ~ scale(delta50) + scale(violent) + scale(property) + scale(prop_vacant) + 
                          scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop), 
-                      data = grid, family = negative.binomial(model.zoin$theta), 
+                      data = grid, family = negative.binomial(model.zoin4$theta), 
            listw = weights, verbose = TRUE, alpha = .05)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZVZbLDQ5XSwgSTogMC4wNTc5NjIwNSBaSTogTkEsIHByKFpJKTogMC4wOFxuIn0= -->
-<pre><code>eV[,49], I: 0.05796205 ZI: NA, pr(ZI): 0.08</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiZVZbLDE2XSwgSTogMC4wMzkwMzM1NCBaSTogTkEsIHByKFpJKTogMC4xM1xuIn0= -->
+<pre><code>eV[,16], I: 0.03903354 ZI: NA, pr(ZI): 0.13</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2198,73 +2278,83 @@ Log-likelihood: -424.7 on 19 Df</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWUuZml0XG5gYGAifQ== -->
 <pre class="r"><code>me.fit</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICBFaWdlbnZlY3RvciBaSSBwcihaSSlcbjAgICAgICAgICAgTkEgTkEgICAwLjAxXG4xICAgICAgICAgIDQ5IE5BICAgMC4wOFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBFaWdlbnZlY3RvciBaSSBwcihaSSlcbjAgICAgICAgICAgTkEgTkEgICAwLjA0XG4xICAgICAgICAgIDE2IE5BICAgMC4xM1xuIn0= -->
 <pre><code>  Eigenvector ZI pr(ZI)
-0          NA NA   0.01
-1          49 NA   0.08</code></pre>
+0          NA NA   0.04
+1          16 NA   0.13</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbi5maXQgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSArIHNjYWxlKHByb3BfdmFjYW50KSArIFxuICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCkgK1xuICAgICAgICAgICAgICAgICAgICAgICAgIGZpdHRlZChtZS5maXQpLCBcbiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gXCJuZWdiaW5cIiwgZGF0YSA9IGdyaWQpXG5cbnN1bW1hcnkobW9kZWwuem9pbi5maXQpXG5gYGAifQ== -->
-<pre class="r"><code>model.zoin.fit &lt;- zeroinfl(arson ~ scale(delta70) + violent + property + scale(prop_vacant) + 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwuem9pbjUgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTUwKSArIHNjYWxlKHZpb2xlbnQpICsgc2NhbGUocHJvcGVydHkpICsgc2NhbGUocHJvcF92YWNhbnQpICsgXG4gICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSArXG4gICAgICAgICAgICAgICAgICAgICAgICAgZml0dGVkKG1lLmZpdCksIFxuICAgICAgICAgICAgICAgICAgICAgIGRpc3QgPSBcIm5lZ2JpblwiLCBkYXRhID0gZ3JpZClcblxuc3VtbWFyeShtb2RlbC56b2luNSlcbmBgYCJ9 -->
+<pre class="r"><code>model.zoin5 &lt;- zeroinfl(arson ~ scale(delta50) + scale(violent) + scale(property) + scale(prop_vacant) + 
                          scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) +
                          fitted(me.fit), 
                       dist = &quot;negbin&quot;, data = grid)
 
-summary(model.zoin.fit)</code></pre>
+summary(model.zoin5)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyB2aW9sZW50ICsgcHJvcGVydHkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApICsgXG4gICAgZml0dGVkKG1lLmZpdCksIGRhdGEgPSBncmlkLCBkaXN0ID0gXCJuZWdiaW5cIilcblxuUGVhcnNvbiByZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMS42ODczIC0wLjU0MjQgLTAuMjIyOCAgMC4zNjk5IDExLjY5MDIgXG5cbkNvdW50IG1vZGVsIGNvZWZmaWNpZW50cyAobmVnYmluIHdpdGggbG9nIGxpbmspOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDcuNDc5ZS0wMSAgMS42NDVlLTAxICAgNC41NDYgNS40NmUtMDYgKioqXG5zY2FsZShkZWx0YTcwKSAgICAgICAxLjA5M2UtMDEgIDkuMjIzZS0wMiAgIDEuMTg2IDAuMjM1NzcxICAgIFxudmlvbGVudCAgICAgICAgICAgICAgNC40MDdlLTAzICA3Ljg4NmUtMDQgICA1LjU4OCAyLjMwZS0wOCAqKipcbnByb3BlcnR5ICAgICAgICAgICAgIDUuNDAyZS0wNSAgMy42MzVlLTA0ICAgMC4xNDkgMC44ODE4NTcgICAgXG5zY2FsZShwcm9wX3ZhY2FudCkgICAzLjM1OWUtMDEgIDguOTE1ZS0wMiAgIDMuNzY4IDAuMDAwMTY1ICoqKlxuc2NhbGUoYmxhY2tfcHJvcCkgICAgOS42NDJlLTAyICAxLjA5M2UtMDEgICAwLjg4MiAwLjM3NzUxMiAgICBcbnNjYWxlKHB2dHlfcHJvcCkgICAgIDIuMjIwZS0wMSAgMS4wMjhlLTAxICAgMi4xNjAgMC4wMzA3NTkgKiAgXG5zY2FsZSh1bmVtcGx5X3Byb3ApIC04LjIxM2UtMDIgIDEuMjEzZS0wMSAgLTAuNjc3IDAuNDk4MzIzICAgIFxuc2NhbGUob3duT2NjX3Byb3ApICAgMy43MjZlLTAxICA4LjQ1NmUtMDIgICA0LjQwNiAxLjA1ZS0wNSAqKipcbmZpdHRlZChtZS5maXQpICAgICAgLTIuNTE2ZSswMCAgNy4yOTVlLTAxICAtMy40NDkgMC4wMDA1NjMgKioqXG5Mb2codGhldGEpICAgICAgICAgICAxLjc4NGUrMDAgIDIuNjIxZS0wMSAgIDYuODA2IDEuMDBlLTExICoqKlxuXG5aZXJvLWluZmxhdGlvbiBtb2RlbCBjb2VmZmljaWVudHMgKGJpbm9taWFsIHdpdGggbG9naXQgbGluayk6XG4gICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgMi44MTg4NDcgICAxLjA2NTQyNyAgIDIuNjQ2ICAwLjAwODE1ICoqXG5zY2FsZShkZWx0YTcwKSAgICAgICAgMS4wNzI4MDIgICAwLjg5MTkyMCAgIDEuMjAzICAwLjIyOTA1ICAgXG52aW9sZW50ICAgICAgICAgICAgICAtMC4wNDUyODcgICAwLjAzMjMxOSAgLTEuNDAxICAwLjE2MTEzICAgXG5wcm9wZXJ0eSAgICAgICAgICAgICAtMC4wMDk1NjggICAwLjAwNTcyNiAgLTEuNjcxICAwLjA5NDc0IC4gXG5zY2FsZShwcm9wX3ZhY2FudCkgICAtMC4wNTgyMjIgICAwLjI5NjQ0NSAgLTAuMTk2ICAwLjg0NDMwICAgXG5zY2FsZShibGFja19wcm9wKSAgICAgMC4xNDk4NjMgICAwLjczOTA0NyAgIDAuMjAzICAwLjgzOTMxICAgXG5zY2FsZShwdnR5X3Byb3ApICAgICAtMS40Njk3MjcgICAwLjY4NzE2NyAgLTIuMTM5ICAwLjAzMjQ1ICogXG5zY2FsZSh1bmVtcGx5X3Byb3ApICAgMC4yMDQyNTggICAwLjQ1NTc0MSAgIDAuNDQ4ICAwLjY1NDAyICAgXG5zY2FsZShvd25PY2NfcHJvcCkgICAtMS42NDM1MjggICAwLjYwMjkxNCAgLTIuNzI2ICAwLjAwNjQxICoqXG5maXR0ZWQobWUuZml0KSAgICAgIC0xMi45MTQ3MjkgICA2LjUxNDc4OSAgLTEuOTgyICAwLjA0NzQ0ICogXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxIFxuXG5UaGV0YSA9IDUuOTUzNyBcbk51bWJlciBvZiBpdGVyYXRpb25zIGluIEJGR1Mgb3B0aW1pemF0aW9uOiAzNiBcbkxvZy1saWtlbGlob29kOiAtNDE2Ljcgb24gMjEgRGZcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuemVyb2luZmwoZm9ybXVsYSA9IGFyc29uIH4gc2NhbGUoZGVsdGE1MCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIHNjYWxlKHByb3BfdmFjYW50KSArIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBcbiAgICBzY2FsZShvd25PY2NfcHJvcCkgKyBmaXR0ZWQobWUuZml0KSwgZGF0YSA9IGdyaWQsIGRpc3QgPSBcIm5lZ2JpblwiKVxuXG5QZWFyc29uIHJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi0xLjU5NDggLTAuNTg0NSAtMC4yMzMyICAwLjM2MjIgIDcuODM3NCBcblxuQ291bnQgbW9kZWwgY29lZmZpY2llbnRzIChuZWdiaW4gd2l0aCBsb2cgbGluayk6XG4gICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgIDEuMjA1MzkgICAgMC4xMjI5NSAgIDkuODA0ICA8IDJlLTE2ICoqKlxuc2NhbGUoZGVsdGE1MCkgICAgICAtMS40MTU3MSAgICAxLjE0NjczICAtMS4yMzUgIDAuMjE2OTkgICAgXG5zY2FsZSh2aW9sZW50KSAgICAgICAwLjY2MDY3ICAgIDAuMTA0MzggICA2LjMzMCAyLjQ2ZS0xMCAqKipcbnNjYWxlKHByb3BlcnR5KSAgICAgIDAuMTA2MTcgICAgMC4xMTkxMSAgIDAuODkxICAwLjM3Mjc0ICAgIFxuc2NhbGUocHJvcF92YWNhbnQpICAgMC4yODM5NSAgICAwLjA4OTY0ICAgMy4xNjggIDAuMDAxNTQgKiogXG5zY2FsZShibGFja19wcm9wKSAgIC0wLjAxMDQzICAgIDAuMTA4MjggIC0wLjA5NiAgMC45MjMyOCAgICBcbnNjYWxlKHB2dHlfcHJvcCkgICAgIDAuMzQ0NjQgICAgMC4xMDcyNyAgIDMuMjEzICAwLjAwMTMxICoqIFxuc2NhbGUodW5lbXBseV9wcm9wKSAgMC4wMjM0NCAgICAwLjEyNTg5ICAgMC4xODYgIDAuODUyMzEgICAgXG5zY2FsZShvd25PY2NfcHJvcCkgICAwLjQyMjYwICAgIDAuMDg2NzkgICA0Ljg3MCAxLjEyZS0wNiAqKipcbmZpdHRlZChtZS5maXQpICAgICAgLTIuMjcyODMgICAgMC43MzU2OCAgLTMuMDg5ICAwLjAwMjAxICoqIFxuTG9nKHRoZXRhKSAgICAgICAgICAgMS42OTUxMyAgICAwLjI0MzY4ICAgNi45NTYgMy40OWUtMTIgKioqXG5cblplcm8taW5mbGF0aW9uIG1vZGVsIGNvZWZmaWNpZW50cyAoYmlub21pYWwgd2l0aCBsb2dpdCBsaW5rKTpcbiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICBcbihJbnRlcmNlcHQpICAgICAgICAgIC05LjQzMjUgICAgIDYuMjY4OSAgLTEuNTA1ICAgMC4xMzI0ICBcbnNjYWxlKGRlbHRhNTApICAgICAgIC0wLjU2MTcgICAgIDYuNTcxNCAgLTAuMDg1ICAgMC45MzE5ICBcbnNjYWxlKHZpb2xlbnQpICAgICAgIC02LjEzNDcgICAgIDguMTg0NSAgLTAuNzUwICAgMC40NTM1ICBcbnNjYWxlKHByb3BlcnR5KSAgICAgIC02LjE2MzAgICAgIDguMTEyMCAgLTAuNzYwICAgMC40NDc0ICBcbnNjYWxlKHByb3BfdmFjYW50KSAgIC0wLjI4MjQgICAgIDAuMzIwNyAgLTAuODgxICAgMC4zNzg2ICBcbnNjYWxlKGJsYWNrX3Byb3ApICAgIC0wLjQxMzMgICAgIDAuNzYyOSAgLTAuNTQyICAgMC41ODc5ICBcbnNjYWxlKHB2dHlfcHJvcCkgICAgIC0xLjAwODUgICAgIDAuNzMyMyAgLTEuMzc3ICAgMC4xNjg1ICBcbnNjYWxlKHVuZW1wbHlfcHJvcCkgICAwLjMwNjIgICAgIDAuNTEwMSAgIDAuNjAwICAgMC41NDg0ICBcbnNjYWxlKG93bk9jY19wcm9wKSAgIC0xLjM2ODAgICAgIDAuNjM2MiAgLTIuMTUwICAgMC4wMzE1ICpcbmZpdHRlZChtZS5maXQpICAgICAgICA1Ljc0NTYgICAgMTAuNzE4MCAgIDAuNTM2ICAgMC41OTE5ICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDEgXG5cblRoZXRhID0gNS40NDczIFxuTnVtYmVyIG9mIGl0ZXJhdGlvbnMgaW4gQkZHUyBvcHRpbWl6YXRpb246IDg0IFxuTG9nLWxpa2VsaWhvb2Q6IC00MjAuNSBvbiAyMSBEZlxuIn0= -->
 <pre><code>
 Call:
-zeroinfl(formula = arson ~ scale(delta70) + violent + property + scale(prop_vacant) + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) + 
-    fitted(me.fit), data = grid, dist = &quot;negbin&quot;)
+zeroinfl(formula = arson ~ scale(delta50) + scale(violent) + scale(property) + scale(prop_vacant) + scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + 
+    scale(ownOcc_prop) + fitted(me.fit), data = grid, dist = &quot;negbin&quot;)
 
 Pearson residuals:
     Min      1Q  Median      3Q     Max 
--1.6873 -0.5424 -0.2228  0.3699 11.6902 
+-1.5948 -0.5845 -0.2332  0.3622  7.8374 
 
 Count model coefficients (negbin with log link):
-                      Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)          7.479e-01  1.645e-01   4.546 5.46e-06 ***
-scale(delta70)       1.093e-01  9.223e-02   1.186 0.235771    
-violent              4.407e-03  7.886e-04   5.588 2.30e-08 ***
-property             5.402e-05  3.635e-04   0.149 0.881857    
-scale(prop_vacant)   3.359e-01  8.915e-02   3.768 0.000165 ***
-scale(black_prop)    9.642e-02  1.093e-01   0.882 0.377512    
-scale(pvty_prop)     2.220e-01  1.028e-01   2.160 0.030759 *  
-scale(unemply_prop) -8.213e-02  1.213e-01  -0.677 0.498323    
-scale(ownOcc_prop)   3.726e-01  8.456e-02   4.406 1.05e-05 ***
-fitted(me.fit)      -2.516e+00  7.295e-01  -3.449 0.000563 ***
-Log(theta)           1.784e+00  2.621e-01   6.806 1.00e-11 ***
+                    Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          1.20539    0.12295   9.804  &lt; 2e-16 ***
+scale(delta50)      -1.41571    1.14673  -1.235  0.21699    
+scale(violent)       0.66067    0.10438   6.330 2.46e-10 ***
+scale(property)      0.10617    0.11911   0.891  0.37274    
+scale(prop_vacant)   0.28395    0.08964   3.168  0.00154 ** 
+scale(black_prop)   -0.01043    0.10828  -0.096  0.92328    
+scale(pvty_prop)     0.34464    0.10727   3.213  0.00131 ** 
+scale(unemply_prop)  0.02344    0.12589   0.186  0.85231    
+scale(ownOcc_prop)   0.42260    0.08679   4.870 1.12e-06 ***
+fitted(me.fit)      -2.27283    0.73568  -3.089  0.00201 ** 
+Log(theta)           1.69513    0.24368   6.956 3.49e-12 ***
 
 Zero-inflation model coefficients (binomial with logit link):
-                      Estimate Std. Error z value Pr(&gt;|z|)   
-(Intercept)           2.818847   1.065427   2.646  0.00815 **
-scale(delta70)        1.072802   0.891920   1.203  0.22905   
-violent              -0.045287   0.032319  -1.401  0.16113   
-property             -0.009568   0.005726  -1.671  0.09474 . 
-scale(prop_vacant)   -0.058222   0.296445  -0.196  0.84430   
-scale(black_prop)     0.149863   0.739047   0.203  0.83931   
-scale(pvty_prop)     -1.469727   0.687167  -2.139  0.03245 * 
-scale(unemply_prop)   0.204258   0.455741   0.448  0.65402   
-scale(ownOcc_prop)   -1.643528   0.602914  -2.726  0.00641 **
-fitted(me.fit)      -12.914729   6.514789  -1.982  0.04744 * 
+                    Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept)          -9.4325     6.2689  -1.505   0.1324  
+scale(delta50)       -0.5617     6.5714  -0.085   0.9319  
+scale(violent)       -6.1347     8.1845  -0.750   0.4535  
+scale(property)      -6.1630     8.1120  -0.760   0.4474  
+scale(prop_vacant)   -0.2824     0.3207  -0.881   0.3786  
+scale(black_prop)    -0.4133     0.7629  -0.542   0.5879  
+scale(pvty_prop)     -1.0085     0.7323  -1.377   0.1685  
+scale(unemply_prop)   0.3062     0.5101   0.600   0.5484  
+scale(ownOcc_prop)   -1.3680     0.6362  -2.150   0.0315 *
+fitted(me.fit)        5.7456    10.7180   0.536   0.5919  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Theta = 5.9537 
-Number of iterations in BFGS optimization: 36 
-Log-likelihood: -416.7 on 21 Df</code></pre>
+Theta = 5.4473 
+Number of iterations in BFGS optimization: 84 
+Log-likelihood: -420.5 on 21 Df</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuXG5nZ3Bsb3QoZGF0YSA9IGdyaWQsIG1hcHBpbmcgPSBhZXMoYXJzb24pKSArXG4gIGdlb21faGlzdG9ncmFtKGJpbnMgPSAyNilcbmBgYCJ9 -->
+<pre class="r"><code>library(ggplot2)
+
+ggplot(data = grid, mapping = aes(arson)) +
+  geom_histogram(bins = 26)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQW5hbHlzaXMgLSBTcGF0aWFsIERhdGEiCmF1dGhvcjogIkNocmlzdG9waGVyIFByZW5lciwgUGguRC4iCmRhdGU6ICcoYHIgZm9ybWF0KFN5cy50aW1lKCksICIlQiAlZCwgJVkiKWApJwpvdXRwdXQ6IAogIGdpdGh1Yl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQgCi0tLQoKIyMgSW50cm9kdWN0aW9uClRoaXMgbm90ZWJvb2sgZml0cyBzb21lIGV4cGVyaW1lbnRhbCB6ZXJvLWluZmxhdGVkIG1vZGVscyB1c2luZyBlaWdlbnZlY3RvciBmaWx0ZXJpbmcgdG8gcmVkdWNlIHRoZSBpbXBhY3Qgb2Ygc3BhdGlhbCBhdXRvLWNvcnJlbGF0aW9uIG9uIHRoZSByZXN1bHRzLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShzZikKbGlicmFyeShzcCkKbGlicmFyeShzcGRlcCkKCiMgbW9kZWxpbmcgcGFja2FnZXMKbGlicmFyeShBRVIpCmxpYnJhcnkoTUFTUykKbGlicmFyeShwc2NsKQoKIyBvdGhlciBwYWNrYWdlcwpsaWJyYXJ5KGhlcmUpCmBgYAoKIyMgTG9hZCBEYXRhClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZpbmFsIGRhdGEgc2V0OgoKYGBge3IgbG9hZC1kYXRhfQpncmlkIDwtIHN0X3JlYWQoaGVyZSgiZGF0YSIsICJhbmFseXNpcyIsICJzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb24iKSwgY3JzID0gMjY5MTUpCmBgYAoKIyMgQ2FsdWNsYXRlIFBvcCBDaGFuZ2UKV2UnbGwgY2FsY3VsYXRlIHRoZSBwcm9wb3J0aW9uIG9mIGNoYW5nZSBmcm9tIDE5NTAgdGhyb3VnaCAyMDE3IGFuZCAxOTcwIHRocm91Z2ggMjAxNzoKCmBgYHtyIHBvcC1jaGFuZ2V9CmdyaWQgJT4lCiAgbXV0YXRlKGRlbHRhNTAgPSAodG90YWxfcG9wLXBvcDUwKS9wb3A1MCkgJT4lCiAgbXV0YXRlKGRlbHRhNzAgPSB0b3RhbF9wb3AtcG9wNzAvcG9wNzApIC0+IGdyaWQKYGBgCgpUaGVyZSBhcmUgdHdvIGdyaWRzIHdpdGggbWlzc2luZyBkYXRhOgoKYGBge3J9CmdyaWQgPC0gZmlsdGVyKGdyaWQsIGlzLm5hKHBvcDcwKSA9PSBGQUxTRSkKYGBgCgoKIyMgV2VpZ2h0cyBNYXRyaXgKV2UgYWxzbyBuZWVkIGEgc3BhdGlhbCB3ZWlnaHRzIG1hdHJpeCBmb3Igb3VyIG1vZGVscy4gV2UnbGwgdXNlIHJvb2sgc2luY2Ugd2UgaGF2ZSBncmlkZGVkIGRhdGE6CgpgYGB7ciB3ZWlnaHRzLW1hdHJpeH0Kd2VpZ2h0cyA8LSBwb2x5Mm5iKGdyaWQsIHF1ZWVuPUZBTFNFKQp3ZWlnaHRzIDwtIG5iMmxpc3R3KHdlaWdodHMsIHN0eWxlPSJXIiwgemVyby5wb2xpY3k9VFJVRSkKYGBgCgojIyBNb3JhbidzIEkKTmV4dCwgd2UnbGwgdXNlIG91ciBncmlkZGVkIGRhdGEgYW5kIG91ciBzcGF0aWFsIHdlaWdodHMgbWF0cml4IHRvIGNhbGN1bGF0ZSBNb3JhbidzICRJJCwgd2hpY2ggaXMgYSBtZWFzdXJlIG9mIHNwYXRpYWwgYXV0b2NvcnJlbGF0aW9uOgoKYGBge3IgZXZhbHVhdGUtaX0KbW9yYW4udGVzdChncmlkJGFyc29uLHdlaWdodHMpCmBgYAoKV2UgaGF2ZSBhIG1vZGVyYXRlIGRlZ3JlZSBvZiBzcGF0aWFsIGF1dG9jb3JyZWxhdGlvbiBwcmVzZW50IGluIG91ciBkYXRhLiBUaGlzIHN1Z2dlc3RzIHRoYXQgd2UgbmVlZCB0byB1c2UgYSBtb2RlbGluZyBzdHJhdGVneSB0aGF0IGFsbG93cyB1cyB0byBhY2NvdW50IGZvciB0aGUgaW1wYWN0IG9mIHNwYXRpYWwgYXV0b2NvcnJlbGF0aW9uLgoKIyMgTW9kZWxpbmcKIyMjIFBvaXNzb24gTW9kZWwgMSAtIE1haW4gRWZmZWN0CgpgYGB7cn0KbW9kZWwucG9pc3NvbiA8LSBnbG0oYXJzb24gfiBzY2FsZShkZWx0YTcwKSAsIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uKQpgYGAKCgojIyMgUG9pc3NvbiBNb2RlbCAyIC0gQ3JpbWUKCmBgYHtyfQptb2RlbC5wb2lzc29uMiA8LSBnbG0oYXJzb24gfiB2aW9sZW50ICsgcHJvcGVydHksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uMikKYGBgCgojIyMgUG9pc3NvbiBNb2RlbCAzIC0gQ29tYmluZWQKCmBgYHtyfQptb2RlbC5wb2lzc29uMyA8LSBnbG0oYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnBvaXNzb24zKQpgYGAKCiMjIyBQb2lzc29uIE1vZGVsIDQgLSAKCmBgYHtyfQptb2RlbC5wb2lzc29uNCA8LSBnbG0oYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSArIHNjYWxlKHByb3BfdmFjYW50KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgbWVkaWFuX2luYyArIHNjYWxlKGJsYWNrX3Byb3ApICsKICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIAogICAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnBvaXNzb240KQpgYGAKCiMjIyBDaGVjayBEaXNwZXJzaW9uCgpgYGB7cn0KZGlzcGVyc2lvbnRlc3QobW9kZWwucG9pc3NvbjQsIGFsdGVybmF0aXZlID0gInR3by5zaWRlZCIpCmBgYAoKIyMjIEZpdCBhIFplcm8tSW5mbGF0ZWQgTW9kZWwKVGhpcyB1c2VzIGEgbmVnYXRpdmUgYmlub21pYWwgZGlzdHJpYnV0aW9uIHRvIGNvbXBlbnN0YXRlIGZvciBvdmVyIGRpc3BlcnNpb24uIFRoZSB6ZXJvLWluZmxhdGVkIGFzcGVjdCBvZiB0aGUgbW9kZWwgaXMgZGVzaWduZWQgdG8gbW9kZWwgZGF0YSB3aXRoIGEgbGFyZ2UgbnVtYmVyIG9mIHplcm9zLCB3aGljaCBpcyBhcHByb3ByaWF0ZSBmb3IgdGhlc2UgYXJzb24gZGF0YSBiZWNhdXNlIG1vc3QgZ3JpZHMgaGF2ZSBhIGNvdW50IG9mIDAuCgpgYGB7cn0KbW9kZWwuem9pbiA8LSB6ZXJvaW5mbChhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgdmlvbGVudCArIHByb3BlcnR5ICsgc2NhbGUocHJvcF92YWNhbnQpICsgCiAgICAgICAgICAgICAgICAgICAgICAgICBzY2FsZShibGFja19wcm9wKSArIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCAKICAgICAgICAgICAgICAgICAgICAgIGRpc3QgPSAibmVnYmluIiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnpvaW4pCmBgYAoKTmV4dCwgd2UnbGwgZmlnIGEgc2VyaWVzIG9mIGVpZ2VudmVjdG9ycyAKCmBgYHtyfQptZS5maXQgPC0gc3BhdGlhbHJlZzo6TUUoYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSArIHNjYWxlKHByb3BfdmFjYW50KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwgCiAgICAgICAgICAgICAgICAgICAgICBkYXRhID0gZ3JpZCwgZmFtaWx5ID0gbmVnYXRpdmUuYmlub21pYWwobW9kZWwuem9pbiR0aGV0YSksIAogICAgICAgICAgIGxpc3R3ID0gd2VpZ2h0cywgdmVyYm9zZSA9IFRSVUUsIGFscGhhID0gLjA1KQpgYGAKCmBgYHtyfQptZS5maXQKYGBgCgpgYGB7cn0KbW9kZWwuem9pbi5maXQgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTcwKSArIHZpb2xlbnQgKyBwcm9wZXJ0eSArIHNjYWxlKHByb3BfdmFjYW50KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSArCiAgICAgICAgICAgICAgICAgICAgICAgICBmaXR0ZWQobWUuZml0KSwgCiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gIm5lZ2JpbiIsIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC56b2luLmZpdCkKYGBgCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQW5hbHlzaXMgLSBTcGF0aWFsIERhdGEiCmF1dGhvcjogIkNocmlzdG9waGVyIFByZW5lciwgUGguRC4iCmRhdGU6ICcoYHIgZm9ybWF0KFN5cy50aW1lKCksICIlQiAlZCwgJVkiKWApJwpvdXRwdXQ6IAogIGdpdGh1Yl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQgCi0tLQoKIyMgSW50cm9kdWN0aW9uClRoaXMgbm90ZWJvb2sgZml0cyBzb21lIGV4cGVyaW1lbnRhbCB6ZXJvLWluZmxhdGVkIG1vZGVscyB1c2luZyBlaWdlbnZlY3RvciBmaWx0ZXJpbmcgdG8gcmVkdWNlIHRoZSBpbXBhY3Qgb2Ygc3BhdGlhbCBhdXRvLWNvcnJlbGF0aW9uIG9uIHRoZSByZXN1bHRzLgoKIyMgRGVwZW5kZW5jaWVzClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZvbGxvd2luZyBwYWNrYWdlczoKCmBgYHtyIGxvYWQtcGFja2FnZXN9CiMgdGlkeXZlcnNlIHBhY2thZ2VzCmxpYnJhcnkoZHBseXIpCgojIHNwYXRpYWwgcGFja2FnZXMKbGlicmFyeShzZikKbGlicmFyeShzcCkKbGlicmFyeShzcGRlcCkKCiMgbW9kZWxpbmcgcGFja2FnZXMKbGlicmFyeShBRVIpCmxpYnJhcnkoTUFTUykKbGlicmFyeShwc2NsKQoKIyBvdGhlciBwYWNrYWdlcwpsaWJyYXJ5KGhlcmUpCmBgYAoKIyMgTG9hZCBEYXRhClRoaXMgbm90ZWJvb2sgcmVxdWlyZXMgdGhlIGZpbmFsIGRhdGEgc2V0OgoKYGBge3IgbG9hZC1kYXRhfQpncmlkIDwtIHN0X3JlYWQoaGVyZSgiZGF0YSIsICJhbmFseXNpcyIsICJzcGF0aWFsX2FuYWx5c2lzLmdlb2pzb24iKSwgY3JzID0gMjY5MTUpCmBgYAoKIyMgQ2FsdWNsYXRlIFBvcCBDaGFuZ2UKV2UnbGwgY2FsY3VsYXRlIHRoZSBwcm9wb3J0aW9uIG9mIGNoYW5nZSBmcm9tIDE5NTAgdGhyb3VnaCAyMDE3IGFuZCAxOTcwIHRocm91Z2ggMjAxNzoKCmBgYHtyIHBvcC1jaGFuZ2V9CmdyaWQgJT4lCiAgbXV0YXRlKGRlbHRhNTAgPSAodG90YWxfcG9wLXBvcDUwKS9wb3A1MCkgJT4lCiAgbXV0YXRlKGRlbHRhNzAgPSB0b3RhbF9wb3AtcG9wNzAvcG9wNzApIC0+IGdyaWQKYGBgCgpUaGVyZSBhcmUgdHdvIGdyaWRzIHdpdGggbWlzc2luZyBkYXRhOgoKYGBge3J9CmdyaWQgPC0gZmlsdGVyKGdyaWQsIGlzLm5hKHBvcDcwKSA9PSBGQUxTRSkKYGBgCgoKIyMgV2VpZ2h0cyBNYXRyaXgKV2UgYWxzbyBuZWVkIGEgc3BhdGlhbCB3ZWlnaHRzIG1hdHJpeCBmb3Igb3VyIG1vZGVscy4gV2UnbGwgdXNlIHJvb2sgc2luY2Ugd2UgaGF2ZSBncmlkZGVkIGRhdGE6CgpgYGB7ciB3ZWlnaHRzLW1hdHJpeH0Kd2VpZ2h0cyA8LSBwb2x5Mm5iKGdyaWQsIHF1ZWVuPUZBTFNFKQp3ZWlnaHRzIDwtIG5iMmxpc3R3KHdlaWdodHMsIHN0eWxlPSJDIiwgemVyby5wb2xpY3k9VFJVRSkKYGBgCgojIyBNb3JhbidzIEkKTmV4dCwgd2UnbGwgdXNlIG91ciBncmlkZGVkIGRhdGEgYW5kIG91ciBzcGF0aWFsIHdlaWdodHMgbWF0cml4IHRvIGNhbGN1bGF0ZSBNb3JhbidzICRJJCwgd2hpY2ggaXMgYSBtZWFzdXJlIG9mIHNwYXRpYWwgYXV0b2NvcnJlbGF0aW9uOgoKYGBge3IgZXZhbHVhdGUtaX0KbW9yYW4udGVzdChncmlkJGFyc29uLHdlaWdodHMpCmBgYAoKV2UgaGF2ZSBhIG1vZGVyYXRlIGRlZ3JlZSBvZiBzcGF0aWFsIGF1dG9jb3JyZWxhdGlvbiBwcmVzZW50IGluIG91ciBkYXRhLiBUaGlzIHN1Z2dlc3RzIHRoYXQgd2UgbmVlZCB0byB1c2UgYSBtb2RlbGluZyBzdHJhdGVneSB0aGF0IGFsbG93cyB1cyB0byBhY2NvdW50IGZvciB0aGUgaW1wYWN0IG9mIHNwYXRpYWwgYXV0b2NvcnJlbGF0aW9uLgoKIyMgTW9kZWxpbmcKIyMjIFBvaXNzb24gTW9kZWwgMSAtIE1haW4gRWZmZWN0CgpgYGB7cn0KbW9kZWwucG9pc3NvbiA8LSBnbG0oYXJzb24gfiBzY2FsZShkZWx0YTcwKSAsIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uKQpgYGAKCgojIyMgUG9pc3NvbiBNb2RlbCAyIC0gQ3JpbWUKCmBgYHtyfQptb2RlbC5wb2lzc29uMiA8LSBnbG0oYXJzb24gfiBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSwgZmFtaWx5ID0gcG9pc3NvbiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnBvaXNzb24yKQpgYGAKCiMjIyBQb2lzc29uIE1vZGVsIDMgLSBDb21iaW5lZAoKYGBge3J9Cm1vZGVsLnBvaXNzb24zIDwtIGdsbShhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSksIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uMykKYGBgCgojIyMgUG9pc3NvbiBNb2RlbCA0IC0gCgpgYGB7cn0KbW9kZWwucG9pc3NvbjQgPC0gZ2xtKGFyc29uIH4gc2NhbGUoZGVsdGE3MCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIHNjYWxlKHByb3BfdmFjYW50KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUobWVkaWFuX2luYykgKyBzY2FsZShibGFja19wcm9wKSArCiAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKHB2dHlfcHJvcCkgKyBzY2FsZSh1bmVtcGx5X3Byb3ApICsgc2NhbGUob3duT2NjX3Byb3ApLCAKICAgICAgICAgICAgICAgICAgICAgIGZhbWlseSA9IHBvaXNzb24sIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC5wb2lzc29uNCkKYGBgCgojIyMgQ2hlY2sgRGlzcGVyc2lvbgoKYGBge3J9CmRpc3BlcnNpb250ZXN0KG1vZGVsLnBvaXNzb240LCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiKQpgYGAKCiMjIyBGaXQgYSBOZWdhdGl2ZSBCaW5vbWlhbCBNb2RlbAoKYGBge3J9Cm1vZGVsLm5iIDwtIGdsbS5uYihhcnNvbiB+IHNjYWxlKGRlbHRhNzApICsgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwKICAgICAgICAgICAgICAgICAgIGRhdGEgPSBncmlkKQpgYGAKCgoKIyMjIEZpdCBhIFplcm8tSW5mbGF0ZWQgTW9kZWwKVGhpcyB1c2VzIGEgbmVnYXRpdmUgYmlub21pYWwgZGlzdHJpYnV0aW9uIHRvIGNvbXBlbnN0YXRlIGZvciBvdmVyIGRpc3BlcnNpb24uIFRoZSB6ZXJvLWluZmxhdGVkIGFzcGVjdCBvZiB0aGUgbW9kZWwgaXMgZGVzaWduZWQgdG8gbW9kZWwgZGF0YSB3aXRoIGEgbGFyZ2UgbnVtYmVyIG9mIHplcm9zLCB3aGljaCBpcyBhcHByb3ByaWF0ZSBmb3IgdGhlc2UgYXJzb24gZGF0YSBiZWNhdXNlIG1vc3QgZ3JpZHMgaGF2ZSBhIGNvdW50IG9mIDAuCgpgYGB7cn0KbW9kZWwuem9pbjEgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTUwKSArIHNjYWxlKHByb3BfdmFjYW50KSwgCiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gIm5lZ2JpbiIsIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC56b2luMSkKYGBgCgpgYGB7cn0KbW9kZWwuem9pbjIgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSwgCiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gIm5lZ2JpbiIsIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC56b2luMikKYGBgCgpgYGB7cn0KbW9kZWwuem9pbjMgPC0gemVyb2luZmwoYXJzb24gfiBzY2FsZShkZWx0YTUwKSArIHNjYWxlKHByb3BfdmFjYW50KSArIHNjYWxlKHZpb2xlbnQpICsgc2NhbGUocHJvcGVydHkpLCAKICAgICAgICAgICAgICAgICAgICAgIGRpc3QgPSAibmVnYmluIiwgZGF0YSA9IGdyaWQpCgpzdW1tYXJ5KG1vZGVsLnpvaW4zKQpgYGAKCgoKYGBge3J9Cm1vZGVsLnpvaW40IDwtIHplcm9pbmZsKGFyc29uIH4gc2NhbGUoZGVsdGE1MCkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyBzY2FsZSh2aW9sZW50KSArIHNjYWxlKHByb3BlcnR5KSArIAogICAgICAgICAgICAgICAgICAgICAgICAgc2NhbGUoYmxhY2tfcHJvcCkgKyBzY2FsZShwdnR5X3Byb3ApICsgc2NhbGUodW5lbXBseV9wcm9wKSArIHNjYWxlKG93bk9jY19wcm9wKSwgCiAgICAgICAgICAgICAgICAgICAgICBkaXN0ID0gIm5lZ2JpbiIsIGRhdGEgPSBncmlkKQoKc3VtbWFyeShtb2RlbC56b2luNCkKYGBgCgpgYGB7cn0KdnVvbmcobW9kZWwuem9pbjQsIG1vZGVsLm5iKQpgYGAKCgpOZXh0LCB3ZSdsbCBmaWcgYSBzZXJpZXMgb2YgZWlnZW52ZWN0b3JzIAoKYGBge3J9Cm1lLmZpdCA8LSBzcGF0aWFscmVnOjpNRShhcnNvbiB+IHNjYWxlKGRlbHRhNTApICsgc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyAKICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCksIAogICAgICAgICAgICAgICAgICAgICAgZGF0YSA9IGdyaWQsIGZhbWlseSA9IG5lZ2F0aXZlLmJpbm9taWFsKG1vZGVsLnpvaW40JHRoZXRhKSwgCiAgICAgICAgICAgbGlzdHcgPSB3ZWlnaHRzLCB2ZXJib3NlID0gVFJVRSwgYWxwaGEgPSAuMDUpCmBgYAoKYGBge3J9Cm1lLmZpdApgYGAKCmBgYHtyfQptb2RlbC56b2luNSA8LSB6ZXJvaW5mbChhcnNvbiB+IHNjYWxlKGRlbHRhNTApICsgc2NhbGUodmlvbGVudCkgKyBzY2FsZShwcm9wZXJ0eSkgKyBzY2FsZShwcm9wX3ZhY2FudCkgKyAKICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxlKGJsYWNrX3Byb3ApICsgc2NhbGUocHZ0eV9wcm9wKSArIHNjYWxlKHVuZW1wbHlfcHJvcCkgKyBzY2FsZShvd25PY2NfcHJvcCkgKwogICAgICAgICAgICAgICAgICAgICAgICAgZml0dGVkKG1lLmZpdCksIAogICAgICAgICAgICAgICAgICAgICAgZGlzdCA9ICJuZWdiaW4iLCBkYXRhID0gZ3JpZCkKCnN1bW1hcnkobW9kZWwuem9pbjUpCmBgYAoKCgpgYGB7cn0KbGlicmFyeShnZ3Bsb3QyKQoKZ2dwbG90KGRhdGEgPSBncmlkLCBtYXBwaW5nID0gYWVzKGFyc29uKSkgKwogIGdlb21faGlzdG9ncmFtKGJpbnMgPSAyNikKYGBgCgoKCg==</div>
 
 
 

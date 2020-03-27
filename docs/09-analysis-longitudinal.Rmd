@@ -48,6 +48,8 @@ ggplot(long, mapping = aes(x = year, y = arson_rate)) +
   ) -> plot
 
 ggsave(filename = here("results", "rate.png"), width = 7, height = 4, units = "in", dpi = 500)
+
+plot
 ```
 
 
@@ -82,19 +84,19 @@ summary(m1)
 ```
 
 ```{r}
-m2 <- tslm(arson_rate ~ pop_delta + manu_delta, data = long)
+m2 <- tslm(arson_rate ~ pop_delta_pct + manu_delta_pct, data = long)
 
 summary(m2)
 ```
 
 ```{r}
-m2 <- tslm(arson_rate ~ pop_delta + manu_delta5, data = long)
+m2 <- tslm(arson_rate ~ pop_delta_pct + manu_delta_pct, data = long)
 
 summary(m2)
 ```
 
 ```{r}
-m3 <- tslm(arson_rate ~ violent_rate + larceny_rate + pop_delta + manu_delta, data = long)
+m3 <- tslm(arson_rate ~ violent_rate + larceny_rate + pop_delta_pct + manu_delta_pct, data = long)
 
 summary(m3)
 ```
