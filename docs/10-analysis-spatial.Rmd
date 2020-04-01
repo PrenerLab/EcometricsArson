@@ -177,7 +177,7 @@ me.fit
 ```
 
 ```{r}
-model.zoin5 <- zeroinfl(arson ~ scale(delta50) + scale(violent) + scale(property) + scale(prop_vacant) + 
+model.zoin5 <- zeroinfl(arson ~ scale(delta50) + scale(prop_vacant) + scale(violent) + scale(property) + 
                          scale(black_prop) + scale(pvty_prop) + scale(unemply_prop) + scale(ownOcc_prop) +
                          fitted(me.fit), 
                       dist = "negbin", data = grid)
