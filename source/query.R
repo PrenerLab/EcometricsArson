@@ -16,7 +16,13 @@ query <- function(i, target, source, category){
   
   # intersect source and buffer, and count
   target <- suppressWarnings(sf::st_intersection(target, buffer))
-  target <- compstatr::cs_parse_date(target, var = date_occur, dateVar = date, timeVar = time)
+  
+  if (category %in% c("violent", "property", "other crime")){
+    target <- compstatr::cs_parse_date(target, var = date_occur, dateVar = date, timeVar = time)
+  } else if (category == "disorder"){
+    target <- dplyr::mutate(target, date_occur = date(datetimeinit))
+  }
+  
   tail_count <- dplyr::filter(target, date <= date_val & date >= tail_date)
   head_count <- dplyr::filter(target, date >= date_val & date <= head_date)
   
@@ -29,9 +35,31 @@ query <- function(i, target, source, category){
       violent_post = nrow(head_count)
     )
     
-  } else if ()
-  
-
+  } else if (category == "property"){
+    
+    out <- dplyr::tibble(
+      id = i,
+      property_pre = nrow(tail_count),
+      property_post = nrow(head_count)
+    )
+    
+  } else if (category == "disorder"){
+    
+    out <- dplyr::tibble(
+      id = i,
+      disorder_pre = nrow(tail_count),
+      disorder_post = nrow(head_count)
+    )
+    
+  } else if (category == "other crime"){
+    
+    out <- dplyr::tibble(
+      id = i,
+      other_crime_pre = nrow(tail_count),
+      other_crime_post = nrow(head_count)
+    )
+    
+  }
   
   # return output
   return(out)

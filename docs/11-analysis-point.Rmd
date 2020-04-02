@@ -16,6 +16,7 @@ This notebook requires the following packages:
 ```{r load-packages}
 # tidystl packages
 library(compstatr)
+library(stlcsb)
 
 # tidyverse packages
 library(dplyr)
@@ -28,22 +29,40 @@ library(tibble)
 library(sf)
 
 # other packages
-library(here)
+# library(here)
 ```
+
+```{r}
+source(here::here("source", "query.R"))
+```
+
 
 ## Load Data
 This notebook requires the final data set:
 
 ```{r load-data}
-arson_point <- read_csv(here("data", "clean", "point_arson.csv")) %>%
+arson_point <- read_csv(here::here("data", "clean", "point_arson.csv")) %>%
   filter(cs_year > 2008 & cs_year < 2019) %>%
   cs_projectXY(varX = x_coord, varY = y_coord) %>%
   rowid_to_column(var = "id") %>%
   st_transform(crs = 26915)
 
-violent_point <- read_csv(here("data", "clean", "point_violent.csv")) %>%
+violent_point <- read_csv(here::here("data", "clean", "point_violent.csv")) %>%
   cs_projectXY(varX = x_coord, varY = y_coord) %>%
   st_transform(crs = 26915)
+  
+property_point <- read_csv(here::here("data", "clean", "point_property.csv")) %>%
+  cs_projectXY(varX = x_coord, varY = y_coord) %>%
+  st_transform(crs = 26915)
+
+otherCrime_point <- read_csv(here::here("data", "clean", "point_otherCrimes.csv")) %>%
+  cs_projectXY(varX = x_coord, varY = y_coord) %>%
+  st_transform(crs = 26915)
+
+disorder_point <- read_csv(here::here("data", "clean", "point_disorder.csv")) %>%
+  csb_projectXY(varX = srx, varY = sry) %>%
+  st_transform(crs = 26915)
+  
 ```
 
 
@@ -52,7 +71,37 @@ arsons <- arson_point$id
 
 arsons %>%
   unlist() %>%
-  map_df(~query(i = .x, target = violent_point, source = arson_point)) -> violent_counts
+  map_df(~query(i = .x, target = violent_point, source = arson_point, category = "violent")) -> violent_counts
 ```
+
+```{r}
+arsons %>%
+  unlist() %>%
+  map_df(~query(i = .x, target = property_point, source = arson_point, category = "property")) -> property_counts
+```
+
+
+
+```{r}
+arsons %>%
+  unlist() %>%
+  map_df(~query(i = .x, target = otherCrime_point, source = arson_point, category = "other crime")) -> otherCrime_counts
+```
+
+```{r}
+arson_point %>%
+  left_join(., violent_counts, by = "id") %>%
+  left_join(., property_counts, by = "id") %>%
+  left_join(., otherCrime_counts, by = "id") %>%
+  select(id, cs_year, date_occur, ileads_address, ileads_street, violent_pre, violent_post, 
+         property_pre, property_post, other_crime_pre, other_crime_post) -> arson_point
+```
+
+```{r}
+arson_point %>%
+  st_transform(crs = 4326) %>%
+  st_write(here::here("data", "analysis", "pre_post_analysis.geojson"))
+```
+
 
 
