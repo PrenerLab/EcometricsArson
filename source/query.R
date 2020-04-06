@@ -20,7 +20,7 @@ query <- function(i, target, source, category){
   if (category %in% c("violent", "property", "other crime")){
     target <- compstatr::cs_parse_date(target, var = date_occur, dateVar = date, timeVar = time)
   } else if (category == "disorder"){
-    target <- dplyr::mutate(target, date_occur = date(datetimeinit))
+    target <- dplyr::mutate(target, date = date(datetimeinit))
   }
   
   tail_count <- dplyr::filter(target, date <= date_val & date >= tail_date)
